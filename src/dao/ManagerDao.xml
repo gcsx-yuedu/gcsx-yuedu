@@ -1,0 +1,7 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ManagerDao">
+    <select id="SelectAdmin" resultType="po.Manager">
+        select * from admin
+    </select>
+</mapper>
