@@ -45,7 +45,7 @@
                 </li>
                 <li>
                     <span class="line"></span>
-                    <a href="#">登录</a>
+                    <a class="app">退出</a>
                 </li>
                 <li>
                     <span class="line"></span>
