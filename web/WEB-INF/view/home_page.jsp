@@ -40,11 +40,7 @@
 	  </li>
 	  <li>
 		<span class="line"></span>
-		<a href="#" class="icon-text__pink register">注册</a>
-	  </li>
-	  <li>
-		<span class="line"></span>
-		<a href="#">登录</a>
+		<a href="#" class="icon-text__pink register">登录</a>
 	  </li>
 	  <li>
 		<span class="line"></span>
