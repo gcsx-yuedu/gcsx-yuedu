@@ -34,12 +34,12 @@ position:absolute;
 </head>
 
 
-<%
-  String username = (String) session.getAttribute("username");
-  if (username == null) {
-    response.sendRedirect("sign-up-gly.jsp");
-  }
-%>
+<%--<%--%>
+  <%--String username = (String) session.getAttribute("username");--%>
+  <%--if (username == null) {--%>
+    <%--response.sendRedirect("sign-up-gly.jsp");--%>
+  <%--}--%>
+<%--%>--%>
 
 
 <body class="grey lighten-3">
