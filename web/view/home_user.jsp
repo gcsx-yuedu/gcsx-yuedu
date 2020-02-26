@@ -41,11 +41,11 @@
                 <li>
                     <span class="line"></span>
                     <span>欢迎 </span>
-                    <a class="app">用户名</a>
+                    <a class="app" style="cursor:pointer">用户名</a>
                 </li>
                 <li>
                     <span class="line"></span>
-                    <a class="app">退出</a>
+                    <a class="app" style="cursor:pointer">退出</a>
                 </li>
                 <li>
                     <span class="line"></span>
