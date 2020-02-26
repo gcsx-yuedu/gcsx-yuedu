@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import po.Manager;
 import service.ManagerService;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 @Controller
 public class GlySignInCheck {
@@ -25,5 +27,12 @@ public class GlySignInCheck {
         System.out.println("成功调用管理员验证程序......");
 //        System.out.println(manager.toString());
         return service.managerCheck(manager)?"1":"2";
+    }
+
+    @RequestMapping("/houtai-index")
+    public String toHoutai(String username, HttpServletRequest request) {
+        request.getSession().setAttribute("username",username);
+        System.out.println("成功调用后台跳转程序......");
+        return "houtai-xinxitongji";
     }
 }

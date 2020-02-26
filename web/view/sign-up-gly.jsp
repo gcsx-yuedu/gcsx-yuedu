@@ -57,7 +57,7 @@
                         success:function (d) {
                             if (d=="1") {
                                 alert("核验成功！");
-                                window.location.href="houtai-xinxitongji.jsp";
+                                window.location.href="/houtai-index?username="+a_name;
                             }else if (d == "2") {
                                 alert("核验失败！")
                             }else {

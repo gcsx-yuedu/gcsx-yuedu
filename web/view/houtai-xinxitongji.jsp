@@ -35,11 +35,10 @@ position:absolute;
 
 
 <%
-    String username = null;
-    username = (String) session.getAttribute("username");
-    if (username.equals("") || null==username) {
-        response.sendRedirect("sign-up-gly.jsp");
-    }
+  String username = (String) session.getAttribute("username");
+  if (username == null) {
+    response.sendRedirect("sign-up-gly.jsp");
+  }
 %>
 
 
