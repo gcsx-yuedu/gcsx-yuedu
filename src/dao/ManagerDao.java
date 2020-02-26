@@ -5,5 +5,5 @@ import po.Manager;
 
 @Repository
 public interface ManagerDao {
-    public Manager SelectAdmin();
+    public Integer SelectAdmin(Manager manager);
 }

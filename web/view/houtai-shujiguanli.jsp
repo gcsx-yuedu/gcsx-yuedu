@@ -91,8 +91,8 @@ position:absolute;
               </a>
             </li> -->
             <li class="nav-item">
-              <a href="#" class="nav-link border border-light rounded waves-effect"
-                target="_blank">
+              <a href="sign-up-gly.jsp" class="nav-link border border-light rounded waves-effect"
+                target="_self">
                 <i class="fab fa-github mr-2"></i>退出登录
               </a>
             </li>
@@ -1262,7 +1262,7 @@ position:absolute;
   <!-- <footer class="page-footer text-center font-small primary-color-dark darken-2 mt-4 wow fadeIn"> -->
 
     <!--Call to action
-    <!-- <div class="pt-4">
+    <-- <div class="pt-4">
       <a class="btn btn-outline-white" href="#getting-started/download/" target="_blank"
         role="button">Download
         MDB

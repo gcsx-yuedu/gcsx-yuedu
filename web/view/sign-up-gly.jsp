@@ -15,11 +15,11 @@
         <h2>管理员登录</h2>
         <label>
             <span>用户名</span>
-            <input type="text"/>
+            <input id="a_name" type="text"/>
         </label>
         <label>
             <span>密码</span>
-            <input type="password"/>
+            <input id="a_password" type="password"/>
         </label>
 
         <!-- <button type="button" class="fb-btn">使用 <span>facebook</span> 帐号登录</button> -->
@@ -31,6 +31,7 @@
 				        border-radius: 5px;"></canvas>
         </label>
         <!-- 生成随机验证码	 -->
+        <script src="http://lib.sinaapp.com/js/jquery/2.2.4/jquery-2.2.4.min.js"></script>
         <script>
             var show_num = [];
             draw0(show_num);
@@ -42,10 +43,31 @@
             function sublim0() {
                 var val = document.getElementById("text0").value;
                 var num = show_num.join("");
-                if (val == '') {
+                var a_name = document.getElementById("a_name").value;
+                var a_password = document.getElementById("a_password").value;
+                if (val === '') {
                     alert('请输入验证码！');
-                } else if (val == num) {
+                } else if (val === num) {
                     alert('提交成功！');
+                    $.ajax({
+                        url : "/ManagerCheck?name="+a_name+"&password="+a_password,
+                        async : false,
+                        type : "post",
+                        dataType : "text",
+                        success:function (d) {
+                            if (d=="1") {
+                                alert("核验成功！");
+                                window.location.href="houtai-xinxitongji.jsp";
+                            }else if (d == "2") {
+                                alert("核验失败！")
+                            }else {
+                                alert("出错！")
+                            }
+                        },
+                        error:function () {
+                            alert("系统出错！")
+                        }
+                    });
                     document.getElementById(".input-val").val('');
                     draw0(show_num);
 
@@ -54,6 +76,7 @@
                     document.getElementById("text").value = '';
                     draw0(show_num);
                 }
+
 
 
             }
