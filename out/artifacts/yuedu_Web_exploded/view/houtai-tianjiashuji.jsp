@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Material Design Bootstrap</title>
+  <title>悦读后台管理系统</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -97,7 +97,7 @@ position:absolute;
               </a>
             </li> -->
             <li class="nav-item">
-              <a href="sign-up-gly.jsp" class="nav-link border border-light rounded waves-effect"
+              <a href="${pageContext.request.contextPath}/view/sign-up-gly.jsp" class="nav-link border border-light rounded waves-effect"
                 target="_self">
                 <i class="fab fa-github mr-2"></i>退出登录
               </a>
