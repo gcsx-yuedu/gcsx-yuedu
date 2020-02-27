@@ -145,7 +145,7 @@
                 <div class="stats-img">
                     <span class="fa fa-book" aria-hidden="true"></span>
                 </div>
-                <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='982' data-delay='.5' data-increment="1">982</div>
+                <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='982' data-delay='.5' data-increment="1">986</div>
                 <p>收藏</p>
             </div>
             <div class="col-xs-3 stats-grid-w3-agile">
