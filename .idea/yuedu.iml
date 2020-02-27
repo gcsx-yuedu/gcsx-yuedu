@@ -44,5 +44,6 @@
     </orderEntry>
     <orderEntry type="library" exported="" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" exported="" name="jquery-2.2.4" level="application" />
+    <orderEntry type="library" name="Chart" level="application" />
   </component>
 </module>
