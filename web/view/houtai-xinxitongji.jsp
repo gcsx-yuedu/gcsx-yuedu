@@ -32,7 +32,6 @@ width:100%;
 position:absolute;
 }
   </style>
-  <%--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
 </head>
 
 
@@ -69,43 +68,12 @@ position:absolute;
 
           <!-- Left -->
           <ul class="navbar-nav mr-auto">
-            <!-- <li class="nav-item active">
-              <a class="nav-link waves-effect" href="#">主页
-                <span class="sr-only">(current)</span>
-              </a>
-            </li> -->
-            <!-- <li class="nav-item">
-              <a class="nav-link waves-effect" href="#" target="_blank">About
-                MDB</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="#getting-started/download/"
-                target="_blank">Free
-                download</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="#" target="_blank">Free
-                tutorials</a>
-            </li> -->
           </ul>
 
           <!-- Right -->
-          <ul class="navbar-nav nav-flex-icons">
-            <!-- <li class="nav-item">
-              <a href="#" class="nav-link waves-effect" target="_blank">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-            </li> -->
-            <!-- <li class="nav-item">
-              <a href="#" class="nav-link waves-effect" target="_blank">
-                <i class="fab fa-twitter"></i>
-              </a>
-            </li> -->
-            <li class="nav-item">
-              <a href="sign-up-gly.jsp" class="nav-link border border-light rounded waves-effect"
-                target="_self">
-                <i class="fab fa-github mr-2"></i>退出登录
-              </a>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+
             </li>
           </ul>
 
