@@ -6,8 +6,19 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="gcsx-yuedu" />
+          <element id="module-output" name="yuedu" />
+          <element id="library" level="application" name="html5shiv" />
+          <element id="library" level="application" name="jquery-2.2.4" />
+          <element id="library" level="application" name="respond" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="jsp-api" />
+          <element id="library" level="project" name="lib" />
+          <element id="library" level="project" name="servlet-api" />
+          <element id="library" level="project" name="tomcat-api" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="yuedu/web/Web" />
     </root>
   </artifact>
 </component>

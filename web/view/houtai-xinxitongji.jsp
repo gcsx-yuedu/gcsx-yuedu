@@ -17,6 +17,7 @@
   <link href="${pageContext.request.contextPath}/static/css/houtai/css/style.min.css" rel="stylesheet">
   <style>
 
+
     .map-container{
 overflow:hidden;
 padding-bottom:56.25%;
@@ -67,43 +68,12 @@ position:absolute;
 
           <!-- Left -->
           <ul class="navbar-nav mr-auto">
-            <!-- <li class="nav-item active">
-              <a class="nav-link waves-effect" href="#">主页
-                <span class="sr-only">(current)</span>
-              </a>
-            </li> -->
-            <!-- <li class="nav-item">
-              <a class="nav-link waves-effect" href="#" target="_blank">About
-                MDB</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="#getting-started/download/"
-                target="_blank">Free
-                download</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="#" target="_blank">Free
-                tutorials</a>
-            </li> -->
           </ul>
 
           <!-- Right -->
-          <ul class="navbar-nav nav-flex-icons">
-            <!-- <li class="nav-item">
-              <a href="#" class="nav-link waves-effect" target="_blank">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-            </li> -->
-            <!-- <li class="nav-item">
-              <a href="#" class="nav-link waves-effect" target="_blank">
-                <i class="fab fa-twitter"></i>
-              </a>
-            </li> -->
-            <li class="nav-item">
-              <a href="sign-up-gly.jsp" class="nav-link border border-light rounded waves-effect"
-                target="_self">
-                <i class="fab fa-github mr-2"></i>退出登录
-              </a>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+
             </li>
           </ul>
 
@@ -130,7 +100,7 @@ position:absolute;
         <a href="${pageContext.request.contextPath}/view/houtai-tianjiashuji.jsp" class="list-group-item list-group-item-action waves-effect">
           <i class="fas fa-map mr-3"></i>添加书籍</a>
         <a href="${pageContext.request.contextPath}/view/houtai-jubaoxnxiguanli.jsp" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-money-bill-alt mr-3"></i>举报信息管理</a>
+          <i class="fas fa-money-bill-alt mr-3"></i>举报信息管理&nbsp;&nbsp;<span class="badge black">20</span></a>
       </div>
 
     </div>
@@ -142,32 +112,6 @@ position:absolute;
   <!--Main layout-->
   <main class="pt-5 mx-lg-5">
     <div class="container-fluid mt-5">
-
-      <!-- Heading -->
-      <!-- <div class="card mb-4 wow fadeIn"> -->
-
-        <!--Card content-->
-       <!-- <div class="card-body d-sm-flex justify-content-between">
-
-          <h4 class="mb-2 mb-sm-0 pt-1">
-            <a href="#" target="_blank">Home Page</a>
-            <span>/</span>
-            <span>Dashboard</span>
-          </h4>
-
-          <form class="d-flex justify-content-center">
-            <!- Default input -->
-            <!-- <input type="search" placeholder="Type your query" aria-label="Search" class="form-control">
-            <button class="btn btn-primary btn-sm my-0 p" type="submit">
-              <i class="fas fa-search"></i>
-            </button>
-
-          </form> -->
-
-        <!-- </div> -->
-
-      <!-- </div> -->
-      <!-- Heading -->
 
       <!--Grid row-->
       <div class="row wow fadeIn">
@@ -1265,38 +1209,6 @@ position:absolute;
 
     </div>
   </main>
-  <!--Main layout-->
-
-  <!--Footer-->
-  <!-- <footer class="page-footer text-center font-small primary-color-dark darken-2 mt-4 wow fadeIn"> -->
-
-    <!--Call to action
-    !-- <div class="pt-4">
-      <a class="btn btn-outline-white" href="#getting-started/download/" target="_blank"
-        role="button">Download
-        MDB
-        <i class="fas fa-download ml-2"></i>
-      </a>
-      <a class="btn btn-outline-white" href="#" target="_blank" role="button">Start
-        free tutorial
-        <i class="fas fa-graduation-cap ml-2"></i>
-      </a>
-    </div> -->
-    <!--/.Call to action-->
-
-    <!-- <hr class="my-4"> -->
-
-    <!-- Social icons -->
-    
-    <!-- Social icons -->
-
-    <!--Copyright-->
-    <!-- <div class="footer-copyright py-3"> © 2019 Copyright: MDBootstrap - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-    </div> -->
-    <!--/.Copyright-->
-
-  <!--</footer> -->
-  <!--/.Footer-->
 
   <!-- SCRIPTS -->
   <!-- JQuery -->
