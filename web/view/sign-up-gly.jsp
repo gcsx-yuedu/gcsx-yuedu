@@ -31,7 +31,8 @@
 				        border-radius: 5px;"></canvas>
         </label>
         <!-- 生成随机验证码	 -->
-        <script src="http://lib.sinaapp.com/js/jquery/2.2.4/jquery-2.2.4.min.js"></script>
+        <%--<script src="http://lib.sinaapp.com/js/jquery/2.2.4/jquery-2.2.4.min.js"></script>--%>
+        <script src="${pageContext.request.contextPath}/static/js/gly-js/http_lib.sinaapp.com_js_jquery_2.2.4_jquery-2.2.4.js"></script>
         <script>
             var show_num = [];
             draw0(show_num);

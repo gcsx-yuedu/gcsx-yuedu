@@ -73,7 +73,7 @@ position:absolute;
           <!-- Right -->
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-
+              <button class="btn btn-white btn-sm btn-block"><a>退出登录</a></button>
             </li>
           </ul>
 
