@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--&lt;!&ndash; 引入数据库连接配置文件 &ndash;&gt;-->
+    <!--<properties resource="db.properties" />-->
+
+    <!--<settings>-->
+        <!--&lt;!&ndash; 打开延迟加载的开关 &ndash;&gt;-->
+        <!--<setting name="lazyLoadingEnabled" value="true" />-->
+        <!--&lt;!&ndash; 将积极加载改为消息加载，即按需加载 &ndash;&gt;-->
+        <!--<setting name="aggressiveLazyLoading" value="false"/>-->
+    <!--</settings>-->
+
+    <!--&lt;!&ndash;使用扫描包的形式定义别名 &ndash;&gt;-->
+    <!--<typeAliases>-->
+        <!--<package name="po" />-->
+    <!--</typeAliases>-->
+    <!--&lt;!&ndash;配置环境 ，默认的环境id为mysql &ndash;&gt;-->
+    <!--<environments default="mysql">-->
+        <!--&lt;!&ndash; 配置id为mysql的数据库环境 &ndash;&gt;-->
+        <!--<environment id="mysql">-->
+            <!--&lt;!&ndash; 使用JDBC的事务管理 &ndash;&gt;-->
+            <!--<transactionManager type="JDBC" />-->
+            <!--&lt;!&ndash;数据库连接池 &ndash;&gt;-->
+            <!--<dataSource type="POOLED">-->
+                <!--<property name="driver" value="${jdbc.driver}" />-->
+                <!--<property name="url" value="${jdbc.url}" />-->
+                <!--<property name="username" value="${jdbc.username}" />-->
+                <!--<property name="password" value="${jdbc.password}" />-->
+            <!--</dataSource>-->
+        <!--</environment>-->
+    <!--</environments>-->
+    <!--&lt;!&ndash;配置Mapper的位置 &ndash;&gt;-->
+    <!--<mappers>-->
+        <!--<mapper resource="mapper/TeacherMapper.xml" />-->
+        <!--<mapper resource="mapper/ClassMapper.xml" />-->
+        <!--<mapper resource="mapper/CourseMapper.xml" />-->
+    <!--</mappers>-->
+</configuration>
