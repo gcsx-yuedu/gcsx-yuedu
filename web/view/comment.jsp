@@ -253,8 +253,6 @@
     </div>
 </div>
 <!-- End of Page Container -->
-
-
 <!-- Footer Bottom -->
 <div id="footer-bottom-wrapper">
     <div id="footer-bottom" class="container">
