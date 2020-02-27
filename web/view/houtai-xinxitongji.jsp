@@ -73,7 +73,7 @@ position:absolute;
           <!-- Right -->
           <ul class="nav navbar-nav navbar-right">
             <li class="nav-item">
-              <a href="sign-up-gly.jsp" class="nav-link border border-light rounded waves-effect"
+              <a href="${pageContext.request.contextPath}/view/sign-up-gly.jsp" class="nav-link border border-light rounded waves-effect"
                  target="_self">
                 <i class="fab fa-github mr-2"></i>退出登录
               </a>
