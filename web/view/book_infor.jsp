@@ -3,7 +3,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
-    <title>Home</title>
+    <title>书籍信息</title>
     <!-- custom-theme -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
@@ -24,7 +24,7 @@
     <!-- style-css-file -->
     <link href="${pageContext.request.contextPath}/static/css/book_infor-css/style.css" rel='stylesheet' type='text/css' />
     <!-- //style-css-file -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book_infor-css/lightbox.css">
+    <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book_infor-css/lightbox.css">--%>
     <!-- For-Gallery-CSS -->
     <!-- web fonts -->
     <link href="http://fonts.googleapis.com/css?family=Alex+Brush&amp;subset=latin-ext" rel="stylesheet">
@@ -67,7 +67,7 @@
                 <ul>
                     <li>
                         <span class="line"></span>
-                        <a href="#" class="dreamer">安心鲍戴腿</a>
+                        <a href="#" class="dreamer">悦读</a>
                         <i class="icon-text__pink icon-new">new</i>
                     </li>
                     <li>
@@ -103,7 +103,7 @@
     <div class="container">
         <div class="about-agileinfo">
             <div class="col-md-4 about-left ">
-                <img src="images/ab.jpg" class="img-responsive" alt="" />
+                <img src="${pageContext.request.contextPath}/static/image/book_infor-image/ab.jpg" class="img-responsive" alt="" />
             </div>
             <div class="col-md-8 about-right wthree">
                 <h3>书名</h3>
@@ -155,12 +155,12 @@
                 <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='678' data-delay='.5' data-increment="1">678</div>
                 <p>开始阅读</p>
             </div>
-            <div class="col-xs-3 stats-grid-w3-agile">
+            <div class="col-xs-3 stats-grid-w3-agile ">
                 <div class="stats-img">
                     <span class="fa fa-commenting-o" aria-hidden="true"></span>
                 </div>
                 <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='768' data-delay='.5' data-increment="1">768</div>
-                <p>书评区</p>
+                <a href="${pageContext.request.contextPath}/view/comment.jsp"><p>书评区</p></a>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -179,7 +179,7 @@
             <div class="wthree_testimonial_grid_left">
                 <div class="w3ls_testimonial_grid_left_grid">
                     <div class="col-xs-4 agileinfo_testimonials_left">
-                        <img src="images/t1.jpg" alt=" " class="img-people" />
+                        <img src="${pageContext.request.contextPath}/static/image/book_infor-image/t1.jpg" alt=" " class="img-people" />
                         <h4>John Crisp</h4>
                     </div>
                     <div class="col-xs-8 agileinfo_testimonials_right">
@@ -199,7 +199,7 @@
                     </div>
 
                     <div class="col-xs-4 agileinfo_testimonials_left">
-                        <img src="images/t2.jpg" alt=" " class="img-people" />
+                        <img src="${pageContext.request.contextPath}/static/image/book_infor-image/t2.jpg" alt=" " class="img-people" />
                         <h4>Thomus Carl</h4>
                     </div>
                     <div class="clearfix"> </div>
@@ -207,7 +207,7 @@
 
                 <div class="w3ls_testimonial_grid_left_grid">
                     <div class="col-xs-4 agileinfo_testimonials_left">
-                        <img src="images/t3.jpg" alt=" " class="img-people" />
+                        <img src="${pageContext.request.contextPath}/static/image/book_infor-image/t3.jpg" alt=" " class="img-people" />
                         <h4>John Crisp</h4>
                     </div>
                     <div class="col-xs-8 agileinfo_testimonials_right">
@@ -245,23 +245,23 @@
 
 
 <!-- js -->
-<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/book_infor-js/jquery-2.1.4.min.js"></script>
 <!-- //js -->
 
 <!-- for bootstrap working -->
-<script src="js/bootstrap.js"></script>
+<script src="js/book_infor-js/bootstrap.js"></script>
 <!-- //for bootstrap working -->
 
 <!-- stats numscroller-js-file -->
-<script src="js/numscroller-1.0.js"></script>
+<script src="js/book_infor-js/numscroller-1.0.js"></script>
 <!-- //stats numscroller-js-file -->
 
 <!--  light box js -->
-<script src="js/lightbox-plus-jquery.min.js"></script>
+<script src="js/book_infor-js/lightbox-plus-jquery.min.js"></script>
 <!-- //light box js-->
 
 <!-- flexisel (for special offers) -->
-<script src="js/jquery.flexisel.js"></script>
+<script src="js/book_infor-js/jquery.flexisel.js"></script>
 <script>
     $(window).load(function () {
         $("#flexiselDemo1").flexisel({
@@ -292,7 +292,7 @@
 <!-- //flexisel (for special offers) -->
 
 <!-- pricing-tablel -->
-<script src="js/jquery.magnific-popup.js"></script>
+<script src="js/book_infor-js/jquery.magnific-popup.js"></script>
 <script>
     $(document).ready(function () {
         $('.popup-with-zoom-anim').magnificPopup({
@@ -312,12 +312,12 @@
 <!-- //pricing-tablel -->
 
 <!-- smooth scrolling -->
-<script src="js/SmoothScroll.min.js"></script>
+<script src="js/book_infor-js/SmoothScroll.min.js"></script>
 <!-- //smooth scrolling -->
 
 <!-- start-smoth-scrolling -->
-<script src="js/move-top.js"></script>
-<script src="js/easing.js"></script>
+<script src="js/book_infor-js/move-top.js"></script>
+<script src="js/book_infor-js/easing.js"></script>
 <script>
     jQuery(document).ready(function ($) {
         $(".scroll").click(function (event) {
