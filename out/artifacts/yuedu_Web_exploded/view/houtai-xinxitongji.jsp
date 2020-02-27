@@ -6,15 +6,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>houtai</title>
+  <title>悦读后台管理系统</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/static/css/houtai/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
+  <%--<!-- Material Design Bootstrap -->--%>
   <link href="${pageContext.request.contextPath}/static/css/houtai/css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="${pageContext.request.contextPath}/static/css/houtai/css/style.min.css" rel="stylesheet">
+  <%--<link href="$">--%>
   <style>
 
 
@@ -50,8 +51,8 @@ position:absolute;
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/houtai/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/houtai/js/http_cdnjs.cloudflare.com_ajax_libs_Chart.js_2.9.3_Chart.js"></script>
-<%--<!-- MDB core JavaScript -->--%>
-<%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/houtai/js/mdb.min.js"></script>--%>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/houtai/js/mdb.min.js"></script>
 <!-- Initializations -->
 <script type="text/javascript">
   // Animations initialization
@@ -91,7 +92,7 @@ position:absolute;
             <li class="nav-item">
               <a href="${pageContext.request.contextPath}/view/sign-up-gly.jsp" class="nav-link border border-light rounded waves-effect"
                  target="_self">
-                <i class="fab fa-github mr-2"></i>退出登录
+                <i class="fa fa-home mr-3"></i>退出登录
               </a>
             </li>
           </ul>
@@ -132,305 +133,170 @@ position:absolute;
   <main class="pt-5 mx-lg-5">
     <div class="container-fluid mt-5">
 
+      <%--头部样式--%>
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h4 class="h4 mb-0 text-gray-600">数据统计</h4>
+      </div>
+
       <div class="row fadeIn">
-        <div class="col-md-8 mb-4">
-          <div class="card col-md-10 white">
-            <div class="card-body">
-              <%--<img class="card-img" src="../static/image/houtai/img/timg.jpg"></img>--%>
-                <canvas id="canvas1" width="500px" height="400px"></canvas>
-            </div>
-          </div>
-        </div>
-        <%--<div class="col-md-4 mb-4 ">--%>
-          <%--<div class="col-6 mb-4 blue">null</div>--%>
-        <%--</div>--%>
-      </div>
-      <div class="row wow fadeIn">
-        <div class="col-md-10 mb-4">
-          <div class="col-md-10 " >
-            <div class="card col-md-12">
+        <%--分成3块，分别显示用户总数、评论总数、登记图书总数--%>
+          <div class="col-xl-4 col-md-4 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
               <div class="card-body">
-                <canvas id="canvas2" width="600px" height="400px"></canvas>
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">注册用户人数</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">40,000</div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
+          <%--图书总数--%>
+          <div class="col-xl-4 col-md-4 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">登记图书总数</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">40,000</div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%--评论总数--%>
+          <div class="col-xl-4 col-md-4 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">评论总数</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">40,000</div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
 
+      <div class="row">
+        <!-- Area Chart -->
+        <div class="col-xl-10 offset-xl-1">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">X月Y日-M月N日评论数量</h6>
+
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-area">
+                <canvas id="myAreaChart"></canvas>
+              </div>
             </div>
           </div>
         </div>
+        <script>
+
+          var ctx = document.getElementById("myAreaChart").getContext("2d");
+          var canves1 = new Chart(ctx,{
+            type: 'line',
+            data:{
+              labels: ["January", "February", "March", "April", "May", "June", "July"],
+              datasets: [
+                {
+                  label: "My First dataset",
+                  fillColor: "rgba(220,220,220,0.2)",
+                  strokeColor: "rgba(220,220,220,1)",
+                  pointColor: "rgba(220,220,220,1)",
+                  pointStrokeColor: "#fff",
+                  pointHighlightFill: "#fff",
+                  pointHighlightStroke: "rgba(220,220,220,1)",
+                  data: [65, 59, 80, 81, 56, 55, 40]
+                },
+                {
+                  label: "My Second dataset",
+                  fillColor: "rgba(151,187,205,0.2)",
+                  strokeColor: "rgba(151,187,205,1)",
+                  pointColor: "rgba(151,187,205,1)",
+                  pointStrokeColor: "#fff",
+                  pointHighlightFill: "#fff",
+                  pointHighlightStroke: "rgba(151,187,205,1)",
+                  data: [28, 48, 40, 19, 86, 27, 90]
+                }
+              ]
+            },
+          });
+        </script>
+
       </div>
 
-      <!--Grid row-->
-      <%--<div class="row wow fadeIn">--%>
+      <%--第三行--%>
+      <div class="row">
+        <!-- Area Chart -->
+        <div class="col-xl-4 offset-xl-1">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">用户男女比例</h6>
 
-        <%--<!--Grid column-->--%>
-        <%--<div class="col-md-9 mb-4">--%>
-
-          <%--<!--Card-->--%>
-          <%--<div class="card">--%>
-
-            <%--<!--Card content-->--%>
-            <%--<div class="card-body">--%>
-
-              <%--<canvas id="myChart"></canvas>--%>
-
-            <%--</div>--%>
-
-          <%--</div>--%>
-          <%--<!--/.Card-->--%>
-
-        <%--</div>--%>
-        <%--<!--Grid column-->--%>
-
-        <%--<!--Grid column-->--%>
-        <%--<div class="col-md-3 mb-4">--%>
-
-          <%--<!--Card-->--%>
-          <%--<div class="card mb-4">--%>
-
-            <%--<!-- Card header -->--%>
-            <%--<div class="card-header text-center">--%>
-              <%--Pie chart--%>
-            <%--</div>--%>
-
-            <%--<!--Card content-->--%>
-            <%--<div class="card-body">--%>
-
-              <%--<canvas id="pieChart"></canvas>--%>
-
-            <%--</div>--%>
-
-          <%--</div>--%>
-          <%--<!--/.Card-->--%>
-
-          <%--<!--Card-->--%>
-          <%--<div class="card mb-4">--%>
-
-            <%--<!--Card content-->--%>
-            <%--<div class="card-body">--%>
-
-              <%--<!-- List group links -->--%>
-              <%--<div class="list-group list-group-flush">--%>
-                <%--<a class="list-group-item list-group-item-action waves-effect">Sales--%>
-                  <%--<span class="badge badge-success badge-pill pull-right">22%--%>
-                    <%--<i class="fas fa-arrow-up ml-1"></i>--%>
-                  <%--</span>--%>
-                <%--</a>--%>
-                <%--<a class="list-group-item list-group-item-action waves-effect">Traffic--%>
-                  <%--<span class="badge badge-danger badge-pill pull-right">5%--%>
-                    <%--<i class="fas fa-arrow-down ml-1"></i>--%>
-                  <%--</span>--%>
-                <%--</a>--%>
-                <%--<a class="list-group-item list-group-item-action waves-effect">Orders--%>
-                  <%--<span class="badge badge-primary badge-pill pull-right">14</span>--%>
-                <%--</a>--%>
-                <%--<a class="list-group-item list-group-item-action waves-effect">Issues--%>
-                  <%--<span class="badge badge-primary badge-pill pull-right">123</span>--%>
-                <%--</a>--%>
-                <%--<a class="list-group-item list-group-item-action waves-effect">Messages--%>
-                  <%--<span class="badge badge-primary badge-pill pull-right">8</span>--%>
-                <%--</a>--%>
-              <%--</div>--%>
-              <%--<!-- List group links -->--%>
-
-            <%--</div>--%>
-
-          <%--</div>--%>
-          <%--<!--/.Card-->--%>
-
-        <%--</div>--%>
-        <%--<!--Grid column-->--%>
-
-      <%--</div>--%>
-      <%--&lt;%&ndash;新的一行&ndash;%&gt;--%>
-      <%--<div class="row wow fadeIn">--%>
-        <%--<div class="col-md-9">--%>
-          <%--<div class="card">--%>
-            <%--<div class="card-body">--%>
-              <%--<canvas id="test1"></canvas>--%>
-            <%--</div>--%>
-          <%--</div>--%>
-        <%--</div>--%>
-
-      <%--</div>--%>
-
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-area">
+                <canvas id="canvas2"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          var ctx2 = document.getElementById("canvas2").getContext("2d");
+          var canvas2 = new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+              datasets:[
+                      {
+                        label: ["男"],
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(0,102,51,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#339933",
+                pointHighlightFill: "#339933",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [55]
+                      },
+                {
+                  label: ["女"],
+                  fillColor: "rgba(210,202,220,0.2)",
+                  strokeColor: "rgba(122,122,51,1)",
+                  pointColor: "rgba(221,120,140,1)",
+                  pointStrokeColor: "#339933",
+                  pointHighlightFill: "#339933",
+                  pointHighlightStroke: "rgba(220,220,220,1)",
+                  data: [45]
+                }
+                      ],
+            },
+          });
+        </script>
+      </div>
     </div>
   </main>
 
-
-
   <script>
-
-    var ctx = document.getElementById('canvas1').getContext('2d');
-    var barChart = new Chart(ctx,{
-      type: 'bar',
-      data: {
-        labels: ["China", "India", "United States", "Indonesia", "Brazil", "Pakistan", "Nigeria", "Bangladesh", "Russia", "Japan"],
-        datasets: [{
-          label: 'Population',
-          data: [1379302771, 1281935911, 326625791, 260580739, 207353391, 204924861, 190632261, 157826578, 142257519, 126451398],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)',
-            'rgba(255, 159, 64, 0.6)',
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)'
-          ],
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true
-                }
-              }]
-            }
-          }
-        }]
-      }
-    });
-
-    var ctx1 = document.getElementById('canvas2').getContext('2d');
-    var barChart1 = new Chart(ctx1,{
-      type: 'bar',
-      data: {
-        labels: ["China", "India", "United States", "Indonesia", "Brazil", "Pakistan", "Nigeria", "Bangladesh", "Russia", "Japan"],
-        datasets: [{
-          label: 'Population',
-          data: [1379302771, 1281935911, 326625791, 260580739, 207353391, 204924861, 190632261, 157826578, 142257519, 126451398],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)',
-            'rgba(255, 159, 64, 0.6)',
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)'
-          ],
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true
-                }
-              }]
-            }
-          }
-        }]
-      }
-    });
 
   </script>
 
-
-
-
-  <!-- Charts -->
-  <%--<script>--%>
-    <%--// Line--%>
-    <%--var ctx = document.getElementById("myChart").getContext('2d');--%>
-    <%--var myChart = new Chart(ctx, {--%>
-      <%--type: 'bar',--%>
-      <%--data: {--%>
-        <%--labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],--%>
-        <%--datasets: [{--%>
-          <%--label: '# of Votes',--%>
-          <%--data: [12, 19, 3, 5, 2, 3],--%>
-          <%--backgroundColor: [--%>
-            <%--'rgba(255, 99, 132, 0.2)',--%>
-            <%--'rgba(54, 162, 235, 0.2)',--%>
-            <%--'rgba(255, 206, 86, 0.2)',--%>
-            <%--'rgba(75, 192, 192, 0.2)',--%>
-            <%--'rgba(153, 102, 255, 0.2)',--%>
-            <%--'rgba(255, 159, 64, 0.2)'--%>
-          <%--],--%>
-          <%--borderColor: [--%>
-            <%--'rgba(255,99,132,1)',--%>
-            <%--'rgba(54, 162, 235, 1)',--%>
-            <%--'rgba(255, 206, 86, 1)',--%>
-            <%--'rgba(75, 192, 192, 1)',--%>
-            <%--'rgba(153, 102, 255, 1)',--%>
-            <%--'rgba(255, 159, 64, 1)'--%>
-          <%--],--%>
-          <%--borderWidth: 1--%>
-        <%--}]--%>
-      <%--},--%>
-      <%--options: {--%>
-        <%--scales: {--%>
-          <%--yAxes: [{--%>
-            <%--ticks: {--%>
-              <%--beginAtZero: true--%>
-            <%--}--%>
-          <%--}]--%>
-        <%--}--%>
-      <%--}--%>
-    <%--});--%>
-
-    <%--//pie--%>
-    <%--var ctxP = document.getElementById("pieChart").getContext('2d');--%>
-    <%--var myPieChart = new Chart(ctxP, {--%>
-      <%--type: 'pie',--%>
-      <%--data: {--%>
-        <%--labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],--%>
-        <%--datasets: [{--%>
-          <%--data: [300, 150, 100, 440, 120],--%>
-          <%--backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],--%>
-          <%--hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]--%>
-        <%--}]--%>
-      <%--},--%>
-      <%--options: {--%>
-        <%--responsive: true,--%>
-        <%--legend: false--%>
-      <%--}--%>
-    <%--});--%>
-
-    <%--var ctx1 = document.getElementById("text1").getContext('2d');--%>
-    <%--var text1 = new Chart(ctx1,{--%>
-      <%--type: 'bar',--%>
-      <%--data: {--%>
-        <%--labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],--%>
-        <%--datasets: [{--%>
-          <%--label: '# of Votes',--%>
-          <%--data: [12, 19, 3, 5, 2, 3],--%>
-          <%--backgroundColor: [--%>
-            <%--'rgba(255, 99, 132, 0.2)',--%>
-            <%--'rgba(54, 162, 235, 0.2)',--%>
-            <%--'rgba(255, 206, 86, 0.2)',--%>
-            <%--'rgba(75, 192, 192, 0.2)',--%>
-            <%--'rgba(153, 102, 255, 0.2)',--%>
-            <%--'rgba(255, 159, 64, 0.2)'--%>
-          <%--],--%>
-          <%--borderColor: [--%>
-            <%--'rgba(255,99,132,1)',--%>
-            <%--'rgba(54, 162, 235, 1)',--%>
-            <%--'rgba(255, 206, 86, 1)',--%>
-            <%--'rgba(75, 192, 192, 1)',--%>
-            <%--'rgba(153, 102, 255, 1)',--%>
-            <%--'rgba(255, 159, 64, 1)'--%>
-          <%--],--%>
-          <%--borderWidth: 1--%>
-        <%--}]--%>
-      <%--},--%>
-      <%--options: {--%>
-        <%--scales: {--%>
-          <%--yAxes: [{--%>
-            <%--ticks: {--%>
-              <%--beginAtZero: true--%>
-            <%--}--%>
-          <%--}]--%>
-        <%--}--%>
-      <%--}--%>
-    <%--});--%>
-  <%--</script>--%>
-
-  
 </body>
 
 </html>

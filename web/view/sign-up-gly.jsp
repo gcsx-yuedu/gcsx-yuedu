@@ -135,6 +135,7 @@
                 var b = Math.floor(Math.random() * 256);
                 return "rgb(" + r + "," + g + "," + b + ")";
             }
+
         </script>
         <p class="forgot-pass"><a href="sign-up-yh.jsp">用户登录</a></p>
 
