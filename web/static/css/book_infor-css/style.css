@@ -77,7 +77,7 @@ a:hover {
     border-bottom: 1px dotted rgba(255, 255, 255, 0.68);
 }
 
--- header --
+/*-- header --*/
 
 /*h1 a.navbar-brand {
     font-size: 48px;
@@ -695,7 +695,7 @@ ul.address li ul.agileits-address-text li a:hover {
 /*-- testimonials --*/
 
 .testimonials {
-    background: url(../images/main-bg.jpg)no-repeat center fixed;
+    background: url(../../image/book_infor-image/main-bg.jpg)no-repeat center fixed;
     background-size: cover;
     text-align: center;
 }
@@ -957,20 +957,20 @@ a.w3_agile_google:hover {
 
 /*-- bottom-to-top --*/
 
-#toTop {
-    display: none;
-    text-decoration: none;
-    position: fixed;
-    bottom: 24px;
-    right: 1%;
-    overflow: hidden;
-    z-index: 999;
-    width: 64px;
-    height: 64px;
-    border: none;
-    text-indent: 100%;
-    background: url("../images/move-up.png") no-repeat 0px 0px;
-}
+/*#toTop {*/
+    /*display: none;*/
+    /*text-decoration: none;*/
+    /*position: fixed;*/
+    /*bottom: 24px;*/
+    /*right: 1%;*/
+    /*overflow: hidden;*/
+    /*z-index: 999;*/
+    /*width: 64px;*/
+    /*height: 64px;*/
+    /*border: none;*/
+    /*text-indent: 100%;*/
+    /*background: url("../../image/book_infor-image/move-up.png") no-repeat 0px 0px;*/
+/*}*/
 
 #toTopHover {
     width: 64px;
@@ -2138,7 +2138,3 @@ a.w3_agile_google:hover {
     }
     .w3_testimonials_right_grid:before {
         right: -4% !important;
-    }
-}
-
-/*--//responsive--*/*/
