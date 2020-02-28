@@ -48,7 +48,7 @@
                 </li>
                 <li>
                     <span class="line"></span>
-                    <a href="${pageContext.request.contextPath}/home_page.jsp" class="app" style="cursor:pointer">退出</a>
+                    <a href="${pageContext.request.contextPath}/view/home_page.jsp" class="app" style="cursor:pointer">退出</a>
                 </li>
                 <li>
                     <span class="line"></span>
@@ -90,7 +90,7 @@
                     </div>
                 </div>
                 <ul class="text-grey lg:text-grey-dark list-reset leading-loose mt-2" id="sidenav-categories">
-                    <li href="${pageContext.request.contextPath}/view/user_change.jsp" class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">修改信息</li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_change.jsp">修改信息</a></li>
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">我的评论</li>
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">我的读后感</li>
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">我的消息</li>
