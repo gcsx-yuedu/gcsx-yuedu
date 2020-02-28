@@ -120,7 +120,7 @@
                      data-tab="section-stats">Stats</div>
 
                 <div class="no-underline inline-block border-indigo pb-2 px-2 text-sm text-indigo-darkest hover:cursor-pointer js-tab relative"
-                     data-tab="section-picks">Picks for you</div>
+                     data-tab="section-library">Picks for you</div>
             </div>
         </div>
         <!-- Library -->
