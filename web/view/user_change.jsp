@@ -90,12 +90,10 @@
                     </div>
                 </div>
                 <ul class="text-grey lg:text-grey-dark list-reset leading-loose mt-2" id="sidenav-categories">
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4" style="color:black"><a href="${pageContext.request.contextPath}/view/user_change.jsp">修改信息</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">我的评论</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">我的读后感</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">我的消息</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">我的关注</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">我的粉丝</li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_change.jsp">修改信息</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_news.jsp">我的消息</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_focus.jsp">我的关注/粉丝</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_comment.jsp">我的评论/读后感</a></li>
                 </ul>
             </li>
             <li class="ml-2 mb-4 flex">
@@ -140,11 +138,11 @@
                             <input id="name" name="name" type="text" placeholder="请输入用户名" required autofocus>
                         </li>
                         <li>
-                            <label for="password">密码：</label>
-                            <input id="email" name="email" type="text" placeholder="请输入新密码" required>
+                            <label for="name">密码：</label>
+                            <input id="name" name="password" type="text" placeholder="请输入新密码" required>
                         </li>
                         <li>
-                            <label for="sex">性别：</label>
+                            <label for="name">性别：</label>
                             <select name="sex" id="name">
                                 <option value=""></option>
                                 <option value="">男</option>

@@ -9,7 +9,7 @@
     <meta name="description" content="A responsive web app template with common components like profile, list, tabs, menu views. Made for Codrops exclusively.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book-css/reset.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book-css/output.css.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book-css/output.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book-css/index.css">
 </head>
 <body class="bg-grey-lighter font-sans antialiased">
@@ -159,6 +159,7 @@
                         </div>
                     </div>
                 </li>
+            </ul>
         </div>
     </div>
 
