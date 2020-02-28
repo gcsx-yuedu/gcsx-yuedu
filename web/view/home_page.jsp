@@ -40,8 +40,8 @@
 	  </li>
 	  <li>
 		<span class="line"></span>
-		<a href="#" class="icon-text__pink register">登录</a>
-	  </li>
+		<a href="${pageContext.request.contextPath}/view/sign-up-yh.jsp" class="icon-text__pink register">登录</a>
+	  </li>view/
 	  <li>
 		<span class="line"></span>
 		<i class="icon-app"></i>
