@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page contentType="text/html;charset=utf-8"%>
+
 <html class="no-js">
+<!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +13,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user-css/output.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user-css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user-css/index.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user-css/form.css">
 </head>
 <body class="bg-grey-lighter font-sans antialiased">
 <header class="header">
@@ -31,7 +32,7 @@
             <span class="neck-border"></span>
         </div>
         <div class="search">
-            <input type="text" class="search-text" placeholder="Seach here${pageContext.request.contextPath}/static.">
+            <input type="text" class="search-text" placeholder="Seach here${pageContext.request.contextPath}/static">
             <button class="search-btn"><i class="icon-search"></i></button>
         </div>
         <nav class="header-nav">
@@ -48,7 +49,7 @@
                 </li>
                 <li>
                     <span class="line"></span>
-                    <a href="${pageContext.request.contextPath}/view/home_page.jsp" class="app" style="cursor:pointer">退出</a>
+                    <a class="app" style="cursor:pointer">退出</a>
                 </li>
                 <li>
                     <span class="line"></span>
@@ -114,51 +115,111 @@
 
         <!-- Filter -->
         <div class="px-6 md:px-0 flex items-baseline justify-between border-b-2 border-grey-light mt-6 order-0 lg:order-1">
-            <h4 class="hidden md:inline-block text-grey-dark font-medium">你的信息：</h4>
+            <h4 class="hidden md:inline-block text-grey-dark font-normal">Books</h4>
             <div>
                 <div class="inline-block md:hidden no-underline border-indigo pb-2 px-2 text-sm mr-2 text-indigo-darkest hover:cursor-pointer js-tab relative"
                      data-tab="section-stats">Stats</div>
-
+                <div class="no-underline inline-block border-indigo pb-2 px-2 text-sm mr-2 text-indigo-darkest hover:cursor-pointer js-tab active relative"
+                     data-tab="section-pinglun">我的评论</div>
                 <div class="no-underline inline-block border-indigo pb-2 px-2 text-sm text-indigo-darkest hover:cursor-pointer js-tab relative"
-                     data-tab="section-library">Picks for you</div>
+                     data-tab="section-duhougan">我的读后感</div>
             </div>
         </div>
-        <!-- Library -->
-        <div class="hidden px-2 pt-2 md:px-0 flex-wrap order-2 pb-8 js-tab-pane active" id="section-library">
-            <form id="payment">
-                <fieldset>
-                    <legend>用户详细资料</legend>
-                    <ol>
-                        <li class="item">
-                            <a href="#" class="pic" style=" background: url(${pageContext.request.contextPath}/static/image/user-image/user_img1.jpg) no-repeat; background-size: cover; "></a>
-                            <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
-                        </li>
-                        <li>
-                            <label for="name">用户名：</label>
-                            <input id="name" name="name" type="text" placeholder="请输入用户名" required autofocus>
-                        </li>
-                        <li>
-                            <label for="name">密码：</label>
-                            <input id="name" name="password" type="text" placeholder="请输入新密码" required>
-                        </li>
-                        <li>
-                            <label for="name">性别：</label>
-                            <select name="sex" id="name">
-                                <option value=""></option>
-                                <option value="">男</option>
-                                <option value="">女</option>
-                            </select>
-                        </li>
-                        <li>
-                            <label for="email">邮箱地址：</label>
-                            <input id="email" name="email" type="email" placeholder="example@163.com" required>
-                        </li>
-                    </ol>
-                </fieldset>
-                <fieldset>
-                    <button type="submit">确认并提交</button>
-                </fieldset>
-            </form>
+        <!-- pinglun -->
+        <div class="hidden px-2 pt-2 md:px-0 flex-wrap order-2 pb-8 js-tab-pane active" id="section-pinglun">
+            <ul>
+                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
+                    <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
+                        <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                        <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
+
+                        <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
+                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
+                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：*****</p>
+                            <p class="text-l my-2 font-medium sm:font-normal">你的评论：*****</p>
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除评论</button>&nbsp;
+                        </div>
+                    </div>
+                </li>
+                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
+                    <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
+                        <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                        <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
+
+                        <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
+                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
+                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：*****</p>
+                            <p class="text-l my-2 font-medium sm:font-normal">你的评论：*****</p>
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除评论</button>&nbsp;
+                        </div>
+                    </div>
+                </li>
+
+                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
+                    <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
+                        <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                        <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
+
+                        <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
+                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
+                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：*****</p>
+                            <p class="text-l my-2 font-medium sm:font-normal">你的评论：*****</p>
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除评论</button>&nbsp;
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- duhougan -->
+        <div class="hidden flex-wrap order-2 pt-0 md:pt-6 md:pb-8 js-tab-pane" id="section-duhougan">
+            <ul>
+                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
+                    <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
+                        <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                        <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
+
+                        <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
+                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
+                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：*****</p>
+                            <p class="text-l my-2 font-medium sm:font-normal">文章标题：*****</p>
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除文章</button>&nbsp;
+                        </div>
+                    </div>
+                </li>
+                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
+                    <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
+                        <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                        <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
+
+                        <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
+                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
+                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：*****</p>
+                            <p class="text-l my-2 font-medium sm:font-normal">文章标题：*****</p>
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除文章</button>&nbsp;
+                        </div>
+                    </div>
+                </li>
+
+                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
+                    <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
+                        <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                        <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
+
+                        <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
+                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
+                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：*****</p>
+                            <p class="text-l my-2 font-medium sm:font-normal">文章标题：*****</p>
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除文章</button>&nbsp;
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -223,5 +284,5 @@
 </div>
 工程实训第四组--"悦读"网
 </body>
-<script src="bundle.js" async defer></script>
+<script src="${pageContext.request.contextPath}/static/js/user-js/bundle.js" async defer></script>
 </html>

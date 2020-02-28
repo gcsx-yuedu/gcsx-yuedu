@@ -41,11 +41,11 @@
                 <li>
                     <span class="line"></span>
                     <span>欢迎 </span>
-                    <a class="app" style="cursor:pointer" style="cursor:pointer">用户名</a>
+                    <a href="${pageContext.request.contextPath}/view/user_info.jsp" class="app" style="cursor:pointer" style="cursor:pointer">用户名</a>
                 </li>
                 <li>
                     <span class="line"></span>
-                    <a class="app" style="cursor:pointer" style="cursor:pointer">退出</a>
+                    <a href="${pageContext.request.contextPath}/view/home_page.jsp" class="app" style="cursor:pointer" style="cursor:pointer">退出</a>
                 </li>
                 <li>
                     <span class="line"></span>

@@ -32,7 +32,7 @@
             <span class="neck-border"></span>
         </div>
         <div class="search">
-            <input type="text" class="search-text" placeholder="Seach here${pageContext.request.contextPath}/static.">
+            <input type="text" class="search-text" placeholder="Seach here${pageContext.request.contextPath}/static">
             <button class="search-btn"><i class="icon-search"></i></button>
         </div>
         <nav class="header-nav">
@@ -45,7 +45,7 @@
                 <li>
                     <span class="line"></span>
                     <span>欢迎 </span>
-                    <a class="app" style="cursor:pointer">用户名</a>
+                    <a href="${pageContext.request.contextPath}/view/user_info.jsp" class="app" style="cursor:pointer">用户名</a>
                 </li>
                 <li>
                     <span class="line"></span>
@@ -67,7 +67,7 @@
     <div class="header-shadow"></div>
 </header>
 <!-- Main -->
-<div class="flex" >
+<div class="flex">
     <!-- Side Nav -->
     <nav class="absolute lg:relative lg:flex lg:text-sm bg-indigo-darker lg:bg-transparent pin-l pin-r py-4 px-6 lg:pt-10 lg:pl-12 lg:pr-6 -mt-1 lg:mt-0 overflow-y-auto lg:w-1/5 lg:border-r z-40 hidden">
         <ul class="list-reset mb-8 w-full">
@@ -91,16 +91,15 @@
                     </div>
                 </div>
                 <ul class="text-grey lg:text-grey-dark list-reset leading-loose mt-2" id="sidenav-categories">
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">修改信息</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">我的评论</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">我的读后感</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">我的消息</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4" style="color:black">我的关注</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">我的粉丝</li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_change.jsp">修改信息</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_news.jsp">我的消息</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_focus.jsp">我的关注/粉丝</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_comment.jsp">我的评论/读后感</a></li>
                 </ul>
             </li>
             <li class="ml-2 mb-4 flex">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/wishlist-default.svg" alt="wishlist-icon" class="w-4 h-4 mr-2">
+                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/wishlist-default.svg" alt="wishlist-icon"
+                     class="w-4 h-4 mr-2">
                 <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger">我的书架</div>
             </li>
             <li class="ml-2 mb-4 flex lg:hidden">
@@ -117,17 +116,94 @@
 
         <!-- Filter -->
         <div class="px-6 md:px-0 flex items-baseline justify-between border-b-2 border-grey-light mt-6 order-0 lg:order-1">
-            <h4 class="hidden md:inline-block text-grey-dark font-medium">你的concerns：</h4>
+            <h4 class="hidden md:inline-block text-grey-dark font-normal">社交</h4>
             <div>
                 <div class="inline-block md:hidden no-underline border-indigo pb-2 px-2 text-sm mr-2 text-indigo-darkest hover:cursor-pointer js-tab relative"
                      data-tab="section-stats">Stats</div>
-
+                <div class="no-underline inline-block border-indigo pb-2 px-2 text-sm mr-2 text-indigo-darkest hover:cursor-pointer js-tab active relative"
+                     data-tab="section-concern">我的关注</div>
                 <div class="no-underline inline-block border-indigo pb-2 px-2 text-sm text-indigo-darkest hover:cursor-pointer js-tab relative"
-                     data-tab="section-picks">Concerns for you</div>
+                     data-tab="section-picks">我的粉丝</div>
             </div>
         </div>
         <!-- Library -->
-        <div class="hidden px-2 pt-2 md:px-0 flex-wrap order-2 pb-8 js-tab-pane active" id="section-library">
+        <div class="hidden px-2 pt-2 md:px-0 flex-wrap order-2 pb-8 js-tab-pane active" id="section-concern">
+            <div style="padding-left:50px;padding-bottom:30px;">
+                <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
+                <ul>
+                    <li>
+                        <div class="info" style="padding-left:20px;padding-right:100px;">
+                            <a href="#" class="info-title">用户名</a>
+                            <p><i class="icon-star"></i>45人关注</p>
+                        </div>
+                        <a href="#" class="icon-text__pink register" style="width:80px">关注</a>
+                    </li>
+                </ul>
+            </div>
+            <div style="padding-left:50px;padding-bottom:30px;">
+                <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
+                <ul>
+                    <li>
+                        <div class="info" style="padding-left:20px;padding-right:100px;">
+                            <a href="#" class="info-title">用户名</a>
+                            <p><i class="icon-star"></i>45人关注</p>
+                        </div>
+                        <a href="#" class="icon-text__pink register" style="width:80px">关注</a>
+                    </li>
+                </ul>
+            </div>
+            <div style="padding-left:50px;padding-bottom:30px;">
+                <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
+                <ul>
+                    <li>
+                        <div class="info" style="padding-left:20px;padding-right:100px;">
+                            <a href="#" class="info-title">用户名</a>
+                            <p><i class="icon-star"></i>45人关注</p>
+                        </div>
+                        <a href="#" class="icon-text__pink register" style="width:80px">关注</a>
+                    </li>
+                </ul>
+            </div>
+            <div style="padding-left:50px;padding-bottom:30px;">
+                <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
+                <ul>
+                    <li>
+                        <div class="info" style="padding-left:20px;padding-right:100px;">
+                            <a href="#" class="info-title">用户名</a>
+                            <p><i class="icon-star"></i>45人关注</p>
+                        </div>
+                        <a href="#" class="icon-text__pink register" style="width:80px">关注</a>
+                    </li>
+                </ul>
+            </div>
+            <div style="padding-left:50px;padding-bottom:30px;">
+                <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
+                <ul>
+                    <li>
+                        <div class="info" style="padding-left:20px;padding-right:100px;">
+                            <a href="#" class="info-title">用户名</a>
+                            <p><i class="icon-star"></i>45人关注</p>
+                        </div>
+                        <a href="#" class="icon-text__pink register" style="width:80px">关注</a>
+                    </li>
+                </ul>
+            </div>
+            <div style="padding-left:50px;padding-bottom:30px;">
+                <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
+                <ul>
+                    <li>
+                        <div class="info" style="padding-left:20px;padding-right:100px;">
+                            <a href="#" class="info-title">用户名</a>
+                            <p><i class="icon-star"></i>45人关注</p>
+                        </div>
+                        <a href="#" class="icon-text__pink register" style="width:80px">关注</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- picks -->
+        <div class="hidden flex-wrap order-2 pt-0 md:pt-6 md:pb-8 js-tab-pane" id="section-picks">
             <div style="padding-left:50px;padding-bottom:30px;">
                 <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
                 <ul>
@@ -201,12 +277,14 @@
                 </ul>
             </div>
         </div>
+
     </div>
 
     <!-- Profile -->
     <div class="hidden absolute pin-b z-10 lg:relative lg:block w-full lg:w-1/5 bg-grey-lighter-2 px-6 pt-10" id="profile">
         <div class="flex items-center mb-6">
-            <svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"id="avatar">
+            <svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                 id="avatar">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g transform="translate(-1178.000000, -87.000000)">
                         <g transform="translate(1159.000000, 0.000000)">
@@ -264,5 +342,5 @@
 </div>
 工程实训第四组--"悦读"网
 </body>
-<script src="bundle.js" async defer></script>
+<script src="${pageContext.request.contextPath}/static/js/user-js/bundle.js" async defer></script>
 </html>
