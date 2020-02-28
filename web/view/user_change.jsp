@@ -44,7 +44,7 @@
                 <li>
                     <span class="line"></span>
                     <span>欢迎 </span>
-                    <a <a href="${pageContext.request.contextPath}/view/user_info.jsp"> class="app" style="cursor:pointer">用户名</a>
+                    <a href="${pageContext.request.contextPath}/view/user_info.jsp"> class="app" style="cursor:pointer">用户名</a>
                 </li>
                 <li>
                     <span class="line"></span>
