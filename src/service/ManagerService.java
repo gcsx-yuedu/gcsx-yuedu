@@ -3,9 +3,11 @@ package service;
 import dao.ManagerDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import po.Manager;
 
 @Service
+@Transactional
 public class ManagerService {
     @Autowired
     private ManagerDao managerDao;
@@ -14,5 +16,31 @@ public class ManagerService {
 //        System.out.println(manager.toString());
 //        System.out.println(managerDao.SelectAdmin(manager));
         return managerDao.SelectAdmin(manager) == 1;
+    }
+
+
+    public Integer getUserNum() {
+//        System.out.println("成功调用getUserNum()方法......");
+        return managerDao.userNum();
+    }
+
+    public Integer getBookNum() {
+        return managerDao.bookNum();
+    }
+
+    public Integer getCommentNum() {
+        return managerDao.commentNum();
+    }
+
+    public Integer getHuitieNum() {
+        return managerDao.huitieNum();
+    }
+
+    public Integer getUserNvNum() {
+        return managerDao.userNvNum();
+    }
+
+    public Integer getUserNanNum() {
+        return managerDao.userNanNum();
     }
 }
