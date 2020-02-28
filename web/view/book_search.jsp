@@ -65,12 +65,12 @@
     <nav class="absolute lg:relative lg:flex lg:text-sm bg-indigo-darker lg:bg-transparent pin-l pin-r py-4 px-6 lg:pt-10 lg:pl-12 lg:pr-6 -mt-1 lg:mt-0 overflow-y-auto lg:w-1/5 lg:border-r z-40 hidden">
         <ul class="list-reset mb-8 w-full">
             <li class="ml-2 mb-4 flex">
-                <img src="${pageContext.request.contextPath}/http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/home-default.svg" alt="home-icon" class="w-4 h-4 mr-2">
+                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/home-default.svg" alt="home-icon" class="w-4 h-4 mr-2">
                 <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger">返回首页</div>
             </li>
             <li class="ml-2 mb-4">
                 <div class="flex" id="sidenav-categories-trigger">
-                    <img src="${pageContext.request.contextPath}/http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/category-default.svg" alt="home-icon" class="w-4 h-4 mr-2">
+                    <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/category-default.svg" alt="home-icon" class="w-4 h-4 mr-2">
                     <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium w-full relative">
                         分类
 
@@ -86,11 +86,11 @@
                 </ul>
             </li>
             <li class="ml-2 mb-4 flex">
-                <img src="${pageContext.request.contextPath}/http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/wishlist-default.svg" alt="wishlist-icon" class="w-4 h-4 mr-2">
+                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/wishlist-default.svg" alt="wishlist-icon" class="w-4 h-4 mr-2">
                 <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger">我的书架</div>
             </li>
             <li class="ml-2 mb-4 flex lg:hidden">
-                <img src="${pageContext.request.contextPath}/http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/profile-default.svg" alt="profile-icon" class="w-4 h-4 mr-2">
+                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/profile-default.svg" alt="profile-icon" class="w-4 h-4 mr-2">
                 <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium" id="mobile-profile-trigger">Profile</div>
             </li>
         </ul>
@@ -117,7 +117,7 @@
             <ul>
                 <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
                     <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
-                        <img src="${pageContext.request.contextPath}/http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                        <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
                         <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
 
                         <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
@@ -225,5 +225,5 @@
 
 
 </body>
-<script src="bundle.js" async defer></script>
+<script src="${pageContext.request.contextPath}/static/js/book-js/bundle.js" async defer></script>
 </html>
