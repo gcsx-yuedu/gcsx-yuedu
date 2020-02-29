@@ -1,7 +1,10 @@
 package dao;
 
 import org.springframework.stereotype.Repository;
+import po.BookType;
 import po.Manager;
+
+import java.util.List;
 
 @Repository
 public interface ManagerDao {
@@ -21,4 +24,8 @@ public interface ManagerDao {
     public Integer userNvNum();
 
     public Integer userNanNum();
+
+    public List<BookType> selectBookType();
+
+    public void addBookType(String t_type);
 }

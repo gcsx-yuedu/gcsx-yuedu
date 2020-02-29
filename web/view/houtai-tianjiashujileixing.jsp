@@ -89,12 +89,12 @@
 
                 <!-- Left -->
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item blue m-2">
+                    <li class="nav-item m-2">
                         <a href="/houtai-tianjiashuji" class="nav-link border border-light rounded">
                         添加书籍
                         </a>
                     </li>
-                    <li class="nav-item m-2">
+                    <li class="nav-item blue m-2">
                         <a href="/houtai-tianjiashujileixing" class="nav-link border border-light rounded">
                             添加书籍类型
                         </a>
@@ -147,7 +147,7 @@
 <!--Main layout-->
 <main class="pt-5 mx-lg-5">
     <div class="container-fluid mt-5">
-        <%--添加书籍的table页面--%>
+        <%--添加书籍类型的table页面--%>
         <%--首先是card作为整体--%>
 
             <div class="row">
@@ -155,88 +155,29 @@
                     <div class="card shadow">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h4 class="m-0 font-weight-bold text-primary">书籍添加页面</h4>
+                            <h4 class="m-0 font-weight-bold text-primary">书籍类型添加页面</h4>
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
-                            <form role="form" class="form-horizontal">
+                            <form action="/addBookTypeController" method="post" class="form-horizontal" role="form">
                                 <div class="form-group">
-                                    <label for="bookName" class="col-xl-2 col-form-label-lg">书名</label>
+                                    <label>
+                                        <h5>书籍类型</h5>
+                                    </label>
                                     <div class="col-xl-10">
-                                        <input type="text" name="bookName" id="bookName" class="form-control" placeholder="请输入书名">
+                                        <input type="text" class="form-control" name="t_type" id="bookType" placeholder="请输入书籍类型">
                                     </div>
                                 </div>
-
-
-                                <div class="form-group">
-                                    <label for="bookAuthor" class="col-xl-2 col-form-label-lg">作者</label>
-                                    <div class="col-xl-10">
-                                        <input type="text" name="bookAuthor" id="bookAuthor" class="form-control" placeholder="请输入作者">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-xl-2 col-form-label-lg">书籍类型</label>
-                                    <div class="col-xl-10">
-                                        <%--循环遍历所有的书籍类型--%>
-
-                                        <%
-                                            System.out.println(bookTypeList.size());
-                                            for (int i=0;i<bookTypeList.size()-1;i++){
-                                        %>
-                                            <div style="width: 50%;float: left">
-                                                    <h6><input type="checkbox" class="custom-checkbox" value="<%=bookTypeList.get(i).getT_id()%>">
-                                                    <%=bookTypeList.get(i).getT_type()%>
-                                                    </h6>
-                                            </div>
-
-                                        <%
-                                            }
-                                        %>
-                                        <div style="width:25%;">
-                                            <input type="checkbox" class="custom-checkbox" value="<%=bookTypeList.get(bookTypeList.size()-1).getT_id()%>">
-                                            <%=bookTypeList.get(bookTypeList.size()-1).getT_type()%>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label for="bookJianjie" class="col-xl-2 col-form-label-lg">书籍简介</label>
-                                    <div class="col-xl-10">
-                                        <label for="bookJianjie" class="col-xl-12">
-                                            <textarea name="bookJianjie" id="bookJianjie" class="form-control" rows="3"></textarea>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="bookCover" class="col-xl-2 col-form-label-lg">上传书籍封面</label>
-                                    <div class="col-xl-10">
-                                        <input type="file" onchange="toBase64()" accept="image/jpeg,image/png,image/jpg" name="bookCover" id="bookCover" class="">
-                                    </div>
-                                    <div class="col-xl-10">
-                                    <img src="" style="display: none" height="200px" width="300px" id="base64Img" name="base64Im"  alt="">
-                                </div>
-                                </div>
-                                <script>
-                                    function toBase64() {
-                                        var file = document.querySelector('input[type=file]').files[0];
-                                        var reader = new FileReader();
-                                        reader.onloadend = function () {
-                                            $("#base64Img").attr("style", "display:inline-block");
-                                            $("#base64Img").attr("src", reader.result);
-                                            console.log(reader.result);
-                                        };
-                                        if (file) {
-                                            reader.readAsDataURL(file);
-                                        }
-                                    }
-                                </script>
                                 <div class="form-group">
                                     <input type="submit" class="col-xl-4 offset-4" value="提交">
                                 </div>
                             </form>
+                            <%--<script>
+                                function addBookType() {
+                                    var t_type = document.getElementById("bookType").value;
+                                    location.href="/addBookTypeController?t_type="+t_type;
+                                }
+                            </script>--%>
                         </div>
                     </div>
                 </div>

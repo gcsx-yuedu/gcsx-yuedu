@@ -4,7 +4,10 @@ import dao.ManagerDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import po.BookType;
 import po.Manager;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -42,5 +45,13 @@ public class ManagerService {
 
     public Integer getUserNanNum() {
         return managerDao.userNanNum();
+    }
+
+    public List<BookType> selectBookType() {
+        return managerDao.selectBookType();
+    }
+
+    public void addBookType(String t_type) {
+        managerDao.addBookType(t_type);
     }
 }

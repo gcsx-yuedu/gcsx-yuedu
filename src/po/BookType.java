@@ -1,15 +1,15 @@
 package po;
 
 public class BookType {
-    private int id;
+    private int t_id;
     private String t_type;
 
-    public int getId() {
-        return id;
+    public int getT_id() {
+        return t_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setT_id(int id) {
+        this.t_id = id;
     }
 
     public String getT_type() {
@@ -23,7 +23,7 @@ public class BookType {
     @Override
     public String toString() {
         return "BookType{" +
-                "id=" + id +
+                "t_id=" + t_id +
                 ", t_type='" + t_type + '\'' +
                 '}';
     }

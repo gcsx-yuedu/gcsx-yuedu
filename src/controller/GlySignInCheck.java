@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import po.BookType;
 import po.Manager;
 import service.ManagerService;
 
@@ -94,10 +95,14 @@ public class GlySignInCheck {
     }
 
     /*跳转到添加书籍页面*/
+    /*获取书籍类型的列表*/
     @RequestMapping("houtai-tianjiashuji")
-    public String toHouTaitianJiaShuJi(HttpServletRequest request) {
+    public String toHouTianJiaShuJi(HttpServletRequest request) {
         String username = (String) request.getSession().getAttribute("username");
         request.getSession().setAttribute("username", username);
+        List<BookType> bookTypeList = service.selectBookType();
+        System.out.println("BookType="+bookTypeList);
+        request.getSession().setAttribute("bookTypeList",bookTypeList);
         return "houtai-tianjiashuji";
     }
 
@@ -117,18 +122,22 @@ public class GlySignInCheck {
         return "houtai-jubaoxinxiguanli";
     }
 
-    /*通过ajax获取data数据返回打信息统计页面*/
-    /*@ResponseBody
-    @RequestMapping("/getDataWithAjax")
-    public List<Integer> getData() {
-        int manNum = service.getUserNanNum();
-        int womanNum = service.getUserNvNum();
-        List<Integer> list = new ArrayList<>();
-        list.add(manNum);
-        list.add(womanNum);
-        System.out.println(list);
-        return list;
-    }*/
+    /*跳转到添加书籍类型的界面*/
+    @RequestMapping("/houtai-tianjiashujileixing")
+    public String toHoutaiTianjiaShujiLeixing(HttpServletRequest request) {
+        request.getSession().setAttribute("username",request.getSession().getAttribute("username"));
+        return "houtai-tianjiashujileixing";
+
+    }
+
+    /*添加书籍类型*/
+    @RequestMapping("/addBookTypeController")
+    public String addBookType(String t_type,HttpServletRequest request) {
+        request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
+        service.addBookType(t_type);
+        System.out.println(">>>添加成功");
+        return "houtai-tianjiashujileixing";
+    }
 
     /*获取当前系统时间*/
     public String getNowTime() {
