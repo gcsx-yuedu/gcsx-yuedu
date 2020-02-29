@@ -8,9 +8,9 @@
     <title>BookType</title>
     <meta name="description" content="A responsive web app template with common components like profile, list, tabs, menu views. Made for Codrops exclusively.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="output.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book-css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book-css/output.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book-css/index.css">
 </head>
 <body class="bg-grey-lighter font-sans antialiased">
 <header class="header">
@@ -30,7 +30,7 @@
             <span class="neck-border"></span>
         </div>
         <div class="search">
-            <input type="text" class="search-text" placeholder="Seach here...">
+            <input type="text" class="search-text" placeholder="Seach here${pageContext.request.contextPath}/static.">
             <button class="search-btn"><i class="icon-search"></i></button>
         </div>
         <nav class="header-nav">
@@ -114,7 +114,7 @@
         <!-- Library -->
         <div class="hidden px-2 pt-2 md:px-0 flex-wrap order-2 pb-8 js-tab-pane active" id="section-library">
             <div class="flex justify-start items-center p-5 px-6 w-full sm:w-1/2">
-                <img src="sanguoyanyi.jpg" alt="pick" class="shadow-md w-1/3 transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                <img src="${pageContext.request.contextPath}/static/image/book-image/sanguoyanyi.jpg" alt="pick" class="shadow-md w-1/3 transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
                 <div class="ml-4 mt-1 w-2/3">
                     <p class="text-l my-2 font-medium sm:font-normal">《三国演义》</p>
                     <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;作者：罗贯中</p>
@@ -124,7 +124,7 @@
                 </div>
             </div>
             <div class="flex justify-start items-center p-5 px-6 w-full sm:w-1/2">
-                <img src="sanguoyanyi.jpg" alt="pick" class="shadow-md w-1/3 transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                <img src="${pageContext.request.contextPath}/static/image/book-image/sanguoyanyi.jpg" alt="pick" class="shadow-md w-1/3 transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
                 <div class="ml-4 mt-1 w-2/3">
                     <p class="text-l my-2 font-medium sm:font-normal">《三国演义》</p>
                     <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;作者：罗贯中</p>
@@ -134,7 +134,7 @@
                 </div>
             </div>
             <div class="flex justify-start items-center p-5 px-6 w-full sm:w-1/2">
-                <img src="sanguoyanyi.jpg" alt="pick" class="shadow-md w-1/3 transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                <img src="${pageContext.request.contextPath}/static/image/book-image/sanguoyanyi.jpg" alt="pick" class="shadow-md w-1/3 transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
                 <div class="ml-4 mt-1 w-2/3">
                     <p class="text-l my-2 font-medium sm:font-normal">《三国演义》</p>
                     <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;作者：罗贯中</p>
@@ -144,7 +144,7 @@
                 </div>
             </div>
             <div class="flex justify-start items-center p-5 px-6 w-full sm:w-1/2">
-                <img src="sanguoyanyi.jpg" alt="pick" class="shadow-md w-1/3 transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                <img src="${pageContext.request.contextPath}/static/image/book-image/sanguoyanyi.jpg" alt="pick" class="shadow-md w-1/3 transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
                 <div class="ml-4 mt-1 w-2/3">
                     <p class="text-l my-2 font-medium sm:font-normal">《三国演义》</p>
                     <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;作者：罗贯中</p>
@@ -154,7 +154,7 @@
                 </div>
             </div>
             <div class="flex justify-start items-center p-5 px-6 w-full sm:w-1/2">
-                <img src="sanguoyanyi.jpg" alt="pick" class="shadow-md w-1/3 transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                <img src="${pageContext.request.contextPath}/static/image/book-image/sanguoyanyi.jpg" alt="pick" class="shadow-md w-1/3 transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
                 <div class="ml-4 mt-1 w-2/3">
                     <p class="text-l my-2 font-medium sm:font-normal">《三国演义》</p>
                     <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;作者：罗贯中</p>
@@ -230,5 +230,5 @@
 
 
 </body>
-<script src="bundle.js" async defer></script>
+<script src="${pageContext.request.contextPath}/static/js/book-js/bundle.js" async defer></script>
 </html>

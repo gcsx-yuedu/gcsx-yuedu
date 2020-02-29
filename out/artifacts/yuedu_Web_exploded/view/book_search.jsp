@@ -9,7 +9,7 @@
     <meta name="description" content="A responsive web app template with common components like profile, list, tabs, menu views. Made for Codrops exclusively.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book-css/reset.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book-css/output.css.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book-css/output.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book-css/index.css">
 </head>
 <body class="bg-grey-lighter font-sans antialiased">
@@ -65,12 +65,12 @@
     <nav class="absolute lg:relative lg:flex lg:text-sm bg-indigo-darker lg:bg-transparent pin-l pin-r py-4 px-6 lg:pt-10 lg:pl-12 lg:pr-6 -mt-1 lg:mt-0 overflow-y-auto lg:w-1/5 lg:border-r z-40 hidden">
         <ul class="list-reset mb-8 w-full">
             <li class="ml-2 mb-4 flex">
-                <img src="${pageContext.request.contextPath}/http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/home-default.svg" alt="home-icon" class="w-4 h-4 mr-2">
+                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/home-default.svg" alt="home-icon" class="w-4 h-4 mr-2">
                 <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger">返回首页</div>
             </li>
             <li class="ml-2 mb-4">
                 <div class="flex" id="sidenav-categories-trigger">
-                    <img src="${pageContext.request.contextPath}/http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/category-default.svg" alt="home-icon" class="w-4 h-4 mr-2">
+                    <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/category-default.svg" alt="home-icon" class="w-4 h-4 mr-2">
                     <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium w-full relative">
                         分类
 
@@ -86,11 +86,11 @@
                 </ul>
             </li>
             <li class="ml-2 mb-4 flex">
-                <img src="${pageContext.request.contextPath}/http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/wishlist-default.svg" alt="wishlist-icon" class="w-4 h-4 mr-2">
+                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/wishlist-default.svg" alt="wishlist-icon" class="w-4 h-4 mr-2">
                 <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger">我的书架</div>
             </li>
             <li class="ml-2 mb-4 flex lg:hidden">
-                <img src="${pageContext.request.contextPath}/http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/profile-default.svg" alt="profile-icon" class="w-4 h-4 mr-2">
+                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/profile-default.svg" alt="profile-icon" class="w-4 h-4 mr-2">
                 <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium" id="mobile-profile-trigger">Profile</div>
             </li>
         </ul>
@@ -117,21 +117,6 @@
             <ul>
                 <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
                     <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
-                        <img src="${pageContext.request.contextPath}/http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
-                        <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
-
-                        <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">作者：罗贯中</p>
-                            <p class="text-sm my-2 font-medium sm:font-normal">类型：***</p>
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>
-                        </div>
-                    </div>
-                </li>
-
-                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
-                    <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
                         <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
                         <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
 
@@ -159,6 +144,22 @@
                         </div>
                     </div>
                 </li>
+
+                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
+                    <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
+                        <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                        <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
+
+                        <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
+                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
+                            <p class="text-l my-2 font-medium sm:font-normal">作者：罗贯中</p>
+                            <p class="text-sm my-2 font-medium sm:font-normal">类型：***</p>
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -224,5 +225,5 @@
 
 
 </body>
-<script src="bundle.js" async defer></script>
+<script src="${pageContext.request.contextPath}/static/js/book-js/bundle.js" async defer></script>
 </html>

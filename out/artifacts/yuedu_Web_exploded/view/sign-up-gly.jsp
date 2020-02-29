@@ -135,10 +135,18 @@
                 var b = Math.floor(Math.random() * 256);
                 return "rgb(" + r + "," + g + "," + b + ")";
             }
+
+            document.onkeydown=keyListener;
+            function keyListener(e) {
+                if (e.keyCode === 13) {
+                    sublim0();
+                }
+            }
+
         </script>
         <p class="forgot-pass"><a href="sign-up-yh.jsp">用户登录</a></p>
 
-        <button onclick="sublim0()" type="button" class="submit">登 录</button>
+        <button id="denglu" onclick="sublim0()" onfocus="true" type="button" class="submit">登 录</button>
     </div>
 
     <div id="gly-sign-in" class="sub-cont">

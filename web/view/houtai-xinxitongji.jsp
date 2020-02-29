@@ -200,7 +200,7 @@
 
             <div class="row">
                 <!-- Area Chart -->
-                <div class="col-xl-5">
+                <div class="col-xl-4">
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -231,7 +231,7 @@
                         },
                     });
                 </script>
-                <div class="col-xl-7">
+                <div class="col-xl-8">
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
