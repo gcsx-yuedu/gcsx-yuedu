@@ -54,4 +54,8 @@ public class ManagerService {
     public void addBookType(String t_type) {
         managerDao.addBookType(t_type);
     }
+
+    public Integer sameType(BookType bookType) {
+        return managerDao.sameType(bookType);
+    }
 }
