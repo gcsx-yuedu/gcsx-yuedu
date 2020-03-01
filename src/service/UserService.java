@@ -14,6 +14,6 @@ public class UserService {
     @Autowired
     private UserDao userDao;
     public int updateUser(User user) {
-        return userDao.updateTeacher(user);
+        return userDao.updateUser(user);
     }
 }

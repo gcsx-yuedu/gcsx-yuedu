@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface UserDao {
-    public int updateTeacher(User user);
+    public int updateUser(User user);
 }
