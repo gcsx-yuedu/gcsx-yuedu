@@ -4,7 +4,9 @@ import dao.ManagerDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import po.Book;
 import po.BookType;
+import po.Book_Type;
 import po.Manager;
 
 import java.util.List;
@@ -57,5 +59,17 @@ public class ManagerService {
 
     public Integer sameType(BookType bookType) {
         return managerDao.sameType(bookType);
+    }
+
+    public void saveBookType(Book_Type book_type) {
+        managerDao.saveBookType(book_type);
+    }
+
+    public Integer selectBookIdByBookName(String b_name) {
+        return managerDao.selectBookIdByBookName(b_name);
+    }
+
+    public void addBook(Book book) {
+        managerDao.addBook(book);
     }
 }

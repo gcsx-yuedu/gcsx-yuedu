@@ -1,19 +1,18 @@
 package controller;
 
-import net.sf.json.JSONObject;
-import org.apache.tools.ant.taskdefs.condition.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import po.Book;
 import po.BookType;
+import po.Book_Type;
 import po.Manager;
 import service.ManagerService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -169,10 +168,47 @@ public class GlySignInCheck {
     /*
      * 添加书籍
      * */
+    /*
+     *
+     * 添加书籍两步：
+     * 1、书籍表的内容直接存储进数据库，通过action方式
+     * 2、书籍的类型通过ajax返回到后台存储到book_type表
+     *
+     */
+    @ResponseBody
     @RequestMapping("/addBook")
-    public String addBook(Book book,HttpServletRequest request) {
+    public String addBook(Book book,HttpServletRequest request) throws IOException {
         request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
+        System.out.println(">>>");
         System.out.println(book.toString());
-        return "/houtai-tianjiashuji";
+//        System.out.println(">>>b_cover="+book.getB_cover());
+        service.addBook(book);
+        System.out.println("书籍信息添加成功......");
+//        return "redirect:/houtai-tianjiashuji";
+        return "ok";
     }
+
+    /*添加书籍的对应类型*/
+    /*先根据书籍的名称或者是其他的信息，获取到书籍的id，然后将书籍的id和类型依次存储到book_type表*/
+    @RequestMapping("/saveBookType")
+    public String saveBookType(HttpServletRequest request,String book_name,String b_type) {
+        request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
+        System.out.println(">>>");
+        System.out.println(b_type);
+        int b_id = service.selectBookIdByBookName(book_name);
+
+        System.out.println("book_name="+book_name+",b_id="+b_id);
+
+        String[] type = b_type.split(",");
+        for (String s:type) {
+            Book_Type book_type = new Book_Type();
+            book_type.setBook_id(b_id);
+            book_type.setType_id(Integer.parseInt(s));
+            service.saveBookType(book_type);
+        }
+        System.out.println(">>>");
+        System.out.println("书籍对应类型存储成功......");
+        return "redirect:/houtai-tianjiashuji";
+    }
+
 }
