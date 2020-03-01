@@ -125,7 +125,7 @@
         </div>
         <!-- Library -->
         <div class="hidden px-2 pt-2 md:px-0 flex-wrap order-2 pb-8 js-tab-pane active" id="section-library">
-            <form id="payment">
+            <form id="payment" action="../user_change">
                 <fieldset>
                     <legend>用户详细资料</legend>
                     <ol>
@@ -135,15 +135,15 @@
                         </li>
                         <li>
                             <label for="name">用户名：</label>
-                            <input id="name" name="name" type="text" placeholder="请输入用户名" required autofocus>
+                            <input id="name" name="u_name" type="text" placeholder="请输入用户名" required autofocus>
                         </li>
                         <li>
                             <label for="name">密码：</label>
-                            <input id="name" name="password" type="text" placeholder="请输入新密码" required>
+                            <input id="name" name="u_password" type="text" placeholder="请输入新密码" required>
                         </li>
                         <li>
                             <label for="name">性别：</label>
-                            <select name="sex" id="name">
+                            <select name="sex" id="u_name">
                                 <option value=""></option>
                                 <option value="">男</option>
                                 <option value="">女</option>
@@ -151,7 +151,7 @@
                         </li>
                         <li>
                             <label for="email">邮箱地址：</label>
-                            <input id="email" name="email" type="email" placeholder="example@163.com" required>
+                            <input id="email" name="u_address" type="email" placeholder="example@163.com" required>
                         </li>
                     </ol>
                 </fieldset>
