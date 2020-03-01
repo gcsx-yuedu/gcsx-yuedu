@@ -28,4 +28,6 @@ public interface ManagerDao {
     public List<BookType> selectBookType();
 
     public void addBookType(String t_type);
+
+    public Integer sameType(BookType bookType);
 }

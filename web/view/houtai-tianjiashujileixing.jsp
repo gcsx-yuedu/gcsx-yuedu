@@ -159,7 +159,7 @@
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
-                            <form action="/addBookTypeController" method="post" class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form">
                                 <div class="form-group">
                                     <label>
                                         <h5>书籍类型</h5>
@@ -169,15 +169,48 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="col-xl-4 offset-4" value="提交">
+                                    <input onclick="addBookType()" type="submit" class="col-xl-4 offset-4" value="提交">
                                 </div>
                             </form>
-                            <%--<script>
+                            <script>
                                 function addBookType() {
                                     var t_type = document.getElementById("bookType").value;
-                                    location.href="/addBookTypeController?t_type="+t_type;
+                                    $.ajax({
+                                        url:'/sameType',
+                                        async:false,
+                                        type: 'post',
+                                        dataType: 'text',
+                                        data:{"t_type":t_type},
+                                        success:function (f) {
+                                            // alert('f='+f);
+                                            if ('1'==f){
+                                                console.log('f=1');
+                                                alert('该类型已存在，请重新输入！');
+                                            } else {
+                                                alert('跳转添加页面');
+                                                // window.location.href = '/addBookType?t_type='+t_type;
+                                                $.ajax({
+                                                    url:'/addBookType',
+                                                    async:false,
+                                                    type: 'post',
+                                                    dataType: 'text',
+                                                    data:{"t_type":t_type},
+                                                    success: function () {
+                                                        alert('添加成功');
+                                                    },
+                                                    error: function () {
+                                                        alert('系统出错');
+                                                    }
+                                                });
+                                            }
+                                        },
+                                        error:function () {
+                                            alert('系统出错');
+                                        }
+
+                                    });
                                 }
-                            </script>--%>
+                            </script>
                         </div>
                     </div>
                 </div>

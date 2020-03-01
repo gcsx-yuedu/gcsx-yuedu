@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="po.BookType" %>
+<%@ page import="sun.security.util.Length" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
     <meta charset="utf-8">
@@ -39,6 +41,13 @@
 <%--response.sendRedirect("sign-up-gly.jsp");--%>
 <%--}--%>
 <%--%>--%>
+
+<%
+    List<BookType> bookTypeList = (List<BookType>) session.getAttribute("bookTypeList");
+%>
+
+
+
 <!-- SCRIPTS -->
 <!-- JQuery -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/houtai/js/jquery-3.4.1.min.js"></script>
@@ -80,7 +89,16 @@
 
                 <!-- Left -->
                 <ul class="navbar-nav mr-auto">
-
+                    <li class="nav-item blue m-2">
+                        <a href="/houtai-tianjiashuji" class="nav-link border border-light rounded">
+                        添加书籍
+                        </a>
+                    </li>
+                    <li class="nav-item m-2">
+                        <a href="/houtai-tianjiashujileixing" class="nav-link border border-light rounded">
+                            添加书籍类型
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Right -->
@@ -110,7 +128,7 @@
         <div class="list-group list-group-flush">
             <a href="${pageContext.request.contextPath}/view/houtai-xinxitongji.jsp" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-chart-pie mr-3"></i>信息统计</a>
-            <a href="${pageContext.request.contextPath}/view/houtai-yonghuguanli.jsp" class="list-group-item list-group-item-action waves-effect">
+            <a href="/houtai-xinxitongji" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-user mr-3"></i>用户管理</a>
             <a href="${pageContext.request.contextPath}/view/houtai-shujiguanli.jsp" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-table mr-3"></i>书籍管理</a>
@@ -137,7 +155,7 @@
                     <div class="card shadow">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">书籍添加页面</h6>
+                            <h4 class="m-0 font-weight-bold text-primary">书籍添加页面</h4>
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
@@ -149,39 +167,57 @@
                                     </div>
                                 </div>
 
+
                                 <div class="form-group">
-                                    <label for="bookAuthor" class="col-xl-2">作者</label>
+                                    <label for="bookAuthor" class="col-xl-2 col-form-label-lg">作者</label>
                                     <div class="col-xl-10">
                                         <input type="text" name="bookAuthor" id="bookAuthor" class="form-control" placeholder="请输入作者">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="bookType" class="col-xl-2">书籍类型</label>
+                                    <label class="col-xl-2 col-form-label-lg">书籍类型</label>
                                     <div class="col-xl-10">
-                                        <label>
-                                            <input type="checkbox" value="1">
-                                        </label>历史
+                                        <%--循环遍历所有的书籍类型--%>
+
+                                        <%
+                                            System.out.println(bookTypeList.size());
+                                            for (int i=0;i<bookTypeList.size()-1;i++){
+                                        %>
+                                            <div style="width: 50%;float: left">
+                                                    <h6><input id="bookType" name="bookType" type="checkbox" class="custom-checkbox" value="<%=bookTypeList.get(i).getT_id()%>">
+                                                    <%=bookTypeList.get(i).getT_type()%>
+                                                    </h6>
+                                            </div>
+
+                                        <%
+                                            }
+                                        %>
+                                        <div style="width:25%;">
+                                            <input type="checkbox" class="custom-checkbox" value="<%=bookTypeList.get(bookTypeList.size()-1).getT_id()%>">
+                                            <%=bookTypeList.get(bookTypeList.size()-1).getT_type()%>
+                                        </div>
                                     </div>
                                 </div>
 
+
                                 <div class="form-group">
-                                    <label for="bookJianjie" class="col-xl-2">书籍简介</label>
+                                    <label for="bookJianjie" class="col-xl-2 col-form-label-lg">书籍简介</label>
                                     <div class="col-xl-10">
-                                        <label>
+                                        <label for="bookJianjie" class="col-xl-12">
                                             <textarea name="bookJianjie" id="bookJianjie" class="form-control" rows="3"></textarea>
                                         </label>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="bookCover" class="col-xl-2">上传书籍封面</label>
-                                    <div class="col-xl-10">
-                                        <img src="" style="display: none" height="200px" width="300px" id="base64Img" name="base64Im"  alt="">
-                                    </div>
+                                    <label for="bookCover" class="col-xl-2 col-form-label-lg">上传书籍封面</label>
                                     <div class="col-xl-10">
                                         <input type="file" onchange="toBase64()" accept="image/jpeg,image/png,image/jpg" name="bookCover" id="bookCover" class="">
                                     </div>
+                                    <div class="col-xl-10">
+                                    <img src="" style="display: none" height="200px" width="300px" id="base64Img" name="base64Im"  alt="">
+                                </div>
                                 </div>
                                 <script>
                                     function toBase64() {
@@ -197,7 +233,24 @@
                                         }
                                     }
                                 </script>
+                                <div class="form-group">
+                                    <input onclick="addBook()" type="submit" class="col-xl-4 offset-4" value="提交">
+                                </div>
                             </form>
+                            <script>
+                                function addBook() {
+                                    var bookName = document.getElementById("bookName").value;
+                                    var bookAuthor = document.getElementsByName("bookAuthor");
+                                    var check_bookAuthor = [];
+                                    for (var i = 0; i < bookAuthor.length; i++) {
+                                        if (bookAuthor[i].checked){
+                                            check_bookAuthor.push(bookAuthor[i].value);
+                                        }
+                                    }
+                                    alert(check_bookAuthor);
+
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>

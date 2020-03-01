@@ -159,7 +159,7 @@
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
-                            <form role="form" class="form-horizontal">
+                            <form  role="form" class="form-horizontal">
                                 <div class="form-group">
                                     <label for="bookName" class="col-xl-2 col-form-label-lg">书名</label>
                                     <div class="col-xl-10">
@@ -185,7 +185,7 @@
                                             for (int i=0;i<bookTypeList.size()-1;i++){
                                         %>
                                             <div style="width: 50%;float: left">
-                                                    <h6><input type="checkbox" class="custom-checkbox" value="<%=bookTypeList.get(i).getT_id()%>">
+                                                    <h6><input id="bookType" name="bookType" type="checkbox" class="custom-checkbox" value="<%=bookTypeList.get(i).getT_id()%>">
                                                     <%=bookTypeList.get(i).getT_type()%>
                                                     </h6>
                                             </div>
@@ -234,9 +234,23 @@
                                     }
                                 </script>
                                 <div class="form-group">
-                                    <input type="submit" class="col-xl-4 offset-4" value="提交">
+                                    <input onclick="addBook()" type="submit" class="col-xl-4 offset-4" value="提交">
                                 </div>
                             </form>
+                            <script>
+                                function addBook() {
+                                    var bookName = document.getElementById("bookName").value;
+                                    var bookAuthor = document.getElementsByName("bookAuthor");
+                                    var check_bookAuthor = [];
+                                    for (var i = 0; i < bookAuthor.length; i++) {
+                                        if (bookAuthor[i].checked){
+                                            check_bookAuthor.push(bookAuthor[i].value);
+                                        }
+                                    }
+                                    alert(check_bookAuthor);
+
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>

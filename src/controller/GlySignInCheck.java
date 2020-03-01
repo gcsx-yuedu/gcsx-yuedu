@@ -1,10 +1,12 @@
 package controller;
 
 import net.sf.json.JSONObject;
+import org.apache.tools.ant.taskdefs.condition.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import po.Book;
 import po.BookType;
 import po.Manager;
 import service.ManagerService;
@@ -122,21 +124,38 @@ public class GlySignInCheck {
         return "houtai-jubaoxinxiguanli";
     }
 
+
+
     /*跳转到添加书籍类型的界面*/
     @RequestMapping("/houtai-tianjiashujileixing")
     public String toHoutaiTianjiaShujiLeixing(HttpServletRequest request) {
         request.getSession().setAttribute("username",request.getSession().getAttribute("username"));
         return "houtai-tianjiashujileixing";
-
     }
 
-    /*添加书籍类型*/
-    @RequestMapping("/addBookTypeController")
+   /* * 添加书籍类型
+    * 添加成功之后跳转到添加书籍类型页面
+    *
+    * */
+    @RequestMapping("/addBookType")
     public String addBookType(String t_type,HttpServletRequest request) {
         request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
         service.addBookType(t_type);
         System.out.println(">>>添加成功");
-        return "houtai-tianjiashujileixing";
+        return "redirect:/houtai-tianjiashujileixing";
+    }
+
+    /*判断类型是否重复*/
+    @ResponseBody
+    @RequestMapping("/sameType")
+    public String sameType(String t_type, HttpServletRequest request) {
+        request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
+        BookType bookType = new BookType();
+        bookType.setT_type(t_type);
+        System.out.println("t_type="+t_type);
+        int f = service.sameType(bookType);
+        System.out.println(">>>sameType方法已运行......");
+        return String.valueOf(f);
     }
 
     /*获取当前系统时间*/
@@ -145,5 +164,15 @@ public class GlySignInCheck {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //        System.out.println(format.format(date));
         return format.format(date);
+    }
+
+    /*
+     * 添加书籍
+     * */
+    @RequestMapping("/addBook")
+    public String addBook(Book book,HttpServletRequest request) {
+        request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
+        System.out.println(book.toString());
+        return "/houtai-tianjiashuji";
     }
 }
