@@ -2,7 +2,7 @@ package po;
 
 public class Book {
     private int b_id;
-    private int b_type;
+//    private int b_type;
     private Object b_cover;
     private String b_name;
     private String b_author;
@@ -15,13 +15,13 @@ public class Book {
         this.b_id=b_id;
     }
 
-    public int getB_type() {
-        return b_type;
-    }
+//    public int getB_type() {
+//        return b_type;
+//    }
 
-    public void setB_type(int b_type) {
-        this.b_type = b_type;
-    }
+//    public void setB_type(int b_type) {
+//        this.b_type = b_type;
+//    }
 
     public Object getB_cover() {
         return b_cover;
@@ -59,7 +59,7 @@ public class Book {
     public String toString() {
         return "Book{" +
                 "b_id=" + b_id +
-                ", b_type=" + b_type +
+//                ", b_type=" + b_type +
                 ", b_cover=" + b_cover +
                 ", b_name='" + b_name + '\'' +
                 ", b_author='" + b_author + '\'' +
