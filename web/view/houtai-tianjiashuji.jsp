@@ -3,6 +3,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="po.BookType" %>
 <%@ page import="sun.security.util.Length" %>
+<%@ page import="po.Book" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
     <meta charset="utf-8">
@@ -161,17 +162,17 @@
                         <div class="card-body">
                             <form role="form" class="form-horizontal">
                                 <div class="form-group">
-                                    <label for="bookName" class="col-xl-2 col-form-label-lg">书名</label>
+                                    <label for="b_name" class="col-xl-2 col-form-label-lg">书名</label>
                                     <div class="col-xl-10">
-                                        <input type="text" name="bookName" id="bookName" class="form-control" placeholder="请输入书名">
+                                        <input type="text" name="b_name" id="b_name" class="form-control" placeholder="请输入书名">
                                     </div>
                                 </div>
 
 
                                 <div class="form-group">
-                                    <label for="bookAuthor" class="col-xl-2 col-form-label-lg">作者</label>
+                                    <label for="b_author" class="col-xl-2 col-form-label-lg">作者</label>
                                     <div class="col-xl-10">
-                                        <input type="text" name="bookAuthor" id="bookAuthor" class="form-control" placeholder="请输入作者">
+                                        <input type="text" name="b_author" id="b_author" class="form-control" placeholder="请输入作者">
                                     </div>
                                 </div>
 
@@ -185,7 +186,7 @@
                                             for (int i=0;i<bookTypeList.size()-1;i++){
                                         %>
                                             <div style="width: 50%;float: left">
-                                                    <h6><input type="checkbox" class="custom-checkbox" value="<%=bookTypeList.get(i).getT_id()%>">
+                                                    <h6><input id="bookType" name="bookType" type="checkbox" class="custom-checkbox" value="<%=bookTypeList.get(i).getT_id()%>">
                                                     <%=bookTypeList.get(i).getT_type()%>
                                                     </h6>
                                             </div>
@@ -202,41 +203,97 @@
 
 
                                 <div class="form-group">
-                                    <label for="bookJianjie" class="col-xl-2 col-form-label-lg">书籍简介</label>
+                                    <label for="b_content" class="col-xl-2 col-form-label-lg">书籍简介</label>
                                     <div class="col-xl-10">
-                                        <label for="bookJianjie" class="col-xl-12">
-                                            <textarea name="bookJianjie" id="bookJianjie" class="form-control" rows="3"></textarea>
+                                        <label for="b_content" class="col-xl-12">
+                                            <textarea name="b_content" id="b_content" class="form-control" rows="3"></textarea>
                                         </label>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="bookCover" class="col-xl-2 col-form-label-lg">上传书籍封面</label>
+                                    <label for="b_cover" class="col-xl-2 col-form-label-lg">上传书籍封面</label>
                                     <div class="col-xl-10">
-                                        <input type="file" onchange="toBase64()" accept="image/jpeg,image/png,image/jpg" name="bookCover" id="bookCover" class="">
+                                        <input type="file" onchange="toBase64()" accept="image/jpeg,image/png,image/jpg" name="b_cover" id="b_cover" class="">
                                     </div>
                                     <div class="col-xl-10">
-                                    <img src="" style="display: none" height="200px" width="300px" id="base64Img" name="base64Im"  alt="">
+                                    <img src="" style="display: none" height="152px" width="114px" id="base64Img" name="base64Im"  alt="">
                                 </div>
                                 </div>
-                                <script>
-                                    function toBase64() {
-                                        var file = document.querySelector('input[type=file]').files[0];
-                                        var reader = new FileReader();
-                                        reader.onloadend = function () {
-                                            $("#base64Img").attr("style", "display:inline-block");
-                                            $("#base64Img").attr("src", reader.result);
-                                            console.log(reader.result);
-                                        };
-                                        if (file) {
-                                            reader.readAsDataURL(file);
-                                        }
-                                    }
-                                </script>
+
                                 <div class="form-group">
-                                    <input type="submit" class="col-xl-4 offset-4" value="提交">
+                                    <input onclick="add()" type="button" class="col-xl-4 offset-4" value="提交">
                                 </div>
                             </form>
+                            <script>
+                                var reader;
+                                function toBase64() {
+                                    var file = document.querySelector('input[type=file]').files[0];
+                                    reader = new FileReader();
+                                    reader.onloadend = function () {
+                                        $("#base64Img").attr("style", "display:inline-block");
+                                        $("#base64Img").attr("src", reader.result);
+                                        console.log(reader.result);
+                                    };
+                                    if (file) {
+                                        reader.readAsDataURL(file);
+                                    }
+                                }
+
+
+                                function add() {
+                                    var b_name = document.getElementById("b_name").value;
+                                    var b_author = document.getElementById("b_author").value;
+                                    var b_cover = reader.result.toString();
+                                    // alert(b_cover);
+                                    var b_content = document.getElementById("b_content").value;
+                                    var obj = document.getElementsByName("bookType");
+                                    var b_type = [];
+                                    for (k in obj) {
+                                        if (obj[k].checked){
+                                            b_type.push(obj[k].value);
+                                        }
+                                    }
+                                    // alert(b_type);
+
+
+                                    $.ajax({
+                                        url:'/addBook',
+                                        async:false,
+                                        type: 'post',
+                                        dataType: 'text',
+                                        data:{"b_name":b_name,
+                                        "b_author":b_author,
+                                        "b_cover":b_cover,
+                                        "b_content":b_content},
+                                        success:function () {
+                                            alert('书籍信息存储成功');
+                                            // alert(b_type);
+                                            $.ajax({
+                                                url:'/saveBookType',
+                                                async:false,
+                                                type: 'post',
+                                                dataType: 'text',
+                                                data: {
+                                                    "book_name": b_name,
+                                                    "b_type": b_type,
+                                                },
+                                                success:function () {
+                                                    alert("书籍相关类型添加成功");
+                                                },
+                                                error:function () {
+                                                    // alert(b_type);
+                                                    alert("saveBookTypeError");
+                                                }
+
+                                            });
+                                        },
+                                        error:function () {
+                                            alert('系统出错');
+                                        },
+                                    });
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>

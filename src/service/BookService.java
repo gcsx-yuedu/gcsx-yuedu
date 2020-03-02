@@ -1,15 +1,23 @@
 package service;
 
-import dao.BookDao;
+import dao.BookMapper;
+import dao.ManagerDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import po.Book;
+import po.BookType;
+import po.Book_Type;
+import po.Manager;
+
+import java.util.List;
 
 @Service
-@Transactional
 public class BookService {
     @Autowired
-    private BookDao bookDao;
-    public Book queryBook(Book book){return bookDao.queryBook(book);}
+    private BookMapper BookDao;
+
+    public List<Book> selectBookAll(Book book){
+        return BookDao.selectBookAll(book);
+    }
 }

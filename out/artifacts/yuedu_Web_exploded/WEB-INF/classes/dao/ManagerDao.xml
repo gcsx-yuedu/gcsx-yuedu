@@ -28,4 +28,16 @@
     <select id="userNanNum" resultType="Integer">
         select count(*) from userInfo where u_sex='男'
     </select>
+
+    <select id="selectBookType" resultType="po.BookType">
+        select t_id, t_type from type
+    </select>
+
+    <insert id="addBookType" parameterType="po.BookType">
+        insert into type (t_type) values(#{t_type})
+    </insert>
+
+    <select id="sameType" parameterType="po.BookType" resultType="Integer">
+        select count(*) from type where t_type=#{t_type}
+    </select>
 </mapper>

@@ -4,4 +4,17 @@
     <update id="updateUser" parameterType="po.User">
 	update userInfo set u_name=#{u_name},u_password=#{u_password},u_sex=#{u_sex},u_address=#{u_address} where u_id=#{u_id}
 	</update>
+
+	<select id="queryBookById" parameterType="Integer" resultMap="ResultBook">
+		select * from bookshelf where user_id={#user_id}
+	</select>
+	<resultMap id="ResultBook" type="Book">
+		<id property="b_id" column="b_id"/>
+		<result property="b_cover" column="b_cover"/>
+		<result property="b_name" column="b_name"/>
+		<result property="b_author" column="b_author"/>
+		<collection property="bookTypeList" ofType="BookType" column="b_id"
+					select="mapper.Book_TypeMapper.queryType"
+		/>
+	</resultMap>
 </mapper>

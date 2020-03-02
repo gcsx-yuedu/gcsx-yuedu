@@ -1,7 +1,9 @@
 package dao;
 
 import org.springframework.stereotype.Repository;
+import po.Book;
 import po.BookType;
+import po.Book_Type;
 import po.Manager;
 
 import java.util.List;
@@ -28,4 +30,12 @@ public interface ManagerDao {
     public List<BookType> selectBookType();
 
     public void addBookType(String t_type);
+
+    public Integer sameType(BookType bookType);
+
+    public void saveBookType(Book_Type book_type);
+
+    public Integer selectBookIdByBookName(String b_name);
+
+    public void addBook(Book book);
 }
