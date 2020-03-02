@@ -2,21 +2,17 @@ package po;
 
 public class BookType {
     private int t_id;
-    private String t_type;
+    private Book_Type t_type;
 
     public int getT_id() {
         return t_id;
     }
 
-    public void setT_id(int id) {
-        this.t_id = id;
-    }
-
-    public String getT_type() {
+    public Book_Type getT_type() {
         return t_type;
     }
 
-    public void setT_type(String t_type) {
+    public void setT_type(Book_Type t_type) {
         this.t_type = t_type;
     }
 
