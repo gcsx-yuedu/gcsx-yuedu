@@ -40,4 +40,17 @@
     <select id="sameType" parameterType="po.BookType" resultType="Integer">
         select count(*) from type where t_type=#{t_type}
     </select>
+
+    <insert id="saveBookType" parameterType="po.Book_Type">
+        insert into book_type (book_id,type_id) values (#{book_id},#{type_id})
+    </insert>
+
+    <select id="selectBookIdByBookName" parameterType="String" resultType="Integer">
+        select b_id from book where b_name = #{b_name}
+    </select>
+
+    <insert id="addBook" parameterType="po.Book">
+        insert into book (b_cover,b_name,b_author,b_content) values (#{b_cover},#{b_name},#{b_author},#{b_content})
+    </insert>
+
 </mapper>
