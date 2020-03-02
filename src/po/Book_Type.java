@@ -1,9 +1,12 @@
 package po;
+import java.util.List;
+
 
 public class Book_Type {
     private int id;
-    private int book_id;
+    private Book book_id;
     private int type_id;
+    private List<Book_Type> bookTypeList;
 
     public int getId() {
         return id;
@@ -13,11 +16,11 @@ public class Book_Type {
         this.id = id;
     }
 
-    public int getBook_id() {
+    public Book getBook_id() {
         return book_id;
     }
 
-    public void setBook_id(int book_id) {
+    public void setBook_id(Book book_id) {
         this.book_id = book_id;
     }
 
@@ -27,6 +30,14 @@ public class Book_Type {
 
     public void setType_id(int type_id) {
         this.type_id = type_id;
+    }
+
+    public List<Book_Type> getBookTypeList() {
+        return bookTypeList;
+    }
+
+    public void setBookTypeList(List<Book_Type> bookTypeList) {
+        this.bookTypeList = bookTypeList;
     }
 
     @Override

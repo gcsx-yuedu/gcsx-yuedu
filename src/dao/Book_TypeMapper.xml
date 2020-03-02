@@ -6,7 +6,7 @@
 	</select>
 	<resultMap id="Type" type="Book_Type">
 		<id property="id" column="id"/>
-		<collection property="TypeList" ofType="BookType" column="type_id"
+		<collection property="bookTypeList" ofType="BookType" column="type_id"
 					select="mapper.BookTypeMapper.queryTypeById"
 		/>
 	</resultMap>
