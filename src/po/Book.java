@@ -1,4 +1,5 @@
 package po;
+import java.util.List;
 
 public class Book {
     private int b_id;
@@ -7,6 +8,7 @@ public class Book {
     private String b_name;
     private String b_author;
     private  String b_content;
+    private List<Book_Type> book_TypeList;
 
     public int getB_id(){
         return b_id;
@@ -53,6 +55,14 @@ public class Book {
 
     public void setB_content(String b_content) {
         this.b_content = b_content;
+    }
+
+    public List<Book_Type> getBook_TypeList() {
+        return book_TypeList;
+    }
+
+    public void setBook_TypeList(List<Book_Type> book_TypeList) {
+        this.book_TypeList = book_TypeList;
     }
 
     @Override
