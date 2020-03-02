@@ -15,9 +15,9 @@ import java.util.List;
 @Service
 public class BookService {
     @Autowired
-    private BookMapper BookDao;
+    private BookMapper bookMapper;
 
     public List<Book> selectBookAll(Book book){
-        return BookDao.selectBookAll(book);
+        return bookMapper.selectBookAll(book);
     }
 }
