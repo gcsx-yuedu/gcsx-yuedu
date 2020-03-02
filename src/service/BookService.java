@@ -20,4 +20,7 @@ public class BookService {
     public List<Book> selectBookAll(Book book){
         return bookMapper.selectBookAll(book);
     }
+    public List<Book> selectBookByLeixing(int id){
+        return bookMapper.selectBookByLeixing(id);
+    }
 }
