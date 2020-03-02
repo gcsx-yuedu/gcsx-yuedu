@@ -13,7 +13,7 @@
 		<result property="b_cover" column="b_cover"/>
 		<result property="b_name" column="b_name"/>
 		<result property="b_author" column="b_author"/>
-		<collection property="bookTypeList" ofType="BookType" column="b_id"
+		<collection property="book_TypeList" ofType="BookType" column="b_id"
 					select="mapper.Book_TypeMapper.queryType"
 		/>
 	</resultMap>
