@@ -164,7 +164,7 @@
                                 <div class="form-group">
                                     <label for="b_name" class="col-xl-2 col-form-label-lg">书名</label>
                                     <div class="col-xl-10">
-                                        <input type="text" name="b_name" id="b_name" class="form-control" placeholder="请输入书名">
+                                        <input type="text" name="b_name" id="b_name" onchange="checkBookName()" class="form-control" placeholder="请输入书名">
                                     </div>
                                 </div>
 
@@ -182,7 +182,7 @@
                                         <%--循环遍历所有的书籍类型--%>
 
                                         <%
-                                            System.out.println(bookTypeList.size());
+//                                            System.out.println(bookTypeList.size());
                                             for (int i=0;i<bookTypeList.size()-1;i++){
                                         %>
                                             <div style="width: 50%;float: left">
@@ -240,6 +240,26 @@
                                     }
                                 }
 
+                                function checkBookName() {
+                                    var bookName = document.getElementById("b_name").value;
+                                    $.ajax({
+                                        url:'/sameBookName',
+                                        async:false,
+                                        type: 'post',
+                                        dataType: 'text',
+                                        data:{"bookName":bookName},
+                                        success:function (s) {
+                                            if (s=="1"){
+                                                alert("书籍已存在");
+                                                location.reload();
+                                            }
+                                        },
+                                        error:function () {
+                                            alert("系统出错");
+                                        }
+                                    });
+                                }
+
 
                                 function add() {
                                     var b_name = document.getElementById("b_name").value;
@@ -257,6 +277,7 @@
                                     // alert(b_type);
 
 
+
                                     $.ajax({
                                         url:'/addBook',
                                         async:false,
@@ -267,7 +288,7 @@
                                         "b_cover":b_cover,
                                         "b_content":b_content},
                                         success:function () {
-                                            alert('书籍信息存储成功');
+                                            // alert('书籍信息存储成功');
                                             // alert(b_type);
                                             $.ajax({
                                                 url:'/saveBookType',
@@ -276,10 +297,11 @@
                                                 dataType: 'text',
                                                 data: {
                                                     "book_name": b_name,
-                                                    "b_type": b_type,
+                                                    "b_type": b_type.toString(),
                                                 },
                                                 success:function () {
-                                                    alert("书籍相关类型添加成功");
+                                                    // alert("书籍相关类型添加成功");
+                                                    alert("书籍添加成功");
                                                 },
                                                 error:function () {
                                                     // alert(b_type);
@@ -292,6 +314,7 @@
                                             alert('系统出错');
                                         },
                                     });
+                                    location.reload();
                                 }
                             </script>
                         </div>

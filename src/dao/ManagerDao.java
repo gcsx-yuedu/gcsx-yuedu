@@ -38,4 +38,12 @@ public interface ManagerDao {
     public Integer selectBookIdByBookName(String b_name);
 
     public void addBook(Book book);
+
+    public Integer sameBookName(String b_name);
+
+    public List<Book> selectAllBook(Integer c_id);
+
+    public List<Integer> getTypeId(Integer book_id);
+
+    public String getTypeByTypeId(Integer t_id);
 }

@@ -30,15 +30,15 @@
     </select>
 
     <select id="selectBookType" resultType="po.BookType">
-        select t_id, t_type from type
+        select t_id, t_type from typez
     </select>
 
     <insert id="addBookType" parameterType="po.BookType">
-        insert into type (t_type) values(#{t_type})
+        insert into typez (t_type) values(#{t_type})
     </insert>
 
     <select id="sameType" parameterType="po.BookType" resultType="Integer">
-        select count(*) from type where t_type=#{t_type}
+        select count(*) from typez where t_type=#{t_type}
     </select>
 
     <insert id="saveBookType" parameterType="po.Book_Type">
@@ -52,5 +52,26 @@
     <insert id="addBook" parameterType="po.Book">
         insert into book (b_cover,b_name,b_author,b_content) values (#{b_cover},#{b_name},#{b_author},#{b_content})
     </insert>
+
+    <select id="sameBookName" parameterType="String" resultType="Integer">
+        select count(*) from book where b_name=#{b_name}
+    </select>
+
+    <select id="selectAllBook" parameterType="Integer" resultType="po.Book">
+        select b_id,b_name,b_author,b_cover,b_content from book
+        <where>
+            <if test="b_id != 0 and b_id != null">
+                and b_id=#{b_id}
+            </if>
+        </where>
+    </select>
+
+    <select id="getTypeId" parameterType="Integer" resultType="Integer">
+        select type_id from book_type where book_id=#{book_id}
+    </select>
+
+    <select id="getTypeByTypeId" parameterType="Integer" resultType="String">
+        select t_type from typez where t_id=#{t_id}
+    </select>
 
 </mapper>
