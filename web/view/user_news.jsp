@@ -145,7 +145,8 @@
                                 </div>
                             </div>
                         </div>
-
+                    </div>
+                </li>
                 <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
                     <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
                         <div class="p-4 px-4 w-full w-full rounded md:rounded-r-none bg-grey-lighter-2 shadow-md md:shadow-none">
@@ -162,7 +163,7 @@
                                 </div>
                             </div>
                         </div>
-
+                    </div>
                 </li>
 
                 <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
@@ -181,7 +182,7 @@
                                 </div>
                             </div>
                         </div>
-
+                    </div>
                 </li>
             </ul>
         </div>
@@ -202,7 +203,7 @@
                                 </div>
                             </div>
                         </div>
-
+                    </div>
                 </li>
                 <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
                     <div class="flex flex-row  sm:flex-row items-center sm:items-start w-full xs:w-full sm:w-full md:w-full p-4 js-book">
@@ -218,6 +219,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                 </li>
                 <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
@@ -225,7 +227,7 @@
                          id="section-stats">
                         <div class="p-4 px-4 m-0 mx-0 w-full w-full rounded md:rounded-r-none shadow-md md:shadow-none">
                             <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full js-book">
-                                <img src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" style="border-radius: 50%;overflow:hidden alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                                <img src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" style="border-radius: 50%;overflow:hidden" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
                                 <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
                                 <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
                                     <p class="text-lg my-2 font-medium sm:font-normal">新的关注</p>
@@ -235,7 +237,7 @@
                                 </div>
                             </div>
                         </div>
-
+                    </div>
                 </li>
             </ul>
         </div>
@@ -304,5 +306,5 @@
 </div>
 工程实训第四组--"悦读"网
 </body>
-<script src="js/bundle.js" async defer></script>
+<script src="${pageContext.request.contextPath}/static/js/user-js/bundle.js" async defer></script>
 </html>

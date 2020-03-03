@@ -1,0 +1,51 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper>
+        <!-- 根据搜索框查询书籍信息，包括书籍类型 -->
+    <select id="selectBookAll" parameterType="po.Book" resultMap="Result">
+        select book.*,typez.t_type
+        from book,typez,book_type
+        where book.b_id=book_type.book_id
+        and typez.t_id=book_type.type_id
+        <!--待完善
+        and typez.t_type like concat('%',#{t_type},'%')-->
+        <if test="b_name != null and b_name != ''">
+            and b_name like concat('%',#{b_name},'%')
+        </if>
+        <if test="b_author != null and b_author != ''">
+            and b_author like concat('%',#{b_author},'%')
+        </if>
+    </select>
+    <resultMap id="Result" type="po.Book">
+        <id property="id" column="b_id" />
+        <result property="b_cover" column="b_cover" />
+        <result property="b_name" column="b_name" />
+        <result property="b_author" column="b_author" />
+        <association property="t_type" javaType="po.BookType">
+            <id property="id" column="t_id"/>
+            <result property="t_type" column="t_type"/>
+        </association>
+    </resultMap>
+
+        <!-- 根据书籍类型查询书籍信息 -->
+    <select id="selectBookByLeixing" parameterType="Integer" resultMap="LResult">
+        select book.*,typez.t_type
+        from book,from book,typez,book_type
+        where book.b_id=book_type.book_id
+        and typez.t_id=book_type.type_id
+        and typez.t_id=#{id}
+    </select>
+    <resultMap id="LResult" type="po.BookType">
+        <id property="t_id" column="t_id" />
+        <result property="t_type" column="t_type" />
+        <collection property="bookList" ofType="po.Book">
+            <id property="id" column="b_id" />
+            <result property="b_cover" column="b_cover" />
+            <result property="b_name" column="b_name" />
+            <result property="b_author" column="b_author" />
+        </collection>
+    </resultMap>
+
+</mapper>
+
+
