@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ page import="po.DJX.Book" %>
-<%@ page import="po.DJX.BookList" %>
+<%@ page import="po.DJX.DBook" %>
+<%@ page import="po.DJX.DBookList" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
   <meta charset="utf-8">
@@ -57,7 +57,7 @@ position:absolute;
   <%--}--%>
 <%--%>--%>
 <%
-    List<BookList> bookList = (List<BookList>) session.getAttribute("bookList");
+    List<DBookList> bookList = (List<DBookList>) session.getAttribute("bookList");
 %>
 
 
@@ -182,7 +182,7 @@ position:absolute;
                     <td>类型</td>
                     </tr>
                     <%
-                        for (BookList list:bookList){
+                        for (DBookList list:bookList){
                     %>
                     <tr>
                         <td><%=list.getBook().getB_id()%></td>

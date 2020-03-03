@@ -1,8 +1,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="dao.ZYM.ZBookMapper">
         <!-- 根据搜索框查询书籍信息，包括书籍类型 -->
-    <select id="selectBookAll" parameterType="po.Book" resultMap="Result">
+    <select id="selectBookAll" parameterType="po.ZYM.ZBook" resultMap="Result">
         select book.*,typez.t_type
         from book,typez,book_type
         where book.b_id=book_type.book_id
@@ -16,7 +16,7 @@
             and b_author like concat('%',#{b_author},'%')
         </if>
     </select>
-    <resultMap id="Result" type="po.Book">
+    <resultMap id="Result" type="po.ZYM.ZBook">
         <id property="id" column="b_id" />
         <result property="b_cover" column="b_cover" />
         <result property="b_name" column="b_name" />
@@ -35,10 +35,10 @@
         and typez.t_id=book_type.type_id
         and typez.t_id=#{id}
     </select>
-    <resultMap id="LResult" type="po.BookType">
+    <resultMap id="LResult" type="po.ZYM.ZBookType">
         <id property="t_id" column="t_id" />
         <result property="t_type" column="t_type" />
-        <collection property="bookList" ofType="po.Book">
+        <collection property="bookList" ofType="po.ZYM.ZBook">
             <id property="id" column="b_id" />
             <result property="b_cover" column="b_cover" />
             <result property="b_name" column="b_name" />
