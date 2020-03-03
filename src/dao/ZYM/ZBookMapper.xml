@@ -21,7 +21,7 @@
         <result property="b_cover" column="b_cover" />
         <result property="b_name" column="b_name" />
         <result property="b_author" column="b_author" />
-        <association property="t_type" javaType="po.BookType">
+        <association property="book_TypeList" javaType="po.BookType">
             <id property="id" column="t_id"/>
             <result property="t_type" column="t_type"/>
         </association>
@@ -30,7 +30,7 @@
         <!-- 根据书籍类型查询书籍信息 -->
     <select id="selectBookByLeixing" parameterType="Integer" resultMap="LResult">
         select book.*,typez.t_type
-        from book,from book,typez,book_type
+        from book,typez,book_type
         where book.b_id=book_type.book_id
         and typez.t_id=book_type.type_id
         and typez.t_id=#{id}
@@ -38,7 +38,7 @@
     <resultMap id="LResult" type="po.ZYM.ZBookType">
         <id property="t_id" column="t_id" />
         <result property="t_type" column="t_type" />
-        <collection property="bookList" ofType="po.ZYM.ZBook">
+        <collection property="t_type1" ofType="po.ZYM.ZBook">
             <id property="id" column="b_id" />
             <result property="b_cover" column="b_cover" />
             <result property="b_name" column="b_name" />

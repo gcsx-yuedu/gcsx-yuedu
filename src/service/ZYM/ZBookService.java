@@ -13,6 +13,7 @@ public class ZBookService {
     private ZBookMapper ZBookMapper;
 
     public List<ZBook> selectBookAll(ZBook book){
+        System.out.println("搜索中");
         return ZBookMapper.selectBookAll(book);
     }
     public List<ZBook> selectBookByLeixing(int id){
