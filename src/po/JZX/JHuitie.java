@@ -1,6 +1,6 @@
 package po.JZX;
 
-public class Huitie {
+public class JHuitie {
     private int h_id;
     private int tiezi_id;
     private int huitieren_id;

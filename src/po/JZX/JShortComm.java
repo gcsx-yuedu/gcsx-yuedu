@@ -1,6 +1,6 @@
 package po.JZX;
 
-public class ShortComm {
+public class JShortComm {
     private int sc_id;
     private int shuji_id;
     private int fatie_id;

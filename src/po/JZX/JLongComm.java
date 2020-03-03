@@ -1,6 +1,6 @@
 package po.JZX;
 
-public class LongComm {
+public class JLongComm {
     private int lc_id;
     private String title;
     private int book_id;

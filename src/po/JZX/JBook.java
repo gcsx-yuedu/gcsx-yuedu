@@ -1,6 +1,6 @@
 package po.JZX;
 
-public class Book {
+public class JBook {
     private int b_id;
 //    private int b_type;
     private Object b_cover;

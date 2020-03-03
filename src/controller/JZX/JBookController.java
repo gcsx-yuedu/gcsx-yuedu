@@ -2,15 +2,15 @@ package controller.JZX;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import po.JZX.Book;
-import service.JZX.BookService;
+import po.JZX.JBook;
+import service.JZX.JBookService;
 
-public class BookController {
+public class JBookController {
     @Autowired
-    private BookService bookService;
+    private JBookService bookService;
 
     @RequestMapping("/book_infor")
-    public String QueryBook(Book book){
+    public String QueryBook(JBook book){
         bookService.queryBook(book);
         return "redirect:book_infor";
     }
