@@ -1,4 +1,4 @@
-package controller;
+package controller.DJX;
 
 import com.mysql.jdbc.Blob;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,10 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import po.*;
-import service.ManagerService;
+import po.DJX.Book;
+import po.DJX.BookList;
+import po.DJX.BookType;
+import po.DJX.Book_Type;
+import service.DJX.ManagerService;
 import sun.misc.BASE64Encoder;
 
-import javax.persistence.SqlResultSetMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

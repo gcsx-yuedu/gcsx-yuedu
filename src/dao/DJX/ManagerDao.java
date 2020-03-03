@@ -1,9 +1,9 @@
-package dao;
+package dao.DJX;
 
 import org.springframework.stereotype.Repository;
-import po.Book;
-import po.BookType;
-import po.Book_Type;
+import po.DJX.Book;
+import po.DJX.BookType;
+import po.DJX.Book_Type;
 import po.Manager;
 
 import java.util.List;

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ page import="po.BookType" %>
+<%@ page import="po.DJX.BookType" %>
 <%@ page import="sun.security.util.Length" %>
-<%@ page import="po.Book" %>
+<%@ page import="po.DJX.Book" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
     <meta charset="utf-8">

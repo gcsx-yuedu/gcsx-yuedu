@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ page import="po.Book" %>
-<%@ page import="po.BookList" %>
+<%@ page import="po.DJX.Book" %>
+<%@ page import="po.DJX.BookList" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
   <meta charset="utf-8">
