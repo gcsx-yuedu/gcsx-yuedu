@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book-css/index.css">
 </head>
 <body class="bg-grey-lighter font-sans antialiased">
+<%
+    String wenzi = request.getParameter("wenzi");
+%>
+
 <header class="header">
     <div class="header-inner body-width">
         <a href="#" class="logo"></a>
@@ -29,10 +33,14 @@
             <span class="result-border"></span>
             <span class="neck-border"></span>
         </div>
-        <div class="search">
-            <input type="text" class="search-text" placeholder="Seach here${pageContext.request.contextPath}/static.">
-            <button class="search-btn"><i class="icon-search"></i></button>
-        </div>
+
+        <form action="/book_search" method="post" id="myForm">
+            <div class="search">
+                <input type="text" name="wenzi" class="search-text" placeholder="Seach here...">
+                <button type="submit" class="search-btn"><i class="icon-search"></i></button>
+            </div>
+        </form>
+
         <nav class="header-nav">
             <ul>
                 <li>
@@ -222,7 +230,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 <script src="${pageContext.request.contextPath}/static/js/book-js/bundle.js" async defer></script>
