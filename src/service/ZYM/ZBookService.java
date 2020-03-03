@@ -1,6 +1,6 @@
 package service.ZYM;
 
-import dao.ZYM.BookMapper;
+import dao.ZYM.ZBookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import po.BSJ.Book;
@@ -8,14 +8,14 @@ import po.BSJ.Book;
 import java.util.List;
 
 @Service
-public class BookService {
+public class ZBookService {
     @Autowired
-    private BookMapper bookMapper;
+    private ZBookMapper ZBookMapper;
 
     public List<Book> selectBookAll(Book book){
-        return bookMapper.selectBookAll(book);
+        return ZBookMapper.selectBookAll(book);
     }
     public List<Book> selectBookByLeixing(int id){
-        return bookMapper.selectBookByLeixing(id);
+        return ZBookMapper.selectBookByLeixing(id);
     }
 }
