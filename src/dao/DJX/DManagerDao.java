@@ -1,17 +1,17 @@
 package dao.DJX;
 
 import org.springframework.stereotype.Repository;
-import po.DJX.Book;
-import po.DJX.BookType;
-import po.DJX.Book_Type;
-import po.DJX.Manager;
+import po.DJX.DBook;
+import po.DJX.DBookType;
+import po.DJX.DBook_Type;
+import po.DJX.DManager;
 
 import java.util.List;
 
 @Repository
-public interface ManagerDao {
+public interface DManagerDao {
 //    是否存在该管理员账号
-    public Integer SelectAdmin(Manager manager);
+    public Integer SelectAdmin(DManager manager);
 
 //用户总数
     public Integer userNum();
@@ -27,21 +27,21 @@ public interface ManagerDao {
 
     public Integer userNanNum();
 
-    public List<BookType> selectBookType();
+    public List<DBookType> selectBookType();
 
     public void addBookType(String t_type);
 
-    public Integer sameType(BookType bookType);
+    public Integer sameType(DBookType bookType);
 
-    public void saveBookType(Book_Type book_type);
+    public void saveBookType(DBook_Type book_type);
 
     public Integer selectBookIdByBookName(String b_name);
 
-    public void addBook(Book book);
+    public void addBook(DBook book);
 
     public Integer sameBookName(String b_name);
 
-    public List<Book> selectAllBook(Integer c_id);
+    public List<DBook> selectAllBook(Integer c_id);
 
     public List<Integer> getTypeId(Integer book_id);
 

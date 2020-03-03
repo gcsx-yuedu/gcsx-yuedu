@@ -1,18 +1,16 @@
 package po.DJX;
 
-import po.DJX.Book;
-
 import java.util.List;
 
-public class BookList {
-    private Book book;
+public class DBookList {
+    private DBook book;
     private List<String> typeList;
 
-    public Book getBook() {
+    public DBook getBook() {
         return book;
     }
 
-    public void setBook(Book book) {
+    public void setBook(DBook book) {
         this.book = book;
     }
 

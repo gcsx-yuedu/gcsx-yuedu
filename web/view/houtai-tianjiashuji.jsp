@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ page import="po.DJX.BookType" %>
+<%@ page import="po.DJX.DBookType" %>
 <%@ page import="sun.security.util.Length" %>
-<%@ page import="po.DJX.Book" %>
+<%@ page import="po.DJX.DBook" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
     <meta charset="utf-8">
@@ -44,7 +44,7 @@
 <%--%>--%>
 
 <%
-    List<BookType> bookTypeList = (List<BookType>) session.getAttribute("bookTypeList");
+    List<DBookType> bookTypeList = (List<DBookType>) session.getAttribute("bookTypeList");
 %>
 
 

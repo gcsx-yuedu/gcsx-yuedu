@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import po.DJX.*;
-import service.DJX.ManagerService;
+import service.DJX.DManagerService;
 import sun.misc.BASE64Encoder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +25,7 @@ public class GlySignInCheck {
 
 
     @Autowired
-    private ManagerService service;
+    private DManagerService service;
 
     /*跳转到后台登陆页面*/
     @RequestMapping("/Msignup")
@@ -48,7 +48,7 @@ public class GlySignInCheck {
     @RequestMapping("/ManagerCheck")
     public String managerCheck(String name, String password) {
 //        System.out.println("name="+name+"  password="+password);
-        Manager manager = new Manager();
+        DManager manager = new DManager();
         manager.setA_name(name);
         manager.setA_password(password);
         String nowTime = getNowTime();
@@ -104,7 +104,7 @@ public class GlySignInCheck {
     public String toHouTianJiaShuJi(HttpServletRequest request) {
         String username = (String) request.getSession().getAttribute("username");
         request.getSession().setAttribute("username", username);
-        List<BookType> bookTypeList = service.selectBookType();
+        List<DBookType> bookTypeList = service.selectBookType();
 //        System.out.println("BookType="+bookTypeList);
         request.getSession().setAttribute("bookTypeList", bookTypeList);
         return "houtai-tianjiashuji";
@@ -151,7 +151,7 @@ public class GlySignInCheck {
     @RequestMapping("/sameType")
     public String sameType(String t_type, HttpServletRequest request) {
         request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
-        BookType bookType = new BookType();
+        DBookType bookType = new DBookType();
         bookType.setT_type(t_type);
 //        System.out.println("t_type="+t_type);
         int f = service.sameType(bookType);
@@ -179,7 +179,7 @@ public class GlySignInCheck {
      */
     @ResponseBody
     @RequestMapping("/addBook")
-    public String addBook(Book book, HttpServletRequest request) throws IOException {
+    public String addBook(DBook book, HttpServletRequest request) throws IOException {
         request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
         System.out.println(">>>");
 //        System.out.println(book.toString());
@@ -203,7 +203,7 @@ public class GlySignInCheck {
 
         String[] type = b_type.split(",");
         for (String s : type) {
-            Book_Type book_type = new Book_Type();
+            DBook_Type book_type = new DBook_Type();
             book_type.setBook_id(b_id);
             book_type.setType_id(Integer.parseInt(s));
             service.saveBookType(book_type);
@@ -225,15 +225,15 @@ public class GlySignInCheck {
     @RequestMapping("/selectAllBook")
     public String selectAllBook(Integer  b_id,HttpServletRequest request){
         request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
-        List<Book> bookList = service.selectAllBook(b_id);
-        List<BookList> bookLists = new ArrayList<>();
-        for (Book book : bookList) {
+        List<DBook> bookList = service.selectAllBook(b_id);
+        List<DBookList> bookLists = new ArrayList<>();
+        for (DBook book : bookList) {
             List<String> bookType = getTypeByBookId(book.getB_id());
 //            String base64 = convertBlobToBase64String((Blob) book.getB_cover());
             String res = new String((byte[])book.getB_cover());
             System.out.println(res);
             book.setB_cover(res);
-            BookList book_list = new BookList();
+            DBookList book_list = new DBookList();
             book_list.setTypeList(bookType);
             book_list.setBook(book);
             bookLists.add(book_list);
@@ -254,27 +254,5 @@ public class GlySignInCheck {
         return typeList;
     }
 
-    public static String convertBlobToBase64String(Blob blob) {
-        String result = "";
-        if(null != blob) {
-            try {
-                InputStream msgContent = blob.getBinaryStream();
-                ByteArrayOutputStream output = new ByteArrayOutputStream();
-                byte[] buffer = new byte[100];
-                int n = 0;
-                while (-1 != (n = msgContent.read(buffer))) {
-                    output.write(buffer, 0, n);
-                }
-                result =new BASE64Encoder().encode(output.toByteArray()) ;
-                output.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return result;
-        }else {
-            return null;
-        }
-    }
+
 }
