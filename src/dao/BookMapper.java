@@ -1,6 +1,6 @@
 package dao;
 
-import po.Book;
+import po.BSJ.Book;
 
 import java.util.List;
 

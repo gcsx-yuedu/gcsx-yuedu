@@ -1,13 +1,13 @@
-package controller;
+package controller.JZX;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import po.Book;
-import service.JBookService;
+import po.JZX.Book;
+import service.JZX.BookService;
 
-public class JBookController {
+public class BookController {
     @Autowired
-    private JBookService bookService;
+    private BookService bookService;
 
     @RequestMapping("/book_infor")
     public String QueryBook(Book book){

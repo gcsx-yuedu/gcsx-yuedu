@@ -1,15 +1,15 @@
-package service;
+package service.JZX;
 
 
-import dao.JBookDao;
+import dao.JZX.BookDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import po.Book;
+import po.JZX.Book;
 
 @Service
-public class JBookService {
+public class BookService {
     @Autowired
-    private JBookDao bookDao;
+    private BookDao bookDao;
 
     public Book queryBook(Book book){
         return bookDao.queryBook(book);

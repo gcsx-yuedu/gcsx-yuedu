@@ -1,4 +1,4 @@
-package po;
+package po.JZX;
 
 public class ShortComm {
     private int sc_id;

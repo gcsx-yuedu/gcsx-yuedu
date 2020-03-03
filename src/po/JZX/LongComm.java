@@ -1,4 +1,4 @@
-package po;
+package po.JZX;
 
 public class LongComm {
     private int lc_id;

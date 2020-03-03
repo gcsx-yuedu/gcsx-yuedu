@@ -1,4 +1,4 @@
-package po;
+package po.JZX;
 
 public class Huitie {
     private int h_id;

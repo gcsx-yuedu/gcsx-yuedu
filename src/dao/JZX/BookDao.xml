@@ -1,6 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="dao.JBookDao">
+<mapper namespace="dao.JZX.BookDao">
     <select id="queryBook" parameterType="Integer" resultType="po.Book"  >
         select * from book where b_id=#{b_id}
     </select>

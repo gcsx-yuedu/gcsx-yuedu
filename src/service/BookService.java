@@ -1,12 +1,12 @@
 package service;
 
 import dao.BookMapper;
-import dao.ManagerDao;
+import dao.DJX.ManagerDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import po.Book;
-import po.BookType;
-import po.Book_Type;
+import po.BSJ.Book;
+import po.BSJ.BookType;
+import po.BSJ.Book_Type;
 
 import java.util.List;
 
