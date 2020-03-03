@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="po.Book" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
     <title>书籍信息</title>
@@ -37,7 +38,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book_infor-css/index.css">
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<%
+    Book book =(Book)session.getAttribute("bookInfor");
+%>
+
+        <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 <div class="main-banner-agile" id="home">
 
 

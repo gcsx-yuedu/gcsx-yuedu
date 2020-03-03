@@ -4,6 +4,6 @@ import po.Book;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BookDao{
+public interface JBookDao {
     public Book queryBook(Book book);
 }

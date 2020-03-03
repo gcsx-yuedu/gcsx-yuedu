@@ -3,11 +3,11 @@ package controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import po.Book;
-import service.BookService;
+import service.JBookService;
 
-public class BookController {
+public class JBookController {
     @Autowired
-    private BookService bookService;
+    private JBookService bookService;
 
     @RequestMapping("/book_infor")
     public String QueryBook(Book book){
