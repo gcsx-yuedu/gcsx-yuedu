@@ -3,6 +3,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="po.DJX.DBook" %>
 <%@ page import="po.DJX.DBookList" %>
+<%@ page import="com.mysql.jdbc.StringUtils" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
   <meta charset="utf-8">
@@ -86,38 +87,21 @@ position:absolute;
 
           <!-- Left -->
           <ul class="navbar-nav mr-auto">
-            <!-- <li class="nav-item active">
-              <a class="nav-link waves-effect" href="#">主页
-                <span class="sr-only">(current)</span>
-              </a>
-            </li> -->
-            <!-- <li class="nav-item">
-              <a class="nav-link waves-effect" href="#" target="_blank">About
-                MDB</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="#getting-started/download/"
-                target="_blank">Free
-                download</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="#" target="_blank">Free
-                tutorials</a>
-            </li> -->
+              <li class="nav-item blue m-2">
+                  <a href="/houtai-shujiguanli" class="nav-link border border-light rounded">
+                      书籍管理
+                  </a>
+              </li>
+              <li class="nav-item m-2">
+                  <a href="/houtai-shujileixingguanli" class="nav-link border border-light rounded">
+                      书籍类型管理
+                  </a>
+              </li>
           </ul>
 
           <!-- Right -->
           <ul class="navbar-nav nav-flex-icons">
-            <!-- <li class="nav-item">
-              <a href="#" class="nav-link waves-effect" target="_blank">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-            </li> -->
-            <!-- <li class="nav-item">
-              <a href="#" class="nav-link waves-effect" target="_blank">
-                <i class="fab fa-twitter"></i>
-              </a>
-            </li> -->
+
             <li class="nav-item">
               <a href="${pageContext.request.contextPath}/view/sign-up-gly.jsp" class="nav-link border border-light rounded waves-effect"
                 target="_self">
@@ -165,37 +149,45 @@ position:absolute;
     <div class="row">
         <div class="col-xl-12">
 
+            <div class="card shadow">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h4 class="m-0 font-weight-bold text-primary">书籍展示页面</h4>
             </div>
 
             <%--获取书籍列表的信息并展示--%>
-            <div class="card-body">
-                <table role="table" class="col-xl-10">
-                    <tr>
-                    <td>书籍id</td>
-                    <td>封面</td>
-                    <td>书名</td>
-                    <td>作者</td>
-                    <td>简介</td>
-                    <td>类型</td>
+            <div class="card-body white">
+                <table role="table" class="col-xl-12 table-hover table-bordered table-striped text-center">
+                    <tr style="height: 60px;font-family: 微软雅黑">
+                    <th style="font-size: 20px">序号</th>
+                    <th style="font-size: 20px">封面</th>
+                    <th style="font-size: 20px">书名</th>
+                    <th style="font-size: 20px">作者</th>
+                    <th style="font-size: 20px">简介</th>
+                    <th style="font-size: 20px">类型</th>
+                    <th style="font-size: 20px" colspan="2">操作</th>
                     </tr>
                     <%
+                        int k=1;
                         for (DBookList list:bookList){
+                            String typeList = org.apache.commons.lang.StringUtils.strip(list.getTypeList().toString(),"[]");
                     %>
                     <tr>
-                        <td><%=list.getBook().getB_id()%></td>
-                        <td><img src="<%=list.getBook().getB_cover()%>" alt="" width="114px" height="152px"></td>
-                        <td><%=list.getBook().getB_name()%></td>
-                        <td><%=list.getBook().getB_author()%></td>
-                        <td><%=list.getBook().getB_content()%></td>
-                        <td><%=list.getTypeList().toString()%></td>
+                        <td style="font-size: 15px"><%=k%><input type="hidden" value="<%=list.getBook().getB_id()%>"></td>
+                        <td style="font-size: 15px"><img src="<%=list.getBook().getB_cover()%>" alt="" width="114px" height="152px"></td>
+                        <td style="font-size: 15px">《<%=list.getBook().getB_name()%>》</td>
+                        <td style="font-size: 15px"><%=list.getBook().getB_author()%></td>
+                        <td style="font-size: 15px"><%=list.getBook().getB_content()%></td>
+                        <td style="font-size: 15px"><%=typeList%></td>
+                        <td><a href="">删除</a></td>
+                        <td><a href="">修改</a></td>
                     </tr>
                     <%
+                            k++;
                         }
                     %>
                 </table>
+            </div>
             </div>
 
         </div>

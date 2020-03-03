@@ -13,7 +13,7 @@ public class JBookService {
     @Autowired
     private JBookDao bookDao;
 
-    public List<JBook> queryBook(Integer id){
+    public JBook queryBook(Integer id){
         return bookDao.queryBook(id);
     }
 }

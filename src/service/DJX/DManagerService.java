@@ -87,5 +87,10 @@ public class DManagerService {
 
     public String getTypeByTypeId(Integer t_id){
         return DManagerDao.getTypeByTypeId(t_id);
+
+    }
+
+    public List<DBookType> selectAllBookType() {
+        return DManagerDao.selectAllBookType();
     }
 }
