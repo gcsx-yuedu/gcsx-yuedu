@@ -46,9 +46,7 @@
 <div class="main-banner-agile" id="home">
 
 
-    <!-- header -->
-
-    <header class="header">
+    <!-- header --><header class="header">
         <div class="header-inner body-width">
             <a href="#" class="logo"></a>
             <div class="category">
