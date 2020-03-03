@@ -1,6 +1,6 @@
 package po.DJX;
 
-public class BookType {
+public class DBookType {
     private int t_id;
     private String t_type;
 

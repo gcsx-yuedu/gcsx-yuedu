@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ page import="po.DJX.BookType" %>
+<%@ page import="po.DJX.DBookType" %>
 <%@ page import="sun.security.util.Length" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
@@ -43,7 +43,7 @@
 <%--%>--%>
 
 <%
-    List<BookType> bookTypeList = (List<BookType>) session.getAttribute("bookTypeList");
+    List<DBookType> bookTypeList = (List<DBookType>) session.getAttribute("bookTypeList");
 %>
 
 

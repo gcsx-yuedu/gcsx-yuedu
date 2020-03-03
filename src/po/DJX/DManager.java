@@ -1,6 +1,6 @@
 package po.DJX;
 
-public class Manager {
+public class DManager {
     private int a_id;
     private String a_name;
     private String a_password;
