@@ -1,11 +1,10 @@
-package service;
+package service.BSJ;
 
-import dao.UserDao;
+import dao.BSJ.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import po.User;
-import po.Book;
+import po.BSJ.*;
 
 import java.util.List;
 
