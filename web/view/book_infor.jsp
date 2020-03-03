@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ page import="po.Book" %>
 <%@ page import="po.JZX.JBook" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
@@ -127,15 +126,14 @@
                             <li>
                                 <b>类型：</b>
                             </li>
-                            <li>aa</li>
+                            <li>xx</li>
                         </ul>
                     </li>
 
 
                 </ul>
                 <h4>简介：</h4>
-                <p>Alison Lee was born in Hampshire, UK, and now lives in the United States. As a child she discovered his love of books,
-                    reading, and stories. cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <p><%=book.getB_content()%>
                 </p>
             </div>
         </div>
