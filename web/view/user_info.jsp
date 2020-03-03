@@ -2,7 +2,7 @@
 <html class="no-js">
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page contentType="text/html;charset=utf-8"%>
-<%@page import="po.Book"  %>
+<%@page import="po.BSJ.*"  %>
 <!--<![endif]-->
 <head>
     <meta charset="utf-8">
@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user-css/index.css">
 </head>
 <body class="bg-grey-lighter font-sans antialiased">
-
+<%
+    List<BUser> list = (List<BUser>)request.getAttribute("list");
+%>
 <header class="header">
     <div class="header-inner body-width">
         <a href="#" class="logo"></a>
@@ -127,10 +129,6 @@
         </div>
         <!-- Library -->
         <div class="hidden px-2 pt-2 md:px-0 flex-wrap order-2 pb-8 js-tab-pane active" id="section-library">
-            <%
-                List<Book> list = (List<Book>)request.getAttribute("list");
-                for(Book sc : list)
-            %>
             <ul>
                 <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
                     <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">

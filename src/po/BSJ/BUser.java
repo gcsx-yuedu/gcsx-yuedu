@@ -1,4 +1,5 @@
 package po.BSJ;
+import java.util.List;
 
 public class BUser {
     private int u_id;
@@ -6,6 +7,8 @@ public class BUser {
     private String u_password;
     private String u_sex;
     private String u_forbid;
+    private List<BBook> bookList;
+    private List<BBookType> bookTypeList;
 
     public int getu_id() {
         return u_id;
@@ -45,5 +48,21 @@ public class BUser {
 
     public void setU_forbid(String u_forbid) {
         this.u_forbid = u_forbid;
+    }
+
+    public List<BBook> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(List<BBook> bookList) {
+        this.bookList = bookList;
+    }
+
+    public List<BBookType> getBookTypeList() {
+        return bookTypeList;
+    }
+
+    public void setBookTypeList(List<BBookType> bookTypeList) {
+        this.bookTypeList = bookTypeList;
     }
 }

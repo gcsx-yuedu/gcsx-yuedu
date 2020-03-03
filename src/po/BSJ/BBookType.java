@@ -2,17 +2,17 @@ package po.BSJ;
 
 public class BBookType {
     private int t_id;
-    private BBook_Type t_type;
+    private String t_type;
 
     public int getT_id() {
         return t_id;
     }
 
-    public BBook_Type getT_type() {
+    public String getT_type() {
         return t_type;
     }
 
-    public void setT_type(BBook_Type t_type) {
+    public void setT_type(String t_type) {
         this.t_type = t_type;
     }
 
