@@ -2,6 +2,7 @@
 <html lang="zxx">
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="po.Book" %>
+<%@ page import="po.JZX.JBook" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
     <title>书籍信息</title>
@@ -39,7 +40,7 @@
 </head>
 
 <%
-    Book book =(Book)session.getAttribute("bookInfor");
+    JBook book =(JBook) session.getAttribute("bookInfor");
 %>
 
         <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -118,7 +119,7 @@
                             <li>
                                 <b>作者：</b>
                             </li>
-                            <li>xxxx</li>
+                            <li><%=book.getB_author()%></li>
                         </ul>
                     </li>
                     <li>
