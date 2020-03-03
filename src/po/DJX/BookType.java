@@ -1,4 +1,4 @@
-package po;
+package po.DJX;
 
 public class BookType {
     private int t_id;
@@ -6,10 +6,6 @@ public class BookType {
 
     public int getT_id() {
         return t_id;
-    }
-
-    public void setT_id(int id) {
-        this.t_id = id;
     }
 
     public String getT_type() {

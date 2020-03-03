@@ -1,4 +1,4 @@
-package po;
+package po.DJX;
 
 public class Book_Type {
     private int id;

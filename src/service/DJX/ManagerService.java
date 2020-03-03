@@ -1,13 +1,13 @@
-package service;
+package service.DJX;
 
-import dao.ManagerDao;
+import dao.DJX.ManagerDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import po.Book;
-import po.BookType;
-import po.Book_Type;
-import po.Manager;
+import po.DJX.Book;
+import po.DJX.BookType;
+import po.DJX.Book_Type;
+import po.DJX.Manager;
 
 import java.util.List;
 
@@ -71,5 +71,21 @@ public class ManagerService {
 
     public void addBook(Book book) {
         managerDao.addBook(book);
+    }
+
+    public boolean sameBookName(String b_name) {
+        return managerDao.sameBookName(b_name)==0;
+    }
+
+    public List<Book> selectAllBook(Integer b_id) {
+        return managerDao.selectAllBook(b_id);
+    }
+
+    public List<Integer> getTypeId(Integer book_id) {
+        return managerDao.getTypeId(book_id);
+    }
+
+    public String getTypeByTypeId(Integer t_id){
+        return managerDao.getTypeByTypeId(t_id);
     }
 }

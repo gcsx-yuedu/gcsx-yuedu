@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ page import="po.BookType" %>
+<%@ page import="po.DJX.BookType" %>
 <%@ page import="sun.security.util.Length" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
