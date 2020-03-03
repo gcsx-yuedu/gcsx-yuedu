@@ -21,7 +21,7 @@
         <result property="b_cover" column="b_cover" />
         <result property="b_name" column="b_name" />
         <result property="b_author" column="b_author" />
-        <association property="book_TypeList" javaType="po.BookType">
+        <association property="book_TypeList" javaType="po.ZYM.ZBookType">
             <id property="id" column="t_id"/>
             <result property="t_type" column="t_type"/>
         </association>
@@ -38,7 +38,7 @@
     <resultMap id="LResult" type="po.ZYM.ZBookType">
         <id property="t_id" column="t_id" />
         <result property="t_type" column="t_type" />
-        <collection property="t_type1" ofType="po.ZYM.ZBook">
+        <collection property="t_type" ofType="po.ZYM.ZBook">
             <id property="id" column="b_id" />
             <result property="b_cover" column="b_cover" />
             <result property="b_name" column="b_name" />
