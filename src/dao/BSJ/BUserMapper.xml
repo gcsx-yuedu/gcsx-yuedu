@@ -6,7 +6,10 @@
 	</update>
 
 	<select id="queryUserById" parameterType="Integer" resultMap="ResultUser">
-		select * from userInfo where u_id={#u_id}
+		select userInfo.*,book.*,typez.t_type from userInfo,bookshelf,book,book_type,typez
+          where userInfo.u_id=bookshelf.user_id and bookshelf.book_id=book.b_id
+          and book_type.book_id=book.b_id and book_type.type_id=typez.t_id
+          and u_id={#u_id}
 	</select>
 	<resultMap id="ResultUser" type="BUser">
 		<id property="u_id" column="b_id"/>
@@ -16,8 +19,15 @@
 		<result property="u_forbid" column="u_forbid"/>
 		<result property="u_address" column="u_address"/>
 
-		<collection property="bookShelfList" ofType="BBook" column="u_id"
-					select="mapper.BookShelf.queryBook"
-		/>
+		<collection property="bookList" ofType="BBookShelf" column="b_id">
+			<id property="id" column="b_id" />
+			<result property="b_cover" column="b_cover" />
+			<result property="b_name" column="b_name" />
+			<result property="b_author" column="b_author" />
+		</collection>
+		<collection property="bookTypeList" ofType="BBook_Type" column="type_id">
+			<id property="t_id" column="t_id" />
+			<result property="t_type" column="t_type"/>
+		</collection>
 	</resultMap>
 </mapper>

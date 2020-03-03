@@ -19,7 +19,7 @@ public class UserController {
 
     @RequestMapping("/user_info")
     public String list(int id,Model model){
-        List<BBook> list = service.queryBookById(id);
+        List<BUser> list = service.queryUserById(id);
         model.addAttribute("list",list);
         return "user_info";
     }

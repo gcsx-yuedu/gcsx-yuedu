@@ -6,7 +6,7 @@ import po.BSJ.*;
 import java.util.List;
 
 @Repository
-public interface BUserDao {
+public interface BUserMapper {
     public int updateUser(BUser user);
-    public List<BBook> queryBookById(int id);
+    public List<BUser> queryUserById(int id);
 }
