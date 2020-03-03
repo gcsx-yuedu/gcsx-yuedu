@@ -1,4 +1,4 @@
-package po;
+package po.BSJ;
 
 public class User {
     private int u_id;

@@ -1,8 +1,7 @@
-package dao;
+package dao.BSJ;
 
 import org.springframework.stereotype.Repository;
-import po.User;
-import po.Book;
+import po.BSJ.*;
 
 import java.util.List;
 
