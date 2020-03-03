@@ -1,0 +1,23 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.UserMapper">
+	<update id="updateUser" parameterType="po.BSJ.BUser">
+	update userInfo set u_name=#{u_name},u_password=#{u_password},u_sex=#{u_sex},u_address=#{u_address} where u_id=#{u_id}
+	</update>
+
+	<select id="queryUserById" parameterType="Integer" resultMap="ResultUser">
+		select * from userInfo where u_id={#u_id}
+	</select>
+	<resultMap id="ResultUser" type="BUser">
+		<id property="u_id" column="b_id"/>
+		<result property="u_name" column="u_name"/>
+		<result property="u_password" column="u_pawword"/>
+		<result property="u_sex" column="u_sex"/>
+		<result property="u_forbid" column="u_forbid"/>
+		<result property="u_address" column="u_address"/>
+
+		<collection property="bookShelfList" ofType="BBook" column="u_id"
+					select="mapper.BookShelf.queryBook"
+		/>
+	</resultMap>
+</mapper>

@@ -2,11 +2,11 @@ package po.BSJ;
 import java.util.List;
 
 
-public class Book_Type {
+public class BBook_Type {
     private int id;
-    private Book book_id;
+    private BBook book_id;
     private int type_id;
-    private List<Book_Type> bookTypeList;
+    private List<BBook_Type> bookTypeList;
 
     public int getId() {
         return id;
@@ -16,11 +16,11 @@ public class Book_Type {
         this.id = id;
     }
 
-    public Book getBook_id() {
+    public BBook getBook_id() {
         return book_id;
     }
 
-    public void setBook_id(Book book_id) {
+    public void setBook_id(BBook book_id) {
         this.book_id = book_id;
     }
 
@@ -32,11 +32,11 @@ public class Book_Type {
         this.type_id = type_id;
     }
 
-    public List<Book_Type> getBookTypeList() {
+    public List<BBook_Type> getBookTypeList() {
         return bookTypeList;
     }
 
-    public void setBookTypeList(List<Book_Type> bookTypeList) {
+    public void setBookTypeList(List<BBook_Type> bookTypeList) {
         this.bookTypeList = bookTypeList;
     }
 

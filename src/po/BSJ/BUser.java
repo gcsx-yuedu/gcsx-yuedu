@@ -1,6 +1,6 @@
 package po.BSJ;
 
-public class User {
+public class BUser {
     private int u_id;
     private String u_name;
     private String u_password;

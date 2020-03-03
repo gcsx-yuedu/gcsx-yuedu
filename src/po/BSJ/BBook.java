@@ -1,14 +1,14 @@
 package po.BSJ;
 import java.util.List;
 
-public class Book {
+public class BBook {
     private int b_id;
 //    private int b_type;
     private Object b_cover;
     private String b_name;
     private String b_author;
     private  String b_content;
-    private List<Book_Type> book_TypeList;
+    private List<BBook_Type> book_TypeList;
 
     public int getB_id(){
         return b_id;
@@ -57,11 +57,11 @@ public class Book {
         this.b_content = b_content;
     }
 
-    public List<Book_Type> getBook_TypeList() {
+    public List<BBook_Type> getBook_TypeList() {
         return book_TypeList;
     }
 
-    public void setBook_TypeList(List<Book_Type> book_TypeList) {
+    public void setBook_TypeList(List<BBook_Type> book_TypeList) {
         this.book_TypeList = book_TypeList;
     }
 
