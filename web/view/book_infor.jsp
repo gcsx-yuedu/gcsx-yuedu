@@ -9,15 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
     <meta name="keywords" content="" />
-    <script>
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
+    <%--<script>--%>
+        <%--addEventListener("load", function () {--%>
+            <%--setTimeout(hideURLbar, 0);--%>
+        <%--}, false);--%>
 
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
+        <%--function hideURLbar() {--%>
+            <%--window.scrollTo(0, 1);--%>
+        <%--}--%>
+    <%--</script>--%>
     <!-- default-css-files -->
     <link href="${pageContext.request.contextPath}/static/css/book_infor-css/bootstrap.css" rel='stylesheet' type='text/css' />
     <link href="${pageContext.request.contextPath}/static/css/book_infor-css/font-awesome.css" rel="stylesheet">
@@ -39,7 +39,7 @@
 </head>
 
 <%
-    JBook book =(JBook) session.getAttribute("bookInfor");
+    JBook book =(JBook) session.getAttribute("book");
 %>
 
         <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -249,23 +249,23 @@
 
 
 <!-- js -->
-<script src="js/book_infor-js/jquery-2.1.4.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/book_infor-js/jquery-2.1.4.min.js"></script>
 <!-- //js -->
 
 <!-- for bootstrap working -->
-<script src="js/book_infor-js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/book_infor-js/bootstrap.js"></script>
 <!-- //for bootstrap working -->
 
 <!-- stats numscroller-js-file -->
-<script src="js/book_infor-js/numscroller-1.0.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/book_infor-js/numscroller-1.0.js"></script>
 <!-- //stats numscroller-js-file -->
 
 <!--  light box js -->
-<script src="js/book_infor-js/lightbox-plus-jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/book_infor-js/lightbox-plus-jquery.min.js"></script>
 <!-- //light box js-->
 
 <!-- flexisel (for special offers) -->
-<script src="js/book_infor-js/jquery.flexisel.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/book_infor-js/jquery.flexisel.js"></script>
 <script>
     $(window).load(function () {
         $("#flexiselDemo1").flexisel({
@@ -296,7 +296,7 @@
 <!-- //flexisel (for special offers) -->
 
 <!-- pricing-tablel -->
-<script src="js/book_infor-js/jquery.magnific-popup.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/book_infor-js/jquery.magnific-popup.js"></script>
 <script>
     $(document).ready(function () {
         $('.popup-with-zoom-anim').magnificPopup({
@@ -316,12 +316,12 @@
 <!-- //pricing-tablel -->
 
 <!-- smooth scrolling -->
-<script src="js/book_infor-js/SmoothScroll.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/book_infor-js/SmoothScroll.min.js"></script>
 <!-- //smooth scrolling -->
 
 <!-- start-smoth-scrolling -->
-<script src="js/book_infor-js/move-top.js"></script>
-<script src="js/book_infor-js/easing.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/book_infor-js/move-top.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/book_infor-js/easing.js"></script>
 <script>
     jQuery(document).ready(function ($) {
         $(".scroll").click(function (event) {

@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface JBookDao {
-    public List<JBook> queryBook(Integer id);
+    public JBook queryBook(Integer id);
 }
