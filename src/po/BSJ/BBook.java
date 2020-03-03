@@ -6,7 +6,7 @@ public class BBook {
     private Object b_cover;
     private String b_name;
     private String b_author;
-    private  String b_content;
+    private String b_content;
 
     public int getB_id(){
         return b_id;

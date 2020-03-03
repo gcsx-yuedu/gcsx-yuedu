@@ -1,11 +1,9 @@
 package po.BSJ;
-import java.util.List;
 
 public class BBookShelf {
     private int id;
     private int user_id;
     private int book_id;
-    private List<BBook> bookList;
 
     public int getId(){
         return id;
@@ -30,11 +28,4 @@ public class BBookShelf {
         this.book_id = book_id;
     }
 
-    public List<BBook> getBookList() {
-        return bookList;
-    }
-
-    public void setBookList(List<BBook> bookList) {
-        this.bookList = bookList;
-    }
 }

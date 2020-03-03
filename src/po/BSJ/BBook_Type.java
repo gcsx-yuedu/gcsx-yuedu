@@ -1,12 +1,9 @@
 package po.BSJ;
-import java.util.List;
-
 
 public class BBook_Type {
     private int id;
     private BBook book_id;
     private int type_id;
-    private List<BBook_Type> bookTypeList;
 
     public int getId() {
         return id;
@@ -30,14 +27,6 @@ public class BBook_Type {
 
     public void setType_id(int type_id) {
         this.type_id = type_id;
-    }
-
-    public List<BBook_Type> getBookTypeList() {
-        return bookTypeList;
-    }
-
-    public void setBookTypeList(List<BBook_Type> bookTypeList) {
-        this.bookTypeList = bookTypeList;
     }
 
     @Override

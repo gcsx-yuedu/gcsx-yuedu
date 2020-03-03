@@ -1,6 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="dao.UserMapper">
+<mapper namespace="dao.BSJ.BUserMapper">
 	<update id="updateUser" parameterType="po.BSJ.BUser">
 	update userInfo set u_name=#{u_name},u_password=#{u_password},u_sex=#{u_sex},u_address=#{u_address} where u_id=#{u_id}
 	</update>
@@ -11,7 +11,7 @@
           and book_type.book_id=book.b_id and book_type.type_id=typez.t_id
           and u_id={#u_id}
 	</select>
-	<resultMap id="ResultUser" type="BUser">
+	<resultMap id="ResultUser" type="po.BSJ.BUser">
 		<id property="u_id" column="b_id"/>
 		<result property="u_name" column="u_name"/>
 		<result property="u_password" column="u_pawword"/>
@@ -19,13 +19,13 @@
 		<result property="u_forbid" column="u_forbid"/>
 		<result property="u_address" column="u_address"/>
 
-		<collection property="bookList" ofType="BBookShelf" column="b_id">
+		<collection property="bookList" ofType="po.BSJ.BBook" column="b_id">
 			<id property="id" column="b_id" />
 			<result property="b_cover" column="b_cover" />
 			<result property="b_name" column="b_name" />
 			<result property="b_author" column="b_author" />
 		</collection>
-		<collection property="bookTypeList" ofType="BBook_Type" column="type_id">
+		<collection property="bookTypeList" ofType="po.BSJ.BBookType" column="type_id">
 			<id property="t_id" column="t_id" />
 			<result property="t_type" column="t_type"/>
 		</collection>
