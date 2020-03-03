@@ -46,4 +46,6 @@ public interface DManagerDao {
     public List<Integer> getTypeId(Integer book_id);
 
     public String getTypeByTypeId(Integer t_id);
+
+    public List<DBookType> selectAllBookType();
 }

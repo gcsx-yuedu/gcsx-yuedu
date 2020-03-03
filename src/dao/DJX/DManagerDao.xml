@@ -74,4 +74,8 @@
         select t_type from typez where t_id=#{t_id}
     </select>
 
+    <select id="selectAllBookType" resultType="po.DJX.DBookType">
+        select * from typez
+    </select>
+
 </mapper>

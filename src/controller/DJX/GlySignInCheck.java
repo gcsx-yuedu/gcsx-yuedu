@@ -1,6 +1,7 @@
 package controller.DJX;
 
 import com.mysql.jdbc.Blob;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -110,13 +111,13 @@ public class GlySignInCheck {
         return "houtai-tianjiashuji";
     }
 
-    /*跳转到书籍管理页面*/
-    @RequestMapping("/houtai-shujiguanli")
-    public String toHouTaiShuJiFuanLi(HttpServletRequest request) {
-        String username = (String) request.getSession().getAttribute("username");
-        request.getSession().setAttribute("username", username);
-        return "houtai-shujiguanli";
-    }
+//    /*跳转到书籍管理页面*/
+//    @RequestMapping("/houtai-shujiguanli")
+//    public String toHouTaiShuJiFuanLi(HttpServletRequest request) {
+//        String username = (String) request.getSession().getAttribute("username");
+//        request.getSession().setAttribute("username", username);
+//        return "houtai-shujiguanli";
+//    }
 
     /*跳转到举报信息管理页面*/
     @RequestMapping("/houtai-jubaoxinxiguanli")
@@ -222,16 +223,18 @@ public class GlySignInCheck {
     }
 
     /*获取书籍列表或者是单个书籍的信息*/
-    @RequestMapping("/selectAllBook")
+    /*同时跳转到书籍列表界面*/
+    @RequestMapping("/houtai-shujiguanli")
     public String selectAllBook(Integer  b_id,HttpServletRequest request){
         request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
         List<DBook> bookList = service.selectAllBook(b_id);
         List<DBookList> bookLists = new ArrayList<>();
         for (DBook book : bookList) {
             List<String> bookType = getTypeByBookId(book.getB_id());
+//            String typeList = StringUtils.strip(bookType.toString(),"[]");
 //            String base64 = convertBlobToBase64String((Blob) book.getB_cover());
             String res = new String((byte[])book.getB_cover());
-            System.out.println(res);
+//            System.out.println(res);
             book.setB_cover(res);
             DBookList book_list = new DBookList();
             book_list.setTypeList(bookType);
@@ -239,11 +242,14 @@ public class GlySignInCheck {
             bookLists.add(book_list);
         }
         request.getSession().setAttribute("bookList",bookLists);
+        System.out.println(">>>");
+        System.out.println("跳转到书籍管理界面成功......");
         return "houtai-shujiguanli";
     }
 
     /*根据书籍的id获取类型的id*/
     /*类型的id是一个数组*/
+    /*根据类型的ids获取一个类型的String列表*/
     public List<String> getTypeByBookId(Integer b_id) {
         List<Integer> type_id = service.getTypeId(b_id);
         List<String> typeList = new ArrayList<>();
@@ -254,5 +260,24 @@ public class GlySignInCheck {
         return typeList;
     }
 
+    /*获取所有的bookType类型并跳转到书籍类型管理页面*/
+    @RequestMapping("/houtai-shujileixingguanli")
+    public String toHouTaiShuJiLeiXingGuanLi(HttpServletRequest request) {
+        request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
+        List<DBookType> bookTypes = service.selectAllBookType();
+        /*获取list的大小以便前端分页*/
+        /*前端页面的大小为每页15条数据，先将总的页数计算好，再传给前端*/
+        int totalSize = bookTypes.size()/15;
+        System.out.println(">>>");
+        System.out.println(totalSize);
+        request.getSession().setAttribute("typeList",bookTypes);
+        request.getSession().setAttribute("totalSize",totalSize);
+        System.out.println("跳转到书籍类型页面方法执行成功......");
+        return "houtai-shujileixingguanli";
+    }
+
+    /*根据bookType的id值获取到type的信息，将信息返回到jsp页面*/
+    /*在jsp页面进行修改之后再保存*/
+    /*方法有待完成*/
 
 }
