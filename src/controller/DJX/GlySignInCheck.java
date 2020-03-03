@@ -5,11 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import po.*;
-import po.DJX.Book;
-import po.DJX.BookList;
-import po.DJX.BookType;
-import po.DJX.Book_Type;
+import po.DJX.*;
 import service.DJX.ManagerService;
 import sun.misc.BASE64Encoder;
 

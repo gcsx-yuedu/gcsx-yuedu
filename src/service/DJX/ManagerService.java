@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import po.DJX.Book;
 import po.DJX.BookType;
 import po.DJX.Book_Type;
-import po.Manager;
+import po.DJX.Manager;
 
 import java.util.List;
 

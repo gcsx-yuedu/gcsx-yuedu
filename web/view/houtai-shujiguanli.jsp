@@ -172,7 +172,7 @@ position:absolute;
 
             <%--获取书籍列表的信息并展示--%>
             <div class="card-body">
-                <table>
+                <table role="table" class="col-xl-10">
                     <tr>
                     <td>书籍id</td>
                     <td>封面</td>

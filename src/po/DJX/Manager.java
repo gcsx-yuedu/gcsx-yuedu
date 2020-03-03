@@ -1,4 +1,4 @@
-package po;
+package po.DJX;
 
 public class Manager {
     private int a_id;
