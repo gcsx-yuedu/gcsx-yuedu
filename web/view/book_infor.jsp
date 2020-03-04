@@ -2,6 +2,7 @@
 <html lang="zxx">
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="po.JZX.JBook" %>
+<%@ page import="po.JZX.JBookList" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
     <title>书籍信息</title>
@@ -106,10 +107,11 @@
     <div class="container">
         <div class="about-agileinfo">
             <div class="col-md-4 about-left ">
-                <img src="${pageContext.request.contextPath}/static/image/book_infor-image/ab.jpg" class="img-responsive" alt="" />
+                <img src="<%=book.getB_cover()%>" class="img-responsive" alt="" />
             </div>
+            <% String typeList=org.apache.commons.lang.StringUtils.strip(book.getTypeList().toString(),"[]");%>
             <div class="col-md-8 about-right wthree">
-                <h3>书名</h3>
+                <h3><%=book.getB_name()%></h3>
                 <ul class="address">
                     <li>
                         <ul class="agileits-address-text ">
@@ -124,7 +126,7 @@
                             <li>
                                 <b>类型：</b>
                             </li>
-                            <li>xx</li>
+                            <li><%=typeList%></li>
                         </ul>
                     </li>
 

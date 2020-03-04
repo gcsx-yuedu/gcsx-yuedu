@@ -16,4 +16,6 @@ public class JBookService {
     public JBook queryBook(Integer id){
         return bookDao.queryBook(id);
     }
+    public List<Integer> getTypeID(Integer book_id){return  bookDao.getTypeID(book_id);}
+    public String getTypeByID(Integer t_id){return bookDao.getTypeByTypeID(t_id);}
 }
