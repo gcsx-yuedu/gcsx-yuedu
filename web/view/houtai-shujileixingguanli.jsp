@@ -59,7 +59,8 @@ position:absolute;
   <%--}--%>
 <%--%>--%>
 <%
-    int pageNum =1;
+    Integer pageNumber = (Integer) session.getAttribute("pageNumber");
+//    int pageNum =1;
     List<DBookType> bookTypes = (List<DBookType>) session.getAttribute("typeList");
     int totalSize = (int) session.getAttribute("totalSize");
 %>
@@ -173,22 +174,20 @@ position:absolute;
                     <tr style="height: 20px;">
                         <td style="font-size: 15px"><%=k%><input type="hidden" value="<%=bookType.getT_id()%>"></td>
                         <td><%=bookType.getT_type()%></td>
-                        <td><a href="">删除</a></td>
-                        <td><a href="">修改</a></td>
+                        <td><a href="/deleteType?t_id=<%=bookType.getT_id()%>">删除</a></td>
                     </tr>
                     <%
                             k++;
                         }
                     %>
                 </table>
-                <div class="col-xl-10 text-center">
-                    <select class="combobox">
+                <div class="col-xl-10 offset-xl-1 text-center">
+                    <select  onchange="nextPg()" id="pageNum" name="pageNum" class="combobox col-xl-12">
                         <%
                             for (int i=0;i<totalSize;i++){
                         %>
-                        <option name="pageNum" value="<%=i+1%>" <%if(pageNum==i+1){%>selected<%}%>>当前第<%=i+1%>页</option>
+                        <option  value="<%=i+1%>" <%if(pageNumber==i+1){%>selected<%}%>>第<%=i+1%>页</option>
                         <%
-                                i++;
                             }
                         %>
                     </select>
@@ -201,6 +200,12 @@ position:absolute;
 
     </div>
   </main>
+<script>
+    function nextPg() {
+        var pageNum = document.getElementById("pageNum").value;
+        window.location.href="/houtai-shujileixingguanli?pageNumber="+pageNum;
+    }
+</script>
 
   
 </body>

@@ -76,6 +76,13 @@ public class GlySignInCheck {
         int bookNum = service.getBookNum();
         int commentNum = service.getCommentNum();
         int huitieNum = service.getHuitieNum();
+        /*获取书籍类型总数*/
+        List<DBookType> typeList = service.selectBookType();
+        /*根据不同的书籍类型的id获取对应的数量*/
+        for (DBookType bookType : typeList) {
+
+        }
+
         request.getSession().setAttribute("userNum", userNum);
         request.getSession().setAttribute("bookNum", bookNum);
         request.getSession().setAttribute("commentNum", commentNum + huitieNum);
@@ -262,22 +269,69 @@ public class GlySignInCheck {
 
     /*获取所有的bookType类型并跳转到书籍类型管理页面*/
     @RequestMapping("/houtai-shujileixingguanli")
-    public String toHouTaiShuJiLeiXingGuanLi(HttpServletRequest request) {
+    public String toHouTaiShuJiLeiXingGuanLi(HttpServletRequest request,Integer pageNumber) {
+        Integer pg = pageNumber;
+        if ("".equals(String.valueOf(pg))||pg==null) {
+            pg=1;
+        }
         request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
-        List<DBookType> bookTypes = service.selectAllBookType();
+        List<DBookType> bookTypes = service.selectAllBookType((pg-1)*15);
         /*获取list的大小以便前端分页*/
         /*前端页面的大小为每页15条数据，先将总的页数计算好，再传给前端*/
-        int totalSize = bookTypes.size()/15;
+        int typeSum = service.selectTypeSum();
+        int totalSize = typeSum/15;
+        if (typeSum % 15 != 0) {
+            totalSize++;
+        }
+        System.out.println(totalSize);
         System.out.println(">>>");
         System.out.println(totalSize);
         request.getSession().setAttribute("typeList",bookTypes);
         request.getSession().setAttribute("totalSize",totalSize);
+        request.getSession().setAttribute("pageNumber",pg);
         System.out.println("跳转到书籍类型页面方法执行成功......");
         return "houtai-shujileixingguanli";
     }
 
-    /*根据bookType的id值获取到type的信息，将信息返回到jsp页面*/
-    /*在jsp页面进行修改之后再保存*/
-    /*方法有待完成*/
+    /*获取书籍的id，将书籍信息获取到编辑页面*/
+    @RequestMapping("/EditBook")
+    public String editBook(Integer b_id,HttpServletRequest request){
+        request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
+        List<DBook> booklist =  service.selectAllBook(b_id);
+        DBookList bookList = new DBookList();
+        DBook book = booklist.get(0);
+        String res = new String((byte[])book.getB_cover());
+        book.setB_cover(res);
+        bookList.setBook(book);
+        List<String> bookType = getTypeByBookId(b_id);
+        bookList.setTypeList(bookType);
+        List<DBookType> bookTypes = service.selectBookType();
+        request.getSession().setAttribute("bookTypeList",bookTypes);
+        request.getSession().setAttribute("bookInfo",bookList);
+        return "houtai-bianjishuji";
+    }
 
+
+    /*根据类型id删除类型*/
+    @RequestMapping("/deleteType")
+    public String deleteType(Integer t_id) {
+        service.deleteType(t_id);
+        System.out.println(">>>");
+        System.out.println("删除类型成功......");
+        return "redirect:/houtai-shujileixingguanli";
+    }
+
+    /*处理书籍的编辑信息*/
+    /*根据书籍id删除相关的书籍--类型对应信息*/
+    /*更新书籍的基本信息（书籍的类型在原有的地方添加）*/
+    /*该方法在存储书籍类型之前实现*/
+    @ResponseBody
+    @RequestMapping("/EditBookPro")
+    public String editBookPro(Integer b_id,DBook book){
+        service.deleteBookType(b_id);
+        service.updateBookInfo(book);
+        System.out.println(">>>");
+        System.out.println("书籍更新成功......");
+        return "ok";
+    }
 }

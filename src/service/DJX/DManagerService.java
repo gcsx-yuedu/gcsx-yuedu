@@ -90,7 +90,23 @@ public class DManagerService {
 
     }
 
-    public List<DBookType> selectAllBookType() {
-        return DManagerDao.selectAllBookType();
+    public List<DBookType> selectAllBookType(Integer pageNumber) {
+        return DManagerDao.selectAllBookType(pageNumber);
+    }
+
+    public Integer selectTypeSum() {
+        return DManagerDao.selectTypeSum();
+    }
+
+    public void deleteType(Integer t_id) {
+        DManagerDao.deleteType(t_id);
+    }
+
+    public void deleteBookType(Integer book_id){
+        DManagerDao.deleteBookType(book_id);
+    }
+
+    public void updateBookInfo(DBook book) {
+        DManagerDao.updateBookInfo(book);
     }
 }

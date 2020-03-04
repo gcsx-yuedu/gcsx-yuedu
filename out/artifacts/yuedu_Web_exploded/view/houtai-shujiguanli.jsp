@@ -180,7 +180,6 @@ position:absolute;
                         <td style="font-size: 15px"><%=list.getBook().getB_content()%></td>
                         <td style="font-size: 15px"><%=typeList%></td>
                         <td><a href="">删除</a></td>
-                        <td><a href="">修改</a></td>
                     </tr>
                     <%
                             k++;

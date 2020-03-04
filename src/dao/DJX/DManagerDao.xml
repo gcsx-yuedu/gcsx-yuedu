@@ -1,62 +1,77 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.DJX.DManagerDao">
+    <!--根据用户名和用户密码判断数据库是否存在相关信息-->
     <select id="SelectAdmin" parameterType="po.DJX.DManager" resultType="Integer">
         select count(*) from admin where a_name = #{a_name} and a_password = #{a_password}
     </select>
 
+    <!--获取用户的总数-->
     <select id="userNum"  resultType="Integer">
         select count(*) from userInfo
     </select>
 
+    <!--获取已经添加的书籍的总数-->
     <select id="bookNum" resultType="Integer">
         select count(*) from book
     </select>
 
+    <!--获取短评的总数-->
     <select id="commentNum" resultType="Integer">
         select count(*) from shortcomm
     </select>
 
+    <!--获取回帖的总数-->
     <select id="huitieNum" resultType="integer">
         select count(*) from huitie
     </select>
 
+    <!--获取女性用户总数-->
     <select id="userNvNum" resultType="Integer">
         select count(*) from userInfo where u_sex='女'
     </select>
 
+    <!--获取男性用户总数-->
     <select id="userNanNum" resultType="Integer">
         select count(*) from userInfo where u_sex='男'
     </select>
 
+    <!--查询所有书籍类型-->
     <select id="selectBookType" resultType="po.DJX.DBookType">
         select t_id, t_type from typez
     </select>
 
+    <!--向typez表中插入新的类型-->
     <insert id="addBookType" parameterType="po.DJX.DBookType">
         insert into typez (t_type) values(#{t_type})
     </insert>
 
+    <!--根据type_id查询是否有重复的类型，返回值为int-->
     <select id="sameType" parameterType="po.DJX.DBookType" resultType="Integer">
         select count(*) from typez where t_type=#{t_type}
     </select>
 
+    <!--添加书籍的类型，存储书籍的id和他的type对应的id-->
     <insert id="saveBookType" parameterType="po.DJX.DBook_Type">
         insert into book_type (book_id,type_id) values (#{book_id},#{type_id})
     </insert>
 
+    <!--根据书籍的名字查询书籍的id-->
     <select id="selectBookIdByBookName" parameterType="String" resultType="Integer">
         select b_id from book where b_name = #{b_name}
     </select>
 
+    <!--添加书籍-->
     <insert id="addBook" parameterType="po.DJX.DBook">
         insert into book (b_cover,b_name,b_author,b_content) values (#{b_cover},#{b_name},#{b_author},#{b_content})
     </insert>
 
+    <!--查询是否有相同书名的书籍-->
     <select id="sameBookName" parameterType="String" resultType="Integer">
         select count(*) from book where b_name=#{b_name}
     </select>
 
+    <!--根据书籍id查询书籍，如果没有id就查询所有-->
     <select id="selectAllBook" parameterType="Integer" resultType="po.DJX.DBook">
         select b_id,b_name,b_author,b_cover,b_content from book
         <where>
@@ -66,16 +81,46 @@
         </where>
     </select>
 
+    <!--根据书籍id获取类型id-->
     <select id="getTypeId" parameterType="Integer" resultType="Integer">
         select type_id from book_type where book_id=#{book_id}
     </select>
 
+    <!--根据类型id获取类型名称-->
     <select id="getTypeByTypeId" parameterType="Integer" resultType="String">
         select t_type from typez where t_id=#{t_id}
     </select>
 
-    <select id="selectAllBookType" resultType="po.DJX.DBookType">
-        select * from typez
+    <!--查询所有的书籍类型（分页），每页15条数据-->
+    <select id="selectAllBookType" parameterType="Integer" resultType="po.DJX.DBookType">
+        select * from typez limit #{pageNumber},15
     </select>
 
+    <!--获取书籍类型的总数-->
+    <select id="selectTypeSum" resultType="Integer">
+        select count(*) from typez
+    </select>
+
+    <!--根据类型id删除类型-->
+    <delete id="deleteType" parameterType="Integer">
+        delete from typez where t_id=#{t_id}
+    </delete>
+
+
+    <!--根据书籍的id删除对应的书籍类型-->
+    <delete id="deleteBookType" parameterType="Integer">
+        delete from book_type where book_id=#{book_id}
+    </delete>
+
+    <!--更新书籍的基本信息-->
+    <update id="updateBookInfo" parameterType="po.DJX.DBook">
+        update book set b_cover=#{b_cover},b_name=#{b_name},b_author=#{b_author},b_content=#{b_content} where b_id=#{b_id}
+    </update>
+
+    <!--根据书籍id删除书籍-->
+    <delete id="deleteBook" parameterType="Integer">
+        delete from book where b_id=#{b_id}
+    </delete>
+
+    <!--根据type的id获取对应的书籍的数量-->
 </mapper>
