@@ -29,7 +29,7 @@ public class ZBookType {
     public String toString() {
         return "BookType{" +
                 "t_id=" + t_id +
-                ", t_type='" + t_type1 + '\'' +
+                ", t_type='" + t_type + '\'' +
                 '}';
     }
 }

@@ -1,5 +1,7 @@
 package po.JZX;
 
+import java.util.List;
+
 public class JBook {
     private int b_id;
 //    private int b_type;
@@ -7,6 +9,7 @@ public class JBook {
     private String b_name;
     private String b_author;
     private  String b_content;
+    private List<String> typeList;
 
     public int getB_id(){
         return b_id;
@@ -55,15 +58,23 @@ public class JBook {
         this.b_content = b_content;
     }
 
+    public List<String> getTypeList() {
+        return typeList;
+    }
+
+    public void setTypeList(List<String> typeList) {
+        this.typeList = typeList;
+    }
+
     @Override
     public String toString() {
-        return "Book{" +
+        return "JBook{" +
                 "b_id=" + b_id +
-//                ", b_type=" + b_type +
                 ", b_cover=" + b_cover +
                 ", b_name='" + b_name + '\'' +
                 ", b_author='" + b_author + '\'' +
                 ", b_content='" + b_content + '\'' +
+                ", typeList=" + typeList +
                 '}';
     }
 }
