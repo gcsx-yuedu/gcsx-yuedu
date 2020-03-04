@@ -2,7 +2,7 @@ package po.BSJ;
 
 public class BBook_Type {
     private int id;
-    private BBook book_id;
+    private int book_id;
     private int type_id;
 
     public int getId() {
@@ -13,11 +13,11 @@ public class BBook_Type {
         this.id = id;
     }
 
-    public BBook getBook_id() {
+    public int getBook_id() {
         return book_id;
     }
 
-    public void setBook_id(BBook book_id) {
+    public void setBook_id(int book_id) {
         this.book_id = book_id;
     }
 
