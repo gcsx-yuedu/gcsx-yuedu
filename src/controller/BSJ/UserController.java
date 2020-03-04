@@ -48,7 +48,8 @@ public class UserController {
                shelfLists.add(shelf_List);
            }
        }
-       model.addAttribute("bookLists");
+        model.addAttribute("list",list);
+       model.addAttribute("shelfLists",shelfLists);
         return "user_info";
     }
 

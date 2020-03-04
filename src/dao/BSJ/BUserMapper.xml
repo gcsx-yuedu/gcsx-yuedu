@@ -30,7 +30,7 @@
 			<result property="t_type" column="t_type"/>
 		</collection>
 	</resultMap> -->
-	<select id="queryUserById" parameterType="Integer" resultType="po.BSJ.BBUser">
+	<select id="queryUserById" parameterType="Integer" resultType="po.BSJ.BUser">
 		select * from userInfo where u_id={#u_id}
 	</select>
 
