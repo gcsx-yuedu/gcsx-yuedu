@@ -39,12 +39,7 @@
 	</select>
 
 	<select id="selectBookById" parameterType="Integer" resultType="po.BSJ.BBook">
-		select b_id,b_name,b_author,b_cover,b_content from book
-		<where>
-			<if test="b_id != 0 and b_id != null">
-				and b_id=#{b_id}
-			</if>
-		</where>
+		select b_id,b_name,b_author,b_cover,b_content from book where b_id=#{b_id}
 	</select>
 
 	<select id="getTypeId" parameterType="Integer" resultType="Integer">
