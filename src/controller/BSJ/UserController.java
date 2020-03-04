@@ -29,11 +29,11 @@ public class UserController {
     }
 
     @RequestMapping("/user_info")
-    public String list(int u_id, Model model){
+    public String list(Model model){
 //        String u_id=request.getSession().getAttribute("u_id");
-        List<BUser> list = service.queryUserById(u_id);
+        List<BUser> list = service.queryUserById(1);
         List<BBookShelfList> shelfLists = new ArrayList<>();
-        List<BBookShelf> shelfList = service.queryShelfById(u_id);
+        List<BBookShelf> shelfList = service.queryShelfById(1);
        for(BBookShelf bookShelf : shelfList){
            List<BBook> bookList = service.selectBookById(bookShelf.getBook_id());
            for(BBook book: bookList){

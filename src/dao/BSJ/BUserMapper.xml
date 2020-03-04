@@ -31,11 +31,11 @@
 		</collection>
 	</resultMap> -->
 	<select id="queryUserById" parameterType="Integer" resultType="po.BSJ.BUser">
-		select * from userInfo where u_id={#u_id}
+		select * from userInfo where u_id=#{u_id}
 	</select>
 
 	<select id="queryShelfById" parameterType="Integer" resultType="po.BSJ.BBookShelf">
-		select * from bookshelf where user_id={#user_id}
+		select * from bookshelf where user_id=#{user_id}
 	</select>
 
 	<select id="selectBookById" parameterType="Integer" resultType="po.BSJ.BBook">
