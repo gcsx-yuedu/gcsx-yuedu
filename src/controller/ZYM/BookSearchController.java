@@ -14,9 +14,16 @@ public class BookSearchController {
     @Autowired
     private ZBookService ZBookService;
     @RequestMapping("/book_search")
-    public String booksearchlist(ZBook book, Model model){
-        List<ZBook> listsearch = ZBookService.selectBookAll(book);
+    public String booksearchlist(String wenzi, Model model){
+        List<ZBook> listsearch = ZBookService.selectAll(wenzi);
+        System.out.println("查询结束");
+        for (ZBook rs:listsearch){
+            System.out.println("长度："+listsearch.size());
+            System.out.println("书名："+rs.getB_name());
+            System.out.println("类型："+rs.getBook_TypeList());
+        }
         model.addAttribute("listsearch",listsearch);
+        System.out.println("准备跳转");
         return "book_search";
     }
 

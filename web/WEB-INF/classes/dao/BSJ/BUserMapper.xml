@@ -5,7 +5,7 @@
 	update userInfo set u_name=#{u_name},u_password=#{u_password},u_sex=#{u_sex},u_address=#{u_address} where u_id=#{u_id}
 	</update>
 
-<!--	<select id="queryUserById" parameterType="Integer" resultMap="ResultUser">
+	<select id="queryUserById" parameterType="Integer" resultMap="ResultUser">
 		select userInfo.*,book.*,typez.t_type from userInfo,bookshelf,book,book_type,typez
           where userInfo.u_id=bookshelf.user_id and bookshelf.book_id=book.b_id
           and book_type.book_id=book.b_id and book_type.type_id=typez.t_id
@@ -29,25 +29,5 @@
 			<id property="t_id" column="t_id" />
 			<result property="t_type" column="t_type"/>
 		</collection>
-	</resultMap> -->
-	<select id="queryUserById" parameterType="Integer" resultType="po.BSJ.BUser">
-		select * from userInfo where u_id=#{u_id}
-	</select>
-
-	<select id="queryShelfById" parameterType="Integer" resultType="po.BSJ.BBookShelf">
-		select * from bookshelf where user_id=#{user_id}
-	</select>
-
-	<select id="selectBookById" parameterType="Integer" resultType="po.BSJ.BBook">
-		select b_id,b_name,b_author,b_cover,b_content from book where b_id=#{b_id}
-	</select>
-
-	<select id="getTypeId" parameterType="Integer" resultType="Integer">
-        select type_id from book_type where book_id=#{book_id}
-    </select>
-
-	<select id="getTypeByTypeId" parameterType="Integer" resultType="String">
-        select t_type from typez where t_id=#{t_id}
-    </select>
-
+	</resultMap>
 </mapper>
