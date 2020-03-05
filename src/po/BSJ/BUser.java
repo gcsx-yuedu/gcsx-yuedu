@@ -10,11 +10,11 @@ public class BUser {
 //    private List<BBook> bookList;
 //    private List<BBookType> bookTypeList;
 
-    public int getu_id() {
+    public int getU_id() {
         return u_id;
     }
 
-    public void setu_id(int id) {
+    public void setU_id(int id) {
         this.u_id = id;
     }
 

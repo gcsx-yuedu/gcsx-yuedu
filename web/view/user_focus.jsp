@@ -141,7 +141,7 @@
                             <a href="#" class="info-title"><%=bs.getConcernList().getU_name()%></a>
                             <p><i class="icon-star"></i><%=bs.getCountFans()%>人关注</p>
                         </div>
-                        <a href="#" class="icon-text__pink register" style="width:80px">取消关注</a>
+                        <a href="/cancelguanzhu?guanzhu_userid=<%=bs.getConcernList().getU_id()%>" class="icon-text__pink register" style="width:80px">取消关注</a>
                     </li>
                 </ul>
             </div>

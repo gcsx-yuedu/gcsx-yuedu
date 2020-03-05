@@ -66,4 +66,8 @@
 	<select id="getCountFans" parameterType="Integer" resultType="Integer">
 		select count(*) from guanzhu where guanzhu_userid=#{guanzhu_userid}
 	</select>
+
+	<delete id="cancelConcern" parameterType="Integer" >
+		delete from guanzhu where guanzhu_userid=#{guanzhu_userid}
+	</delete>
 </mapper>

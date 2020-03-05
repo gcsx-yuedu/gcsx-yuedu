@@ -93,5 +93,11 @@ public class UserController {
         return "user_focus";
     }
 
+    @RequestMapping("/cancelguanzhu")
+    public String Cancel(int guanzhu_userid){
+        service.cancelConcern(guanzhu_userid);
+        return "redirect:user_focus";
+    }
+
 
 }
