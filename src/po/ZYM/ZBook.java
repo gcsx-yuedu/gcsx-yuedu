@@ -1,4 +1,5 @@
 package po.ZYM;
+
 import java.util.List;
 
 public class ZBook {
@@ -8,7 +9,7 @@ public class ZBook {
     private String b_name;
     private String b_author;
     private  String b_content;
-    private List<ZBook_Type> book_TypeList;
+    private List<String> typeList;
 
     public int getB_id(){
         return b_id;
@@ -57,23 +58,23 @@ public class ZBook {
         this.b_content = b_content;
     }
 
-    public List<ZBook_Type> getBook_TypeList() {
-        return book_TypeList;
+    public List<String> getTypeList() {
+        return typeList;
     }
 
-    public void setBook_TypeList(List<ZBook_Type> book_TypeList) {
-        this.book_TypeList = book_TypeList;
+    public void setTypeList(List<String> typeList) {
+        this.typeList = typeList;
     }
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "JBook{" +
                 "b_id=" + b_id +
-//                ", b_type=" + b_type +
                 ", b_cover=" + b_cover +
                 ", b_name='" + b_name + '\'' +
                 ", b_author='" + b_author + '\'' +
                 ", b_content='" + b_content + '\'' +
+                ", typeList=" + typeList +
                 '}';
     }
 }
