@@ -66,8 +66,13 @@
 	<select id="getCountFans" parameterType="Integer" resultType="Integer">
 		select count(*) from guanzhu where guanzhu_userid=#{guanzhu_userid}
 	</select>
-
+    <!--根据关注id删除-->
 	<delete id="cancelConcern" parameterType="Integer" >
 		delete from guanzhu where guanzhu_userid=#{guanzhu_userid}
 	</delete>
+	<!--根据user_id和u_id插入-->
+	<insert id="guanzhu" parameterType="po.BSJ.BGuanzhu">
+		insert into guanzhu(user_id,guanzhu_userid) values(#{user_id},#{guanzhu_userid})
+	</insert>
+
 </mapper>

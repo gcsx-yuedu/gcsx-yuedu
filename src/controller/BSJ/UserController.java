@@ -99,5 +99,13 @@ public class UserController {
         return "redirect:user_focus";
     }
 
+    @RequestMapping("/guanzhu")
+    public String Guanzhu(int user_id){
+        BGuanzhu gz = new BGuanzhu();
+        gz.setUser_id(1);
+        gz.setGuanzhu_userid(user_id);
+        service.guanzhu(gz);
+        return "redirect:user_focus";
+    }
 
 }

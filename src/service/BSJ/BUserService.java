@@ -40,4 +40,5 @@ public class BUserService {
         return BUserDao.getCountFans(guanzhu_userid);
     }
     public void cancelConcern(Integer guanzhu_userid){ BUserDao.cancelConcern(guanzhu_userid); }
+    public void guanzhu(BGuanzhu gz){ BUserDao.guanzhu(gz); }
 }

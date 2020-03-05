@@ -19,4 +19,5 @@ public interface BUserMapper {
 //    public Integer getCountConcern( Integer user_id);
     public Integer getCountFans(Integer guanzhu_userid);
     public void cancelConcern(Integer guanzhu_userid);
+    public void guanzhu(BGuanzhu gz);
 }
