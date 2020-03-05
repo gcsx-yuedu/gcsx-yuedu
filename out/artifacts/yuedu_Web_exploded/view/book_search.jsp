@@ -136,7 +136,7 @@
                         <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
                             <p class="text-xl my-2 font-medium sm:font-normal"><%=rs.getB_name()%></p>
                             <p class="text-l my-2 font-medium sm:font-normal">作者：<%=rs.getB_author()%></p>
-                            <p class="text-sm my-2 font-medium sm:font-normal">类型：<%=typeList%>
+                            <p class="text-sm my-2 font-medium sm:font-normal">类型：<%=typeList.toString()%>
                             </p>
                             <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
                             <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>

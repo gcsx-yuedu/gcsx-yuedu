@@ -2,10 +2,7 @@ package dao.DJX;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import po.DJX.DBook;
-import po.DJX.DBookType;
-import po.DJX.DBook_Type;
-import po.DJX.DManager;
+import po.DJX.*;
 
 import java.util.List;
 
@@ -42,7 +39,7 @@ public interface DManagerDao {
 
     public Integer sameBookName(String b_name);
 
-    public List<DBook> selectAllBook(@Param(value="b_id")Integer b_id);
+    public List<DBook> selectAllBook(Integer pg);
 
     public List<Integer> getTypeId(Integer book_id);
 
@@ -57,4 +54,14 @@ public interface DManagerDao {
     public void deleteBookType(Integer book_id);
 
     public void updateBookInfo(DBook book);
+
+    public Integer getTypeNum(Integer type_id);
+
+    public List<DUserinfo> getAllUserInfo();
+
+    public void forbidUser(Integer u_id);
+
+    public void unForbidUser(Integer u_id);
+
+    public void deleteBook(Integer b_id);
 }

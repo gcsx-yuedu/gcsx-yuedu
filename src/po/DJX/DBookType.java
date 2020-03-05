@@ -17,6 +17,10 @@ public class DBookType {
         return t_id;
     }
 
+    public void setT_id(int t_id) {
+        this.t_id = t_id;
+    }
+
     public String getT_type() {
         return t_type;
     }

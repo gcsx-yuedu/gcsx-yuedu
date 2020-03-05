@@ -52,12 +52,12 @@ position:absolute;
     </script>
 </head>
 
-<%--<%--%>
-  <%--String username = (String) session.getAttribute("username");--%>
-  <%--if (username == null) {--%>
-    <%--response.sendRedirect("sign-up-gly.jsp");--%>
-  <%--}--%>
-<%--%>--%>
+<%
+  String username = (String) session.getAttribute("username");
+  if (username == null) {
+    response.sendRedirect("/Msignup");
+  }
+%>
 <%
     Integer pageNumber = (Integer) session.getAttribute("pageNumber");
 //    int pageNum =1;
@@ -127,18 +127,17 @@ position:absolute;
         <img src="${pageContext.request.contextPath}/static/image/houtai/img/timg.jpg" class="img-fluid" alt="">
       </a>
 
-      <div class="list-group list-group-flush">
-        <a href="${pageContext.request.contextPath}/view/houtai-xinxitongji.jsp" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-chart-pie mr-3"></i>信息统计</a>
-        <a href="${pageContext.request.contextPath}/view/houtai-yonghuguanli.jsp" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-user mr-3"></i>用户管理</a>
-        <a href="#" class="list-group-item  active waves-effect">
-          <i class="fas fa-table mr-3"></i>书籍管理</a>
-        <a href="${pageContext.request.contextPath}/view/houtai-tianjiashuji.jsp" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-map mr-3"></i>添加书籍</a>
-        <a href="${pageContext.request.contextPath}/view/houtai-jubaoxnxiguanli.jsp" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-money-bill-alt mr-3"></i>举报信息管理</a>
-      </div>
+        <div class="list-group list-group-flush">
+            <a href="/houtai-xinxitongji" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-chart-pie mr-3"></i>信息统计
+            </a>
+            <a href="/houtai-yonghuguanli" class="list-group-item waves-effect">
+                <i class="fas fa-user mr-3"></i>用户管理</a>
+            <a href="/houtai-shujiguanli" class="list-group-item active list-group-item-action waves-effect">
+                <i class="fas fa-table mr-3"></i>书籍管理</a>
+            <a href="/houtai-tianjiashuji" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-map mr-3"></i>添加书籍</a>
+        </div>
 
     </div>
     <!-- Sidebar -->

@@ -51,14 +51,16 @@ position:absolute;
     </script>
 </head>
 
-<%--<%--%>
-  <%--String username = (String) session.getAttribute("username");--%>
-  <%--if (username == null) {--%>
-    <%--response.sendRedirect("sign-up-gly.jsp");--%>
-  <%--}--%>
-<%--%>--%>
+<%
+  String username = (String) session.getAttribute("username");
+  if (username == null) {
+    response.sendRedirect("/Msignup");
+  }
+%>
 <%
     List<DBookList> bookList = (List<DBookList>) session.getAttribute("bookList");
+    Integer pgNum = (Integer) session.getAttribute("pageNumber");
+    Integer totalSize = (Integer) session.getAttribute("totalSize");
 %>
 
 
@@ -123,18 +125,17 @@ position:absolute;
         <img src="${pageContext.request.contextPath}/static/image/houtai/img/timg.jpg" class="img-fluid" alt="">
       </a>
 
-      <div class="list-group list-group-flush">
-        <a href="${pageContext.request.contextPath}/view/houtai-xinxitongji.jsp" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-chart-pie mr-3"></i>信息统计</a>
-        <a href="${pageContext.request.contextPath}/view/houtai-yonghuguanli.jsp" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-user mr-3"></i>用户管理</a>
-        <a href="#" class="list-group-item  active waves-effect">
-          <i class="fas fa-table mr-3"></i>书籍管理</a>
-        <a href="${pageContext.request.contextPath}/view/houtai-tianjiashuji.jsp" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-map mr-3"></i>添加书籍</a>
-        <a href="${pageContext.request.contextPath}/view/houtai-jubaoxnxiguanli.jsp" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-money-bill-alt mr-3"></i>举报信息管理</a>
-      </div>
+        <div class="list-group list-group-flush">
+            <a href="/houtai-xinxitongji" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-chart-pie mr-3"></i>信息统计
+            </a>
+            <a href="/houtai-yonghuguanli" class="list-group-item waves-effect">
+                <i class="fas fa-user mr-3"></i>用户管理</a>
+            <a href="/houtai-shujiguanli" class="list-group-item  active list-group-item-action waves-effect">
+                <i class="fas fa-table mr-3"></i>书籍管理</a>
+            <a href="/houtai-tianjiashuji" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-map mr-3"></i>添加书籍</a>
+        </div>
 
     </div>
     <!-- Sidebar -->
@@ -159,13 +160,13 @@ position:absolute;
             <div class="card-body white">
                 <table role="table" class="col-xl-12 table-hover table-bordered table-striped text-center">
                     <tr style="height: 60px;font-family: 微软雅黑">
-                    <th style="font-size: 20px">序号</th>
-                    <th style="font-size: 20px">封面</th>
-                    <th style="font-size: 20px">书名</th>
-                    <th style="font-size: 20px">作者</th>
-                    <th style="font-size: 20px">简介</th>
-                    <th style="font-size: 20px">类型</th>
-                    <th style="font-size: 20px" colspan="2">操作</th>
+                    <th style="font-size: 20px;table-layout: fixed;word-break: break-all;width: 50px">序号</th>
+                    <th style="font-size: 20px;table-layout: fixed;word-break: break-all;width: 150px">封面</th>
+                    <th style="font-size: 20px;table-layout: fixed;word-break: break-all;width: 100px">书名</th>
+                    <th style="font-size: 20px;table-layout: fixed;word-break: break-all;width: 100px;">作者</th>
+                    <th style="font-size: 20px;table-layout: fixed;word-break: break-all;width: 300px">简介</th>
+                    <th style="font-size: 20px;table-layout: fixed;word-break: break-all;width: 150px">类型</th>
+                    <th style="font-size: 20px;table-layout: fixed;word-break: break-all;width: 100px" colspan="2">操作</th>
                     </tr>
                     <%
                         int k=1;
@@ -179,13 +180,24 @@ position:absolute;
                         <td style="font-size: 15px"><%=list.getBook().getB_author()%></td>
                         <td style="font-size: 15px"><%=list.getBook().getB_content()%></td>
                         <td style="font-size: 15px"><%=typeList%></td>
-                        <td><a href="">删除</a></td>
+                        <td><a onclick="deleteBook(<%=list.getBook().getB_id()%>)">删除</a></td>
                     </tr>
                     <%
                             k++;
                         }
                     %>
                 </table>
+                <div class="col-xl-10 offset-xl-1 text-center">
+                    <select  onchange="nextPg()" id="pageNum" name="pageNum" class="combobox col-xl-12">
+                        <%
+                            for (int i=0;i<totalSize;i++){
+                        %>
+                        <option  value="<%=i+1%>" <%if(pgNum==i+1){%>selected<%}%>>第<%=i+1%>页</option>
+                        <%
+                            }
+                        %>
+                    </select>
+                </div>
             </div>
             </div>
 
@@ -194,7 +206,28 @@ position:absolute;
 
     </div>
   </main>
-
+<script>
+    function deleteBook(b_id) {
+        confirm("确定删除这本书？！");
+        $.ajax({
+            url:'/deleteBook',
+            async:false,
+            type: 'post',
+            data: {"b_id":b_id},
+            success:function () {
+                alert("书籍删除成功");
+                location.reload();
+            },
+            error:function () {
+                alert("系统出错");
+            }
+        });
+    }
+    function nextPg() {
+        var pageNum = document.getElementById("pageNum").value;
+        window.location.href="/houtai-shujiguanli?pageNumber="+pageNum;
+    }
+</script>
   
 </body>
 

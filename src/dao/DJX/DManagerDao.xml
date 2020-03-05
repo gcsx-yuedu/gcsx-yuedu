@@ -71,14 +71,9 @@
         select count(*) from book where b_name=#{b_name}
     </select>
 
-    <!--根据书籍id查询书籍，如果没有id就查询所有-->
+    <!--查询所有书籍信息，每页10条-->
     <select id="selectAllBook" parameterType="Integer" resultType="po.DJX.DBook">
-        select b_id,b_name,b_author,b_cover,b_content from book
-        <where>
-            <if test="b_id != 0 and b_id != null">
-                and b_id=#{b_id}
-            </if>
-        </where>
+        select b_id,b_name,b_author,b_cover,b_content from book limit #{pg},10
     </select>
 
     <!--根据书籍id获取类型id-->
@@ -108,6 +103,7 @@
 
 
     <!--根据书籍的id删除对应的书籍类型-->
+    <!--由于使用了级联删除，所以不需要执行这个方法-->
     <delete id="deleteBookType" parameterType="Integer">
         delete from book_type where book_id=#{book_id}
     </delete>
@@ -123,4 +119,22 @@
     </delete>
 
     <!--根据type的id获取对应的书籍的数量-->
+    <select id="getTypeNum" parameterType="Integer" resultType="Integer">
+        select count(*) from book_type where type_id=#{type_id}
+    </select>
+
+    <!--获取所有的用户信息-->
+    <select id="getAllUserInfo" resultType="po.DJX.DUserinfo">
+        select * from userInfo
+    </select>
+
+    <!--用户禁言-->
+    <update id="forbidUser" parameterType="Integer">
+        update userInfo set u_forbid=1 where u_id=#{u_id}
+    </update>
+
+    <!--用户解除禁言-->
+    <update id="unForbidUser" parameterType="Integer">
+        update userInfo set u_forbid=0 where u_id=#{u_id}
+    </update>
 </mapper>

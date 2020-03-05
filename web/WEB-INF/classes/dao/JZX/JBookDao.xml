@@ -4,4 +4,10 @@
     <select id="queryBook" parameterType="Integer" resultType="po.JZX.JBook"  >
         select * from book where b_id=#{b_id}
     </select>
+    <select id="getTypeID" parameterType="Integer" resultType="Integer">
+        select type_id from book_type where book_id=#{book_id}
+    </select>
+    <select id="getTypeByTypeID" parameterType="Integer" resultType="String">
+        select t_type from typez where t_id=#{t_id}
+    </select>
 </mapper>
