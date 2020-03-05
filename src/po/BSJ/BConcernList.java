@@ -2,22 +2,22 @@ package po.BSJ;
 import java.util.List;
 
 public class BConcernList {
-    private List<BUser> concernList;
-    private int countConcern;
+    private BUser concernList;
+    private int countFans;
 
-    public List<BUser> getConcernList() {
+    public BUser getConcernList() {
         return concernList;
     }
 
-    public void setConcernList(List<BUser> concernList) {
+    public void setConcernList(BUser concernList) {
         this.concernList = concernList;
     }
 
-    public int getCountConcern() {
-        return countConcern;
+    public int getCountFans() {
+        return countFans;
     }
 
-    public void setCountConcern(int countConcern) {
-        this.countConcern = countConcern;
+    public void setCountFans(int countFans) {
+        this.countFans = countFans;
     }
 }

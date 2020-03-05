@@ -2,14 +2,14 @@ package po.BSJ;
 import java.util.List;
 
 public class BFansList {
-    private List<BUser> fansList;
+    private BUser fansList;
     private int countFans;
 
-    public List<BUser> getFansList() {
+    public BUser getFansList() {
         return fansList;
     }
 
-    public void setFansList(List<BUser> fansList) {
+    public void setFansList(BUser fansList) {
         this.fansList = fansList;
     }
 

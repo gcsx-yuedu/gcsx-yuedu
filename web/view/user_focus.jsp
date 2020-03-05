@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="po.BSJ.*" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 
 <html class="no-js">
@@ -128,34 +129,44 @@
         </div>
         <!-- Library -->
         <div class="hidden px-2 pt-2 md:px-0 flex-wrap order-2 pb-8 js-tab-pane active" id="section-concern">
+            <%
+                List<BConcernList> concernList = (List<BConcernList>)request.getAttribute("concernList");
+                for(BConcernList bs : concernList){
+            %>
             <div style="padding-left:50px;padding-bottom:30px;">
                 <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
                 <ul>
                     <li>
                         <div class="info" style="padding-left:20px;padding-right:100px;">
-                            <a href="#" class="info-title">用户名</a>
-                            <p><i class="icon-star"></i>45人关注</p>
+                            <a href="#" class="info-title"><%=bs.getConcernList().getU_name()%></a>
+                            <p><i class="icon-star"></i><%=bs.getCountFans()%>人关注</p>
                         </div>
                         <a href="#" class="icon-text__pink register" style="width:80px">取消关注</a>
                     </li>
                 </ul>
             </div>
+            <%}%>
         </div>
 
         <!-- picks -->
         <div class="hidden flex-wrap order-2 pt-0 md:pt-6 md:pb-8 js-tab-pane" id="section-picks">
+            <%
+                List<BFansList> fansList = (List<BFansList>)request.getAttribute("fansList");
+                for(BFansList ss : fansList){
+            %>
             <div style="padding-left:50px;padding-bottom:30px;">
                 <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
                 <ul>
                     <li>
                         <div class="info" style="padding-left:20px;padding-right:100px;">
-                            <a href="#" class="info-title">用户名</a>
-                            <p><i class="icon-star"></i>45人关注</p>
+                            <a href="#" class="info-title"><%=ss.getFansList().getU_name()%></a>
+                            <p><i class="icon-star"></i><%=ss.getCountFans()%>人关注</p>
                         </div>
                         <a href="#" class="icon-text__pink register" style="width:80px">关注</a>
                     </li>
                 </ul>
             </div>
+            <%}%>
         </div>
 
     </div>
