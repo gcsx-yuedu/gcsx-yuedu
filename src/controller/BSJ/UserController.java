@@ -60,4 +60,23 @@ public class UserController {
         return "redirect:user_info";
     }
 
+    @RequestMapping("/getConcern")
+
+    public String getConcern(Model model){
+        List<BGuanzhu> guanzhuList = service.getGuanzhuId(1);
+        List<BConcernList> concernList = new ArrayList<>();
+        for(BGuanzhu gz: guanzhuList){
+            List<BUser> concern_List = service.queryUserById(gz.getGuanzhu_userid());
+            int countConcern = service.getCountConcern(gz.getGuanzhu_userid());
+            BConcernList ConcernList = new BConcernList();
+            ConcernList.setConcernList(concern_List);
+            ConcernList.setCountConcern(countConcern);
+            concernList.add(ConcernList);
+        }
+        model.addAttribute("concernList",concernList);
+
+        return "user_focus";
+    }
+
+
 }

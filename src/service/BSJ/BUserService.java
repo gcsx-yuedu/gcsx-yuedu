@@ -27,4 +27,16 @@ public class BUserService {
     public String getTypeByTypeId(Integer t_id){
         return BUserDao.getTypeByTypeId(t_id);
     }
+    public List<BGuanzhu> getGuanzhuId(Integer user_id) {
+        return BUserDao.getGuanzhuId(user_id);
+    }
+    public List<BGuanzhu> getFansId(Integer guanzhu_userid) {
+        return BUserDao.getFansId(guanzhu_userid);
+    }
+    public Integer getCountConcern(Integer user_id) {
+        return BUserDao.getCountConcern(user_id);
+    }
+    public Integer getCountFans(Integer guanzhu_userid) {
+        return BUserDao.getCountFans(guanzhu_userid);
+    }
 }

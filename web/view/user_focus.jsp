@@ -136,67 +136,7 @@
                             <a href="#" class="info-title">用户名</a>
                             <p><i class="icon-star"></i>45人关注</p>
                         </div>
-                        <a href="#" class="icon-text__pink register" style="width:80px">关注</a>
-                    </li>
-                </ul>
-            </div>
-            <div style="padding-left:50px;padding-bottom:30px;">
-                <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
-                <ul>
-                    <li>
-                        <div class="info" style="padding-left:20px;padding-right:100px;">
-                            <a href="#" class="info-title">用户名</a>
-                            <p><i class="icon-star"></i>45人关注</p>
-                        </div>
-                        <a href="#" class="icon-text__pink register" style="width:80px">关注</a>
-                    </li>
-                </ul>
-            </div>
-            <div style="padding-left:50px;padding-bottom:30px;">
-                <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
-                <ul>
-                    <li>
-                        <div class="info" style="padding-left:20px;padding-right:100px;">
-                            <a href="#" class="info-title">用户名</a>
-                            <p><i class="icon-star"></i>45人关注</p>
-                        </div>
-                        <a href="#" class="icon-text__pink register" style="width:80px">关注</a>
-                    </li>
-                </ul>
-            </div>
-            <div style="padding-left:50px;padding-bottom:30px;">
-                <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
-                <ul>
-                    <li>
-                        <div class="info" style="padding-left:20px;padding-right:100px;">
-                            <a href="#" class="info-title">用户名</a>
-                            <p><i class="icon-star"></i>45人关注</p>
-                        </div>
-                        <a href="#" class="icon-text__pink register" style="width:80px">关注</a>
-                    </li>
-                </ul>
-            </div>
-            <div style="padding-left:50px;padding-bottom:30px;">
-                <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
-                <ul>
-                    <li>
-                        <div class="info" style="padding-left:20px;padding-right:100px;">
-                            <a href="#" class="info-title">用户名</a>
-                            <p><i class="icon-star"></i>45人关注</p>
-                        </div>
-                        <a href="#" class="icon-text__pink register" style="width:80px">关注</a>
-                    </li>
-                </ul>
-            </div>
-            <div style="padding-left:50px;padding-bottom:30px;">
-                <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
-                <ul>
-                    <li>
-                        <div class="info" style="padding-left:20px;padding-right:100px;">
-                            <a href="#" class="info-title">用户名</a>
-                            <p><i class="icon-star"></i>45人关注</p>
-                        </div>
-                        <a href="#" class="icon-text__pink register" style="width:80px">关注</a>
+                        <a href="#" class="icon-text__pink register" style="width:80px">取消关注</a>
                     </li>
                 </ul>
             </div>
@@ -212,67 +152,7 @@
                             <a href="#" class="info-title">用户名</a>
                             <p><i class="icon-star"></i>45人关注</p>
                         </div>
-                        <a href="#" class="icon-text__pink register" style="width:80px">取消关注</a>
-                    </li>
-                </ul>
-            </div>
-            <div style="padding-left:50px;padding-bottom:30px;">
-                <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
-                <ul>
-                    <li>
-                        <div class="info" style="padding-left:20px;padding-right:100px;">
-                            <a href="#" class="info-title">用户名</a>
-                            <p><i class="icon-star"></i>45人关注</p>
-                        </div>
-                        <a href="#" class="icon-text__pink register" style="width:80px">取消关注</a>
-                    </li>
-                </ul>
-            </div>
-            <div style="padding-left:50px;padding-bottom:30px;">
-                <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
-                <ul>
-                    <li>
-                        <div class="info" style="padding-left:20px;padding-right:100px;">
-                            <a href="#" class="info-title">用户名</a>
-                            <p><i class="icon-star"></i>45人关注</p>
-                        </div>
-                        <a href="#" class="icon-text__pink register" style="width:80px">取消关注</a>
-                    </li>
-                </ul>
-            </div>
-            <div style="padding-left:50px;padding-bottom:30px;">
-                <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
-                <ul>
-                    <li>
-                        <div class="info" style="padding-left:20px;padding-right:100px;">
-                            <a href="#" class="info-title">用户名</a>
-                            <p><i class="icon-star"></i>45人关注</p>
-                        </div>
-                        <a href="#" class="icon-text__pink register" style="width:80px">取消关注</a>
-                    </li>
-                </ul>
-            </div>
-            <div style="padding-left:50px;padding-bottom:30px;">
-                <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
-                <ul>
-                    <li>
-                        <div class="info" style="padding-left:20px;padding-right:100px;">
-                            <a href="#" class="info-title">用户名</a>
-                            <p><i class="icon-star"></i>45人关注</p>
-                        </div>
-                        <a href="#" class="icon-text__pink register" style="width:80px">取消关注</a>
-                    </li>
-                </ul>
-            </div>
-            <div style="padding-left:50px;padding-bottom:30px;">
-                <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
-                <ul>
-                    <li>
-                        <div class="info" style="padding-left:20px;padding-right:100px;">
-                            <a href="#" class="info-title">用户名</a>
-                            <p><i class="icon-star"></i>45人关注</p>
-                        </div>
-                        <a href="#" class="icon-text__pink register" style="width:80px">取消关注</a>
+                        <a href="#" class="icon-text__pink register" style="width:80px">关注</a>
                     </li>
                 </ul>
             </div>
