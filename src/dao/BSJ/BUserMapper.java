@@ -16,6 +16,8 @@ public interface BUserMapper {
     public String getTypeByTypeId(Integer t_id);
     public List<BGuanzhu> getGuanzhuId(Integer user_id);
     public List<BGuanzhu> getFansId(Integer guanzhu_userid);
-    public Integer getCountConcern( Integer user_id);
+//    public Integer getCountConcern( Integer user_id);
     public Integer getCountFans(Integer guanzhu_userid);
+    public void cancelConcern(Integer guanzhu_userid);
+    public void guanzhu(BGuanzhu gz);
 }

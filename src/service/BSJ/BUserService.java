@@ -33,10 +33,12 @@ public class BUserService {
     public List<BGuanzhu> getFansId(Integer guanzhu_userid) {
         return BUserDao.getFansId(guanzhu_userid);
     }
-    public Integer getCountConcern(Integer user_id) {
-        return BUserDao.getCountConcern(user_id);
-    }
+//    public Integer getCountConcern(Integer user_id) {
+//        return BUserDao.getCountConcern(user_id);
+//    }
     public Integer getCountFans(Integer guanzhu_userid) {
         return BUserDao.getCountFans(guanzhu_userid);
     }
+    public void cancelConcern(Integer guanzhu_userid){ BUserDao.cancelConcern(guanzhu_userid); }
+    public void guanzhu(BGuanzhu gz){ BUserDao.guanzhu(gz); }
 }
