@@ -10,18 +10,11 @@ import java.util.List;
 @Service
 public class ZBookService {
     @Autowired
-    private ZBookMapper ZBookMapper;
+    private ZBookMapper bookDao;
+    public List<ZBook> queryBook(String wenzi){
+        return bookDao.queryBook(wenzi);
+    }
+    public List<Integer> getTypeID(Integer book_id){return  bookDao.getTypeID(book_id);}
+    public String getTypeByID(Integer t_id){return bookDao.getTypeByTypeID(t_id);}
 
-    public List<ZBook> selectBookAll(String wenzi){
-        System.out.println("搜索中"+wenzi);
-        return ZBookMapper.selectBookAll(wenzi);
-    }
-    public List<ZBook> selectBookByLeixing(int id){
-        return ZBookMapper.selectBookByLeixing(id);
-    }
-
-    public List<ZBook> selectAll(String wenzi){
-        System.out.println("搜索ing"+wenzi);
-        return ZBookMapper.selectBookAll(wenzi);
-    }
 }
