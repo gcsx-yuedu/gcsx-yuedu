@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="po.ZYM.ZBook" %>
-<%@ page import="po.ZYM.ZBookList" %>
+<%@ page import="po.ZYM.ZBookType" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <html class="no-js">
 <head>
@@ -17,9 +17,9 @@
 <body class="bg-grey-lighter font-sans antialiased">
 <%
     String wenzi = request.getParameter("wenzi");
-//    Integer pageNumber = (Integer) session.getAttribute("pageNumber");
     int count = (int)session.getAttribute("count");
-    List<ZBook> books =(List<ZBook>) session.getAttribute("books");
+    List<ZBook> books =(List<ZBook>)session.getAttribute("books");
+    List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
 %>
 
 <header class="header">
@@ -39,7 +39,7 @@
             <span class="neck-border"></span>
         </div>
 
-        <form action="../book_search" method="post" id="myForm">
+        <form action="/book_search" method="post" id="myForm">
             <div class="search">
                 <input type="text" name="wenzi" class="search-text" placeholder="Seach here..." value="<%= wenzi==null?"":wenzi %>">
                 <button type="submit" class="search-btn"><i class="icon-search"></i></button>
@@ -90,12 +90,13 @@
                     </div>
                 </div>
                 <ul class="text-grey lg:text-grey-dark list-reset leading-loose mt-2" id="sidenav-categories">
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍一类</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍二类</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍三类</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍四类</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍五类</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍六类</li>
+                    <%
+                        for (ZBookType type:types){
+                    %>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">
+                        <a href="/showBookByType?t_id=<%=type.getT_id()%>"> <%=type.getT_type()%></a>
+                    </li>
+                    <%}%>
                 </ul>
             </li>
             <li class="ml-2 mb-4 flex">
@@ -142,8 +143,8 @@
                             <p class="text-l my-2 font-medium sm:font-normal">作者：<%=book.getB_author()%></p>
                             <p class="text-sm my-2 font-medium sm:font-normal">类型：<%=typeList%>
                             </p>
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>
+                            <button onclick="window.location.href='/book_infor?b_id=<%=book.getB_id()%>'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
+                            <button onclick="window.location.href='/addToShelf'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>
                         </div>
                     </div>
                 </li>

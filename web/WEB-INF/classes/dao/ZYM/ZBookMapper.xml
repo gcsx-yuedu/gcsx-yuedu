@@ -47,15 +47,25 @@
         select * from book where b_name like concat('%',#{wenzi},'%')
         or b_author like concat('%',#{wenzi},'%')
     </select>
+
     <select id="getTypeID" parameterType="Integer" resultType="Integer">
         select type_id from book_type where book_id=#{book_id}
     </select>
+
     <select id="getTypeByTypeID" parameterType="Integer" resultType="String">
         select t_type from typez where t_id=#{t_id}
     </select>
 
     <select id="selectAll" parameterType="String" resultType="po.ZYM.ZBook">
         select b_name from book where b_name like concat('%',#{wenzi},'%')
+    </select>
+
+    <insert id="addToShelf" parameterType="po.ZYM.ZBookShelf">
+        insert into bookshelf(user_id,book_id) values (#{user_id},#{book_id})
+    </insert>
+
+    <select id="selectAllType" resultType="po.ZYM.ZBookType">
+        select * from typez order by t_id
     </select>
 </mapper>
 
