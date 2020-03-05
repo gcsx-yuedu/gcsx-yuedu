@@ -34,22 +34,22 @@ public class UserController {
         List<BUser> list = service.queryUserById(1);
         List<BBookShelfList> shelfLists = new ArrayList<>();
         List<BBookShelf> shelfList = service.queryShelfById(1);
-       for(BBookShelf bookShelf : shelfList){
-           List<BBook> bookList = service.selectBookById(bookShelf.getBook_id());
-           for(BBook book: bookList){
-               List<String> bookType = getTypeId(book.getB_id());
+        for(BBookShelf bookShelf : shelfList){
+            List<BBook> bookList = service.selectBookById(bookShelf.getBook_id());
+            for(BBook book: bookList){
+                List<String> bookType = getTypeId(book.getB_id());
 //            String base64 = convertBlobToBase64String((Blob) book.getB_cover());
-               String res = new String((byte[])book.getB_cover());
-               System.out.println(res);
-               book.setB_cover(res);
-               BBookShelfList shelf_List = new BBookShelfList();
-               shelf_List.setBookList(book);
-               shelf_List.setTypeList(bookType);
-               shelfLists.add(shelf_List);
-           }
-       }
+                String res = new String((byte[])book.getB_cover());
+                System.out.println(res);
+                book.setB_cover(res);
+                BBookShelfList shelf_List = new BBookShelfList();
+                shelf_List.setBookList(book);
+                shelf_List.setTypeList(bookType);
+                shelfLists.add(shelf_List);
+            }
+        }
         model.addAttribute("list",list);
-       model.addAttribute("shelfLists",shelfLists);
+        model.addAttribute("shelfLists",shelfLists);
         return "user_info";
     }
 
@@ -58,6 +58,54 @@ public class UserController {
     public String UpdateUser(BUser user) {
         service.updateUser(user);
         return "redirect:user_info";
+    }
+
+    @RequestMapping("/user_focus")
+
+    public String getConcern(Model model){
+        List<BGuanzhu> guanzhuList = service.getGuanzhuId(1);
+        List<BConcernList> concernList = new ArrayList<>();
+        for(BGuanzhu gz: guanzhuList){
+            List<BUser> concern_List = service.queryUserById(gz.getGuanzhu_userid());
+            int countFans = service.getCountFans(gz.getGuanzhu_userid());
+            for(BUser concern : concern_List){
+                BConcernList ConcernList = new BConcernList();
+                ConcernList.setConcernList(concern);
+                ConcernList.setCountFans(countFans);
+                concernList.add(ConcernList);
+            }
+        }
+        model.addAttribute("concernList",concernList);
+        List<BGuanzhu> fList = service.getFansId(1);
+        List<BFansList> fansList = new ArrayList<>();
+        for(BGuanzhu fc : fList){
+            List<BUser> fans_List = service.queryUserById(fc.getUser_id());
+            int countFans = service.getCountFans(fc.getUser_id());
+            for(BUser fans : fans_List){
+                BFansList FansList = new BFansList();
+                FansList.setFansList(fans);
+                FansList.setCountFans(countFans);
+                fansList.add(FansList);
+            }
+        }
+        model.addAttribute("fansList",fansList);
+
+        return "user_focus";
+    }
+
+    @RequestMapping("/cancelguanzhu")
+    public String Cancel(int guanzhu_userid){
+        service.cancelConcern(guanzhu_userid);
+        return "redirect:user_focus";
+    }
+
+    @RequestMapping("/guanzhu")
+    public String Guanzhu(int user_id){
+        BGuanzhu gz = new BGuanzhu();
+        gz.setUser_id(1);
+        gz.setGuanzhu_userid(user_id);
+        service.guanzhu(gz);
+        return "redirect:user_focus";
     }
 
 }

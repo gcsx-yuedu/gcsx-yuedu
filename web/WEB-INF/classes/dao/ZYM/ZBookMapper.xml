@@ -2,49 +2,70 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.ZYM.ZBookMapper">
         <!-- 根据搜索框查询书籍信息，包括书籍类型 -->
-    <select id="selectBookAll" parameterType="String" resultMap="Result">
-        select book.*,typez.t_type
-        from book,typez,book_type
-        where book.b_id=book_type.book_id
-        and typez.t_id=book_type.type_id
-        and (b_name like concat('%',#{wenzi},'%')
-              or b_author like concat('%',#{wenzi},'%')
-              or t_type like concat('%',#{wenzi},'%'))
-        <!--待完善
-        and typez.t_type like concat('%',#{t_type},'%')-->
-    </select>
-    <resultMap id="Result" type="po.ZYM.ZBook">
-        <id property="b_id" column="b_id" />
-        <result property="b_cover" column="b_cover" />
-        <result property="b_name" column="b_name" />
-        <result property="b_author" column="b_author" />
-        <collection property="book_TypeList" ofType="po.ZYM.ZBookType">
-            <id property="t_id" column="t_id"/>
-            <result property="t_type" column="t_type"/>
-        </collection>
-    </resultMap>
+    <!--<select id="selectBookAll" parameterType="String" resultMap="Result">-->
+        <!--select book.*,typez.t_type-->
+        <!--from book,typez,book_type-->
+        <!--where book.b_id=book_type.book_id-->
+        <!--and typez.t_id=book_type.type_id-->
+        <!--and (b_name like concat('%',#{wenzi},'%')-->
+              <!--or b_author like concat('%',#{wenzi},'%')-->
+              <!--or t_type like concat('%',#{wenzi},'%'))-->
+        <!--&lt;!&ndash;待完善-->
+        <!--and typez.t_type like concat('%',#{t_type},'%')&ndash;&gt;-->
+    <!--</select>-->
+    <!--<resultMap id="Result" type="po.ZYM.ZBook">-->
+        <!--<id property="b_id" column="b_id" />-->
+        <!--<result property="b_cover" column="b_cover" />-->
+        <!--<result property="b_name" column="b_name" />-->
+        <!--<result property="b_author" column="b_author" />-->
+        <!--<collection property="book_TypeList" ofType="po.ZYM.ZBookType">-->
+            <!--<id property="t_id" column="t_id"/>-->
+            <!--<result property="t_type" column="t_type"/>-->
+        <!--</collection>-->
+    <!--</resultMap>-->
 
-        <!-- 根据书籍类型查询书籍信息 -->
-    <select id="selectBookByLeixing" parameterType="Integer" resultMap="LResult">
-        select book.*,typez.t_type
-        from book,typez,book_type
-        where book.b_id=book_type.book_id
-        and typez.t_id=book_type.type_id
-        and typez.t_id=#{id}
+        <!--&lt;!&ndash; 根据书籍类型查询书籍信息 &ndash;&gt;-->
+    <!--<select id="selectBookByLeixing" parameterType="Integer" resultMap="LResult">-->
+        <!--select book.*,typez.t_type-->
+        <!--from book,typez,book_type-->
+        <!--where book.b_id=book_type.book_id-->
+        <!--and typez.t_id=book_type.type_id-->
+        <!--and typez.t_id=#{id}-->
+    <!--</select>-->
+    <!--<resultMap id="LResult" type="po.ZYM.ZBookType">-->
+        <!--<id property="t_id" column="t_id" />-->
+        <!--<result property="t_type" column="t_type" />-->
+        <!--<collection property="t_type" ofType="po.ZYM.ZBook">-->
+            <!--<id property="b_id" column="b_id" />-->
+            <!--<result property="b_cover" column="b_cover" />-->
+            <!--<result property="b_name" column="b_name" />-->
+            <!--<result property="b_author" column="b_author" />-->
+        <!--</collection>-->
+    <!--</resultMap>-->
+
+    <select id="queryBook" parameterType="String" resultType="po.ZYM.ZBook">
+        select * from book where b_name like concat('%',#{wenzi},'%')
+        or b_author like concat('%',#{wenzi},'%')
     </select>
-    <resultMap id="LResult" type="po.ZYM.ZBookType">
-        <id property="t_id" column="t_id" />
-        <result property="t_type" column="t_type" />
-        <collection property="t_type" ofType="po.ZYM.ZBook">
-            <id property="b_id" column="b_id" />
-            <result property="b_cover" column="b_cover" />
-            <result property="b_name" column="b_name" />
-            <result property="b_author" column="b_author" />
-        </collection>
-    </resultMap>
+
+    <select id="getTypeID" parameterType="Integer" resultType="Integer">
+        select type_id from book_type where book_id=#{book_id}
+    </select>
+
+    <select id="getTypeByTypeID" parameterType="Integer" resultType="String">
+        select t_type from typez where t_id=#{t_id}
+    </select>
 
     <select id="selectAll" parameterType="String" resultType="po.ZYM.ZBook">
         select b_name from book where b_name like concat('%',#{wenzi},'%')
+    </select>
+
+    <insert id="addToShelf" parameterType="po.ZYM.ZBookShelf">
+        insert into bookshelf(user_id,book_id) values (#{user_id},#{book_id})
+    </insert>
+
+    <select id="selectAllType" resultType="po.ZYM.ZBookType">
+        select * from typez order by t_id
     </select>
 </mapper>
 

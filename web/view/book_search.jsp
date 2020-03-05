@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="po.ZYM.ZBook" %>
+<%@ page import="po.ZYM.ZBookType" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <html class="no-js">
 <head>
@@ -16,6 +17,9 @@
 <body class="bg-grey-lighter font-sans antialiased">
 <%
     String wenzi = request.getParameter("wenzi");
+    int count = (int)session.getAttribute("count");
+    List<ZBook> books =(List<ZBook>)session.getAttribute("books");
+    List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
 %>
 
 <header class="header">
@@ -35,7 +39,7 @@
             <span class="neck-border"></span>
         </div>
 
-        <form action="../book_search" method="post" id="myForm">
+        <form action="/book_search" method="post" id="myForm">
             <div class="search">
                 <input type="text" name="wenzi" class="search-text" placeholder="Seach here..." value="<%= wenzi==null?"":wenzi %>">
                 <button type="submit" class="search-btn"><i class="icon-search"></i></button>
@@ -86,12 +90,13 @@
                     </div>
                 </div>
                 <ul class="text-grey lg:text-grey-dark list-reset leading-loose mt-2" id="sidenav-categories">
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍一类</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍二类</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍三类</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍四类</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍五类</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍六类</li>
+                    <%
+                        for (ZBookType type:types){
+                    %>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">
+                        <a href="/showBookByType?t_id=<%=type.getT_id()%>"> <%=type.getT_type()%></a>
+                    </li>
+                    <%}%>
                 </ul>
             </li>
             <li class="ml-2 mb-4 flex">
@@ -124,22 +129,22 @@
         <!-- Library -->
         <div class="hidden px-2 pt-2 md:px-0 flex-wrap order-2 pb-8 js-tab-pane active" id="section-picks">
             <ul>
-                <% List<ZBook> booklist = (List<ZBook>)request.getAttribute("listsearch");
-                    for (ZBook rs:booklist){
-                        String typeList = org.apache.commons.lang.StringUtils.strip(rs.getBook_TypeList().toString(),"[]");
+                <%
+                    for (ZBook book:books){
+                    String typeList=org.apache.commons.lang.StringUtils.strip(book.getTypeList().toString(),"[]");
                 %>
                 <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
                     <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
-                        <img src="<%=rs.getB_cover()%>" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                        <img src="<%=book.getB_cover()%>" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
                         <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
 
                         <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                            <p class="text-xl my-2 font-medium sm:font-normal"><%=rs.getB_name()%></p>
-                            <p class="text-l my-2 font-medium sm:font-normal">作者：<%=rs.getB_author()%></p>
-                            <p class="text-sm my-2 font-medium sm:font-normal">类型：<%=typeList.toString()%>
+                            <p class="text-xl my-2 font-medium sm:font-normal"><%=book.getB_name()%></p>
+                            <p class="text-l my-2 font-medium sm:font-normal">作者：<%=book.getB_author()%></p>
+                            <p class="text-sm my-2 font-medium sm:font-normal">类型：<%=typeList%>
                             </p>
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>
+                            <button onclick="window.location.href='/book_infor?b_id=<%=book.getB_id()%>'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
+                            <button onclick="window.location.href='/addToShelf'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>
                         </div>
                     </div>
                 </li>

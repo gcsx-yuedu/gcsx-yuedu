@@ -1,7 +1,6 @@
-package po.BSJ;
-import java.util.List;
+package po.ZYM;
 
-public class BUser {
+public class ZUser {
     private int u_id;
     private String u_name;
     private String u_password;
@@ -10,11 +9,11 @@ public class BUser {
 //    private List<BBook> bookList;
 //    private List<BBookType> bookTypeList;
 
-    public int getU_id() {
+    public int getu_id() {
         return u_id;
     }
 
-    public void setU_id(int id) {
+    public void setu_id(int id) {
         this.u_id = id;
     }
 
@@ -49,20 +48,4 @@ public class BUser {
     public void setU_forbid(String u_forbid) {
         this.u_forbid = u_forbid;
     }
-
-//    public List<BBook> getBookList() {
-//        return bookList;
-//    }
-//
-//    public void setBookList(List<BBook> bookList) {
-//        this.bookList = bookList;
-//    }
-//
-//    public List<BBookType> getBookTypeList() {
-//        return bookTypeList;
-//    }
-//
-//    public void setBookTypeList(List<BBookType> bookTypeList) {
-//        this.bookTypeList = bookTypeList;
-//    }
 }
