@@ -19,6 +19,8 @@ public class ZBookService {
     }
     public List<Integer> getTypeID(Integer book_id){return  bookDao.getTypeID(book_id);}
     public String getTypeByID(Integer t_id){return bookDao.getTypeByTypeID(t_id);}
-    public void addToShelf(ZBookShelf bookf){ bookDao.addToShelf(bookf); }
+    public void addToShelf(ZBookShelf shelf){ bookDao.addToShelf(shelf); }
     public List<ZBookType> selectAllType(){ return bookDao.selectAllType(); }
+    public List<Integer> selectBookIdByTypeId(int t_id){return bookDao.selectBookIdByTypeId(t_id);}
+    public ZBook selectBookByBookId(int b_id){return bookDao.selectBookByBookId(b_id);}
 }

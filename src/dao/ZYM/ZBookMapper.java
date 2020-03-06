@@ -10,6 +10,8 @@ public interface ZBookMapper {
     public List<ZBook> queryBook(String wenzi);
     public List<Integer> getTypeID(Integer book_id);
     public String getTypeByTypeID(Integer t_id);
-    public void addToShelf(ZBookShelf bookf);
+    public void addToShelf(ZBookShelf shelf);
     public List<ZBookType> selectAllType();
+    public List<Integer> selectBookIdByTypeId(int t_id);
+    public ZBook selectBookByBookId(int b_id);
 }

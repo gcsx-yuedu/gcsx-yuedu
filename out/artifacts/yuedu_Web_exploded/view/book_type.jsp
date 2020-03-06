@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="po.ZYM.ZBook" pageEncoding="utf-8"%>
 <%@ page import="po.ZYM.ZBookType" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <html class="no-js">
 <head>
@@ -31,7 +32,7 @@
             <span class="neck-border"></span>
         </div>
         <div class="search">
-            <input type="text" class="search-text" placeholder="Seach here${pageContext.request.contextPath}/static.">
+            <input type="text" class="search-text" placeholder="Seach here...">
             <button class="search-btn"><i class="icon-search"></i></button>
         </div>
         <nav class="header-nav">
@@ -62,8 +63,11 @@
 </header>
 
 <% Integer t_id = (Integer) session.getAttribute("t_id");
-    System.out.println("t_id="+t_id);
+    String t_type = (String) session.getAttribute("t_type");
+//    System.out.println("t_id="+t_id);
+    Integer count = (Integer) session.getAttribute("count");
     List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
+    List<ZBook> books = (List<ZBook>)session.getAttribute("books");
 %>
 
 <!-- Main -->
@@ -88,7 +92,7 @@
                         for (ZBookType type:types){
                     %>
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">
-                        <a href="/showBookByType?t_id=<%=type.getT_id()%>"> <%=type.getT_type()%></a>
+                        <a href="/showBookByType?t_id=<%=type.getT_id()%>&t_type=<%=type.getT_type()%>"> <%=type.getT_type()%></a>
                     </li>
                     <%}%>
                 </ul>
@@ -111,7 +115,7 @@
 
         <!-- Filter -->
         <div class="px-6 md:px-0 flex items-baseline justify-between border-b-2 border-grey-light mt-6 order-0 lg:order-1">
-            <h4 class="hidden md:inline-block text-grey-dark font-medium">书籍二类</h4>
+            <h4 class="hidden md:inline-block text-grey-dark font-medium">为您展示<%=t_type%>类书籍，共<%=count%>本</h4>
             <div>
                 <div class="inline-block md:hidden no-underline border-indigo pb-2 px-2 text-sm mr-2 text-indigo-darkest hover:cursor-pointer js-tab relative"
                      data-tab="section-stats">Stats</div>
@@ -121,56 +125,21 @@
         </div>
         <!-- Library -->
         <div class="hidden px-2 pt-2 md:px-0 flex-wrap order-2 pb-8 js-tab-pane active" id="section-library">
+            <% for (ZBook book:books){%>
             <div class="flex justify-start items-center p-5 px-6 w-full sm:w-1/2">
-                <img src="${pageContext.request.contextPath}/static/image/book-image/sanguoyanyi.jpg" alt="pick" class="shadow-md w-1/3 transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                <img src="<%=book.getB_cover()%>" alt="pick" class="shadow-md w-1/3 transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
                 <div class="ml-4 mt-1 w-2/3">
-                    <p class="text-l my-2 font-medium sm:font-normal">《三国演义》</p>
-                    <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;作者：罗贯中</p>
-                    <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;类型：***</p>
-                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>
+                    <p class="text-l my-2 font-medium sm:font-normal">《<%=book.getB_name()%>》</p>
+                    <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;作者：<%=book.getB_author()%></p>
+                    <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;&nbsp;&nbsp;<%=book.getTypeList()%></p>
+                    <button onclick="window.location.href='/book_infor?b_id=<%=book.getB_id()%>'"  class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
+                    <button onclick="window.location.href='/addToShelf'"  class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>
                 </div>
             </div>
-            <div class="flex justify-start items-center p-5 px-6 w-full sm:w-1/2">
-                <img src="${pageContext.request.contextPath}/static/image/book-image/sanguoyanyi.jpg" alt="pick" class="shadow-md w-1/3 transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
-                <div class="ml-4 mt-1 w-2/3">
-                    <p class="text-l my-2 font-medium sm:font-normal">《三国演义》</p>
-                    <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;作者：罗贯中</p>
-                    <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;类型：***</p>
-                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>
-                </div>
-            </div>
-            <div class="flex justify-start items-center p-5 px-6 w-full sm:w-1/2">
-                <img src="${pageContext.request.contextPath}/static/image/book-image/sanguoyanyi.jpg" alt="pick" class="shadow-md w-1/3 transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
-                <div class="ml-4 mt-1 w-2/3">
-                    <p class="text-l my-2 font-medium sm:font-normal">《三国演义》</p>
-                    <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;作者：罗贯中</p>
-                    <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;类型：***</p>
-                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>
-                </div>
-            </div>
-            <div class="flex justify-start items-center p-5 px-6 w-full sm:w-1/2">
-                <img src="${pageContext.request.contextPath}/static/image/book-image/sanguoyanyi.jpg" alt="pick" class="shadow-md w-1/3 transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
-                <div class="ml-4 mt-1 w-2/3">
-                    <p class="text-l my-2 font-medium sm:font-normal">《三国演义》</p>
-                    <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;作者：罗贯中</p>
-                    <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;类型：***</p>
-                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>
-                </div>
-            </div>
-            <div class="flex justify-start items-center p-5 px-6 w-full sm:w-1/2">
-                <img src="${pageContext.request.contextPath}/static/image/book-image/sanguoyanyi.jpg" alt="pick" class="shadow-md w-1/3 transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
-                <div class="ml-4 mt-1 w-2/3">
-                    <p class="text-l my-2 font-medium sm:font-normal">《三国演义》</p>
-                    <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;作者：罗贯中</p>
-                    <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;类型：***</p>
-                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>
-                </div>
-            </div>
+            <%}%>
+
+
+
 
 
         </div>
