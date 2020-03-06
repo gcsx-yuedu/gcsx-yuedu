@@ -23,4 +23,6 @@ public interface BUserMapper {
     public List<BShortComm> getCommById(Integer fatie_id);
     public List<BBook> getBookById(Integer b_id);
     public List<BArticle> getArticle(Integer author_id);
+    public void deleteShort(String fatie_time);
+    public void deleteArticle(String lc_time);
 }

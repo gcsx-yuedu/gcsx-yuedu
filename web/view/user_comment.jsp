@@ -145,7 +145,7 @@
                             <p class="text-l my-2 font-medium sm:font-normal">发布时间：<%=c.getCommList().getFatie_time()%></p>
                             <p class="text-l my-2 font-medium sm:font-normal">你的评论：<%=c.getCommList().getFatie_content()%></p>
                             <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除评论</button>&nbsp;
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none"><a href="/deleteShort?fatie_time=<%=c.getCommList().getFatie_time()%>">删除评论</a></button>&nbsp;
                         </div>
                     </div>
                 </li>
@@ -169,7 +169,7 @@
                             <p class="text-l my-2 font-medium sm:font-normal">发布时间：<%=b.getArticleList().getLc_time()%></p>
                             <p class="text-l my-2 font-medium sm:font-normal">文章标题：<%=b.getArticleList().getTitle()%></p>
                             <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除文章</button>&nbsp;
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none"><a href="/deleteArticle?lc_time=<%=b.getArticleList().getLc_time()%>">删除文章</a></button>&nbsp;
                         </div>
                     </div>
                 </li>

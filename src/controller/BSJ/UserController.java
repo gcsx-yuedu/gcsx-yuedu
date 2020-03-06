@@ -138,4 +138,15 @@ public class UserController {
 
     }
 
+    @RequestMapping("/deleteShort")
+    public String deleteShort(String fatie_time){
+        service.deleteShort(fatie_time);
+        return "redirect:user_comment";
+    }
+    @RequestMapping("/deleteArticle")
+    public String deleteArticle(String lc_time){
+        service.deleteArticle(lc_time);
+        return "redirect:user_comment";
+    }
+
 }
