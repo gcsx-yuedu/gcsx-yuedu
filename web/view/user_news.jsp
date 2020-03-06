@@ -45,7 +45,7 @@
                 <li>
                     <span class="line"></span>
                     <span>欢迎 </span>
-                    <a class="app" style="cursor:pointer">用户名</a>
+                    <a href="/user_info?u_id=<%=session.getAttribute("userId")%>" class="app" style="cursor:pointer"><%=session.getAttribute("userName")%></a>
                 </li>
                 <li>
                     <span class="line"></span>
@@ -75,8 +75,8 @@
                 <a href="#" class="pic" style=" background: url(${pageContext.request.contextPath}/static/image/user-image/user_img1.jpg) no-repeat; background-size: cover; "></a>
                 <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
                 <div class="info" style="padding-left:20px;">
-                    <a href="#" class="info-title">用户名</a>
-                    <p><i class="icon-star"></i>45人关注</p>
+                    <a href="#" class="info-title"><%=session.getAttribute("userName")%></a>
+                    <p><i class="icon-star"></i><%=session.getAttribute("countFans")%>人关注</p>
                 </div>
             </li>
             <li class="ml-2 mb-4 flex">
@@ -92,15 +92,14 @@
                 </div>
                 <ul class="text-grey lg:text-grey-dark list-reset leading-loose mt-2" id="sidenav-categories">
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_change.jsp">修改信息</a></li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_news.jsp">我的消息</a></li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_focus.jsp">我的关注/粉丝</a></li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_comment.jsp">我的评论/读后感</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_news?u_id=<%=session.getAttribute("userId")%>">我的消息</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_focus?u_id=<%=session.getAttribute("userId")%>">我的关注/粉丝</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="user_comment?u_id=<%=session.getAttribute("userId")%>">我的评论/读后感</a></li>
                 </ul>
             </li>
             <li class="ml-2 mb-4 flex">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/wishlist-default.svg" alt="wishlist-icon"
-                     class="w-4 h-4 mr-2">
-                <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger">我的书架</div>
+                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/wishlist-default.svg" alt="wishlist-icon" class="w-4 h-4 mr-2">
+                <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger"><a href="/user_info?u_id=<%=session.getAttribute("userId")%>">我的书架</a></div>
             </li>
             <li class="ml-2 mb-4 flex lg:hidden">
                 <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/profile-default.svg" alt="profile-icon" class="w-4 h-4 mr-2">

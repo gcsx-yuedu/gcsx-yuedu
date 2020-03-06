@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="po.BSJ.BCommentList" %>
+<%@ page import="po.BSJ.BArticleList" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 
 <html class="no-js">
@@ -45,7 +47,7 @@
                 <li>
                     <span class="line"></span>
                     <span>欢迎 </span>
-                    <a href="${pageContext.request.contextPath}/view/user_info.jsp" class="app" style="cursor:pointer">用户名</a>
+                    <a href="/user_info?u_id=<%=session.getAttribute("userId")%>" class="app" style="cursor:pointer"><%=session.getAttribute("userName")%></a>
                 </li>
                 <li>
                     <span class="line"></span>
@@ -75,8 +77,8 @@
                 <a href="#" class="pic" style=" background: url(${pageContext.request.contextPath}/static/image/user-image/user_img1.jpg) no-repeat; background-size: cover; "></a>
                 <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
                 <div class="info" style="padding-left:20px;">
-                    <a href="#" class="info-title">用户名</a>
-                    <p><i class="icon-star"></i>45人关注</p>
+                    <a href="#" class="info-title"><%=session.getAttribute("userName")%></a>
+                    <p><i class="icon-star"></i><%=session.getAttribute("countFans")%>人关注</p>
                 </div>
             </li>
             <li class="ml-2 mb-4 flex">
@@ -92,14 +94,14 @@
                 </div>
                 <ul class="text-grey lg:text-grey-dark list-reset leading-loose mt-2" id="sidenav-categories">
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_change.jsp">修改信息</a></li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_news.jsp">我的消息</a></li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_focus">我的关注/粉丝</a></li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_comment.jsp">我的评论/读后感</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_news?u_id=<%=session.getAttribute("userId")%>">我的消息</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_focus?u_id=<%=session.getAttribute("userId")%>">我的关注/粉丝</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="user_comment?u_id=<%=session.getAttribute("userId")%>">我的评论/读后感</a></li>
                 </ul>
             </li>
             <li class="ml-2 mb-4 flex">
                 <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/wishlist-default.svg" alt="wishlist-icon" class="w-4 h-4 mr-2">
-                <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger"><a href="/user_info">我的书架</a></div>
+                <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger"><a href="/user_info?u_id=<%=session.getAttribute("userId")%>">我的书架</a></div>
             </li>
             <li class="ml-2 mb-4 flex lg:hidden">
                 <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/profile-default.svg" alt="profile-icon" class="w-4 h-4 mr-2">
@@ -128,97 +130,49 @@
         <!-- pinglun -->
         <div class="hidden px-2 pt-2 md:px-0 flex-wrap order-2 pb-8 js-tab-pane active" id="section-pinglun">
             <ul>
+                <%
+                    List<BCommentList> commentLists = (List<BCommentList>)request.getAttribute("commentLists");
+                    for(BCommentList com : commentLists){
+                %>
                 <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
                     <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
-                        <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                        <img src="<%=com.getBook().getB_cover()%>" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
                         <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
 
                         <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：*****</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">你的评论：*****</p>
+                            <p class="text-xl my-2 font-medium sm:font-normal"><%=com.getBook().getB_name()%></p>
+                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：<%=com.getCommList().getFatie_time()%></p>
+                            <p class="text-l my-2 font-medium sm:font-normal">你的评论：<%=com.getCommList().getFatie_content()%></p>
                             <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除评论</button>&nbsp;
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none"><a href="/deleteShort?<%=com.getCommList().getFatie_time()%>">删除评论</a></button>&nbsp;
                         </div>
                     </div>
                 </li>
-                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
-                    <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
-                        <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
-                        <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
-
-                        <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：*****</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">你的评论：*****</p>
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除评论</button>&nbsp;
-                        </div>
-                    </div>
-                </li>
-
-                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
-                    <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
-                        <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
-                        <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
-
-                        <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：*****</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">你的评论：*****</p>
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none"><a href="/deleteShort?fatie_time=<%=c.getCommList().getFatie_time()%>">删除评论</a></button>&nbsp;
-                        </div>
-                    </div>
-                </li>
+                <%}%>
             </ul>
         </div>
         <!-- duhougan -->
         <div class="hidden flex-wrap order-2 pt-0 md:pt-6 md:pb-8 js-tab-pane" id="section-duhougan">
             <ul>
+                <%
+                    List<BArticleList> articleList = (List<BArticleList>)request.getAttribute("articleList");
+                    for(BArticleList ar : articleList){
+                %>
                 <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
                     <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
-                        <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
+                        <img src="<%=ar.getBooks().getB_cover()%>" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
                         <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
 
                         <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：*****</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">文章标题：*****</p>
+                            <p class="text-xl my-2 font-medium sm:font-normal"><%=ar.getBooks().getB_name()%></p>
+                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：<%=ar.getArticleList().getLc_time()%></p>
+                            <p class="text-l my-2 font-medium sm:font-normal">文章标题：<%=ar.getArticleList().getTitle()%></p>
                             <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除文章</button>&nbsp;
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none"><a href="/deleteArticle?lc_time=<%=ar.getArticleList().getLc_time()%>">删除文章</a></button>&nbsp;
                         </div>
                     </div>
                 </li>
-                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
-                    <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
-                        <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
-                        <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
-
-                        <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：*****</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">文章标题：*****</p>
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除文章</button>&nbsp;
-                        </div>
-                    </div>
-                </li>
-
-                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
-                    <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
-                        <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
-                        <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
-
-                        <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：*****</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">文章标题：*****</p>
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none"><a href="/deleteArticle?lc_time=<%=b.getArticleList().getLc_time()%>">删除文章</a></button>&nbsp;
-                        </div>
-                    </div>
-                </li>
+                <%}%>
             </ul>
         </div>
     </div>

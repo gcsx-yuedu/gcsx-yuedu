@@ -41,7 +41,7 @@
                 <li>
                     <span class="line"></span>
                     <span>欢迎 </span>
-                    <a href="/user_info" class="app" style="cursor:pointer" style="cursor:pointer"><%=session.getAttribute("userName")%></a>
+                    <a href="/user_info?u_id=<%=session.getAttribute("userId")%>" class="app" style="cursor:pointer"><%=session.getAttribute("userName")%></a>
                 </li>
                 <li>
                     <span class="line"></span>

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import po.BSJ.*;
 import service.BSJ.BUserService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,11 +30,12 @@ public class UserController {
     }
 
     @RequestMapping("/user_info")
-    public String list(Model model){
-//        String u_id=request.getSession().getAttribute("u_id");
-        List<BUser> list = service.queryUserById(1);
+    public String list(Model model,int u_id,HttpServletRequest request){
+        List<BUser> list = service.queryUserById(u_id);
+        int countFans = service.getCountFans(u_id);
+        request.getSession().setAttribute("countFans",countFans);
         List<BBookShelfList> shelfLists = new ArrayList<>();
-        List<BBookShelf> shelfList = service.queryShelfById(1);
+        List<BBookShelf> shelfList = service.queryShelfById(u_id);
         for(BBookShelf bookShelf : shelfList){
             List<BBook> bookList = service.selectBookById(bookShelf.getBook_id());
             for(BBook book: bookList){
@@ -62,8 +64,8 @@ public class UserController {
 
     @RequestMapping("/user_focus")
 
-    public String getConcern(Model model){
-        List<BGuanzhu> guanzhuList = service.getGuanzhuId(1);
+    public String getConcern(Model model,int u_id){
+        List<BGuanzhu> guanzhuList = service.getGuanzhuId(u_id);
         List<BConcernList> concernList = new ArrayList<>();
         for(BGuanzhu gz: guanzhuList){
             List<BUser> concern_List = service.queryUserById(gz.getGuanzhu_userid());
@@ -76,7 +78,7 @@ public class UserController {
             }
         }
         model.addAttribute("concernList",concernList);
-        List<BGuanzhu> fList = service.getFansId(1);
+        List<BGuanzhu> fList = service.getFansId(u_id);
         List<BFansList> fansList = new ArrayList<>();
         for(BGuanzhu fc : fList){
             List<BUser> fans_List = service.queryUserById(fc.getUser_id());
@@ -100,17 +102,17 @@ public class UserController {
     }
 
     @RequestMapping("/guanzhu")
-    public String Guanzhu(int user_id){
+    public String Guanzhu(int u_id,int user_id){
         BGuanzhu gz = new BGuanzhu();
-        gz.setUser_id(1);
+        gz.setUser_id(u_id);
         gz.setGuanzhu_userid(user_id);
         service.guanzhu(gz);
         return "redirect:user_focus";
     }
 
     @RequestMapping("user_comment")
-    public String Comment(Model model){
-        List<BShortComm> commList = service.getCommById(1);
+    public String Comment(Model model,int u_id){
+        List<BShortComm> commList = service.getCommById(u_id);
         List<BCommentList> commentLists = new ArrayList<>();
         for(BShortComm comm : commList){
             List<BBook> bookList = service.getBookById(comm.getShuji_id());
@@ -122,7 +124,7 @@ public class UserController {
             }
         }
         model.addAttribute("commentLists",commentLists);
-        List<BArticle> article = service.getArticle(1);
+        List<BArticle> article = service.getArticle(u_id);
         List<BArticleList> articleList = new ArrayList<>();
         for(BArticle ar : article){
             List<BBook> book = service.getBookById(ar.getBook_id());
@@ -150,8 +152,8 @@ public class UserController {
     }
 
     @RequestMapping("/user_news")
-    public String News(Model model){
-        List<BArticle> article = service.getArticle(1);
+    public String News(Model model,int u_id){
+        List<BArticle> article = service.getArticle(u_id);
         List<BHuitieNews> huitieList = new ArrayList<>();
         for(BArticle a : article){
             List<BHuitie> huitie = service.getHuitieNews(a.getLc_id());
@@ -168,7 +170,7 @@ public class UserController {
         }
         model.addAttribute("huitieList",huitieList);
 
-        List<BGuanzhu> fList = service.getFansId(1);
+        List<BGuanzhu> fList = service.getFansId(u_id);
         List<BFansList> fanss= new ArrayList<>();
         for(BGuanzhu fc : fList){
             List<BUser> fans_List = service.queryUserById(fc.getUser_id());
