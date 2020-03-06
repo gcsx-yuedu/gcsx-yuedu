@@ -1,7 +1,3 @@
-function nextPg() {
-    var pageNum = document.getElementById("pageNum").value;
-    window.location.href="/houtai-shujileixingguanli?pageNumber="+pageNum;
-}
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
         const anime = require("animejs");
         const tippy = require("tippy.js");
@@ -42,6 +38,8 @@ function nextPg() {
         function isHidden(el) {
             return (el.offsetParent === null)
         }
+
+
 
         function removeLoadingScreen () {
             anime({

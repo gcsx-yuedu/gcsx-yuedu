@@ -108,4 +108,79 @@ public class UserController {
         return "redirect:user_focus";
     }
 
+    @RequestMapping("user_comment")
+    public String Comment(Model model){
+        List<BShortComm> commList = service.getCommById(1);
+        List<BCommentList> commentLists = new ArrayList<>();
+        for(BShortComm comm : commList){
+            List<BBook> bookList = service.getBookById(comm.getShuji_id());
+            for(BBook book : bookList){
+                BCommentList bcl = new BCommentList();
+                bcl.setBook(book);
+                bcl.setCommList(comm);
+                commentLists.add(bcl);
+            }
+        }
+        model.addAttribute("commentLists",commentLists);
+        List<BArticle> article = service.getArticle(1);
+        List<BArticleList> articleList = new ArrayList<>();
+        for(BArticle ar : article){
+            List<BBook> book = service.getBookById(ar.getBook_id());
+            for(BBook b : book){
+                BArticleList ba = new BArticleList();
+                ba.setBooks(b);
+                ba.setArticleList(ar);
+                articleList.add(ba);
+            }
+        }
+        model.addAttribute("articleList",articleList);
+        return "user_comment";
+
+    }
+
+    @RequestMapping("/deleteShort")
+    public String deleteShort(String fatie_time){
+        service.deleteShort(fatie_time);
+        return "redirect:user_comment";
+    }
+    @RequestMapping("/deleteArticle")
+    public String deleteArticle(String lc_time){
+        service.deleteArticle(lc_time);
+        return "redirect:user_comment";
+    }
+
+    @RequestMapping("/user_news")
+    public String News(Model model){
+        List<BArticle> article = service.getArticle(1);
+        List<BHuitieNews> huitieList = new ArrayList<>();
+        for(BArticle a : article){
+            List<BHuitie> huitie = service.getHuitieNews(a.getLc_id());
+            for(BHuitie h :huitie){
+                List<BUser> user = service.queryUserById(h.getHuitieren_id());
+                for(BUser u : user){
+                    BHuitieNews hui = new BHuitieNews();
+                    hui.setUser(u);
+                    hui.setHuitieList(h);
+                    hui.setArticle(a);
+                    huitieList.add(hui);
+                }
+            }
+        }
+        model.addAttribute("huitieList",huitieList);
+
+        List<BGuanzhu> fList = service.getFansId(1);
+        List<BFansList> fanss= new ArrayList<>();
+        for(BGuanzhu fc : fList){
+            List<BUser> fans_List = service.queryUserById(fc.getUser_id());
+            for(BUser fans : fans_List){
+                BFansList FansList = new BFansList();
+                FansList.setFansList(fans);
+                fanss.add(FansList);
+            }
+        }
+        model.addAttribute("fanss",fanss);
+
+        return "user_news";
+    }
+
 }

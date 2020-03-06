@@ -707,6 +707,51 @@ h3.tittle-w3l {
 .img-people{
 	height: 100px;
 }
+
+.testimonials_time{
+    color: whitesmoke;
+    float:left;
+    padding-top:8px;
+}
+
+.testimonials_click{
+    color:whitesmoke;
+    float: right;
+    padding-right: 30px;
+    padding-top:8px;
+
+}
+
+/*.testimonials_click span.fa{
+	color: #FFFFFF;
+	margin-right: 5px;
+}
+
+.testimonials_click span.fa-heart-o{
+	color: #000000;
+	margin-right: 5px;
+}
+
+.testimonials_click span.fa-heart-oCur{
+	color: #E03C5A;
+	margin-right: 5px;
+}*/
+
+/*.testimonials_click span.fa-heart{
+	color: #E03C5A;
+	margin-right: 5px;
+}*/
+
+.fa-heart-o:before {
+    content: "\f08a";
+
+}
+
+.fa-heart:before {
+    content: "\f004";
+    color: #e03c5a;
+}
+
 .agileinfo_testimonials_left {
     text-align: center;
 }
@@ -749,6 +794,7 @@ h3.tittle-w3l {
     color: #122B40;
     font-size: 12pt;
 }
+
 
 .wthree_testimonial_grid_left {
     width: 80%;

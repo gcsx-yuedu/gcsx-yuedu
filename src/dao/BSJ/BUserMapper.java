@@ -20,4 +20,10 @@ public interface BUserMapper {
     public Integer getCountFans(Integer guanzhu_userid);
     public void cancelConcern(Integer guanzhu_userid);
     public void guanzhu(BGuanzhu gz);
+    public List<BShortComm> getCommById(Integer fatie_id);
+    public List<BBook> getBookById(Integer b_id);
+    public List<BArticle> getArticle(Integer author_id);
+    public void deleteShort(String fatie_time);
+    public void deleteArticle(String lc_time);
+    public List<BHuitie> getHuitieNews(Integer tiezi_id);
 }
