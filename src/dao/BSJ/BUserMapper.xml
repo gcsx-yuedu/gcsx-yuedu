@@ -86,4 +86,12 @@
     <select id="getArticle" parameterType="Integer" resultType="po.BSJ.BArticle">
 		select * from longcomm where author_id=#{author_id}
 	</select>
+    <!--根据发帖时间删除-->
+    <delete id="deleteShort" parameterType="String">
+        delete from shortcomm where fatie_time=#{fatie_time}
+    </delete>
+	<!--根据发文章时间删除-->
+	<delete id="deleteArticle" parameterType="String">
+		delete from longcomm where lc_time=#{lc_time}
+	</delete>
 </mapper>
