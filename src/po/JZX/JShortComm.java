@@ -4,6 +4,7 @@ public class JShortComm {
     private int sc_id;
     private int shuji_id;
     private int fatie_id;
+    private String fatie_name;
     private String fatie_time;
     private String fatie_content;
     private int click;
@@ -32,6 +33,14 @@ public class JShortComm {
         this.fatie_id = fatie_id;
     }
 
+    public String getFatie_name() {
+        return fatie_name;
+    }
+
+    public void setFatie_name(String fatie_name) {
+        this.fatie_name = fatie_name;
+    }
+
     public String getFatie_time() {
         return fatie_time;
     }
@@ -58,10 +67,11 @@ public class JShortComm {
 
     @Override
     public String toString() {
-        return "ShortComm{" +
+        return "JShortComm{" +
                 "sc_id=" + sc_id +
                 ", shuji_id=" + shuji_id +
                 ", fatie_id=" + fatie_id +
+                ", fatie_name='" + fatie_name + '\'' +
                 ", fatie_time='" + fatie_time + '\'' +
                 ", fatie_content='" + fatie_content + '\'' +
                 ", click=" + click +
