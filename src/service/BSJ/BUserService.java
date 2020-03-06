@@ -46,4 +46,5 @@ public class BUserService {
     public List<BArticle> getArticle(Integer author_id){ return BUserDao.getArticle(author_id);}
     public void deleteShort(String fatie_time){ BUserDao.deleteShort(fatie_time);}
     public void deleteArticle(String lc_time){ BUserDao.deleteArticle(lc_time);}
+    public List<BHuitie> getHuitieNews(Integer tiezi_id){ return BUserDao.getHuitieNews(tiezi_id);}
 }

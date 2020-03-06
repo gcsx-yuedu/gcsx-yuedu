@@ -94,4 +94,8 @@
 	<delete id="deleteArticle" parameterType="String">
 		delete from longcomm where lc_time=#{lc_time}
 	</delete>
+	<!--根据帖子id查回帖消息-->
+	<select id="getHuitieNews" parameterType="Integer" resultType="po.BSJ.BHuitie">
+		select * from huitie where tiezi_id=#{tiezi_id}
+	</select>
 </mapper>
