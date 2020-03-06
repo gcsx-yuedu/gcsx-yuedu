@@ -15,4 +15,6 @@ public interface JBookDao {
     public String getTypeByTypeID(Integer t_id);
 
     public void addShortComm(JShortComm sc);
+    public List<JShortComm> queryShortComm(Integer shuji_id);
+    public String getNameByID(Integer u_id);
 }
