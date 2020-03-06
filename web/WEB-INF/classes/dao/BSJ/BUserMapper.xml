@@ -5,49 +5,74 @@
 	update userInfo set u_name=#{u_name},u_password=#{u_password},u_sex=#{u_sex},u_address=#{u_address} where u_id=#{u_id}
 	</update>
 
-<!--	<select id="queryUserById" parameterType="Integer" resultMap="ResultUser">
-		select userInfo.*,book.*,typez.t_type from userInfo,bookshelf,book,book_type,typez
-          where userInfo.u_id=bookshelf.user_id and bookshelf.book_id=book.b_id
-          and book_type.book_id=book.b_id and book_type.type_id=typez.t_id
-          and u_id={#u_id}
-	</select>
-	<resultMap id="ResultUser" type="po.BSJ.BUser">
-		<id property="u_id" column="b_id"/>
-		<result property="u_name" column="u_name"/>
-		<result property="u_password" column="u_pawword"/>
-		<result property="u_sex" column="u_sex"/>
-		<result property="u_forbid" column="u_forbid"/>
-		<result property="u_address" column="u_address"/>
+	<!--	<select id="queryUserById" parameterType="Integer" resultMap="ResultUser">
+            select userInfo.*,book.*,typez.t_type from userInfo,bookshelf,book,book_type,typez
+              where userInfo.u_id=bookshelf.user_id and bookshelf.book_id=book.b_id
+              and book_type.book_id=book.b_id and book_type.type_id=typez.t_id
+              and u_id={#u_id}
+        </select>
+        <resultMap id="ResultUser" type="po.BSJ.BUser">
+            <id property="u_id" column="b_id"/>
+            <result property="u_name" column="u_name"/>
+            <result property="u_password" column="u_pawword"/>
+            <result property="u_sex" column="u_sex"/>
+            <result property="u_forbid" column="u_forbid"/>
+            <result property="u_address" column="u_address"/>
 
-		<collection property="bookList" ofType="po.BSJ.BBook" column="b_id">
-			<id property="id" column="b_id" />
-			<result property="b_cover" column="b_cover" />
-			<result property="b_name" column="b_name" />
-			<result property="b_author" column="b_author" />
-		</collection>
-		<collection property="bookTypeList" ofType="po.BSJ.BBookType" column="type_id">
-			<id property="t_id" column="t_id" />
-			<result property="t_type" column="t_type"/>
-		</collection>
-	</resultMap> -->
+            <collection property="bookList" ofType="po.BSJ.BBook" column="b_id">
+                <id property="id" column="b_id" />
+                <result property="b_cover" column="b_cover" />
+                <result property="b_name" column="b_name" />
+                <result property="b_author" column="b_author" />
+            </collection>
+            <collection property="bookTypeList" ofType="po.BSJ.BBookType" column="type_id">
+                <id property="t_id" column="t_id" />
+                <result property="t_type" column="t_type"/>
+            </collection>
+        </resultMap> -->
+	<!--根据用户id获取用户信息-->
 	<select id="queryUserById" parameterType="Integer" resultType="po.BSJ.BUser">
 		select * from userInfo where u_id=#{u_id}
 	</select>
-
+	<!--根据用户id获取书架信息-->
 	<select id="queryShelfById" parameterType="Integer" resultType="po.BSJ.BBookShelf">
 		select * from bookshelf where user_id=#{user_id}
 	</select>
-
+	<!--根据书架book_id获取书籍信息-->
 	<select id="selectBookById" parameterType="Integer" resultType="po.BSJ.BBook">
 		select b_id,b_name,b_author,b_cover,b_content from book where b_id=#{b_id}
 	</select>
-
+	<!--根据书籍id获取类型的type_id-->
 	<select id="getTypeId" parameterType="Integer" resultType="Integer">
         select type_id from book_type where book_id=#{book_id}
     </select>
-
+	<!--根据类型的type_id获取类型信息-->
 	<select id="getTypeByTypeId" parameterType="Integer" resultType="String">
         select t_type from typez where t_id=#{t_id}
     </select>
+	<!--根据user_id获取关注的guanzhu_userid-->
+	<select id="getGuanzhuId" parameterType="Integer" resultType="po.BSJ.BGuanzhu">
+		select guanzhu_userid from guanzhu where user_id=#{user_id}
+	</select>
+	<!--根据guanzhu_userid获取粉丝的user_id-->
+	<select id="getFansId" parameterType="Integer" resultType="po.BSJ.BGuanzhu">
+		select user_id from guanzhu where guanzhu_userid=#{guanzhu_userid}
+	</select>
+	<!--&lt;!&ndash;根据user_id获取关注的数量&ndash;&gt;-->
+	<!--<select id="getCountConcern" parameterType="Integer" resultType="Integer">-->
+	<!--select count(*) from guanzhu where user_id=#{user_id}-->
+	<!--</select>-->
+	<!--根据guanzhu_userid获取粉丝的数量-->
+	<select id="getCountFans" parameterType="Integer" resultType="Integer">
+		select count(*) from guanzhu where guanzhu_userid=#{guanzhu_userid}
+	</select>
+    <!--根据关注id删除-->
+	<delete id="cancelConcern" parameterType="Integer" >
+		delete from guanzhu where guanzhu_userid=#{guanzhu_userid}
+	</delete>
+	<!--根据user_id和u_id插入-->
+	<insert id="guanzhu" parameterType="po.BSJ.BGuanzhu">
+		insert into guanzhu(user_id,guanzhu_userid) values(#{user_id},#{guanzhu_userid})
+	</insert>
 
 </mapper>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="po.ZYM.ZBookType" pageEncoding="utf-8"%>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <html lang="en">
 <head>
@@ -10,7 +11,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/home-css/index.css">
 </head>
 <body>
-
+<%  String wenzi = request.getParameter("wenzi");
+	List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
+%>
 <header class="header">
 <div class="header-inner body-width">
   <a href="#" class="logo"></a>
@@ -18,8 +21,9 @@
 	<a class="category-link">分类</a>
 	<i class="icon-arrow"></i>
 	<div class="drop_con">
-	<a>哈哈哈哈</a>
-	<a>hhhhh</a>
+	<%for (ZBookType ty:types){%>
+		<a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
+	<%}%>
     </div>
 	<div class="category-result"></div>
 	<!-- 边框 -->
@@ -27,10 +31,13 @@
 	<span class="result-border"></span>
 	<span class="neck-border"></span>
   </div>
-  <div class="search">
-	<input type="text" class="search-text" placeholder="Seach here${pageContext.request.contextPath}/static.">
-	<button class="search-btn"><i class="icon-search"></i></button>
-  </div>
+
+	<form action="/book_search" method="post" id="myForm">
+		<div class="search">
+			<input type="text" class="search-text" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>">
+			<button class="search-btn"><i class="icon-search"></i></button>
+		</div>
+	</form>
   <nav class="header-nav">
 	<ul>
 	  <li>
@@ -179,22 +186,10 @@
   </div>
   <div class="main-cont main-recommend">
 	<div class="main-cont__title">
-	  <h3>单品推荐</h3>
+		<h3>单品推荐</h3>
 	  <p class="list">
-		<em>书籍类型：</em>
-		<a href="#">类型</a>
-		<span>|</span>
-		<a href="#">类型</a>
-		<span>|</span>
-		<a href="#">类型</a>
-		<span>|</span>
-		<a href="#">类型</a>
-		<span>|</span>
-		<a href="#">类型</a>
-		<span>|</span>
-		<a href="#">类型</a>
-		<span>|</span>
-		<a href="#">类型</a>
+		
+
 	  </p>
 	</div>
 	<ul class="main-cont__list clearfix">

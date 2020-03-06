@@ -3,11 +3,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
-    <%--<%--%>
-        <%--String path = request.getContextPath();--%>
-        <%--String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";--%>
-    <%--%>--%>
-    <%--<base href="<%=basePath%>">--%>
+
 <meta charset="utf-8">
 <title>用户登录/注册</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/gly-css/style.css" type="text/css"/>
@@ -20,11 +16,11 @@
             <h2>欢迎回来</h2>
             <label>
                 <span>用户名</span>
-                <input type="text" />
+                <input id="u_name" type="text" />
             </label>
             <label>
                 <span>密码</span>
-                <input type="password" />
+                <input id="u_password" type="password" />
             </label>
             
             <!-- <button type="button" class="fb-btn">使用 <span>facebook</span> 帐号登录</button> -->
@@ -35,33 +31,53 @@
 					  style="border: 1px solid #ccc;
 				        border-radius: 5px;"></canvas>
 			</label>
+            <script src="${pageContext.request.contextPath}/static/js/gly-js/http_lib.sinaapp.com_js_jquery_2.2.4_jquery-2.2.4.js"></script>
 			<!-- 生成随机验证码	 -->
 			<script>
-			 var show_num = [];
-			 draw0(show_num);
+			 var show_num0 = [];
+			 draw0(show_num0);
 			function dj0(){
-			 draw0(show_num);   
+			 draw0(show_num0);
 			 }
 			function sublim0(){
-			var val=document.getElementById("text0").value;  
-			            var num = show_num.join("");
+			var val=document.getElementById("text0").value;
+			var u_name = document.getElementById("u_name").value;
+			var u_password = document.getElementById("u_password").value;
+			            var num0 = show_num0.join("");
 			            if(val==''){
 			                alert('请输入验证码！');
-			            }else if(val == num){
+			            }else if(val == num0){
 			                alert('提交成功！');
+                            $.ajax({
+                                url: '/CheckUserName',
+                                type:'post',
+                                async:false,
+                                data:{"u_name":u_name,"u_password":u_password},
+                                success:function (number) {
+                                    if (number==1){
+                                        alert("核验成功");
+                                        window.location.href="/toHomeUser?userName="+u_name;
+                                    } else {
+                                        alert("核验失败");
+                                    }
+                                },
+                                error:function () {
+                                    alert("系统出错");
+                                },
+                            });
 			                document.getElementById(".input-val").val('');
-			                draw0(show_num);
+			                draw0(show_num0);
 			
 			            }else{
-			                alert('验证码错误！\n你输入的是:  '+val+"\n正确的是:  "+num+'\n请重新输入！');
-			                document.getElementById("text").value='';
-			                draw0(show_num);
+			                alert('验证码错误！\n你输入的是:  '+val+"\n正确的是:  "+num0+'\n请重新输入！');
+			                document.getElementById("text0").value='';
+			                draw0(show_num0);
 			            }
 			        
 			       
 					
 			          }
-			function draw0(show_num) {
+			function draw0(show_num0) {
 			        var canvas_width=document.getElementById('canvas0').clientWidth;
 			        var canvas_height=document.getElementById('canvas0').clientHeight;
 			        var canvas = document.getElementById("canvas0");//获取到canvas的对象，演员
@@ -76,7 +92,7 @@
 			            var j = Math.floor(Math.random() * aLength);//获取到随机的索引值
 			            var deg = Math.random() * 30 * Math.PI / 180;//产生0~30之间的随机弧度
 			            var txt = aCode[j];//得到随机的一个内容
-			            show_num[i] = txt;
+			            show_num0[i] = txt;
 			            var x = 10 + i * 20;//文字在canvas上的x坐标
 			            var y = 20 + Math.random() * 8;//文字在canvas上的y坐标
 			            context.font = "bold 23px 微软雅黑";
@@ -141,7 +157,7 @@
                 <h2>立即注册</h2>
                 <label>
                     <span>用户名</span>
-                    <input type="text" />
+                    <input id="zc_name" type="text" />
                 </label>
                 <!-- <label>
                     <span>邮箱</span>
@@ -149,11 +165,11 @@
                 </label> -->
                 <label>
                     <span>密码</span>
-                    <input type="password" />
+                    <input id="zc_password1" type="password" />
                 </label>
 				<label>
 					<span>再次输入密码</span>
-					<input type="password" />
+					<input id="zc_password2" type="password" />
 				</label>
 				<label>
 					<span>验证码(区分大小写)</span>
@@ -170,12 +186,49 @@
 				 draw(show_num);   
 				 }
 				function sublim(){
-				var val=document.getElementById("text").value;  
+				var val=document.getElementById("text").value;
+				var zc_name = document.getElementById("zc_name").value;
+				var zc_password1 = document.getElementById("zc_password1").value;
+				var zc_password2 = document.getElementById("zc_password2").value;
 				            var num = show_num.join("");
 				            if(val==''){
 				                alert('请输入验证码！');
 				            }else if(val == num){
-				                alert('提交成功！');
+				                if (zc_password1==zc_password2) {
+                                    alert('提交成功！');
+                                    $.ajax({
+                                        url: '/sameUserName',
+                                        async: false,
+                                        type: 'post',
+                                        data: {"u_name": zc_name},
+                                        success:function (sameUsername) {
+                                            if (sameUsername==0){
+                                                $.ajax({
+                                                    url:'/addUserInfo',
+                                                    async:false,
+                                                    type: 'post',
+                                                    data:{"u_name":zc_name,"u_password":zc_password1},
+                                                    success:function () {
+                                                        alert('注册成功');
+                                                        window.location.href = '/USignUp';
+                                                    },
+                                                    error:function () {
+                                                        alert("系统出错");
+                                                    },
+                                                });
+                                            } else {
+                                                alert("已存在该用户名，请重新输入");
+                                                document.getElementById("zc_name").value = '';
+                                                document.getElementById("zc_password1").value = '';
+                                                document.getElementById("zc_password2").value = '';
+                                            }
+                                        }
+                                    });
+                                }else {
+                                    alert("密码不匹配，请重新输入");
+                                    document.getElementById("zc_password1").value = '';
+                                    document.getElementById("zc_password2").value = '';
+                                }
 				                document.getElementById(".input-val").val('');
 				                draw(show_num);
 				

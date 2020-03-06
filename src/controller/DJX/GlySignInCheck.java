@@ -2,6 +2,7 @@ package controller.DJX;
 
 import com.mysql.jdbc.Blob;
 import org.apache.commons.lang.StringUtils;
+import org.apache.tools.ant.taskdefs.condition.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -83,7 +84,7 @@ public class GlySignInCheck {
             bookType.setTypeNum(service.getTypeNum(bookType.getT_id()));
         }
         /*将整个po类传递到jsp*/
-        request.getSession().setAttribute("typeList",typeList);
+        request.getSession().setAttribute("typeList", typeList);
         request.getSession().setAttribute("userNum", userNum);
         request.getSession().setAttribute("bookNum", bookNum);
         request.getSession().setAttribute("commentNum", commentNum + huitieNum);
@@ -227,21 +228,21 @@ public class GlySignInCheck {
     @RequestMapping("/sameBookName")
     public String sameBookName(String bookName) {
         boolean f = service.sameBookName(bookName);
-        return f?"0":"1";
+        return f ? "0" : "1";
     }
 
     /*获取书籍列表*/
     /*同时跳转到书籍列表界面*/
     @RequestMapping("/houtai-shujiguanli")
-    public String selectAllBook(HttpServletRequest request,Integer pageNumber){
+    public String selectAllBook(HttpServletRequest request, Integer pageNumber) {
         request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
         Integer pg = pageNumber;
-        if ("".equals(String.valueOf(pg))||pg==null) {
-            pg=1;
+        if ("".equals(String.valueOf(pg)) || pg == null) {
+            pg = 1;
         }
-        List<DBook> bookList = service.selectAllBook((pg-1)*10);
-        int totalSize = service.getBookNum()/10;
-        if (service.getBookNum()%10!=0){
+        List<DBook> bookList = service.selectAllBook((pg - 1) * 10);
+        int totalSize = service.getBookNum() / 10;
+        if (service.getBookNum() % 10 != 0) {
             totalSize++;
         }
         List<DBookList> bookLists = new ArrayList<>();
@@ -249,7 +250,7 @@ public class GlySignInCheck {
             List<String> bookType = getTypeByBookId(book.getB_id());
 //            String typeList = StringUtils.strip(bookType.toString(),"[]");
 //            String base64 = convertBlobToBase64String((Blob) book.getB_cover());
-            String res = new String((byte[])book.getB_cover());
+            String res = new String((byte[]) book.getB_cover());
 //            System.out.println(res);
             book.setB_cover(res);
             DBookList book_list = new DBookList();
@@ -257,9 +258,9 @@ public class GlySignInCheck {
             book_list.setBook(book);
             bookLists.add(book_list);
         }
-        request.getSession().setAttribute("totalSize",totalSize);
-        request.getSession().setAttribute("bookList",bookLists);
-        request.getSession().setAttribute("pageNumber",pg);
+        request.getSession().setAttribute("totalSize", totalSize);
+        request.getSession().setAttribute("bookList", bookLists);
+        request.getSession().setAttribute("pageNumber", pg);
         System.out.println(">>>");
         System.out.println("跳转到书籍管理界面成功......");
         return "houtai-shujiguanli";
@@ -280,45 +281,45 @@ public class GlySignInCheck {
 
     /*获取所有的bookType类型并跳转到书籍类型管理页面*/
     @RequestMapping("/houtai-shujileixingguanli")
-    public String toHouTaiShuJiLeiXingGuanLi(HttpServletRequest request,Integer pageNumber) {
+    public String toHouTaiShuJiLeiXingGuanLi(HttpServletRequest request, Integer pageNumber) {
         Integer pg = pageNumber;
-        if ("".equals(String.valueOf(pg))||pg==null) {
-            pg=1;
+        if ("".equals(String.valueOf(pg)) || pg == null) {
+            pg = 1;
         }
         request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
-        List<DBookType> bookTypes = service.selectAllBookType((pg-1)*15);
+        List<DBookType> bookTypes = service.selectAllBookType((pg - 1) * 15);
         /*获取list的大小以便前端分页*/
         /*前端页面的大小为每页15条数据，先将总的页数计算好，再传给前端*/
         int typeSum = service.selectTypeSum();
-        int totalSize = typeSum/15;
+        int totalSize = typeSum / 15;
         if (typeSum % 15 != 0) {
             totalSize++;
         }
 //        System.out.println(totalSize);
         System.out.println(">>>");
 //        System.out.println(totalSize);
-        request.getSession().setAttribute("typeList",bookTypes);
-        request.getSession().setAttribute("totalSize",totalSize);
-        request.getSession().setAttribute("pageNumber",pg);
+        request.getSession().setAttribute("typeList", bookTypes);
+        request.getSession().setAttribute("totalSize", totalSize);
+        request.getSession().setAttribute("pageNumber", pg);
         System.out.println("跳转到书籍类型页面方法执行成功......");
         return "houtai-shujileixingguanli";
     }
 
     /*获取书籍的id，将书籍信息获取到编辑页面*/
     @RequestMapping("/EditBook")
-    public String editBook(Integer b_id,HttpServletRequest request){
+    public String editBook(Integer b_id, HttpServletRequest request) {
         request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
-        List<DBook> booklist =  service.selectAllBook(b_id);
+        List<DBook> booklist = service.selectAllBook(b_id);
         DBookList bookList = new DBookList();
         DBook book = booklist.get(0);
-        String res = new String((byte[])book.getB_cover());
+        String res = new String((byte[]) book.getB_cover());
         book.setB_cover(res);
         bookList.setBook(book);
         List<String> bookType = getTypeByBookId(b_id);
         bookList.setTypeList(bookType);
         List<DBookType> bookTypes = service.selectBookType();
-        request.getSession().setAttribute("bookTypeList",bookTypes);
-        request.getSession().setAttribute("bookInfo",bookList);
+        request.getSession().setAttribute("bookTypeList", bookTypes);
+        request.getSession().setAttribute("bookInfo", bookList);
         return "houtai-bianjishuji";
     }
 
@@ -338,7 +339,7 @@ public class GlySignInCheck {
     /*该方法在存储书籍类型之前实现*/
     @ResponseBody
     @RequestMapping("/EditBookPro")
-    public String editBookPro(Integer b_id,DBook book){
+    public String editBookPro(Integer b_id, DBook book) {
         service.deleteBookType(b_id);
         service.updateBookInfo(book);
         System.out.println(">>>");
@@ -352,17 +353,17 @@ public class GlySignInCheck {
     public String toYongHuGuanLi(HttpServletRequest request) {
         request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
         List<DUserinfo> userinfos = service.getAllUserInfo();
-        request.getSession().setAttribute("userInfo",userinfos);
+        request.getSession().setAttribute("userInfo", userinfos);
         return "houtai-yonghuguanli";
     }
 
     /*用户禁言*/
     @ResponseBody
     @RequestMapping("/Forbid")
-    public String userForbid(Integer u_id){
+    public String userForbid(Integer u_id) {
         service.forbidUser(u_id);
         System.out.println(">>>");
-        System.out.println(u_id+"禁言");
+        System.out.println(u_id + "禁言");
         return "ok";
     }
 
@@ -372,7 +373,7 @@ public class GlySignInCheck {
     public String unForbid(Integer u_id) {
         service.unForbidUser(u_id);
         System.out.println(">>>");
-        System.out.println(u_id+"解除禁言");
+        System.out.println(u_id + "解除禁言");
         return "OK";
     }
 
@@ -383,6 +384,75 @@ public class GlySignInCheck {
         service.deleteBook(b_id);
         System.out.println(">>>");
         System.out.println("书籍删除成功......");
+        return "OK";
+    }
+
+    /*跳转到用户登录界面*/
+    @RequestMapping("/USignUp")
+    public String userSignUp() {
+        return "sign-up-yh";
+    }
+
+    /*判断数据库中是否有该用户的相关信息*/
+    /*通过用户名和用户密码判断是否有记录存在*/
+    @ResponseBody
+    @RequestMapping("/CheckUserName")
+    public String checkUserName(DUserinfo userinfo){
+        Integer userNum = service.checkUserInfo(userinfo);
+        System.out.println(">>>");
+        System.out.println("判断用户名成功......");
+//        System.out.println(userNum);
+        return String.valueOf(userNum);
+    }
+
+
+    /*用于登录界面和用户登陆后的主界面之间的跳转*/
+    /*隐藏用户名等信息*/
+    /*根据用户名获取用户id*/
+    /*将用户名和用户id一起传递到jsp*/
+    @RequestMapping("/toHomeUser")
+    public String toHomeUserPre(String userName, HttpServletRequest request) {
+        Integer u_id = service.getUidByUname(userName);
+        request.getSession().setAttribute("userId",u_id);
+        request.getSession().setAttribute("userName",userName);
+        System.out.println(userName);
+        System.out.println(">>>");
+        System.out.println("跳转到首页成功......");
+        return "home_user";
+    }
+
+//    /*跳转到用户首页*/
+//    @RequestMapping("/HomeUser")
+//    public String toHomeUser(HttpServletRequest request) {
+////        request.getSession().setAttribute("userId",request.getSession().getAttribute("userId"));
+////        request.getSession().setAttribute("userName",request.getSession().getAttribute("username"));
+////        System.out.println(request.getSession().getAttribute("username"));
+//        System.out.println(">>>");
+////        System.out.println("跳转到首页成功......");
+////        return "home_user";
+////    }
+
+    /*判断用户名是否重复*/
+    /*如果已存在返回的是1，否则返回的是0*/
+    @ResponseBody
+    @RequestMapping("/sameUserName")
+    public String sameuserName(String u_name) {
+        System.out.println(">>>");
+        System.out.println("查询是否有相同的用户名......");
+        return String.valueOf(service.sameUserName(u_name));
+    }
+
+    /*添加用户信息*/
+    /*添加成功之后，跳转到用户登录界面*/
+    @ResponseBody
+    @RequestMapping("/addUserInfo")
+    public String addUserInfo(DUserinfo userinfo) {
+        userinfo.setU_address(null);
+        userinfo.setU_forbid("0");
+        userinfo.setU_sex(null);
+        service.addUser(userinfo);
+        System.out.println(">>>");
+        System.out.println("添加用户信息成功......");
         return "OK";
     }
 }

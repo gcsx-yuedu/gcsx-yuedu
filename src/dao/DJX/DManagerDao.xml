@@ -137,4 +137,24 @@
     <update id="unForbidUser" parameterType="Integer">
         update userInfo set u_forbid=0 where u_id=#{u_id}
     </update>
+
+    <!--根据用户名和用户密码查询是否有用户的信息-->
+    <select id="checkUserInfo" parameterType="po.DJX.DUserinfo" resultType="Integer">
+        select count(*) from userInfo where u_name = #{u_name} and u_password=#{u_password}
+    </select>
+
+    <!--根据用户名获取用户的id-->
+    <select id="getUidByUname" parameterType="String" resultType="Integer">
+        select u_id from userInfo where u_name=#{u_name}
+    </select>
+
+    <!--判断是否有相同的用户名-->
+    <select id="sameUserName" parameterType="String" resultType="Integer">
+        select count(*) from userInfo where u_name=#{u_name}
+    </select>
+
+    <!--向用户表插入数据-->
+    <insert id="addUser" parameterType="po.DJX.DUserinfo">
+        insert into userInfo (u_name,u_password,u_sex,u_forbid,u_address) values (#{u_name},#{u_password},#{u_sex},#{u_forbid},#{u_address})
+    </insert>
 </mapper>

@@ -74,7 +74,7 @@
 
                 } else {
                     alert('验证码错误！\n你输入的是:  ' + val + "\n正确的是:  " + num + '\n请重新输入！');
-                    document.getElementById("text").value = '';
+                    document.getElementById("text0").value = '';
                     draw0(show_num);
                 }
 

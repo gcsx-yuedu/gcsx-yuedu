@@ -29,8 +29,9 @@
             <a class="category-link">分类</a>
             <i class="icon-arrow"></i>
             <div class="drop_con">
-                <a>哈哈哈哈</a>
-                <a>hhhhh</a>
+                <%for (ZBookType ty:types){%>
+                <a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
+                <%}%>
             </div>
             <div class="category-result"></div>
             <!-- 边框 -->
@@ -94,7 +95,7 @@
                         for (ZBookType type:types){
                     %>
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">
-                        <a href="/showBookByType?t_id=<%=type.getT_id()%>"> <%=type.getT_type()%></a>
+                        <a href="/showBookByType?t_id=<%=type.getT_id()%>&t_type=<%=type.getT_type()%>"> <%=type.getT_type()%></a>
                     </li>
                     <%}%>
                 </ul>
@@ -117,7 +118,7 @@
 
         <!-- Filter -->
         <div class="px-6 md:px-0 flex items-baseline justify-between border-b-2 border-grey-light mt-6 order-0 lg:order-1">
-            <h4 class="hidden md:inline-block text-grey-dark font-medium">找到如下书籍：</h4>
+            <h4 class="hidden md:inline-block text-grey-dark font-medium">找到相关书籍<%=count%>本：</h4>
             <div>
                 <div class="inline-block md:hidden no-underline border-indigo pb-2 px-2 text-sm mr-2 text-indigo-darkest hover:cursor-pointer js-tab relative"
                      data-tab="section-stats">Stats</div>
@@ -139,12 +140,12 @@
                         <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
 
                         <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                            <p class="text-xl my-2 font-medium sm:font-normal"><%=book.getB_name()%></p>
-                            <p class="text-l my-2 font-medium sm:font-normal">作者：<%=book.getB_author()%></p>
-                            <p class="text-sm my-2 font-medium sm:font-normal">类型：<%=typeList%>
+                            <p class="text-xl my-2 font-medium sm:font-normal">《<%=book.getB_name()%>》</p>
+                            <p class="text-l my-2 font-medium sm:font-normal">&nbsp;作者：<%=book.getB_author()%></p>
+                            <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;类型：<%=typeList%>
                             </p>
                             <button onclick="window.location.href='/book_infor?b_id=<%=book.getB_id()%>'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button onclick="window.location.href='/addToShelf'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>
+                            <button onclick="window.location.href='javascript:btnAddToShelf(\'<%=book.getB_id()%>\',1)'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button></a>
                         </div>
                     </div>
                 </li>
@@ -215,4 +216,5 @@
 
 </body>
 <script src="${pageContext.request.contextPath}/static/js/book-js/bundle.js" async defer></script>
+<script src="${pageContext.request.contextPath}/static/js/book-js/Zbund.js" async defer></script>
 </html>
