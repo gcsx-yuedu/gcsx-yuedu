@@ -218,6 +218,9 @@
                                                 });
                                             } else {
                                                 alert("已存在该用户名，请重新输入");
+                                                document.getElementById("zc_name").value = '';
+                                                document.getElementById("zc_password1").value = '';
+                                                document.getElementById("zc_password2").value = '';
                                             }
                                         }
                                     });
