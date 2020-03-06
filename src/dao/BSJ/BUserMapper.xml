@@ -82,5 +82,8 @@
 	<select id="getBookById" parameterType="Integer" resultType="po.BSJ.BBook">
 		select * from book where b_id=#{b_id}
 	</select>
-
+	<!--根据用户id获取文章内容-->
+    <select id="getArticle" parameterType="Integer" resultType="po.BSJ.BArticle">
+		select * from longcomm where author_id=#{author_id}
+	</select>
 </mapper>
