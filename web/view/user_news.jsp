@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="po.BSJ.*" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <html class="no-js">
 <head>
@@ -120,15 +121,19 @@
                 <div class="inline-block md:hidden no-underline border-indigo pb-2 px-2 text-sm mr-2 text-indigo-darkest hover:cursor-pointer js-tab relative"
                      data-tab="section-stats">Stats</div>
                 <div class="no-underline inline-block border-indigo pb-2 px-2 text-sm mr-2 text-indigo-darkest hover:cursor-pointer js-tab active relative"
-                     data-tab="section-xiaoxi">新的评论</div>
+                     data-tab="section-xiaoxi">评论消息</div>
                 <div class="no-underline inline-block border-indigo pb-2 px-2 text-sm text-indigo-darkest hover:cursor-pointer js-tab relative"
-                     data-tab="section-pinglun">新的关注</div>
+                     data-tab="section-pinglun">关注消息</div>
 
             </div>
         </div>
         <!-- Library -->
         <div class="hidden px-2 pt-2 md:px-0 flex-wrap order-2 pb-8 js-tab-pane active" id="section-xiaoxi">
             <ul>
+                <%
+                    List<BHuitieNews> huitieList = (List<BHuitieNews>)request.getAttribute("huitieList");
+                    for(BHuitieNews hh : huitieList){
+                %>
                 <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
                     <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
                         <div class="p-4 px-4 w-full w-full rounded md:rounded-r-none bg-grey-lighter-2 shadow-md md:shadow-none">
@@ -137,9 +142,9 @@
                                 <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
 
                                 <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                                    <p class="text-lg my-2 font-medium sm:font-normal">用户***评论了你的读后感（***读后感标题***）</p>
-                                    <p class="text-sm my-2 font-medium sm:font-normal">你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样</p>
-                                    <p class="text-sm my-2 font-medium sm:font-normal">评论时间：2020-02-28-17:15:10</p>
+                                    <p class="text-lg my-2 font-medium sm:font-normal">用户<%=hh.getUser().getU_name()%>评论了你的读后感（***<%=hh.getArticle().getTitle()%>***）</p>
+                                    <p class="text-sm my-2 font-medium sm:font-normal"><%=hh.getHuitieList().getHuitie_content()%></p>
+                                    <p class="text-sm my-2 font-medium sm:font-normal">评论时间：<%=hh.getHuitieList().getHuitie_time()%></p>
                                     <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white  text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">查看</button>&nbsp;
                                     <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white  text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除</button>
                                 </div>
@@ -147,48 +152,16 @@
                         </div>
                     </div>
                 </li>
-                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
-                    <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
-                        <div class="p-4 px-4 w-full w-full rounded md:rounded-r-none bg-grey-lighter-2 shadow-md md:shadow-none">
-                            <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full js-book">
-                                <img src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" style="border-radius: 50%;overflow:hidden" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
-                                <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
-
-                                <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                                    <p class="text-lg my-2 font-medium sm:font-normal">用户***评论了你的读后感（***读后感标题***）</p>
-                                    <p class="text-sm my-2 font-medium sm:font-normal">你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样</p>
-                                    <p class="text-sm my-2 font-medium sm:font-normal">评论时间：2020-02-28-17:15:10</p>
-                                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white  text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">查看</button>&nbsp;
-                                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white  text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
-                    <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
-                        <div class="p-4 px-4 w-full w-full rounded md:rounded-r-none bg-grey-lighter-2 shadow-md md:shadow-none">
-                            <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full js-book">
-                                <img src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" style="border-radius: 50%;overflow:hidden" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
-                                <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
-
-                                <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                                    <p class="text-lg my-2 font-medium sm:font-normal">用户***评论了你的读后感（***读后感标题***）</p>
-                                    <p class="text-sm my-2 font-medium sm:font-normal">你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样你笑起来真好看像春天的花一样</p>
-                                    <p class="text-sm my-2 font-medium sm:font-normal">评论时间：2020-02-28-17:15:10</p>
-                                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white  text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">查看</button>&nbsp;
-                                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white  text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                <%}%>
             </ul>
         </div>
         <!-- pinglun -->
         <div class="hidden flex-wrap order-2 pt-0 md:pt-2 md:pb-8 js-tab-pane" id="section-pinglun">
             <ul>
+                <%
+                    List<BFansList> fanss = (List<BFansList>)request.getAttribute("fanss");
+                    for(BFansList f : fanss){
+                %>
                 <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
                     <div class="flex flex-row  sm:flex-row items-center sm:items-start w-full xs:w-full sm:w-full md:w-full p-4 js-book">
                         <div class="p-4 px-4 m-0 mx-0 w-full w-full rounded md:rounded-r-none shadow-md md:shadow-none">
@@ -196,8 +169,8 @@
                                 <img src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" style="border-radius: 50%;overflow:hidden" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
                                 <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
                                 <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                                    <p class="text-lg my-2 font-medium sm:font-normal">新的关注</p>
-                                    <p class="text-sm my-2 font-medium sm:font-normal">用户***于2020-01-20-12:12:12关注了你，快去看看吧</p>
+                                    <p class="text-lg my-2 font-medium sm:font-normal">你的粉丝</p>
+                                    <p class="text-sm my-2 font-medium sm:font-normal"><%=f.getFansList().getU_name()%>关注了你，快去看看吧</p>
 
                                     <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white  text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none" style="float: right;">删除</button>
                                 </div>
@@ -205,40 +178,7 @@
                         </div>
                     </div>
                 </li>
-                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
-                    <div class="flex flex-row  sm:flex-row items-center sm:items-start w-full xs:w-full sm:w-full md:w-full p-4 js-book">
-                        <div class="p-4 px-4 m-0 mx-0 w-full w-full rounded md:rounded-r-none shadow-md md:shadow-none">
-                            <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full js-book">
-                                <img src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" style="border-radius: 50%;overflow:hidden" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
-                                <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
-                                <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                                    <p class="text-lg my-2 font-medium sm:font-normal">新的关注</p>
-                                    <p class="text-sm my-2 font-medium sm:font-normal">用户***于2020-01-20-12:12:12关注了你，快去看看吧</p>
-
-                                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white  text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none" style="float: right;">删除</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </li>
-                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
-                    <div class="flex flex-row  sm:flex-row items-center sm:items-start w-full xs:w-full sm:w-full md:w-full p-4 js-book"
-                         id="section-stats">
-                        <div class="p-4 px-4 m-0 mx-0 w-full w-full rounded md:rounded-r-none shadow-md md:shadow-none">
-                            <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full js-book">
-                                <img src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" style="border-radius: 50%;overflow:hidden" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
-                                <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
-                                <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                                    <p class="text-lg my-2 font-medium sm:font-normal">新的关注</p>
-                                    <p class="text-sm my-2 font-medium sm:font-normal">用户***于2020-01-20-12:12:12关注了你，快去看看吧</p>
-
-                                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white  text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none" style="float: right;">删除</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                <%}%>
             </ul>
         </div>
 

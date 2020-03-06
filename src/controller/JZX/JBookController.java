@@ -3,13 +3,17 @@ package controller.JZX;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import po.JZX.JBook;
 import po.JZX.JBookList;
+import po.JZX.JShortComm;
 import service.JZX.JBookService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.awt.print.Book;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -20,6 +24,7 @@ public class JBookController {
     @RequestMapping("/book_infor")
     public String QueryBook(Integer id, HttpServletRequest request){
 //        bookService.queryBook(id);
+        request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
         JBook book=bookService.queryBook(27);
         List<String> bookType = getBookType(book.getB_id());
         String res=new String((byte[])book.getB_cover());
@@ -39,5 +44,23 @@ public class JBookController {
             type.add(t_type);
         }
         return type;
+    }
+    /*添加短评*/
+    @ResponseBody
+    @RequestMapping("/addShortComm")
+    public String addShortComm(JShortComm sc){
+        String time=getNowTime();
+        sc.setFatie_time(time);
+        bookService.addShortComm(sc);
+        System.out.println(">>>");
+        System.out.println("短评添加成功");
+        return "/book_infor";
+    }
+    /*获取当前系统时间*/
+    public String getNowTime() {
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        System.out.println(format.format(date));
+        return format.format(date);
     }
 }
