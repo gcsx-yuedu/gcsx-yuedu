@@ -41,7 +41,7 @@
                 <li>
                     <span class="line"></span>
                     <span>欢迎 </span>
-                    <a href="${pageContext.request.contextPath}/view/user_info.jsp" class="app" style="cursor:pointer" style="cursor:pointer">用户名</a>
+                    <a href="/user_info" class="app" style="cursor:pointer" style="cursor:pointer"><%=session.getAttribute("userName")%></a>
                 </li>
                 <li>
                     <span class="line"></span>

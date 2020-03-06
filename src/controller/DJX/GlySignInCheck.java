@@ -415,20 +415,22 @@ public class GlySignInCheck {
         Integer u_id = service.getUidByUname(userName);
         request.getSession().setAttribute("userId",u_id);
         request.getSession().setAttribute("userName",userName);
-        System.out.println(">>>");
-        System.out.println("跳转到首页Pre成功......");
-        return "redirect:/HomeUser";
-    }
-
-    /*跳转到用户首页*/
-    @RequestMapping("/HomeUser")
-    public String toHomeUser(HttpServletRequest request) {
-        request.getSession().setAttribute("userId",request.getSession().getAttribute("userId"));
-        request.getSession().setAttribute("userName",request.getSession().getAttribute("username"));
+        System.out.println(userName);
         System.out.println(">>>");
         System.out.println("跳转到首页成功......");
         return "home_user";
     }
+
+//    /*跳转到用户首页*/
+//    @RequestMapping("/HomeUser")
+//    public String toHomeUser(HttpServletRequest request) {
+////        request.getSession().setAttribute("userId",request.getSession().getAttribute("userId"));
+////        request.getSession().setAttribute("userName",request.getSession().getAttribute("username"));
+////        System.out.println(request.getSession().getAttribute("username"));
+//        System.out.println(">>>");
+////        System.out.println("跳转到首页成功......");
+////        return "home_user";
+////    }
 
     /*判断用户名是否重复*/
     /*如果已存在返回的是1，否则返回的是0*/
