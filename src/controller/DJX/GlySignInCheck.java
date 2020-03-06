@@ -76,6 +76,14 @@ public class GlySignInCheck {
         int bookNum = service.getBookNum();
         int commentNum = service.getCommentNum();
         int huitieNum = service.getHuitieNum();
+        /*获取书籍类型总数*/
+        List<DBookType> typeList = service.selectBookType();
+        /*根据不同的书籍类型的id获取对应的数量*/
+        for (DBookType bookType : typeList) {
+            bookType.setTypeNum(service.getTypeNum(bookType.getT_id()));
+        }
+        /*将整个po类传递到jsp*/
+        request.getSession().setAttribute("typeList",typeList);
         request.getSession().setAttribute("userNum", userNum);
         request.getSession().setAttribute("bookNum", bookNum);
         request.getSession().setAttribute("commentNum", commentNum + huitieNum);
@@ -90,18 +98,18 @@ public class GlySignInCheck {
     }
 
 
-    /*跳转到用户管理页面*/
-    @RequestMapping("/houtai-yonghuguanli")
-    public String toHouTaiYongHuGuanLi(HttpServletRequest request) {
-        String username = (String) request.getSession().getAttribute("username");
-        request.getSession().setAttribute("username", username);
-
-        return "houtai-yonghuguanli";
-    }
+//    /*跳转到用户管理页面*/
+//    @RequestMapping("/houtai-yonghuguanli")
+//    public String toHouTaiYongHuGuanLi(HttpServletRequest request) {
+//        String username = (String) request.getSession().getAttribute("username");
+//        request.getSession().setAttribute("username", username);
+//
+//        return "houtai-yonghuguanli";
+//    }
 
     /*跳转到添加书籍页面*/
     /*获取书籍类型的列表*/
-    @RequestMapping("houtai-tianjiashuji")
+    @RequestMapping("/houtai-tianjiashuji")
     public String toHouTianJiaShuJi(HttpServletRequest request) {
         String username = (String) request.getSession().getAttribute("username");
         request.getSession().setAttribute("username", username);
@@ -119,13 +127,13 @@ public class GlySignInCheck {
 //        return "houtai-shujiguanli";
 //    }
 
-    /*跳转到举报信息管理页面*/
-    @RequestMapping("/houtai-jubaoxinxiguanli")
-    public String toHouTaiJuBaoXinXiGuanLi(HttpServletRequest request) {
-        String username = (String) request.getSession().getAttribute("username");
-        request.getSession().setAttribute("username", username);
-        return "houtai-jubaoxinxiguanli";
-    }
+//    /*跳转到举报信息管理页面*/
+//    @RequestMapping("/houtai-jubaoxinxiguanli")
+//    public String toHouTaiJuBaoXinXiGuanLi(HttpServletRequest request) {
+//        String username = (String) request.getSession().getAttribute("username");
+//        request.getSession().setAttribute("username", username);
+//        return "houtai-jubaoxinxiguanli";
+//    }
 
 
     /*跳转到添加书籍类型的界面*/
@@ -222,12 +230,20 @@ public class GlySignInCheck {
         return f?"0":"1";
     }
 
-    /*获取书籍列表或者是单个书籍的信息*/
+    /*获取书籍列表*/
     /*同时跳转到书籍列表界面*/
     @RequestMapping("/houtai-shujiguanli")
-    public String selectAllBook(Integer  b_id,HttpServletRequest request){
+    public String selectAllBook(HttpServletRequest request,Integer pageNumber){
         request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
-        List<DBook> bookList = service.selectAllBook(b_id);
+        Integer pg = pageNumber;
+        if ("".equals(String.valueOf(pg))||pg==null) {
+            pg=1;
+        }
+        List<DBook> bookList = service.selectAllBook((pg-1)*10);
+        int totalSize = service.getBookNum()/10;
+        if (service.getBookNum()%10!=0){
+            totalSize++;
+        }
         List<DBookList> bookLists = new ArrayList<>();
         for (DBook book : bookList) {
             List<String> bookType = getTypeByBookId(book.getB_id());
@@ -241,7 +257,9 @@ public class GlySignInCheck {
             book_list.setBook(book);
             bookLists.add(book_list);
         }
+        request.getSession().setAttribute("totalSize",totalSize);
         request.getSession().setAttribute("bookList",bookLists);
+        request.getSession().setAttribute("pageNumber",pg);
         System.out.println(">>>");
         System.out.println("跳转到书籍管理界面成功......");
         return "houtai-shujiguanli";
@@ -262,22 +280,109 @@ public class GlySignInCheck {
 
     /*获取所有的bookType类型并跳转到书籍类型管理页面*/
     @RequestMapping("/houtai-shujileixingguanli")
-    public String toHouTaiShuJiLeiXingGuanLi(HttpServletRequest request) {
+    public String toHouTaiShuJiLeiXingGuanLi(HttpServletRequest request,Integer pageNumber) {
+        Integer pg = pageNumber;
+        if ("".equals(String.valueOf(pg))||pg==null) {
+            pg=1;
+        }
         request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
-        List<DBookType> bookTypes = service.selectAllBookType();
+        List<DBookType> bookTypes = service.selectAllBookType((pg-1)*15);
         /*获取list的大小以便前端分页*/
         /*前端页面的大小为每页15条数据，先将总的页数计算好，再传给前端*/
-        int totalSize = bookTypes.size()/15;
+        int typeSum = service.selectTypeSum();
+        int totalSize = typeSum/15;
+        if (typeSum % 15 != 0) {
+            totalSize++;
+        }
+//        System.out.println(totalSize);
         System.out.println(">>>");
-        System.out.println(totalSize);
+//        System.out.println(totalSize);
         request.getSession().setAttribute("typeList",bookTypes);
         request.getSession().setAttribute("totalSize",totalSize);
+        request.getSession().setAttribute("pageNumber",pg);
         System.out.println("跳转到书籍类型页面方法执行成功......");
         return "houtai-shujileixingguanli";
     }
 
-    /*根据bookType的id值获取到type的信息，将信息返回到jsp页面*/
-    /*在jsp页面进行修改之后再保存*/
-    /*方法有待完成*/
+    /*获取书籍的id，将书籍信息获取到编辑页面*/
+    @RequestMapping("/EditBook")
+    public String editBook(Integer b_id,HttpServletRequest request){
+        request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
+        List<DBook> booklist =  service.selectAllBook(b_id);
+        DBookList bookList = new DBookList();
+        DBook book = booklist.get(0);
+        String res = new String((byte[])book.getB_cover());
+        book.setB_cover(res);
+        bookList.setBook(book);
+        List<String> bookType = getTypeByBookId(b_id);
+        bookList.setTypeList(bookType);
+        List<DBookType> bookTypes = service.selectBookType();
+        request.getSession().setAttribute("bookTypeList",bookTypes);
+        request.getSession().setAttribute("bookInfo",bookList);
+        return "houtai-bianjishuji";
+    }
 
+
+    /*根据类型id删除类型*/
+    @RequestMapping("/deleteType")
+    public String deleteType(Integer t_id) {
+        service.deleteType(t_id);
+        System.out.println(">>>");
+        System.out.println("删除类型成功......");
+        return "redirect:/houtai-shujileixingguanli";
+    }
+
+    /*处理书籍的编辑信息*/
+    /*根据书籍id删除相关的书籍--类型对应信息*/
+    /*更新书籍的基本信息（书籍的类型在原有的地方添加）*/
+    /*该方法在存储书籍类型之前实现*/
+    @ResponseBody
+    @RequestMapping("/EditBookPro")
+    public String editBookPro(Integer b_id,DBook book){
+        service.deleteBookType(b_id);
+        service.updateBookInfo(book);
+        System.out.println(">>>");
+        System.out.println("书籍更新成功......");
+        return "ok";
+    }
+
+    /*获取用户的所有的信息*/
+    /*跳转到用户管理界面*/
+    @RequestMapping("/houtai-yonghuguanli")
+    public String toYongHuGuanLi(HttpServletRequest request) {
+        request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
+        List<DUserinfo> userinfos = service.getAllUserInfo();
+        request.getSession().setAttribute("userInfo",userinfos);
+        return "houtai-yonghuguanli";
+    }
+
+    /*用户禁言*/
+    @ResponseBody
+    @RequestMapping("/Forbid")
+    public String userForbid(Integer u_id){
+        service.forbidUser(u_id);
+        System.out.println(">>>");
+        System.out.println(u_id+"禁言");
+        return "ok";
+    }
+
+    /*解除用户禁言*/
+    @ResponseBody
+    @RequestMapping("/UnForbid")
+    public String unForbid(Integer u_id) {
+        service.unForbidUser(u_id);
+        System.out.println(">>>");
+        System.out.println(u_id+"解除禁言");
+        return "OK";
+    }
+
+    /*根据书籍的id删除书籍*/
+    @ResponseBody
+    @RequestMapping("/deleteBook")
+    public String deleteBook(Integer b_id) {
+        service.deleteBook(b_id);
+        System.out.println(">>>");
+        System.out.println("书籍删除成功......");
+        return "OK";
+    }
 }

@@ -27,4 +27,23 @@ public class BUserService {
     public String getTypeByTypeId(Integer t_id){
         return BUserDao.getTypeByTypeId(t_id);
     }
+    public List<BGuanzhu> getGuanzhuId(Integer user_id) {
+        return BUserDao.getGuanzhuId(user_id);
+    }
+    public List<BGuanzhu> getFansId(Integer guanzhu_userid) {
+        return BUserDao.getFansId(guanzhu_userid);
+    }
+//    public Integer getCountConcern(Integer user_id) {
+//        return BUserDao.getCountConcern(user_id);
+//    }
+    public Integer getCountFans(Integer guanzhu_userid) {
+        return BUserDao.getCountFans(guanzhu_userid);
+    }
+    public void cancelConcern(Integer guanzhu_userid){ BUserDao.cancelConcern(guanzhu_userid); }
+    public void guanzhu(BGuanzhu gz){ BUserDao.guanzhu(gz); }
+    public List<BShortComm> getCommById(Integer u_id){ return BUserDao.getCommById(u_id); }
+    public List<BBook> getBookById(Integer b_id){ return BUserDao.getBookById(b_id); }
+    public List<BArticle> getArticle(Integer author_id){ return BUserDao.getArticle(author_id);}
+    public void deleteShort(String fatie_time){ BUserDao.deleteShort(fatie_time);}
+    public void deleteArticle(String lc_time){ BUserDao.deleteArticle(lc_time);}
 }

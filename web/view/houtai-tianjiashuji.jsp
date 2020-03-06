@@ -36,12 +36,12 @@
     </style>
 </head>
 
-<%--<%--%>
-<%--String username = (String) session.getAttribute("username");--%>
-<%--if (username == null) {--%>
-<%--response.sendRedirect("sign-up-gly.jsp");--%>
-<%--}--%>
-<%--%>--%>
+<%
+String username = (String) session.getAttribute("username");
+if (username == null) {
+response.sendRedirect("/Msignup");
+}
+%>
 
 <%
     List<DBookType> bookTypeList = (List<DBookType>) session.getAttribute("bookTypeList");
@@ -127,16 +127,15 @@
         </a>
 
         <div class="list-group list-group-flush">
-            <a href="${pageContext.request.contextPath}/view/houtai-xinxitongji.jsp" class="list-group-item list-group-item-action waves-effect">
-                <i class="fas fa-chart-pie mr-3"></i>信息统计</a>
             <a href="/houtai-xinxitongji" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-chart-pie mr-3"></i>信息统计
+            </a>
+            <a href="/houtai-yonghuguanli" class="list-group-item waves-effect">
                 <i class="fas fa-user mr-3"></i>用户管理</a>
-            <a href="${pageContext.request.contextPath}/view/houtai-shujiguanli.jsp" class="list-group-item list-group-item-action waves-effect">
+            <a href="/houtai-shujiguanli" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-table mr-3"></i>书籍管理</a>
-            <a href="#" class="list-group-item active waves-effect">
+            <a href="/houtai-tianjiashuji" class="list-group-item  active list-group-item-action waves-effect">
                 <i class="fas fa-map mr-3"></i>添加书籍</a>
-            <a href="${pageContext.request.contextPath}/view/houtai-jubaoxnxiguanli.jsp" class="list-group-item list-group-item-action waves-effect">
-                <i class="fas fa-money-bill-alt mr-3"></i>举报信息管理</a>
         </div>
 
     </div>
@@ -195,7 +194,7 @@
                                             }
                                         %>
                                         <div style="width:25%;">
-                                            <input type="checkbox" class="custom-checkbox" value="<%=bookTypeList.get(bookTypeList.size()-1).getT_id()%>">
+                                            <input name="bookType" type="checkbox" class="custom-checkbox" value="<%=bookTypeList.get(bookTypeList.size()-1).getT_id()%>">
                                             <%=bookTypeList.get(bookTypeList.size()-1).getT_type()%>
                                         </div>
                                     </div>
@@ -274,7 +273,7 @@
                                             b_type.push(obj[k].value);
                                         }
                                     }
-                                    // alert(b_type);
+                                    alert(b_type);
 
 
 

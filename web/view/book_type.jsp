@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="po.ZYM.ZBookType" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <html class="no-js">
 <head>
@@ -59,6 +60,12 @@
     </div>
     <div class="header-shadow"></div>
 </header>
+
+<% Integer t_id = (Integer) session.getAttribute("t_id");
+    System.out.println("t_id="+t_id);
+    List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
+%>
+
 <!-- Main -->
 <div class="flex" >
     <!-- Side Nav -->
@@ -77,12 +84,13 @@
                     </div>
                 </div>
                 <ul class="text-grey lg:text-grey-dark list-reset leading-loose mt-2" id="sidenav-categories">
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍一类</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍二类</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍三类</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍四类</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍五类</li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">书籍六类</li>
+                    <%
+                        for (ZBookType type:types){
+                    %>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">
+                        <a href="/showBookByType?t_id=<%=type.getT_id()%>"> <%=type.getT_type()%></a>
+                    </li>
+                    <%}%>
                 </ul>
             </li>
             <li class="ml-2 mb-4 flex">
@@ -171,7 +179,7 @@
     <!-- Profile -->
     <div class="hidden absolute pin-b z-10 lg:relative lg:block w-full lg:w-1/5 bg-grey-lighter-2 px-6 pt-10" id="profile">
         <div class="flex items-center mb-6">
-            <svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"id="avatar">
+            <svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" id="avatar">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g transform="translate(-1178.000000, -87.000000)">
                         <g transform="translate(1159.000000, 0.000000)">

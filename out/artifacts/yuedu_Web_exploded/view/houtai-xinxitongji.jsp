@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="po.DJX.DBookType" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
     <meta charset="utf-8">
@@ -37,12 +38,12 @@
 </head>
 
 
-<%--<%--%>
-<%--String username = (String) session.getAttribute("username");--%>
-<%--if (username == null) {--%>
-<%--response.sendRedirect("sign-up-gly.jsp");--%>
-<%--}--%>
-<%--%>--%>
+<%
+String username = (String) session.getAttribute("username");
+if (username == null) {
+response.sendRedirect("/Msignup");
+}
+%>
 <%
     int userNum = (int)session.getAttribute("userNum");
 //    System.out.println("userNum="+userNum);
@@ -50,6 +51,7 @@
     int commentNum = (int) session.getAttribute("commentNum");
     int manNum = (int) session.getAttribute("manNum");
     int womanNum = (int) session.getAttribute("womanNum");
+    List<DBookType> bookTypeList = (List<DBookType>) session.getAttribute("typeList");
 %>
 
 <!-- SCRIPTS -->
@@ -120,16 +122,15 @@
         </a>
 
         <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item active waves-effect">
-                <i class="fas fa-chart-pie mr-3"></i>信息统计</a>
-            <a href="${pageContext.request.contextPath}/view/houtai-yonghuguanli.jsp" class="list-group-item list-group-item-action waves-effect">
+            <a href="/houtai-xinxitongji" class="list-group-item active  list-group-item-action waves-effect">
+                <i class="fas fa-chart-pie mr-3"></i>信息统计
+            </a>
+            <a href="/houtai-yonghuguanli" class="list-group-item waves-effect">
                 <i class="fas fa-user mr-3"></i>用户管理</a>
-            <a href="${pageContext.request.contextPath}/view/houtai-shujiguanli.jsp" class="list-group-item list-group-item-action waves-effect">
+            <a href="/houtai-shujiguanli" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-table mr-3"></i>书籍管理</a>
-            <a href="${pageContext.request.contextPath}/view/houtai-tianjiashuji.jsp" class="list-group-item list-group-item-action waves-effect">
+            <a href="/houtai-tianjiashuji" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-map mr-3"></i>添加书籍</a>
-            <a href="${pageContext.request.contextPath}/view/houtai-jubaoxnxiguanli.jsp" class="list-group-item list-group-item-action waves-effect">
-                <i class="fas fa-money-bill-alt mr-3"></i>举报信息管理&nbsp;&nbsp;<span class="badge black">20</span></a>
         </div>
 
     </div>
@@ -200,7 +201,7 @@
 
             <div class="row">
                 <!-- Area Chart -->
-                <div class="col-xl-4">
+                <div class="col-xl-6">
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -231,84 +232,98 @@
                         },
                     });
                 </script>
-                <div class="col-xl-8">
+                <div class="col-xl-6">
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">书籍分类数量</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">X月Y日-M月N日评论数量</h6>
+
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
                             <div class="chart-area">
-                                <canvas id="canvas3"></canvas>
+                                <canvas id="myAreaChart"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
                 <script>
-                    var ctx3 = document.getElementById("canvas3").getContext('2d');
-                    var canvas3 = new Chart(ctx3,{
-                        type: 'bar',
-                        data: {
-                            labels:['悬疑','惊悚','小说','历史'],
-                            datasets:[{
-                                label: '类型',
-                                data:['20','50','110','55'],
-                                backgroundColor: ['rgba(220,20,60,1)','rgba(148,0,211,1)','rgba(119,136,153,1)','rgba(47,79,79,1)']
-                            }],
+
+                    var ctx = document.getElementById("myAreaChart").getContext("2d");
+                    var canves1 = new Chart(ctx,{
+                        type: 'line',
+                        data:{
+                            labels: ["January", "February", "March", "April", "May", "June", "July"],
+                            datasets: [
+                                {
+                                    label: "My First dataset",
+                                    fillColor: "rgba(220,220,220,0.2)",
+                                    strokeColor: "rgba(220,220,220,1)",
+                                    pointColor: "rgba(220,220,220,1)",
+                                    pointStrokeColor: "#fff",
+                                    pointHighlightFill: "#fff",
+                                    pointHighlightStroke: "rgba(220,220,220,1)",
+                                    data: [65, 59, 80, 81, 56, 55, 40]
+                                },
+                                {
+                                    label: "My Second dataset",
+                                    fillColor: "rgba(151,187,205,0.2)",
+                                    strokeColor: "rgba(151,187,205,1)",
+                                    pointColor: "rgba(151,187,205,1)",
+                                    pointStrokeColor: "#fff",
+                                    pointHighlightFill: "#fff",
+                                    pointHighlightStroke: "rgba(151,187,205,1)",
+                                    data: [28, 48, 40, 19, 86, 27, 90]
+                                }
+                            ]
                         },
                     });
                 </script>
+
             </div>
         <div class="row">
-            <!-- Area Chart -->
-            <div class="col-xl-10 offset-xl-1">
+            <div class="col-xl-12">
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">X月Y日-M月N日评论数量</h6>
-
+                        <h6 class="m-0 font-weight-bold text-primary">书籍分类数量</h6>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
                         <div class="chart-area">
-                            <canvas id="myAreaChart"></canvas>
+                            <canvas id="canvas3"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
             <script>
-
-                var ctx = document.getElementById("myAreaChart").getContext("2d");
-                var canves1 = new Chart(ctx,{
-                    type: 'line',
-                    data:{
-                        labels: ["January", "February", "March", "April", "May", "June", "July"],
-                        datasets: [
-                            {
-                                label: "My First dataset",
-                                fillColor: "rgba(220,220,220,0.2)",
-                                strokeColor: "rgba(220,220,220,1)",
-                                pointColor: "rgba(220,220,220,1)",
-                                pointStrokeColor: "#fff",
-                                pointHighlightFill: "#fff",
-                                pointHighlightStroke: "rgba(220,220,220,1)",
-                                data: [65, 59, 80, 81, 56, 55, 40]
-                            },
-                            {
-                                label: "My Second dataset",
-                                fillColor: "rgba(151,187,205,0.2)",
-                                strokeColor: "rgba(151,187,205,1)",
-                                pointColor: "rgba(151,187,205,1)",
-                                pointStrokeColor: "#fff",
-                                pointHighlightFill: "#fff",
-                                pointHighlightStroke: "rgba(151,187,205,1)",
-                                data: [28, 48, 40, 19, 86, 27, 90]
+                var ctx3 = document.getElementById("canvas3").getContext('2d');
+                var canvas3 = new Chart(ctx3,{
+                    type: 'bar',
+                    data: {
+                        labels:[<%
+                            for (DBookType bookType:bookTypeList){
+                            %>
+                            '<%=bookType.getT_type()%>',
+                            <%
                             }
-                        ]
+                            %>],
+                        datasets:[{
+                            label: '类型',
+                            data:[<%
+                                for (DBookType bookType:bookTypeList){
+                                %>
+                                '<%=bookType.getTypeNum()%>',
+                                <%
+                                }
+                                %>],
+                            // backgroundColor:
+                        }],
                     },
                 });
             </script>
+            <!-- Area Chart -->
+
 
         </div>
 

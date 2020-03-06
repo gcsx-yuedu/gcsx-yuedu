@@ -1,12 +1,8 @@
 package po.ZYM;
-import java.util.List;
-
-
 public class ZBook_Type {
     private int id;
-    private ZBook book_id;
+    private int book_id;
     private int type_id;
-    private List<ZBook_Type> bookTypeList;
 
     public int getId() {
         return id;
@@ -16,11 +12,11 @@ public class ZBook_Type {
         this.id = id;
     }
 
-    public ZBook getBook_id() {
+    public int getBook_id() {
         return book_id;
     }
 
-    public void setBook_id(ZBook book_id) {
+    public void setBook_id(int book_id) {
         this.book_id = book_id;
     }
 
@@ -30,14 +26,6 @@ public class ZBook_Type {
 
     public void setType_id(int type_id) {
         this.type_id = type_id;
-    }
-
-    public List<ZBook_Type> getBookTypeList() {
-        return bookTypeList;
-    }
-
-    public void setBookTypeList(List<ZBook_Type> bookTypeList) {
-        this.bookTypeList = bookTypeList;
     }
 
     @Override

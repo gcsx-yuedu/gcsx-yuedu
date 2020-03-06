@@ -4,10 +4,7 @@ import dao.DJX.DManagerDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import po.DJX.DBook;
-import po.DJX.DBookType;
-import po.DJX.DBook_Type;
-import po.DJX.DManager;
+import po.DJX.*;
 
 import java.util.List;
 
@@ -77,8 +74,8 @@ public class DManagerService {
         return DManagerDao.sameBookName(b_name)==0;
     }
 
-    public List<DBook> selectAllBook(Integer b_id) {
-        return DManagerDao.selectAllBook(b_id);
+    public List<DBook> selectAllBook(Integer pg) {
+        return DManagerDao.selectAllBook(pg);
     }
 
     public List<Integer> getTypeId(Integer book_id) {
@@ -90,7 +87,43 @@ public class DManagerService {
 
     }
 
-    public List<DBookType> selectAllBookType() {
-        return DManagerDao.selectAllBookType();
+    public List<DBookType> selectAllBookType(Integer pageNumber) {
+        return DManagerDao.selectAllBookType(pageNumber);
+    }
+
+    public Integer selectTypeSum() {
+        return DManagerDao.selectTypeSum();
+    }
+
+    public void deleteType(Integer t_id) {
+        DManagerDao.deleteType(t_id);
+    }
+
+    public void deleteBookType(Integer book_id){
+        DManagerDao.deleteBookType(book_id);
+    }
+
+    public void updateBookInfo(DBook book) {
+        DManagerDao.updateBookInfo(book);
+    }
+
+    public Integer getTypeNum(Integer type_id){
+        return DManagerDao.getTypeNum(type_id);
+    }
+
+    public List<DUserinfo> getAllUserInfo() {
+        return DManagerDao.getAllUserInfo();
+    }
+
+    public void forbidUser(Integer u_id){
+        DManagerDao.forbidUser(u_id);
+    }
+
+    public void unForbidUser(Integer u_id) {
+        DManagerDao.unForbidUser(u_id);
+    }
+
+    public void deleteBook(Integer b_id) {
+        DManagerDao.deleteBook(b_id);
     }
 }

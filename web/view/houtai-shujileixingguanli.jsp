@@ -52,14 +52,15 @@ position:absolute;
     </script>
 </head>
 
-<%--<%--%>
-  <%--String username = (String) session.getAttribute("username");--%>
-  <%--if (username == null) {--%>
-    <%--response.sendRedirect("sign-up-gly.jsp");--%>
-  <%--}--%>
-<%--%>--%>
 <%
-    int pageNum =1;
+  String username = (String) session.getAttribute("username");
+  if (username == null) {
+    response.sendRedirect("/Msignup");
+  }
+%>
+<%
+    Integer pageNumber = (Integer) session.getAttribute("pageNumber");
+//    int pageNum =1;
     List<DBookType> bookTypes = (List<DBookType>) session.getAttribute("typeList");
     int totalSize = (int) session.getAttribute("totalSize");
 %>
@@ -126,18 +127,17 @@ position:absolute;
         <img src="${pageContext.request.contextPath}/static/image/houtai/img/timg.jpg" class="img-fluid" alt="">
       </a>
 
-      <div class="list-group list-group-flush">
-        <a href="${pageContext.request.contextPath}/view/houtai-xinxitongji.jsp" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-chart-pie mr-3"></i>信息统计</a>
-        <a href="${pageContext.request.contextPath}/view/houtai-yonghuguanli.jsp" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-user mr-3"></i>用户管理</a>
-        <a href="#" class="list-group-item  active waves-effect">
-          <i class="fas fa-table mr-3"></i>书籍管理</a>
-        <a href="${pageContext.request.contextPath}/view/houtai-tianjiashuji.jsp" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-map mr-3"></i>添加书籍</a>
-        <a href="${pageContext.request.contextPath}/view/houtai-jubaoxnxiguanli.jsp" class="list-group-item list-group-item-action waves-effect">
-          <i class="fas fa-money-bill-alt mr-3"></i>举报信息管理</a>
-      </div>
+        <div class="list-group list-group-flush">
+            <a href="/houtai-xinxitongji" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-chart-pie mr-3"></i>信息统计
+            </a>
+            <a href="/houtai-yonghuguanli" class="list-group-item waves-effect">
+                <i class="fas fa-user mr-3"></i>用户管理</a>
+            <a href="/houtai-shujiguanli" class="list-group-item active list-group-item-action waves-effect">
+                <i class="fas fa-table mr-3"></i>书籍管理</a>
+            <a href="/houtai-tianjiashuji" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-map mr-3"></i>添加书籍</a>
+        </div>
 
     </div>
     <!-- Sidebar -->
@@ -173,22 +173,20 @@ position:absolute;
                     <tr style="height: 20px;">
                         <td style="font-size: 15px"><%=k%><input type="hidden" value="<%=bookType.getT_id()%>"></td>
                         <td><%=bookType.getT_type()%></td>
-                        <td><a href="">删除</a></td>
-                        <td><a href="">修改</a></td>
+                        <td><a href="/deleteType?t_id=<%=bookType.getT_id()%>">删除</a></td>
                     </tr>
                     <%
                             k++;
                         }
                     %>
                 </table>
-                <div class="col-xl-10 text-center">
-                    <select class="combobox">
+                <div class="col-xl-10 offset-xl-1 text-center">
+                    <select  onchange="nextPg()" id="pageNum" name="pageNum" class="combobox col-xl-12">
                         <%
                             for (int i=0;i<totalSize;i++){
                         %>
-                        <option name="pageNum" value="<%=i+1%>" <%if(pageNum==i+1){%>selected<%}%>>当前第<%=i+1%>页</option>
+                        <option  value="<%=i+1%>" <%if(pageNumber==i+1){%>selected<%}%>>第<%=i+1%>页</option>
                         <%
-                                i++;
                             }
                         %>
                     </select>
@@ -201,6 +199,12 @@ position:absolute;
 
     </div>
   </main>
+<script>
+    function nextPg() {
+        var pageNum = document.getElementById("pageNum").value;
+        window.location.href="/houtai-shujileixingguanli?pageNumber="+pageNum;
+    }
+</script>
 
   
 </body>
