@@ -117,6 +117,9 @@ public class UserController {
         for(BShortComm comm : commList){
             List<BBook> bookList = service.getBookById(comm.getShuji_id());
             for(BBook book : bookList){
+                String res = new String((byte[])book.getB_cover());
+                System.out.println(res);
+                book.setB_cover(res);
                 BCommentList bcl = new BCommentList();
                 bcl.setBook(book);
                 bcl.setCommList(comm);
@@ -129,6 +132,9 @@ public class UserController {
         for(BArticle ar : article){
             List<BBook> book = service.getBookById(ar.getBook_id());
             for(BBook b : book){
+                String res = new String((byte[])b.getB_cover());
+                System.out.println(res);
+                b.setB_cover(res);
                 BArticleList ba = new BArticleList();
                 ba.setBooks(b);
                 ba.setArticleList(ar);
