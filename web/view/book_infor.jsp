@@ -110,7 +110,9 @@
                 <img src="<%=book.getB_cover()%>" class="img-responsive" alt="" />
             </div>
             <% String typeList=org.apache.commons.lang.StringUtils.strip(book.getTypeList().toString(),"[]");%>
+
             <div class="col-md-8 about-right wthree">
+                <input type="hidden" value="<%=book.getB_id()%>" id="shuji_id" />
                 <h3><%=book.getB_name()%></h3>
                 <ul class="address">
                     <li>
@@ -177,6 +179,22 @@
 
 <!-- testimonials -->
 <div class="testimonials" id="testi">
+    <!-- contact -->
+    <div class="w3ls_map" id="contact">
+        <div class="mail">
+            <div class="container">
+                <div class="w3l_contact_grids">
+                    <form action="#" method="post">
+                        <div class="clearfix"> </div>
+                        <textarea name="Message" placeholder="Type Message Here...." required id="content"></textarea>
+                        <input type="submit" value="Submit Now" onclick="addSC()" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //contact -->
+
     <div class="container">
         <h3 class="tittle-w3l">What Publications Say</h3>
         <div class="wthree_testimonial_grids">
@@ -190,6 +208,11 @@
                         <div class="agileits_testimonials_right_grid">
                             <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
                                 veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <div class="testimonials_time">2020/3/5</div>
+                            <div class="testimonials_click" >
+                                <i class="fa fa-heart-o"></i>
+
+                            </div>
                         </div>
                     </div>
                     <div class="clearfix"> </div>
@@ -229,21 +252,7 @@
 <!-- //testimonials -->
 
 
-<!-- contact -->
-<div class="w3ls_map" id="contact">
-    <div class="mail">
-        <div class="container">
-            <div class="w3l_contact_grids">
-                <form action="#" method="post">
-                    <div class="clearfix"> </div>
-                    <textarea name="Message" placeholder="Type Message Here...." required></textarea>
-                    <input type="submit" value="Submit Now" />
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- //contact -->
+
 
 
 
@@ -251,6 +260,34 @@
 <!-- js -->
 <script src="${pageContext.request.contextPath}/static/js/book_infor-js/jquery-2.1.4.min.js"></script>
 <!-- //js -->
+
+<!--点赞-->
+<script type="text/jscript">
+ $(document).ready(function(){
+  $('.testimonials_click').find('i').click(function(){$(this).toggleClass('fa-heart-o fa-heart')});
+});
+</script>
+
+<script>
+    function addSC() {
+        var shuji_id =document.getElementById("shuji_id").value;
+        var fatiecontent = document.getElementById("content").value;
+        alert (shuji_id);
+        $.ajax({
+            url:'/addShortComm',   //requestMapping对应
+            async:false,
+            type:'post',
+            data:{"shuji_id":shuji_id,"fatie_content":fatiecontent},
+            success:function () {
+                alert('评论添加成功');
+                location.reload();
+            },
+            error:function () {
+                alert('添加失败');
+            }
+        })
+    }
+</script>
 
 <!-- for bootstrap working -->
 <script src="${pageContext.request.contextPath}/static/js/book_infor-js/bootstrap.js"></script>
