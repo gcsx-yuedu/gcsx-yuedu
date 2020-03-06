@@ -108,4 +108,22 @@ public class UserController {
         return "redirect:user_focus";
     }
 
+    @RequestMapping("user_comment")
+    public String Comment(Model model){
+        List<BShortComm> commList = service.getCommById(1);
+        List<BCommentList> commentLists = new ArrayList<>();
+        for(BShortComm comm : commList){
+            List<BBook> bookList = service.getBookById(comm.getShuji_id());
+            for(BBook book : bookList){
+                BCommentList bcl = new BCommentList();
+                bcl.setBook(book);
+                bcl.setCommList(comm);
+                commentLists.add(bcl);
+            }
+        }
+        model.addAttribute("commentLists",commentLists);
+        return "user_comment";
+
+    }
+
 }
