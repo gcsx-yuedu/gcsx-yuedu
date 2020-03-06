@@ -64,4 +64,12 @@ public interface DManagerDao {
     public void unForbidUser(Integer u_id);
 
     public void deleteBook(Integer b_id);
+
+    public Integer checkUserInfo(DUserinfo userinfo);
+
+    public Integer getUidByUname(String u_name);
+
+    public Integer sameUserName(String u_nam);
+
+    public void addUser(DUserinfo userinfo);
 }
