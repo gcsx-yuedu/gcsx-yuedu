@@ -74,5 +74,13 @@
 	<insert id="guanzhu" parameterType="po.BSJ.BGuanzhu">
 		insert into guanzhu(user_id,guanzhu_userid) values(#{user_id},#{guanzhu_userid})
 	</insert>
+	<!--根据用户id获得短评表中内容-->
+	<select id="getCommById" parameterType="Integer" resultType="po.BSJ.BShortComm">
+		select * from shortcomm where fatie_id=#{fatie_id}
+	</select>
+	<!--根据书籍id获取书籍信息-->
+	<select id="getBookById" parameterType="Integer" resultType="po.BSJ.BBook">
+		select * from book where b_id=#{b_id}
+	</select>
 
 </mapper>

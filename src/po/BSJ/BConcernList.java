@@ -1,5 +1,4 @@
 package po.BSJ;
-import java.util.List;
 
 public class BConcernList {
     private BUser concernList;

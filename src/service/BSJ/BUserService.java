@@ -41,4 +41,6 @@ public class BUserService {
     }
     public void cancelConcern(Integer guanzhu_userid){ BUserDao.cancelConcern(guanzhu_userid); }
     public void guanzhu(BGuanzhu gz){ BUserDao.guanzhu(gz); }
+    public List<BShortComm> getCommById(Integer u_id){ return BUserDao.getCommById(u_id); }
+    public List<BBook> getBookById(Integer b_id){ return BUserDao.getBookById(b_id); }
 }

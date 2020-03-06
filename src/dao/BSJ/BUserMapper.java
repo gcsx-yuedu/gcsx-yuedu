@@ -20,4 +20,6 @@ public interface BUserMapper {
     public Integer getCountFans(Integer guanzhu_userid);
     public void cancelConcern(Integer guanzhu_userid);
     public void guanzhu(BGuanzhu gz);
+    public List<BShortComm> getCommById(Integer fatie_id);
+    public List<BBook> getBookById(Integer b_id);
 }
