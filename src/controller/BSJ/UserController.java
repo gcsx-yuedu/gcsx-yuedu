@@ -122,6 +122,18 @@ public class UserController {
             }
         }
         model.addAttribute("commentLists",commentLists);
+        List<BArticle> article = service.getArticle(1);
+        List<BArticleList> articleList = new ArrayList<>();
+        for(BArticle ar : article){
+            List<BBook> book = service.getBookById(ar.getBook_id());
+            for(BBook b : book){
+                BArticleList ba = new BArticleList();
+                ba.setBooks(b);
+                ba.setArticleList(ar);
+                articleList.add(ba);
+            }
+        }
+        model.addAttribute("articleList",articleList);
         return "user_comment";
 
     }

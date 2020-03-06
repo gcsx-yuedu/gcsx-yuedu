@@ -22,4 +22,5 @@ public interface BUserMapper {
     public void guanzhu(BGuanzhu gz);
     public List<BShortComm> getCommById(Integer fatie_id);
     public List<BBook> getBookById(Integer b_id);
+    public List<BArticle> getArticle(Integer author_id);
 }

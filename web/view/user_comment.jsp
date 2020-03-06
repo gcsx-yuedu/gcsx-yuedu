@@ -2,6 +2,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="po.BSJ.BConcernList" %>
 <%@ page import="po.BSJ.BCommentList" %>
+<%@ page import="po.BSJ.BArticleList" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 
 <html class="no-js">
@@ -154,49 +155,25 @@
         <!-- duhougan -->
         <div class="hidden flex-wrap order-2 pt-0 md:pt-6 md:pb-8 js-tab-pane" id="section-duhougan">
             <ul>
+                <%
+                    List<BArticleList> articleList = (List<BArticleList>)request.getAttribute("articleList");
+                    for(BArticleList  b : articleList) {
+                %>
                 <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
                     <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
                         <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
                         <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
 
                         <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：*****</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">文章标题：*****</p>
+                            <p class="text-xl my-2 font-medium sm:font-normal"><%=b.getBooks().getB_name()%></p>
+                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：<%=b.getArticleList().getLc_time()%></p>
+                            <p class="text-l my-2 font-medium sm:font-normal">文章标题：<%=b.getArticleList().getTitle()%></p>
                             <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
                             <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除文章</button>&nbsp;
                         </div>
                     </div>
                 </li>
-                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
-                    <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
-                        <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
-                        <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
-
-                        <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：*****</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">文章标题：*****</p>
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除文章</button>&nbsp;
-                        </div>
-                    </div>
-                </li>
-
-                <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
-                    <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
-                        <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="book-01" class="w-1/3 sm:w-1/5 shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo">
-                        <div class="flex flex-row sm:flex-col items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-1/10 p-4 js-book"></div>
-
-                        <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">
-                            <p class="text-xl my-2 font-medium sm:font-normal">三国演义</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">发布时间：*****</p>
-                            <p class="text-l my-2 font-medium sm:font-normal">文章标题：*****</p>
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除文章</button>&nbsp;
-                        </div>
-                    </div>
-                </li>
+                <%}%>
             </ul>
         </div>
     </div>
