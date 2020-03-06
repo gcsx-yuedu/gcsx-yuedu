@@ -31,8 +31,16 @@ public class JBookController {
         book.setB_cover(res);
         book.setTypeList(bookType);
 //        bookList.setBook(book);
+        List<JShortComm> shortComm=bookService.queryShortComm(27);
+        for(JShortComm sc : shortComm){
+            String u_name=bookService.getNameByID(sc.getFatie_id());
+            sc.setFatie_name(u_name);
+        }
         System.out.println(">>>");
         System.out.println(book.toString());
+        System.out.println(">>>");
+        System.out.println(shortComm.toString());
+        request.getSession().setAttribute("ShortComm",shortComm);
         request.getSession().setAttribute("book",book);
         return "book_infor";
     }
@@ -63,4 +71,19 @@ public class JBookController {
 //        System.out.println(format.format(date));
         return format.format(date);
     }
+//    /*获取短评*/
+//    @RequestMapping("/queryShortComm")
+//    public String queryShortComm(Integer shuji_id,HttpServletRequest request){
+//        List<JShortComm> shortComm=bookService.queryShortComm(27);
+//        for(JShortComm sc : shortComm){
+//            String u_name=bookService.getNameByID(sc.getFatie_id());
+//            sc.setFatie_name(u_name);
+//        }
+//        System.out.println(">>>");
+//        System.out.println(shortComm.toString());
+//        request.getSession().setAttribute("ShortComm",shortComm);
+//        return "book_infor";
+//    }
+
+
 }

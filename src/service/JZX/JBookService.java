@@ -21,4 +21,6 @@ public class JBookService {
     public String getTypeByID(Integer t_id){return bookDao.getTypeByTypeID(t_id);}
 
     public void addShortComm(JShortComm sc){bookDao.addShortComm(sc);}
+    public List<JShortComm> queryShortComm(Integer shuji_id){return bookDao .queryShortComm(shuji_id);}
+    public String getNameByID(Integer u_id){return bookDao.getNameByID(u_id);}
 }

@@ -3,6 +3,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="po.JZX.JBook" %>
 <%@ page import="po.JZX.JBookList" %>
+<%@ page import="po.JZX.JShortComm" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
     <title>书籍信息</title>
@@ -41,6 +42,7 @@
 
 <%
     JBook book =(JBook) session.getAttribute("book");
+    List<JShortComm> scList=(List<JShortComm>)session.getAttribute("ShortComm");
 %>
 
         <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -199,52 +201,60 @@
         <h3 class="tittle-w3l">What Publications Say</h3>
         <div class="wthree_testimonial_grids">
             <div class="wthree_testimonial_grid_left">
+                <% int k=1;
+                    for(JShortComm sc:scList){
+                        if(k%2==1){
+                %>
                 <div class="w3ls_testimonial_grid_left_grid">
                     <div class="col-xs-4 agileinfo_testimonials_left">
                         <img src="${pageContext.request.contextPath}/static/image/book_infor-image/t1.jpg" alt=" " class="img-people" />
-                        <h4>John Crisp</h4>
+                        <h4><%=sc.getFatie_name()%></h4>
                     </div>
                     <div class="col-xs-8 agileinfo_testimonials_right">
                         <div class="agileits_testimonials_right_grid">
-                            <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <div class="testimonials_time">2020/3/5</div>
+                            <p><%=sc.getFatie_content()%>.</p>
+                            <div class="testimonials_time"><%=sc.getFatie_time()%></div>
                             <div class="testimonials_click" >
                                 <i class="fa fa-heart-o"></i>
-
                             </div>
                         </div>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
+                <%} else {%>
                 <div class="w3ls_testimonial_grid_left_grid w3l_testimonial_grid_left_grid">
                     <div class="col-xs-8 agileinfo_testimonials_right agileits_w3layouts_farm_man">
                         <div class="agileits_testimonials_right_grid w3_testimonials_right_grid">
-                            <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p><%=sc.getFatie_content() %></p>
+                            <div class="testimonials_time"><%=sc.getFatie_time()%></div>
+                            <div class="testimonials_click" >
+                                <i class="fa fa-heart-o"></i>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-xs-4 agileinfo_testimonials_left">
                         <img src="${pageContext.request.contextPath}/static/image/book_infor-image/t2.jpg" alt=" " class="img-people" />
-                        <h4>Thomus Carl</h4>
+                        <h4><%=sc.getFatie_name()%></h4>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
-
-                <div class="w3ls_testimonial_grid_left_grid">
-                    <div class="col-xs-4 agileinfo_testimonials_left">
-                        <img src="${pageContext.request.contextPath}/static/image/book_infor-image/t3.jpg" alt=" " class="img-people" />
-                        <h4>John Crisp</h4>
-                    </div>
-                    <div class="col-xs-8 agileinfo_testimonials_right">
-                        <div class="agileits_testimonials_right_grid">
-                            <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </div>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
+                <%}
+                k++;}
+                        %>
+                <%--<div class="w3ls_testimonial_grid_left_grid">--%>
+                    <%--<div class="col-xs-4 agileinfo_testimonials_left">--%>
+                        <%--<img src="${pageContext.request.contextPath}/static/image/book_infor-image/t3.jpg" alt=" " class="img-people" />--%>
+                        <%--<h4>John Crisp</h4>--%>
+                    <%--</div>--%>
+                    <%--<div class="col-xs-8 agileinfo_testimonials_right">--%>
+                        <%--<div class="agileits_testimonials_right_grid">--%>
+                            <%--<p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim--%>
+                                <%--veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="clearfix"> </div>--%>
+                <%--</div>--%>
             </div>
         </div>
     </div>

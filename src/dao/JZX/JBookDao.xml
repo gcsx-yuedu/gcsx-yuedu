@@ -15,4 +15,10 @@
     <select id="addShortComm" parameterType="po.JZX.JShortComm" >
         insert into shortcomm (shuji_id,fatie_id,fatie_time,fatie_content,click)values (#{shuji_id},#{fatie_id},#{fatie_time},#{fatie_content},#{click})
     </select>
+    <select id="queryShortComm" parameterType="Integer" resultType="po.JZX.JShortComm">
+        select * from shortcomm where shuji_id = #{shuji_id}
+    </select>
+    <select id="getNameByID" parameterType="Integer" resultType="String">
+        select u_name from userInfo whenever u_id=#{u_id}
+    </select>
 </mapper>
