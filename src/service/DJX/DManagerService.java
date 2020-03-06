@@ -126,4 +126,20 @@ public class DManagerService {
     public void deleteBook(Integer b_id) {
         DManagerDao.deleteBook(b_id);
     }
+
+    public Integer checkUserInfo(DUserinfo userinfo) {
+        return DManagerDao.checkUserInfo(userinfo);
+    }
+
+    public Integer getUidByUname(String u_name) {
+        return DManagerDao.getUidByUname(u_name);
+    }
+
+    public Integer sameUserName(String u_name){
+        return DManagerDao.sameUserName(u_name);
+    }
+
+    public void addUser(DUserinfo userinfo) {
+        DManagerDao.addUser(userinfo);
+    }
 }
