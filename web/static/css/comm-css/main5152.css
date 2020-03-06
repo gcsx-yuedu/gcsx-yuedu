@@ -6,7 +6,31 @@ body {
 a:hover {
   text-decoration: none;
 }
-
+.contain{
+  font-size: 30px;
+  padding-left: 30%;
+  align-content: center;
+  /*	background-color: #E1E2E3;*/
+}
+.contain label{
+  font-size: 20px;
+}
+.contain input{
+  width: 60%;
+}
+.contain textarea{
+  width: 60%;
+  height: 400px;
+}
+#submit{
+  align-items: center;
+  background-color: #30323A;
+  color: #fff;
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 12px;
+}
 blockquote {
   background: whitesmoke url("../../image/comm-image/quote.png") no-repeat 20px 25px;
   border: 1px solid #e8e8e8;
