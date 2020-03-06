@@ -149,4 +149,38 @@ public class UserController {
         return "redirect:user_comment";
     }
 
+    @RequestMapping("/user_news")
+    public String News(Model model){
+        List<BArticle> article = service.getArticle(1);
+        List<BHuitieNews> huitieList = new ArrayList<>();
+        for(BArticle a : article){
+            List<BHuitie> huitie = service.getHuitieNews(a.getLc_id());
+            for(BHuitie h :huitie){
+                List<BUser> user = service.queryUserById(h.getHuitieren_id());
+                for(BUser u : user){
+                    BHuitieNews hui = new BHuitieNews();
+                    hui.setUser(u);
+                    hui.setHuitieList(h);
+                    hui.setArticle(a);
+                    huitieList.add(hui);
+                }
+            }
+        }
+        model.addAttribute("huitieList",huitieList);
+
+        List<BGuanzhu> fList = service.getFansId(1);
+        List<BFansList> fanss= new ArrayList<>();
+        for(BGuanzhu fc : fList){
+            List<BUser> fans_List = service.queryUserById(fc.getUser_id());
+            for(BUser fans : fans_List){
+                BFansList FansList = new BFansList();
+                FansList.setFansList(fans);
+                fanss.add(FansList);
+            }
+        }
+        model.addAttribute("fanss",fanss);
+
+        return "user_news";
+    }
+
 }
