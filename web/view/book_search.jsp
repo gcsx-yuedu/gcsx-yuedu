@@ -29,8 +29,9 @@
             <a class="category-link">分类</a>
             <i class="icon-arrow"></i>
             <div class="drop_con">
-                <a>哈哈哈哈</a>
-                <a>hhhhh</a>
+                <%for (ZBookType ty:types){%>
+                <a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
+                <%}%>
             </div>
             <div class="category-result"></div>
             <!-- 边框 -->

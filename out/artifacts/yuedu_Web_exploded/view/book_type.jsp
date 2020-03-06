@@ -4,6 +4,9 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <html class="no-js">
+<%
+    List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
+%>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,8 +25,9 @@
             <a class="category-link">分类</a>
             <i class="icon-arrow"></i>
             <div class="drop_con">
-                <a>哈哈哈哈</a>
-                <a>hhhhh</a>
+                <%for (ZBookType ty:types){%>
+                <a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
+                <%}%>
             </div>
             <div class="category-result"></div>
             <!-- 边框 -->
@@ -31,10 +35,13 @@
             <span class="result-border"></span>
             <span class="neck-border"></span>
         </div>
+        <%String wenzi = request.getParameter("wenzi");%>
+        <form action="/book_search" method="post" id="myForm">
         <div class="search">
-            <input type="text" class="search-text" placeholder="Seach here...">
+            <input type="text" class="search-text" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>">
             <button class="search-btn"><i class="icon-search"></i></button>
         </div>
+        </form>
         <nav class="header-nav">
             <ul>
                 <li>
@@ -64,9 +71,7 @@
 
 <% Integer t_id = (Integer) session.getAttribute("t_id");
     String t_type = (String) session.getAttribute("t_type");
-//    System.out.println("t_id="+t_id);
     Integer count = (Integer) session.getAttribute("count");
-    List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
     List<ZBook> books = (List<ZBook>)session.getAttribute("books");
 %>
 

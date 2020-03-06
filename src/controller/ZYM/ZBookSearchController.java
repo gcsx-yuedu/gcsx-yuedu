@@ -47,7 +47,7 @@ public class ZBookSearchController {
         return type;
     }
 
-    //添加至书架，待完善
+    //添加至书架
     @RequestMapping("/addToShelf")
     public String addToShelf(Integer u_id,Integer b_id,HttpServletRequest request){
         System.out.println("u_id="+u_id);
@@ -59,8 +59,6 @@ public class ZBookSearchController {
         System.out.println("添加完毕");
 //        request.getSession().setAttribute("u_id", u_id);
         request.getSession().setAttribute("b_id", b_id);
-
-        System.out.println("已添加，准备跳转，b_id="+b_id);
         return "book_search";
     }
 
@@ -91,4 +89,11 @@ public class ZBookSearchController {
         return "book_type";
     }
 
+    //首页
+    @RequestMapping("/home_page")
+    public String shouye(HttpServletRequest request){
+        List<ZBookType> types = zBookService.selectAllType();
+        request.getSession().setAttribute("types",types);
+        return "home_page";
+    }
 }
