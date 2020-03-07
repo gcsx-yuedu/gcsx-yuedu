@@ -168,7 +168,7 @@
                     <span class="fa fa-commenting-o" aria-hidden="true"></span>
                 </div>
                 <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='768' data-delay='.5' data-increment="1">768</div>
-                <a href="${pageContext.request.contextPath}/view/comment.jsp"><p>书评区</p></a>
+                <a href="/comment?book_id=<%=book.getB_id()%>"><p>书评区</p></a>
             </div>
             <div class="clearfix"></div>
         </div>
