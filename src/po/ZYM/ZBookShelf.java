@@ -5,6 +5,7 @@ public class ZBookShelf {
     private int id;
     private int user_id;
     private int book_id;
+    private int count;
 
     public int getId(){
         return id;
@@ -29,4 +30,11 @@ public class ZBookShelf {
         this.book_id = book_id;
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 }
