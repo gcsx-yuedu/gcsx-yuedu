@@ -20,6 +20,7 @@
     int count = (int)session.getAttribute("count");
     List<ZBook> books =(List<ZBook>)session.getAttribute("books");
     List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
+    String userName = (String)session.getAttribute("userName");
 %>
 
 <header class="header">
@@ -56,7 +57,11 @@
                 </li>
                 <li>
                     <span class="line"></span>
-                    <a href="#" class="icon-text__pink register">登录</a>
+                    <% if (userName==null){%>
+                    <a href="${pageContext.request.contextPath}/view/sign-up-yh.jsp" class="icon-text__pink register">登录</a>
+                    <%}else{%>
+                    欢迎<%=userName%>
+                    <%}%>
                 </li>
                 <li>
                     <span class="line"></span>
