@@ -55,14 +55,23 @@
                     <a href="#" class="dreamer">悦读</a>
                     <i class="icon-text__pink icon-new">new</i>
                 </li>
+                <%
+                    if (userName==null){
+                %>
                 <li>
                     <span class="line"></span>
-                    <% if (userName==null){%>
                     <a href="${pageContext.request.contextPath}/view/sign-up-yh.jsp" class="icon-text__pink register">登录</a>
-                    <%}else{%>
-                    欢迎<%=userName%>
-                    <%}%>
                 </li>
+                <%}else{%>
+                <li>
+                    <span>欢迎 </span>
+                    <a href="/user_info?u_id=<%=session.getAttribute("userId")%>" class="app" style="cursor:pointer"><%=userName%></a>
+                </li>
+                <li>
+                    <span class="line"></span>
+                    <a href="/home_page" class="app" style="cursor:pointer" style="cursor:pointer">退出</a>
+                </li>
+                <%}%>
                 <li>
                     <span class="line"></span>
                     <i class="icon-app"></i>
