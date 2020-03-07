@@ -35,6 +35,9 @@
         select * from book where b_id = #{book_id}
     </select>
 
+    <select id="getCountOfShelfBook" parameterType="Integer" resultType="Integer">
+        select count(*) from bookshelf where book_id=#{b_id}
+    </select>
 
 </mapper>
 
