@@ -1,7 +1,7 @@
 package po.JZX;
 
 public class JShortComm {
-    private int sc_id;
+    private int id;
     private int shuji_id;
     private int fatie_id;
     private String fatie_name;
@@ -9,12 +9,12 @@ public class JShortComm {
     private String fatie_content;
     private int click;
 
-    public int getSc_id() {
-        return sc_id;
+    public int getId() {
+        return id;
     }
 
-    public void setSc_id(int sc_id) {
-        this.sc_id = sc_id;
+    public void setId(int sc_id) {
+        this.id = id;
     }
 
     public int getShuji_id() {
@@ -68,7 +68,7 @@ public class JShortComm {
     @Override
     public String toString() {
         return "JShortComm{" +
-                "sc_id=" + sc_id +
+                "id=" + id +
                 ", shuji_id=" + shuji_id +
                 ", fatie_id=" + fatie_id +
                 ", fatie_name='" + fatie_name + '\'' +

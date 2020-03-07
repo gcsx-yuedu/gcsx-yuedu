@@ -614,6 +614,7 @@ ul.address li ul.agileits-address-text li a:hover {
     border: 1px solid rgba(255, 255, 255, 0.53);
     background: #337AB7;
     padding: 5px;
+    padding-top: 30px;
 }
 .col-xs-3{
   position: relative;
