@@ -13,8 +13,8 @@ import java.util.List;
 public class BUserService {
     @Autowired
     private BUserMapper BUserDao;
-    public int updateUser(BUser user) {
-        return BUserDao.updateUser(user);
+    public void updateUser(BUser user) {
+        BUserDao.updateUser(user);
     }
     public List<BUser> queryUserById(Integer u_id){ return BUserDao.queryUserById(u_id);}
     public List<BBookShelf> queryShelfById(Integer u_id){ return BUserDao.queryShelfById(u_id);}

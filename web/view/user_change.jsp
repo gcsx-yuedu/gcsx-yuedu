@@ -57,7 +57,7 @@
                 </li>
                 <li>
                     <span class="line"></span>
-                    <a href="${pageContext.request.contextPath}/view/home_page.jsp" class="app" style="cursor:pointer">退出</a>
+                    <a href="/home_page" class="app" style="cursor:pointer">退出</a>
                 </li>
                 <li>
                     <span class="line"></span>
@@ -99,10 +99,10 @@
                     </div>
                 </div>
                 <ul class="text-grey lg:text-grey-dark list-reset leading-loose mt-2" id="sidenav-categories">
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_change.jsp">修改信息</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_change">修改信息</a></li>
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_news?u_id=<%=session.getAttribute("userId")%>">我的消息</a></li>
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_focus?u_id=<%=session.getAttribute("userId")%>">我的关注/粉丝</a></li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="user_comment?u_id=<%=session.getAttribute("userId")%>">我的评论/读后感</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_comment?u_id=<%=session.getAttribute("userId")%>">我的评论/读后感</a></li>
                 </ul>
             </li>
             <li class="ml-2 mb-4 flex">
@@ -134,7 +134,7 @@
         </div>
         <!-- Library -->
         <div class="hidden px-2 pt-2 md:px-0 flex-wrap order-2 pb-8 js-tab-pane active" id="section-library">
-            <form id="payment" action="../user_change">
+            <form id="payment" action="/update">
                 <fieldset>
                     <legend>用户详细资料</legend>
                     <ol>
@@ -142,6 +142,7 @@
                             <a href="#" class="pic" style=" background: url(${pageContext.request.contextPath}/static/image/user-image/user_img1.jpg) no-repeat; background-size: cover; "></a>
                             <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
                         </li>
+                        <input type="hidden" name="u_id" value="<%=session.getAttribute("userId")%>"/>
                         <li>
                             <label for="name">用户名：</label>
                             <input id="name" name="u_name" type="text" placeholder="请输入用户名" required autofocus>
@@ -152,7 +153,7 @@
                         </li>
                         <li>
                             <label for="name">性别：</label>
-                            <select name="sex" id="u_sex">
+                            <select name="u_sex" id="sex">
                                 <option value=""></option>
                                 <option value="男">男</option>
                                 <option value="女">女</option>
