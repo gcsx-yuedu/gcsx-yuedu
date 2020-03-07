@@ -4,6 +4,7 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@page import="po.BSJ.*"  %>
 <%@page import="po.ZYM.ZBookType"  %>
+<%@ page import="service.BSJ.BUserService" %>
 <!--<![endif]-->
 <head>
     <meta charset="utf-8">
@@ -167,7 +168,17 @@
                             <a href="#" class="info-title"><%=ss.getFansList().getU_name()%></a>
                             <p><i class="icon-star"></i><%=ss.getCountFans()%>人关注</p>
                         </div>
+                        <%  BGuanzhu guanzhu = new BGuanzhu();
+                            guanzhu.setUser_id(Integer.parseInt(session.getAttribute("userId").toString()));
+                            guanzhu.setGuanzhu_userid(ss.getFansList().getU_id());
+                            BUserService service = new BUserService();
+                            int count = service.getLine(guanzhu);
+                            if(count==0){
+                        %>
                         <a href="/guanzhu?u_id=<%=session.getAttribute("userId")%>&&user_id=<%=ss.getFansList().getU_id()%>" class="icon-text__pink register" style="width:80px">关注</a>
+                        <%}else{%>
+                        <a class="icon-text__pink register" style="width:80px">互相关注</a>
+                        <%}%>
                     </li>
                 </ul>
             </div>

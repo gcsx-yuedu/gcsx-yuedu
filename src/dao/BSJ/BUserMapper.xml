@@ -102,4 +102,8 @@
 	<select id="getHuitieNews" parameterType="Integer" resultType="po.BSJ.BHuitie">
 		select * from huitie where tiezi_id=#{tiezi_id}
 	</select>
+	<!--根据user_id和guanzhu_userid获取行数-->
+	<select id="getLine" parameterType="po.BSJ.BGuanzhu" resultType="Integer">
+		select count(*) from guanzhu where user_id=#{user_id} and guanzhu_userid=#{guanzhu_userid}
+	</select>
 </mapper>
