@@ -3,6 +3,7 @@ package controller.ZYM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import po.ZYM.ZBook;
 import po.ZYM.ZBookShelf;
 import po.ZYM.ZBookType;
@@ -61,6 +62,14 @@ public class ZBookSearchController {
 //        request.getSession().setAttribute("u_id", u_id);
         request.getSession().setAttribute("b_id", b_id);
         return "book_search";
+    }
+
+    //判断书架是否已存在该书
+    @ResponseBody
+    @RequestMapping("/judgeshujia")
+    public String panduanShujia(Integer b_id){
+        boolean aa = zBookService.getCountOfShelfBook(b_id);
+        return aa ? "0" : "1";
     }
 
     //点击类型跳转至该类型下书籍

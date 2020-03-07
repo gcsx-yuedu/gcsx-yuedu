@@ -14,4 +14,5 @@ public interface ZBookMapper {
     public List<ZBookType> selectAllType();
     public List<Integer> selectBookIdByTypeId(int t_id);
     public ZBook selectBookByBookId(int b_id);
+    public boolean getCountOfShelfBook(Integer b_id);
 }
