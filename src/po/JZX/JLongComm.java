@@ -7,7 +7,7 @@ public class JLongComm {
     private int author_id;
     private String lc_time;
     private String lc_article;
-    private int lc_content;
+    private int lc_coment;
     private int lc_click;
 
     public int getLc_id() {
@@ -59,11 +59,11 @@ public class JLongComm {
     }
 
     public int getLc_content() {
-        return lc_content;
+        return lc_coment;
     }
 
     public void setLc_content(int lc_content) {
-        this.lc_content = lc_content;
+        this.lc_coment = lc_coment;
     }
 
     public int getLc_click() {
@@ -83,7 +83,7 @@ public class JLongComm {
                 ", author_id=" + author_id +
                 ", lc_time='" + lc_time + '\'' +
                 ", lc_article='" + lc_article + '\'' +
-                ", lc_content=" + lc_content +
+                ", lc_content=" + lc_coment +
                 ", lc_click=" + lc_click +
                 '}';
     }

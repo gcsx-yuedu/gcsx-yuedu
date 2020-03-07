@@ -22,16 +22,16 @@ public class JBookController {
     private JBookService bookService;
 
     @RequestMapping("/book_infor")
-    public String QueryBook(Integer id, HttpServletRequest request){
+    public String QueryBook(Integer b_id, HttpServletRequest request){
 //        bookService.queryBook(id);
         request.getSession().setAttribute("username", request.getSession().getAttribute("username"));
-        JBook book=bookService.queryBook(27);
+        JBook book=bookService.queryBook(b_id);
         List<String> bookType = getBookType(book.getB_id());
         String res=new String((byte[])book.getB_cover());
         book.setB_cover(res);
         book.setTypeList(bookType);
 //        bookList.setBook(book);
-        List<JShortComm> shortComm=bookService.queryShortComm(27);
+        List<JShortComm> shortComm=bookService.queryShortComm(b_id);
         for(JShortComm sc : shortComm){
 //            System.out.println(sc.getFatie_id());
             String u_name=bookService.getNameByID(sc.getFatie_id());
@@ -85,6 +85,21 @@ public class JBookController {
 //        request.getSession().setAttribute("ShortComm",shortComm);
 //        return "book_infor";
 //    }
-
+    @ResponseBody
+    @RequestMapping("/Dianzan")
+    public String Dianzan(Integer id){
+        bookService.dianzan(id);
+        System.out.println(">>>");
+        System.out.println(id + "点赞成功");
+        return "ok";
+    }
+    @ResponseBody
+    @RequestMapping("/Quxiao")
+    public String Quxiao(Integer id){
+        bookService.quxiao(id);
+        System.out.println(">>>");
+        System.out.println(id + "取消点赞");
+        return "OK";
+    }
 
 }

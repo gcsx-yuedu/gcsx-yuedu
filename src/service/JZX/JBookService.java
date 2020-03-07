@@ -23,4 +23,6 @@ public class JBookService {
     public void addShortComm(JShortComm sc){bookDao.addShortComm(sc);}
     public List<JShortComm> queryShortComm(Integer shuji_id){return bookDao .queryShortComm(shuji_id);}
     public String getNameByID(Integer u_id){return bookDao.getNameByID(u_id);}
+    public void dianzan(Integer id){bookDao.dianzan(id);}
+    public void quxiao(Integer id){bookDao.quxiao(id);}
 }

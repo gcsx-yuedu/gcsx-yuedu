@@ -17,4 +17,7 @@ public interface JBookDao {
     public void addShortComm(JShortComm sc);
     public List<JShortComm> queryShortComm(Integer shuji_id);
     public String getNameByID(Integer u_id);
+
+    public void dianzan(Integer id);
+    public void quxiao(Integer id);
 }
