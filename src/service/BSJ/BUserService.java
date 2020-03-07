@@ -16,6 +16,7 @@ public class BUserService {
     public void updateUser(BUser user) {
         BUserDao.updateUser(user);
     }
+    public void removeShelf(BBookShelf shelf){ BUserDao.removeShelf(shelf);}
     public List<BUser> queryUserById(Integer u_id){ return BUserDao.queryUserById(u_id);}
     public List<BBookShelf> queryShelfById(Integer u_id){ return BUserDao.queryShelfById(u_id);}
     public List<BBook> selectBookById(Integer b_id) {

@@ -19,6 +19,13 @@ public class UserController {
     @Autowired
     private BUserService service;
 
+    @RequestMapping("/exit")
+    public String Exit(HttpServletRequest request){
+        request.getSession().removeAttribute("userId");
+        request.getSession().removeAttribute("userName");
+        return "redirect:/home_page";
+    }
+
     public List<String> getTypeId(Integer b_id) {
         List<Integer> type_id = service.getTypeId(b_id);
         List<String> typeList = new ArrayList<>();
@@ -53,6 +60,16 @@ public class UserController {
         model.addAttribute("list",list);
         model.addAttribute("shelfLists",shelfLists);
         return "user_info";
+    }
+    @RequestMapping("/remove")
+    public String Remove(int b_id,int u_id){
+        System.out.println(b_id);
+        System.out.println(u_id);
+        BBookShelf shelf = new BBookShelf();
+        shelf.setUser_id(u_id);
+        shelf.setBook_id(b_id);
+        service.removeShelf(shelf);
+        return "redirect:/user_info?u_id="+u_id;
     }
 
     @RequestMapping("/user_change")
