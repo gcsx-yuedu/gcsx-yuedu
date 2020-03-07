@@ -111,7 +111,7 @@
 
                 <div class="row separator">
                     <section class="span4 articles-list">
-                        <h3><a href="#">Posting</a></h3>
+                        <h3><a href="#form">Posting</a></h3>
                         <ul class="articles">
                             <li class="article-entry standard">
                                 <h4><a href="${pageContext.request.contextPath}/view/article.jsp">Integrating WordPress with Your Website</a></h4>
@@ -253,6 +253,41 @@
     </div>
 </div>
 <!-- End of Page Container -->
+
+<div class="contain">
+    <form class="contact" action="#" method="post" id="form">
+        <div class="row clearfix">
+            <div class="lbl">
+                <label for="name">
+                    标题</label>
+            </div>
+            <div class="ctrl">
+                <input type="text" id="name" name="name" data-required="true" data-validation="text"
+                       data-msg="Invalid Name" placeholder="请在此输入标题...">
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="lbl">
+                <label for="message">
+                    Message</label>
+            </div>
+            <div class="ctrl">
+                <textarea id="message" name="message" rows="6" cols="10"></textarea>
+            </div>
+        </div>
+        <div class="row  clearfix">
+            <div class="span10 offset2">
+                <input type="submit" name="submit" id="submit" class="submit" value="Send Message">
+            </div>
+        </div>
+    </form>
+    <!--<div id="success">
+        Your E-Mail has been sent successfully!</div>
+    <div id="error">
+        Unable to send e-mail at the moment, please try later.</div>
+    <div id="validation">
+    </div>-->
+</div>
 <!-- Footer Bottom -->
 <div id="footer-bottom-wrapper">
     <div id="footer-bottom" class="container">

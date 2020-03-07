@@ -19,6 +19,6 @@
         select * from shortcomm where shuji_id = #{shuji_id}
     </select>
     <select id="getNameByID" parameterType="Integer" resultType="String">
-        select u_name from userInfo whenever u_id=#{u_id}
+        select u_name from userInfo where u_id = #{u_id}
     </select>
 </mapper>

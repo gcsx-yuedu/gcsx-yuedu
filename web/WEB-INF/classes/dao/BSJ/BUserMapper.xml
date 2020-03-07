@@ -74,5 +74,28 @@
 	<insert id="guanzhu" parameterType="po.BSJ.BGuanzhu">
 		insert into guanzhu(user_id,guanzhu_userid) values(#{user_id},#{guanzhu_userid})
 	</insert>
-
+	<!--根据用户id获得短评表中内容-->
+	<select id="getCommById" parameterType="Integer" resultType="po.BSJ.BShortComm">
+		select * from shortcomm where fatie_id=#{fatie_id}
+	</select>
+	<!--根据书籍id获取书籍信息-->
+	<select id="getBookById" parameterType="Integer" resultType="po.BSJ.BBook">
+		select * from book where b_id=#{b_id}
+	</select>
+	<!--根据用户id获取文章内容-->
+    <select id="getArticle" parameterType="Integer" resultType="po.BSJ.BArticle">
+		select * from longcomm where author_id=#{author_id}
+	</select>
+    <!--根据发帖时间删除-->
+    <delete id="deleteShort" parameterType="String">
+        delete from shortcomm where fatie_time=#{fatie_time}
+    </delete>
+	<!--根据发文章时间删除-->
+	<delete id="deleteArticle" parameterType="String">
+		delete from longcomm where lc_time=#{lc_time}
+	</delete>
+	<!--根据帖子id查回帖消息-->
+	<select id="getHuitieNews" parameterType="Integer" resultType="po.BSJ.BHuitie">
+		select * from huitie where tiezi_id=#{tiezi_id}
+	</select>
 </mapper>

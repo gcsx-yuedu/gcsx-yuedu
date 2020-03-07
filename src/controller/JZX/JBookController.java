@@ -33,6 +33,7 @@ public class JBookController {
 //        bookList.setBook(book);
         List<JShortComm> shortComm=bookService.queryShortComm(27);
         for(JShortComm sc : shortComm){
+//            System.out.println(sc.getFatie_id());
             String u_name=bookService.getNameByID(sc.getFatie_id());
             sc.setFatie_name(u_name);
         }
