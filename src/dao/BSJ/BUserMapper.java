@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface BUserMapper {
     public void updateUser(BUser user);
+    public void removeShelf(BBookShelf shelf);
     public List<BUser> queryUserById(Integer u_id);
     public List<BBookShelf> queryShelfById(Integer u_id);
     public List<BBook> selectBookById(Integer b_id);

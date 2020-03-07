@@ -61,6 +61,16 @@ public class UserController {
         model.addAttribute("shelfLists",shelfLists);
         return "user_info";
     }
+    @RequestMapping("/remove")
+    public String Remove(int b_id,int u_id){
+        System.out.println(b_id);
+        System.out.println(u_id);
+        BBookShelf shelf = new BBookShelf();
+        shelf.setUser_id(u_id);
+        shelf.setBook_id(b_id);
+        service.removeShelf(shelf);
+        return "redirect:/user_info?u_id="+u_id;
+    }
 
     @RequestMapping("/user_change")
     public String Change(){
