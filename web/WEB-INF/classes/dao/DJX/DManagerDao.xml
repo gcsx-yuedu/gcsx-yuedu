@@ -192,4 +192,19 @@
     <select id="getHuiTieNumByTime" parameterType="String" resultType="integer">
         select count(*) from huitie where huitie_time like"%"#{huitie_time}"%"
     </select>
+
+    <!--根据id获取长评的内容-->
+    <select id="getLongCommById" parameterType="Integer" resultType="po.DJX.DLongComm">
+        select * from longcomm where lc_id=#{lc_id}
+    </select>
+
+    <!--根据长评id获取回帖list-->
+    <select id="getHuitieById" parameterType="Integer" resultType="po.DJX.DHuitie">
+        select * from huitie where tiezi_id=#{tiezi_id}
+    </select>
+    
+    <!--根据author_id获取author_name-->
+    <select id="getAuthorNameById" parameterType="Integer" resultType="String">
+        select u_name from userInfo where u_id=#{u_id}
+    </select>
 </mapper>

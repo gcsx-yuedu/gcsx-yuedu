@@ -489,4 +489,21 @@ public class GlySignInCheck {
         System.out.println("长评添加成功......");
         return "OK";
     }
+
+    /*跳转到article界面*/
+    /*根据长评id获取长评的内容*/
+    /*根据长评id获取回帖的list*/
+    @RequestMapping("/article")
+    public String article(Integer lc_id,HttpServletRequest request) {
+        lc_id=1;
+        DLongComm longComm = service.getLongCommById(lc_id);
+        List<DHuitie> huitieList = service.getHuitieById(lc_id);
+        longComm.setAuthor_name(service.getAuthorNameById(longComm.getAuthor_id()));
+        for (DHuitie huitie : huitieList) {
+            huitie.setAuthor_name(service.getAuthorNameById(huitie.getHuitieren_id()));
+        }
+        request.getSession().setAttribute("longComm",longComm);
+        request.getSession().setAttribute("huitieList",huitieList);
+        return "article";
+    }
 }

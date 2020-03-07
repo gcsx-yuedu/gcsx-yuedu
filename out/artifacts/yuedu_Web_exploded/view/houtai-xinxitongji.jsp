@@ -203,7 +203,7 @@ response.sendRedirect("/Msignup");
 
             <div class="row">
                 <!-- Area Chart -->
-                <div class="col-xl-6">
+                <div class="col-xl-5">
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -234,7 +234,7 @@ response.sendRedirect("/Msignup");
                         },
                     });
                 </script>
-                <div class="col-xl-6">
+                <div class="col-xl-7">
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -265,7 +265,7 @@ response.sendRedirect("/Msignup");
                             ],
                             datasets: [
                                 {
-                                    label: "近一周评论走势",
+                                    label: "数量",
                                     fillColor: "rgba(220,220,220,0.2)",
                                     strokeColor: "rgba(220,220,220,1)",
                                     pointColor: "rgba(220,220,220,1)",
@@ -315,7 +315,7 @@ response.sendRedirect("/Msignup");
                             }
                             %>],
                         datasets:[{
-                            label: '类型',
+                            label: '数量',
                             data:[<%
                                 for (DBookType bookType:bookTypeList){
                                 %>

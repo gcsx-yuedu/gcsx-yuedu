@@ -171,4 +171,16 @@ public class DManagerService {
     public Integer getHuiTieNumByTime(String huitie_time){
         return DManagerDao.getHuiTieNumByTime(huitie_time);
     }
+
+    public DLongComm getLongCommById(Integer lc_id) {
+        return DManagerDao.getLongCommById(lc_id);
+    }
+
+    public List<DHuitie> getHuitieById(Integer tiezi_id) {
+        return DManagerDao.getHuitieById(tiezi_id);
+    }
+
+    public String getAuthorNameById(Integer u_id) {
+        return DManagerDao.getAuthorNameById(u_id);
+    }
 }
