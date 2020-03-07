@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ page import="po.BSJ.*" %>
-<%@ page contentType="text/html;charset=utf-8"%>
-
 <html class="no-js">
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page contentType="text/html;charset=utf-8"%>
+<%@page import="po.BSJ.*"  %>
+<%@page import="po.ZYM.ZBookType"  %>
 <!--<![endif]-->
 <head>
     <meta charset="utf-8">
@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user-css/index.css">
 </head>
 <body class="bg-grey-lighter font-sans antialiased">
+<%  String wenzi = request.getParameter("wenzi");
+    List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
+%>
 <header class="header">
     <div class="header-inner body-width">
         <a href="#" class="logo"></a>
@@ -23,8 +26,9 @@
             <a class="category-link">分类</a>
             <i class="icon-arrow"></i>
             <div class="drop_con">
-                <a>哈哈哈哈</a>
-                <a>hhhhh</a>
+                <% for(ZBookType ty:types){%>
+                <a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
+                <%}%>
             </div>
             <div class="category-result"></div>
             <!-- 边框 -->
@@ -32,10 +36,12 @@
             <span class="result-border"></span>
             <span class="neck-border"></span>
         </div>
-        <div class="search">
-            <input type="text" class="search-text" placeholder="Seach here${pageContext.request.contextPath}/static">
-            <button class="search-btn"><i class="icon-search"></i></button>
-        </div>
+        <form action="/book_search" method="post" id="myForm">
+            <div class="search">
+                <input type="text" class="search-text" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>">
+                <button class="search-btn"><i class="icon-search"></i></button>
+            </div>
+        </form>
         <nav class="header-nav">
             <ul>
                 <li>
