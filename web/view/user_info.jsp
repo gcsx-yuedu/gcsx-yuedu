@@ -149,7 +149,7 @@
                             <p class="text-l my-2 font-medium sm:font-normal">作者：<%=sc.getBookList().getB_author() %></p>
                             <p class="text-sm my-2 font-medium sm:font-normal">类型：<%=typeList%></p>
                             <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">移出书架</button>&nbsp;
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none"><a href="/remove?b_id=<%=sc.getBookList().getB_id()%>&&u_id=<%=session.getAttribute("userId")%>">移出书架</a></button>&nbsp;
                         </div>
                     </div>
                 </li>
