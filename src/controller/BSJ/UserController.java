@@ -19,6 +19,13 @@ public class UserController {
     @Autowired
     private BUserService service;
 
+    @RequestMapping("/exit")
+    public String Exit(HttpServletRequest request){
+        request.getSession().removeAttribute("userId");
+        request.getSession().removeAttribute("userName");
+        return "redirect:/home_page";
+    }
+
     public List<String> getTypeId(Integer b_id) {
         List<Integer> type_id = service.getTypeId(b_id);
         List<String> typeList = new ArrayList<>();
