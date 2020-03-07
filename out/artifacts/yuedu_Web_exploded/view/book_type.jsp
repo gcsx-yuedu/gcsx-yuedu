@@ -6,6 +6,7 @@
 <html class="no-js">
 <%
     List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
+    String userName = (String)session.getAttribute("userName");
 %>
 <head>
     <meta charset="utf-8">
@@ -51,7 +52,11 @@
                 </li>
                 <li>
                     <span class="line"></span>
-                    <a href="#" class="icon-text__pink register">登录</a>
+                    <% if (userName==null){%>
+                    <a href="${pageContext.request.contextPath}/view/sign-up-yh.jsp" class="icon-text__pink register">登录</a>
+                    <%}else{%>
+                    欢迎<%=userName%>
+                    <%}%>
                 </li>
                 <li>
                     <span class="line"></span>

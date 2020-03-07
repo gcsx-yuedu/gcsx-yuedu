@@ -19,7 +19,7 @@ public class ZBookSearchController {
 
     //
     @RequestMapping("/book_search")
-    public String QueryBook(String wenzi, HttpServletRequest request){
+    public String QueryBook(String userName,String wenzi, HttpServletRequest request){
         if(wenzi == null){wenzi="";}
         List<ZBook> books = zBookService.queryBook(wenzi);
         List<ZBookType> types = zBookService.selectAllType();
@@ -34,6 +34,7 @@ public class ZBookSearchController {
         request.getSession().setAttribute("count",books.size());
         request.getSession().setAttribute("books",books);
         request.getSession().setAttribute("types",types);
+        request.getSession().setAttribute("userName",userName);
         return "book_search";
     }
 
@@ -64,7 +65,7 @@ public class ZBookSearchController {
 
     //点击类型跳转至该类型下书籍
     @RequestMapping("/showBookByType")
-    public String bookByType(int t_id,String t_type,HttpServletRequest request) {
+    public String bookByType(String userName,int t_id,String t_type,HttpServletRequest request) {
         System.out.println("con t_id=" + t_id);
         request.getSession().setAttribute("t_id", t_id);
         request.getSession().setAttribute("t_type", t_type);
@@ -86,14 +87,16 @@ public class ZBookSearchController {
         request.getSession().setAttribute("count",book_ids.size());
         request.getSession().setAttribute("books", books);
         request.getSession().setAttribute("types", types);
+        request.getSession().setAttribute("userName",userName);
         return "book_type";
     }
 
     //首页
     @RequestMapping("/home_page")
-    public String shouye(HttpServletRequest request){
+    public String shouye(String userName,HttpServletRequest request){
         List<ZBookType> types = zBookService.selectAllType();
         request.getSession().setAttribute("types",types);
+        request.getSession().setAttribute("userName",userName);
         return "home_page";
     }
 }
