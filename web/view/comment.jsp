@@ -56,7 +56,7 @@
 <%  String wenzi = request.getParameter("wenzi");
     List<DBookType> types = (List<DBookType>)session.getAttribute("bookTypeList");
     int totalPage = (int) session.getAttribute("totalPage");
-    int pageNum = (int) session.getAttribute("pageNum");
+    Integer pageNum = (Integer) session.getAttribute("pageNum");
     List<DLongComm> longCommList = (List<DLongComm>) session.getAttribute("longCommList");
     int book_id = (int) session.getAttribute("book_id");
     int userId = (int) session.getAttribute("userId");
@@ -95,7 +95,7 @@
                 <li>
                     <span class="line"></span>
                     <span>欢迎 </span>
-                    <a href="/user_info?u_id=<%=session.getAttribute("userId")%>" class="app" style="cursor:pointer"><%=session.getAttribute("userName")%></a>
+                    <a href="/user_info?u_id=<%=session.getAttribute("userId")%>" class="app" style="cursor:pointer"><%=userName%></a>
                 </li>
                 <li>
                     <span class="line"></span>
@@ -173,15 +173,15 @@
                     </div>
                 </section>
 
-                <section class="widget">
-                    <h3 class="title">Recent Comments</h3>
-                    <ul id="recentcomments">
-                        <li class="recentcomments"><a href="#" rel="external nofollow" class="url">John Doe</a> on <a href="#">Integrating WordPress with Your Website</a></li>
-                        <li class="recentcomments">saqib sarwar on <a href="#">Integrating WordPress with Your Website</a></li>
-                        <li class="recentcomments"><a href="#" rel="external nofollow" class="url">John Doe</a> on <a href="#">Integrating WordPress with Your Website</a></li>
-                        <li class="recentcomments"><a href="#" rel="external nofollow" class="url">Mr WordPress</a> on <a href="#">Installing WordPress</a></li>
-                    </ul>
-                </section>
+                <%--<section class="widget">--%>
+                    <%--<h3 class="title">Recent Comments</h3>--%>
+                    <%--<ul id="recentcomments">--%>
+                        <%--<li class="recentcomments"><a href="#" rel="external nofollow" class="url">John Doe</a> on <a href="#">Integrating WordPress with Your Website</a></li>--%>
+                        <%--<li class="recentcomments">saqib sarwar on <a href="#">Integrating WordPress with Your Website</a></li>--%>
+                        <%--<li class="recentcomments"><a href="#" rel="external nofollow" class="url">John Doe</a> on <a href="#">Integrating WordPress with Your Website</a></li>--%>
+                        <%--<li class="recentcomments"><a href="#" rel="external nofollow" class="url">Mr WordPress</a> on <a href="#">Installing WordPress</a></li>--%>
+                    <%--</ul>--%>
+                <%--</section>--%>
 
             </aside>
             <!-- end of sidebar -->
@@ -196,7 +196,7 @@
             <div class="lbl">
                 <label for="name">标题</label>
                 <input name="book_id" type="hidden" value="<%=book_id%>" >
-                <input name="author_id" value="<%=userId%>" >
+                <input type="hidden" name="author_id" value="<%=userId%>" >
             </div>
             <div class="ctrl">
                 <input type="text" id="name" name="title" data-required="true" data-validation="text"

@@ -160,7 +160,7 @@
 
     <!--获取长评-->
     <select id="getAllLongComm"  resultType="po.DJX.DLongComm">
-        select * from select ( lc_id,title,book_id,author_id,lc_time,lc_article,lc_coment,lc_click from longcomm where book_id = #{book_id}) limit #{pageNum},6
+        select  lc_id,title,book_id,author_id,lc_time,lc_article,lc_coment,lc_click from longcomm where book_id = #{book_id} limit #{pageNum},6
     </select>
 
     <!--获取长评总数-->

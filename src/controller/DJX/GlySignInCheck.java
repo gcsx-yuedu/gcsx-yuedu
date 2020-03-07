@@ -462,8 +462,10 @@ public class GlySignInCheck {
     /*获取session里面的userId和userName*/
     @RequestMapping("/comment")
     public String toComment(Integer book_id,Integer pageNum,HttpServletRequest request) {
-        request.getSession().setAttribute("userId", request.getSession().getAttribute("userId"));
-        request.getSession().setAttribute("username", request.getSession().getAttribute("userName"));
+        request.getSession().setAttribute("userId",request.getSession().getAttribute("userId") );
+//        request.getSession().getAttribute("userId")
+        request.getSession().setAttribute("userName", request.getSession().getAttribute("userName"));
+//        request.getSession().getAttribute("userName")
         /*获取所有长评*/
         if ("".equals(String.valueOf(pageNum))||pageNum==null) {
             pageNum=1;
