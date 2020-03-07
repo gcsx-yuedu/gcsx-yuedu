@@ -418,7 +418,7 @@ public class GlySignInCheck {
         System.out.println(userName);
         System.out.println(">>>");
         System.out.println("跳转到首页成功......");
-        return "home_user";
+        return "home_page";
     }
 
 //    /*跳转到用户首页*/
@@ -454,5 +454,47 @@ public class GlySignInCheck {
         System.out.println(">>>");
         System.out.println("添加用户信息成功......");
         return "OK";
+    }
+
+    /*跳转到comment读后感列表页面*/
+    /*获取所有的读后感*/
+    /*获取bookType类型，同时将bookType类型存入session*/
+    /*获取session里面的userId和userName*/
+    @RequestMapping("/comment")
+    public String toComment(Integer book_id,Integer pageNum,HttpServletRequest request) {
+        request.getSession().setAttribute("userId", request.getSession().getAttribute("userId"));
+        request.getSession().setAttribute("username", request.getSession().getAttribute("userName"));
+        /*获取所有长评*/
+        if ("".equals(String.valueOf(pageNum))||pageNum==null) {
+            pageNum=1;
+        }
+        List<DLongComm> longCommList = service.getAllLongComm( book_id, (pageNum-1)*6);
+        request.getSession().setAttribute("longCommList", longCommList);
+        /*获取所有书籍类型并存储到session*/
+        List<DBookType> bookTypeList = service.selectBookType();
+        request.getSession().setAttribute("bookTypeList", bookTypeList);
+        /*获取长评总数*/
+        /*每页6条数据*/
+        int longCommNum = service.getLongCommNum();
+        int totalPage = longCommNum/6;
+        if (longCommNum % 6 != 0) {
+            totalPage++;
+        }
+        request.getSession().setAttribute("totalPage",totalPage);
+        request.getSession().setAttribute("pageNum",pageNum);
+        request.getSession().setAttribute("book_id",book_id);
+        return "comment";
+    }
+
+    /*添加长评*/
+    @RequestMapping("/addLongComm")
+    public String addLongComm(DLongComm comm) {
+        String lc_time = getNowTime();
+        comm.setLc_click(0);
+        comm.setLc_content(0);
+        comm.setLc_time(lc_time);
+        System.out.println(">>>");
+        System.out.println("LongComm"+comm.toString());
+        return "/comment";
     }
 }

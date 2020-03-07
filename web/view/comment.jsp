@@ -1,11 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="po.ZYM.ZBookType" %>
+<%@ page import="po.DJX.DBookType" %>
+<%@ page import="po.DJX.DLongComm" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <html>
 <!doctype html>
-<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
-<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
-<!--[if IE 8]>    <html class="lt-ie9" lang="en-US"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en-US"> <!--<![endif]-->
+<%--<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->--%>
+<%--<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->--%>
+<%--<!--[if IE 8]>    <html class="lt-ie9" lang="en-US"> <![endif]-->--%>
+<%--<!--[if gt IE 8]><!--> <html lang="en-US"> <!--<![endif]-->--%>
 <head>
     <!-- META TAGS -->
     <meta charset="UTF-8" />
@@ -34,10 +37,31 @@
     <![endif]-->
 
 </head>
+<!-- script -->
+<script type='text/javascript' src='${pageContext.request.contextPath}/static/js/comm-js/jquery-1.8.3.min.js'></script>
+<script type='text/javascript' src='${pageContext.request.contextPath}/static/js/comm-js/jquery.easing.1.34e44.js?ver=1.3'></script>
+<script type='text/javascript' src='${pageContext.request.contextPath}/static/js/comm-js/prettyphoto/jquery.prettyPhotoaeb9.js?ver=3.1.4'></script>
+<script type='text/javascript' src='${pageContext.request.contextPath}/static/js/comm-js/jquery.liveSearchd5f7.js?ver=2.0'></script>
+<script type='text/javascript' src='${pageContext.request.contextPath}/static/js/comm-js/jflickrfeed.js'></script>
+<script type='text/javascript' src='${pageContext.request.contextPath}/static/js/comm-js/jquery.formd471.js?ver=3.18'></script>
+<script type='text/javascript' src='${pageContext.request.contextPath}/static/js/comm-js/jquery.validate.minfc6b.js?ver=1.10.0'></script>
+<script type='text/javascript' src='${pageContext.request.contextPath}/static/js/comm-js/custom5152.js?ver=1.0'></script>
+<%--<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user-css/output.css">--%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user-css/reset.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user-css/index.css">
 
 <body>
 
 <!-- Start of Header -->
+<%  String wenzi = request.getParameter("wenzi");
+    List<DBookType> types = (List<DBookType>)session.getAttribute("bookTypeList");
+    int totalPage = (int) session.getAttribute("totalPage");
+    int pageNum = (int) session.getAttribute("pageNum");
+    List<DLongComm> longCommList = (List<DLongComm>) session.getAttribute("longCommList");
+    int book_id = (int) session.getAttribute("book_id");
+    int userId = (int) session.getAttribute("userId");
+    String userName = (String) session.getAttribute("userName");
+%>
 <header class="header">
     <div class="header-inner body-width">
         <a href="#" class="logo"></a>
@@ -45,8 +69,9 @@
             <a class="category-link">分类</a>
             <i class="icon-arrow"></i>
             <div class="drop_con">
-                <a>哈哈哈哈</a>
-                <a>hhhhh</a>
+                <% for(DBookType ty:types){%>
+                <a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
+                <%}%>
             </div>
             <div class="category-result"></div>
             <!-- 边框 -->
@@ -54,10 +79,12 @@
             <span class="result-border"></span>
             <span class="neck-border"></span>
         </div>
-        <div class="search">
-            <input type="text" class="search-text" placeholder="Seach here...">
-            <button class="search-btn"><i class="icon-search"></i></button>
-        </div>
+        <form action="/book_search" method="post" id="myForm">
+            <div class="search">
+                <input type="text" class="search-text" style="border: none;outline: none" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>">
+                <button class="search-btn"><i class="icon-search"></i></button>
+            </div>
+        </form>
         <nav class="header-nav">
             <ul>
                 <li>
@@ -67,11 +94,12 @@
                 </li>
                 <li>
                     <span class="line"></span>
-                    <a href="#" class="icon-text__pink register">注册</a>
+                    <span>欢迎 </span>
+                    <a href="/user_info?u_id=<%=session.getAttribute("userId")%>" class="app" style="cursor:pointer"><%=session.getAttribute("userName")%></a>
                 </li>
                 <li>
                     <span class="line"></span>
-                    <a href="#">登录</a>
+                    <a href="/home_page" class="app" style="cursor:pointer">退出</a>
                 </li>
                 <li>
                     <span class="line"></span>
@@ -90,16 +118,6 @@
 </header>
 <!-- End of Header -->
 
-<!-- Start of Search Wrapper -->
-<!--<div class="search-area-wrapper">
-        <div class="search-area container">
-                <h3 class="search-header">长评区</h3>
-                <p class="search-tag-line">If you have any question you can ask below or enter what you are looking for!</p>
-
-
-        </div>
-</div>-->
-<!-- End of Search Wrapper -->
 
 <!-- Start of Page Container -->
 <div class="page-container">
@@ -113,83 +131,32 @@
                     <section class="span4 articles-list">
                         <h3><a href="#form">Posting</a></h3>
                         <ul class="articles">
+                            <%
+                                for (DLongComm comm:longCommList){
+                            %>
                             <li class="article-entry standard">
-                                <h4><a href="${pageContext.request.contextPath}/view/article.jsp">Integrating WordPress with Your Website</a></h4>
-                                <span class="article-meta">25 Feb, 2013 in </span>
-                                <span class="like-count">66</span>
+                                <h4><a href="#"><%=comm.getTitle()%></a></h4>
+                                <span class="article-meta"><%=comm.getLc_time()%></span>
+                                <span class="like-count"><%=comm.getLc_click()%></span>
                             </li>
-                            <li class="article-entry standard">
-                                <h4><a href="article.jsp">WordPress Site Maintenance</a></h4>
-                                <span class="article-meta">24 Feb, 2013 in </span>
-                                <span class="like-count">15</span>
-                            </li>
-                            <li class="article-entry video">
-                                <h4><a href="article.jsp">Meta Tags in WordPress</a></h4>
-                                <span class="article-meta">23 Feb, 2013 in </span>
-                                <span class="like-count">8</span>
-                            </li>
-                            <li class="article-entry image">
-                                <h4><a href="article.jsp">WordPress in Your Language</a></h4>
-                                <span class="article-meta">22 Feb, 2013 in </span>
-                                <span class="like-count">6</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4><a href="article.jsp">Know Your Sources</a></h4>
-                                <span class="article-meta">22 Feb, 2013 in </span>
-                                <span class="like-count">2</span>
-                            </li>
-                            <li class="article-entry standard">
-                                <h4><a href="article.jsp.html">Validating a Website</a></h4>
-                                <span class="article-meta">21 Feb, 2013 in </span>
-                                <span class="like-count">3</span>
-                            </li>
+                            <%
+                                }
+                            %>
                         </ul>
                     </section>
 
-
-                    <!--<section class="span4 articles-list">
-                            <h3>Latest Articles</h3>
-                            <ul class="articles">
-                                    <li class="article-entry standard">
-                                            <h4><a href="single.html">Integrating WordPress with Your Website</a></h4>
-                                            <span class="article-meta">25 Feb, 2013 in <a href="#" title="View all posts in Server &amp; Database">Server &amp; Database</a></span>
-                                            <span class="like-count">66</span>
-                                    </li>
-                                    <li class="article-entry standard">
-                                            <h4><a href="single.html">Using Javascript</a></h4>
-                                            <span class="article-meta">25 Feb, 2013 in <a href="#" title="View all posts in Advanced Techniques">Advanced Techniques</a></span>
-                                            <span class="like-count">18</span>
-                                    </li>
-                                    <li class="article-entry image">
-                                            <h4><a href="single.html">Using Images</a></h4>
-                                            <span class="article-meta">25 Feb, 2013 in <a href="#" title="View all posts in Designing in WordPress">Designing in WordPress</a></span>
-                                            <span class="like-count">7</span>
-                                    </li>
-                                    <li class="article-entry video">
-                                            <h4><a href="single.html">Using Video</a></h4>
-                                            <span class="article-meta">24 Feb, 2013 in <a href="#" title="View all posts in WordPress Plugins">WordPress Plugins</a></span>
-                                            <span class="like-count">7</span>
-                                    </li>
-                                    <li class="article-entry standard">
-                                            <h4><a href="single.html">WordPress Site Maintenance</a></h4>
-                                            <span class="article-meta">24 Feb, 2013 in <a href="#" title="View all posts in Website Dev">Website Dev</a></span>
-                                            <span class="like-count">15</span>
-                                    </li>
-                                    <li class="article-entry standard">
-                                            <h4><a href="single.html">WordPress CSS Information and Techniques</a></h4>
-                                            <span class="article-meta">24 Feb, 2013 in <a href="#" title="View all posts in Theme Development">Theme Development</a></span>
-                                            <span class="like-count">1</span>
-                                    </li>
-                            </ul>
-                    </section>-->
                 </div>
 
                 <div id="pagination">
-                    <a href="#" class="btn active">1</a>
-                    <a href="#" class="btn">2</a>
-                    <a href="#" class="btn">3</a>
-                    <a href="#" class="btn">Next »</a>
-                    <a href="#" class="btn">Last »</a>
+                    <%
+                        for (int k=1;k<=totalPage;k++){
+                    %>
+                    <a href="/comment?pageNum=<%=k%>" class="btn <%if(k==pageNum){%>active<%}%>"><%=k%></a>
+                    <%
+                        }
+                    %>
+                    <a href="/comment?pageNum=<%=pageNum+1%>" class="btn">Next »</a>
+                    <a href="/comment?pageNum=<%=totalPage%>" class="btn">Last »</a>
                 </div>
 
             </div>
@@ -201,41 +168,10 @@
 
                 <section class="widget">
                     <div class="support-widget">
-                        <h3 class="title">长评区</h3>
+                        <h3 class="title">读后感</h3>
                         <p class="intro">Need more support? If you did not found an answer, contact us for further help.</p>
                     </div>
                 </section>
-
-
-                <!--<section class="widget">
-                        <h3 class="title">Featured Articles</h3>
-                        <ul class="articles">
-                                <li class="article-entry standard">
-                                        <h4><a href="single.html">Integrating WordPress with Your Website</a></h4>
-                                        <span class="article-meta">25 Feb, 2013 in <a href="#" title="View all posts in Server &amp; Database">Server &amp; Database</a></span>
-                                        <span class="like-count">66</span>
-                                </li>
-                                <li class="article-entry standard">
-                                        <h4><a href="single.html">WordPress Site Maintenance</a></h4>
-                                        <span class="article-meta">24 Feb, 2013 in <a href="#" title="View all posts in Website Dev">Website Dev</a></span>
-                                        <span class="like-count">15</span>
-                                </li>
-                                <li class="article-entry video">
-                                        <h4><a href="single.html">Meta Tags in WordPress</a></h4>
-                                        <span class="article-meta">23 Feb, 2013 in <a href="#" title="View all posts in Website Dev">Website Dev</a></span>
-                                        <span class="like-count">8</span>
-                                </li>
-                                <li class="article-entry image">
-                                        <h4><a href="single.html">WordPress in Your Language</a></h4>
-                                        <span class="article-meta">22 Feb, 2013 in <a href="#" title="View all posts in Advanced Techniques">Advanced Techniques</a></span>
-                                        <span class="like-count">6</span>
-                                </li>
-                        </ul>
-                </section>-->
-
-
-
-
 
                 <section class="widget">
                     <h3 class="title">Recent Comments</h3>
@@ -258,11 +194,12 @@
     <form class="contact" action="#" method="post" id="form">
         <div class="row clearfix">
             <div class="lbl">
-                <label for="name">
-                    标题</label>
+                <label for="name">标题</label>
+                <input name="book_id" type="hidden" value="<%=book_id%>" >
+                <input name="author_id" value="<%=userId%>" >
             </div>
             <div class="ctrl">
-                <input type="text" id="name" name="name" data-required="true" data-validation="text"
+                <input type="text" id="name" name="title" data-required="true" data-validation="text"
                        data-msg="Invalid Name" placeholder="请在此输入标题...">
             </div>
         </div>
@@ -272,7 +209,7 @@
                     Message</label>
             </div>
             <div class="ctrl">
-                <textarea id="message" name="message" rows="6" cols="10"></textarea>
+                <textarea id="message" name="lc_article" rows="6" cols="10"></textarea>
             </div>
         </div>
         <div class="row  clearfix">
@@ -281,6 +218,10 @@
             </div>
         </div>
     </form>
+
+    <script>
+
+    </script>
     <!--<div id="success">
         Your E-Mail has been sent successfully!</div>
     <div id="error">
@@ -320,15 +261,7 @@
 
 <a href="#top" id="scroll-top"></a>
 
-<!-- script -->
-<script type='text/javascript' src='${pageContext.request.contextPath}/static/js/comm-js/jquery-1.8.3.min.js'></script>
-<script type='text/javascript' src='${pageContext.request.contextPath}/static/js/comm-js/jquery.easing.1.34e44.js?ver=1.3'></script>
-<script type='text/javascript' src='${pageContext.request.contextPath}/static/js/comm-js/prettyphoto/jquery.prettyPhotoaeb9.js?ver=3.1.4'></script>
-<script type='text/javascript' src='${pageContext.request.contextPath}/static/js/comm-js/jquery.liveSearchd5f7.js?ver=2.0'></script>
-<script type='text/javascript' src='${pageContext.request.contextPath}/static/js/comm-js/jflickrfeed.js'></script>
-<script type='text/javascript' src='${pageContext.request.contextPath}/static/js/comm-js/jquery.formd471.js?ver=3.18'></script>
-<script type='text/javascript' src='${pageContext.request.contextPath}/static/js/comm-js/jquery.validate.minfc6b.js?ver=1.10.0'></script>
-<script type='text/javascript' src='${pageContext.request.contextPath}/static/js/comm-js/custom5152.js?ver=1.0'></script>
+
 
 </body>
 </html>
