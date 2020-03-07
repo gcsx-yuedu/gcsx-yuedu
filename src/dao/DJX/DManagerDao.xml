@@ -157,4 +157,19 @@
     <insert id="addUser" parameterType="po.DJX.DUserinfo">
         insert into userInfo (u_name,u_password,u_sex,u_forbid,u_address) values (#{u_name},#{u_password},#{u_sex},#{u_forbid},#{u_address})
     </insert>
+
+    <!--获取长评-->
+    <select id="getAllLongComm"  resultType="po.DJX.DLongComm">
+        select * from select ( lc_id,title,book_id,author_id,lc_time,lc_article,lc_coment,lc_click from longcomm where book_id = #{book_id}) limit #{pageNum},6
+    </select>
+
+    <!--获取长评总数-->
+    <select id="getLongCommNum" resultType="Integer">
+        select count(*) from longcomm
+    </select>
+
+    <!--添加长评-->
+    <insert id="addLongComm" parameterType="po.DJX.DLongComm">
+        insert into longcomm (title,book_id,author_id,lc_time,lc_article,lc_coment,lc_click) values (#{title},#{book_id},#{author_id},#{lc_time},#{lc_atricle},#{lc_coment},#{lc_click});
+    </insert>
 </mapper>

@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import po.DJX.*;
 
 import java.util.List;
+import java.util.function.LongConsumer;
 
 @Service
 @Transactional
@@ -141,5 +142,17 @@ public class DManagerService {
 
     public void addUser(DUserinfo userinfo) {
         DManagerDao.addUser(userinfo);
+    }
+
+    public List<DLongComm> getAllLongComm(Integer book_id,Integer pageNum) {
+        return DManagerDao.getAllLongComm(book_id,pageNum);
+    }
+
+    public Integer getLongCommNum() {
+        return DManagerDao.getLongCommNum();
+    }
+
+    public void addLongComm(DLongComm comm) {
+        DManagerDao.addLongComm(comm);
     }
 }

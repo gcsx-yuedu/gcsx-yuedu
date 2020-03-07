@@ -72,4 +72,10 @@ public interface DManagerDao {
     public Integer sameUserName(String u_nam);
 
     public void addUser(DUserinfo userinfo);
+
+    public List<DLongComm> getAllLongComm(@Param("book_id") Integer book_id,@Param("pageNum") Integer pageNum);
+
+    public Integer getLongCommNum();
+
+    public void addLongComm(DLongComm comm);
 }
