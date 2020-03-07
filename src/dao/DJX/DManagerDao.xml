@@ -22,8 +22,13 @@
     </select>
 
     <!--获取回帖的总数-->
-    <select id="huitieNum" resultType="integer">
+    <select id="huitieNum" resultType="Integer">
         select count(*) from huitie
+    </select>
+
+    <!--获取长评总数-->
+    <select id="longCommNum" resultType="Integer">
+        select count(*) from longcomm
     </select>
 
     <!--获取女性用户总数-->
@@ -172,4 +177,19 @@
     <insert id="addLongComm" parameterType="po.DJX.DLongComm">
         insert into longcomm (title,book_id,author_id,lc_time,lc_article,lc_coment,lc_click) values (#{title},#{book_id},#{author_id},#{lc_time},#{lc_article},#{lc_coment},#{lc_click});
     </insert>
+
+    <!--根据时间获取短评数-->
+    <select id="getShortNumByTime" parameterType="String" resultType="Integer">
+        select count(*) from shortcomm where fatie_time like"%"#{time}"%"
+    </select>
+
+    <!--根据时间获取长评数-->
+    <select id="getLongNumByTime" parameterType="String" resultType="Integer">
+        select count(*) from longcomm where lc_time like"%"#{lc_time}"%"
+    </select>
+
+    <!--根据时间获取回帖数-->
+    <select id="getHuiTieNumByTime" parameterType="String" resultType="integer">
+        select count(*) from huitie where huitie_time like"%"#{huitie_time}"%"
+    </select>
 </mapper>
