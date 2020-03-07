@@ -170,6 +170,6 @@
 
     <!--添加长评-->
     <insert id="addLongComm" parameterType="po.DJX.DLongComm">
-        insert into longcomm (title,book_id,author_id,lc_time,lc_article,lc_coment,lc_click) values (#{title},#{book_id},#{author_id},#{lc_time},#{lc_atricle},#{lc_coment},#{lc_click});
+        insert into longcomm (title,book_id,author_id,lc_time,lc_article,lc_coment,lc_click) values (#{title},#{book_id},#{author_id},#{lc_time},#{lc_article},#{lc_coment},#{lc_click});
     </insert>
 </mapper>

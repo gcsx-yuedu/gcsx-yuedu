@@ -462,9 +462,9 @@ public class GlySignInCheck {
     /*获取session里面的userId和userName*/
     @RequestMapping("/comment")
     public String toComment(Integer book_id,Integer pageNum,HttpServletRequest request) {
-        request.getSession().setAttribute("userId",request.getSession().getAttribute("userId") );
+//        request.getSession().setAttribute("userId",request.getSession().getAttribute("userId") );
 //        request.getSession().getAttribute("userId")
-        request.getSession().setAttribute("userName", request.getSession().getAttribute("userName"));
+//        request.getSession().setAttribute("userName", request.getSession().getAttribute("userName"));
 //        request.getSession().getAttribute("userName")
         /*获取所有长评*/
         if ("".equals(String.valueOf(pageNum))||pageNum==null) {
@@ -473,8 +473,8 @@ public class GlySignInCheck {
         List<DLongComm> longCommList = service.getAllLongComm( book_id, (pageNum-1)*6);
         request.getSession().setAttribute("longCommList", longCommList);
         /*获取所有书籍类型并存储到session*/
-        List<DBookType> bookTypeList = service.selectBookType();
-        request.getSession().setAttribute("bookTypeList", bookTypeList);
+//        List<DBookType> bookTypeList = service.selectBookType();
+//        request.getSession().setAttribute("bookTypeList", bookTypeList);
         /*获取长评总数*/
         /*每页6条数据*/
         int longCommNum = service.getLongCommNum();
@@ -484,19 +484,26 @@ public class GlySignInCheck {
         }
         request.getSession().setAttribute("totalPage",totalPage);
         request.getSession().setAttribute("pageNum",pageNum);
+        System.out.println("book_id");
+        System.out.println(book_id);
         request.getSession().setAttribute("book_id",book_id);
         return "comment";
     }
 
     /*添加长评*/
+    @ResponseBody
     @RequestMapping("/addLongComm")
     public String addLongComm(DLongComm comm) {
+//        System.out.println(request.getSession().getAttribute("book_id"));
+//        request.getSession().setAttribute("book_id",request.getSession().getAttribute("book_id"));
         String lc_time = getNowTime();
         comm.setLc_click(0);
-        comm.setLc_content(0);
+        comm.setLc_coment(0);
         comm.setLc_time(lc_time);
         System.out.println(">>>");
         System.out.println("LongComm"+comm.toString());
-        return "/comment";
+        service.addLongComm(comm);
+        System.out.println("长评添加成功......");
+        return "OK";
     }
 }
