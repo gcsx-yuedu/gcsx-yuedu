@@ -78,4 +78,12 @@ public interface DManagerDao {
     public Integer getLongCommNum();
 
     public void addLongComm(DLongComm comm);
+
+    public Integer longCommNum();
+
+    public Integer getShortNumByTime(String time);
+
+    public Integer getLongNumByTime(String lc_time);
+
+    public Integer getHuiTieNumByTime(String huitie_time);
 }

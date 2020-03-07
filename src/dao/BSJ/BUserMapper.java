@@ -27,4 +27,5 @@ public interface BUserMapper {
     public void deleteShort(String fatie_time);
     public void deleteArticle(String lc_time);
     public List<BHuitie> getHuitieNews(Integer tiezi_id);
+    public Integer getLine(BGuanzhu guanzhu);
 }

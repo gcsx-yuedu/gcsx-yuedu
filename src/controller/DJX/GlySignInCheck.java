@@ -1,6 +1,7 @@
 package controller.DJX;
 
 import com.mysql.jdbc.Blob;
+import com.sun.scenario.effect.impl.sw.sse.SSERendererDelegate;
 import org.apache.commons.lang.StringUtils;
 import org.apache.tools.ant.taskdefs.condition.Http;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -77,17 +79,35 @@ public class GlySignInCheck {
         int bookNum = service.getBookNum();
         int commentNum = service.getCommentNum();
         int huitieNum = service.getHuitieNum();
+        int longCommNum = service.getLongCommNum();
         /*获取书籍类型总数*/
         List<DBookType> typeList = service.selectBookType();
         /*根据不同的书籍类型的id获取对应的数量*/
         for (DBookType bookType : typeList) {
             bookType.setTypeNum(service.getTypeNum(bookType.getT_id()));
         }
+        /*获取前几天时间*/
+        List<DComm> comm = new ArrayList<>();
+        for (int k=-6;k<=0;k++) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new Date());
+            calendar.add(Calendar.DATE, k);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String time = simpleDateFormat.format(calendar.getTime());
+            int sn = service.getShortNumByTime(time);
+            int ln = service.getLongNumByTime(time);
+            int hn = service.getHuiTieNumByTime(time);
+            DComm commList = new DComm();
+            commList.setDate(time);
+            commList.setCommNum(sn + ln + hn);
+            comm.add(commList);
+        }
         /*将整个po类传递到jsp*/
         request.getSession().setAttribute("typeList", typeList);
         request.getSession().setAttribute("userNum", userNum);
         request.getSession().setAttribute("bookNum", bookNum);
-        request.getSession().setAttribute("commentNum", commentNum + huitieNum);
+        request.getSession().setAttribute("commentNum", commentNum + huitieNum+longCommNum);
+        request.getSession().setAttribute("comms",comm);
         String nowTime = getNowTime();
         /*获取用户性别的男女数量并传递到前端页面*/
         int manNum = service.getUserNanNum();
@@ -97,16 +117,6 @@ public class GlySignInCheck {
         System.out.println(nowTime + "---成功调用后台跳转程序......");
         return "houtai-xinxitongji";
     }
-
-
-//    /*跳转到用户管理页面*/
-//    @RequestMapping("/houtai-yonghuguanli")
-//    public String toHouTaiYongHuGuanLi(HttpServletRequest request) {
-//        String username = (String) request.getSession().getAttribute("username");
-//        request.getSession().setAttribute("username", username);
-//
-//        return "houtai-yonghuguanli";
-//    }
 
     /*跳转到添加书籍页面*/
     /*获取书籍类型的列表*/
@@ -119,23 +129,6 @@ public class GlySignInCheck {
         request.getSession().setAttribute("bookTypeList", bookTypeList);
         return "houtai-tianjiashuji";
     }
-
-//    /*跳转到书籍管理页面*/
-//    @RequestMapping("/houtai-shujiguanli")
-//    public String toHouTaiShuJiFuanLi(HttpServletRequest request) {
-//        String username = (String) request.getSession().getAttribute("username");
-//        request.getSession().setAttribute("username", username);
-//        return "houtai-shujiguanli";
-//    }
-
-//    /*跳转到举报信息管理页面*/
-//    @RequestMapping("/houtai-jubaoxinxiguanli")
-//    public String toHouTaiJuBaoXinXiGuanLi(HttpServletRequest request) {
-//        String username = (String) request.getSession().getAttribute("username");
-//        request.getSession().setAttribute("username", username);
-//        return "houtai-jubaoxinxiguanli";
-//    }
-
 
     /*跳转到添加书籍类型的界面*/
     @RequestMapping("/houtai-tianjiashujileixing")
@@ -421,22 +414,12 @@ public class GlySignInCheck {
         return "home_page";
     }
 
-//    /*跳转到用户首页*/
-//    @RequestMapping("/HomeUser")
-//    public String toHomeUser(HttpServletRequest request) {
-////        request.getSession().setAttribute("userId",request.getSession().getAttribute("userId"));
-////        request.getSession().setAttribute("userName",request.getSession().getAttribute("username"));
-////        System.out.println(request.getSession().getAttribute("username"));
-//        System.out.println(">>>");
-////        System.out.println("跳转到首页成功......");
-////        return "home_user";
-////    }
 
     /*判断用户名是否重复*/
     /*如果已存在返回的是1，否则返回的是0*/
     @ResponseBody
     @RequestMapping("/sameUserName")
-    public String sameuserName(String u_name) {
+    public String sameUserName(String u_name) {
         System.out.println(">>>");
         System.out.println("查询是否有相同的用户名......");
         return String.valueOf(service.sameUserName(u_name));
@@ -462,9 +445,9 @@ public class GlySignInCheck {
     /*获取session里面的userId和userName*/
     @RequestMapping("/comment")
     public String toComment(Integer book_id,Integer pageNum,HttpServletRequest request) {
-        request.getSession().setAttribute("userId",request.getSession().getAttribute("userId") );
+//        request.getSession().setAttribute("userId",request.getSession().getAttribute("userId") );
 //        request.getSession().getAttribute("userId")
-        request.getSession().setAttribute("userName", request.getSession().getAttribute("userName"));
+//        request.getSession().setAttribute("userName", request.getSession().getAttribute("userName"));
 //        request.getSession().getAttribute("userName")
         /*获取所有长评*/
         if ("".equals(String.valueOf(pageNum))||pageNum==null) {
@@ -473,8 +456,8 @@ public class GlySignInCheck {
         List<DLongComm> longCommList = service.getAllLongComm( book_id, (pageNum-1)*6);
         request.getSession().setAttribute("longCommList", longCommList);
         /*获取所有书籍类型并存储到session*/
-        List<DBookType> bookTypeList = service.selectBookType();
-        request.getSession().setAttribute("bookTypeList", bookTypeList);
+//        List<DBookType> bookTypeList = service.selectBookType();
+//        request.getSession().setAttribute("bookTypeList", bookTypeList);
         /*获取长评总数*/
         /*每页6条数据*/
         int longCommNum = service.getLongCommNum();
@@ -484,19 +467,26 @@ public class GlySignInCheck {
         }
         request.getSession().setAttribute("totalPage",totalPage);
         request.getSession().setAttribute("pageNum",pageNum);
+        System.out.println("book_id");
+        System.out.println(book_id);
         request.getSession().setAttribute("book_id",book_id);
         return "comment";
     }
 
     /*添加长评*/
+    @ResponseBody
     @RequestMapping("/addLongComm")
     public String addLongComm(DLongComm comm) {
+//        System.out.println(request.getSession().getAttribute("book_id"));
+//        request.getSession().setAttribute("book_id",request.getSession().getAttribute("book_id"));
         String lc_time = getNowTime();
         comm.setLc_click(0);
-        comm.setLc_content(0);
+        comm.setLc_coment(0);
         comm.setLc_time(lc_time);
         System.out.println(">>>");
         System.out.println("LongComm"+comm.toString());
-        return "/comment";
+        service.addLongComm(comm);
+        System.out.println("长评添加成功......");
+        return "OK";
     }
 }

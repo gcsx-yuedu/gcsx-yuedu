@@ -155,4 +155,20 @@ public class DManagerService {
     public void addLongComm(DLongComm comm) {
         DManagerDao.addLongComm(comm);
     }
+
+    public Integer longCommNum() {
+        return DManagerDao.longCommNum();
+    }
+
+    public Integer getShortNumByTime(String time){
+        return DManagerDao.getShortNumByTime(time);
+    }
+
+    public Integer getLongNumByTime(String lc_time){
+        return DManagerDao.getLongNumByTime(lc_time);
+    }
+
+    public Integer getHuiTieNumByTime(String huitie_time){
+        return DManagerDao.getHuiTieNumByTime(huitie_time);
+    }
 }
