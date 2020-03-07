@@ -56,10 +56,24 @@ public class UserController {
     }
 
     @RequestMapping("/user_change")
-
-    public String UpdateUser(BUser user) {
+    public String Change(){
+        return "user_change";
+    }
+    @RequestMapping("/update")
+    public String UpdateUser(HttpServletRequest request) {
+        int u_id=Integer.parseInt(request.getParameter("u_id"));
+        String u_name=request.getParameter("u_name");
+        String u_password= request.getParameter("u_password");
+        String u_sex=request.getParameter("u_sex");
+        String u_address=request.getParameter("u_address");
+        BUser user = new BUser();
+        user.setU_id(u_id);
+        user.setU_name(u_name);
+        user.setU_password(u_password);
+        user.setU_sex(u_sex);
+        user.setU_address(u_address);
         service.updateUser(user);
-        return "redirect:user_info";
+        return "sign-up-yh";
     }
 
     @RequestMapping("/user_focus")

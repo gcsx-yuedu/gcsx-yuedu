@@ -56,7 +56,7 @@
                 </li>
                 <li>
                     <span class="line"></span>
-                    <a class="app" style="cursor:pointer">退出</a>
+                    <a href="/home_page" class="app" style="cursor:pointer">退出</a>
                 </li>
                 <li>
                     <span class="line"></span>
@@ -98,10 +98,10 @@
                     </div>
                 </div>
                 <ul class="text-grey lg:text-grey-dark list-reset leading-loose mt-2" id="sidenav-categories">
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="${pageContext.request.contextPath}/view/user_change.jsp">修改信息</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_change">修改信息</a></li>
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_news?u_id=<%=session.getAttribute("userId")%>">我的消息</a></li>
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_focus?u_id=<%=session.getAttribute("userId")%>">我的关注/粉丝</a></li>
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="user_comment?u_id=<%=session.getAttribute("userId")%>">我的评论/读后感</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_comment?u_id=<%=session.getAttribute("userId")%>">我的评论/读后感</a></li>
                 </ul>
             </li>
             <li class="ml-2 mb-4 flex">

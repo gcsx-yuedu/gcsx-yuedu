@@ -7,6 +7,7 @@ public class BUser {
     private String u_password;
     private String u_sex;
     private String u_forbid;
+    private String u_address;
 //    private List<BBook> bookList;
 //    private List<BBookType> bookTypeList;
 
@@ -50,6 +51,13 @@ public class BUser {
         this.u_forbid = u_forbid;
     }
 
+    public String getU_address() {
+        return u_address;
+    }
+
+    public void setU_address(String u_address) {
+        this.u_address = u_address;
+    }
 //    public List<BBook> getBookList() {
 //        return bookList;
 //    }
