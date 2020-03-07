@@ -20,7 +20,6 @@
     int count = (int)session.getAttribute("count");
     List<ZBook> books =(List<ZBook>)session.getAttribute("books");
     List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
-    String userName = (String)session.getAttribute("userName");
 %>
 
 <header class="header">
@@ -56,6 +55,7 @@
                     <i class="icon-text__pink icon-new">new</i>
                 </li>
                 <%
+                    String userName = (String)session.getAttribute("userName");
                     if (userName==null){
                 %>
                 <li>
@@ -64,6 +64,7 @@
                 </li>
                 <%}else{%>
                 <li>
+                    <span class="line"></span>
                     <span>欢迎 </span>
                     <a href="/user_info?u_id=<%=session.getAttribute("userId")%>" class="app" style="cursor:pointer"><%=userName%></a>
                 </li>
