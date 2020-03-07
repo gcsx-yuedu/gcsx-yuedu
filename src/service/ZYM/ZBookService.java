@@ -23,5 +23,7 @@ public class ZBookService {
     public List<ZBookType> selectAllType(){ return bookDao.selectAllType(); }
     public List<Integer> selectBookIdByTypeId(int t_id){return bookDao.selectBookIdByTypeId(t_id);}
     public ZBook selectBookByBookId(int b_id){return bookDao.selectBookByBookId(b_id);}
-    public boolean getCountOfShelfBook(Integer b_id){return bookDao.getCountOfShelfBook(b_id);}
+    public Integer getCountOfShelfBook(ZBookShelf shel){
+        System.out.println("查询成功");
+        return bookDao.getCountOfShelfBook(shel);}
 }

@@ -2,6 +2,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="po.ZYM.ZBook" %>
 <%@ page import="po.ZYM.ZBookType" %>
+<%@ page import="po.ZYM.ZBookShelf" %>
+<%@ page import="service.ZYM.ZBookService" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <html class="no-js">
 <head>
@@ -20,6 +22,9 @@
     int count = (int)session.getAttribute("count");
     List<ZBook> books =(List<ZBook>)session.getAttribute("books");
     List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
+//    ZBookShelf shel = (ZBookShelf)session.getAttribute("shel");
+    Integer u_id = (Integer)session.getAttribute("userId");
+    System.out.println("u_id="+u_id);
 %>
 
 <header class="header">
@@ -70,7 +75,7 @@
                 </li>
                 <li>
                     <span class="line"></span>
-                    <a href="/home_page" class="app" style="cursor:pointer" style="cursor:pointer">退出</a>
+                    <a href="/exit" class="app" style="cursor:pointer" style="cursor:pointer">退出</a>
                 </li>
                 <%}%>
                 <li>
@@ -95,7 +100,7 @@
         <ul class="list-reset mb-8 w-full">
             <li class="ml-2 mb-4 flex">
                 <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/home-default.svg" alt="home-icon" class="w-4 h-4 mr-2">
-                <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger">返回首页</div>
+                <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger"><a href="/home_page">返回首页</a></div>
             </li>
             <li class="ml-2 mb-4">
                 <div class="flex" id="sidenav-categories-trigger">
@@ -147,7 +152,7 @@
             <ul>
                 <%
                     for (ZBook book:books){
-                    String typeList=org.apache.commons.lang.StringUtils.strip(book.getTypeList().toString(),"[]");
+                        String typeList=org.apache.commons.lang.StringUtils.strip(book.getTypeList().toString(),"[]");
                 %>
                 <li class=" flex items-baseline justify-between border-b-2 border-grey-light">
                     <div class="flex flex-row sm:flex-row items-center sm:items-start w-full xs:w-1/2 sm:w-1/3 md:w-full p-4 js-book">
@@ -160,7 +165,18 @@
                             <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;类型：<%=typeList%>
                             </p>
                             <button onclick="window.location.href='/book_infor?b_id=<%=book.getB_id()%>'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
+                            <%
+                                System.out.println("进入");
+                                ZBookShelf shelf = new ZBookShelf();
+                                shelf.setUser_id(u_id);
+                                shelf.setBook_id(book.getB_id());
+                                ZBookService service = new ZBookService();
+                                System.out.println("count="+service.getCountOfShelfBook(shelf));
+                                if (service.getCountOfShelfBook(shelf)==0){%>
                             <button onclick="window.location.href='javascript:btnAddToShelf(\'<%=book.getB_id()%>\',1)'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button></a>
+                            <%}else{%>
+                            <button onclick="window.location.href=''" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">已在我的书架</button></a>
+                            <%}%>
                         </div>
                     </div>
                 </li>

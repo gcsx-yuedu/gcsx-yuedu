@@ -3,7 +3,6 @@ package controller.ZYM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import po.ZYM.ZBook;
 import po.ZYM.ZBookShelf;
 import po.ZYM.ZBookType;
@@ -21,6 +20,7 @@ public class ZBookSearchController {
     //
     @RequestMapping("/book_search")
     public String QueryBook(String wenzi, HttpServletRequest request){
+//        System.out.println("u_id="+u_id);
         if(wenzi == null){wenzi="";}
         List<ZBook> books = zBookService.queryBook(wenzi);
         List<ZBookType> types = zBookService.selectAllType();
@@ -29,8 +29,14 @@ public class ZBookSearchController {
             String res=new String((byte[])book.getB_cover());
             book.setB_cover(res);
             book.setTypeList(bookType);
-//            System.out.println(book.toString());
-        }
+            //查询书架相应书是否存在
+//            ZBookShelf shel = new ZBookShelf();
+//            shel.setBook_id(book.getB_id());
+//            shel.setUser_id(u_id);
+//            int bookCount = zBookService.getCountOfShelfBook(shel);
+//            shel.setCount(bookCount);
+//            request.getSession().setAttribute("shel",shel);
+        };
         System.out.println("长度："+books.size());
         request.getSession().setAttribute("count",books.size());
         request.getSession().setAttribute("books",books);
@@ -63,13 +69,13 @@ public class ZBookSearchController {
         return "book_search";
     }
 
-    //判断书架是否已存在该书
-    @ResponseBody
-    @RequestMapping("/judgeshujia")
-    public String panduanShujia(Integer b_id){
-        boolean aa = zBookService.getCountOfShelfBook(b_id);
-        return aa ? "0" : "1";
-    }
+//    //判断书架是否已存在该书
+//    @ResponseBody
+//    @RequestMapping("/judgeshujia")
+//    public String panduanShujia(Integer b_id){
+//        boolean aa = zBookService.getCountOfShelfBook(b_id);
+//        return aa ? "0" : "1";
+//    }
 
     //点击类型跳转至该类型下书籍
     @RequestMapping("/showBookByType")
