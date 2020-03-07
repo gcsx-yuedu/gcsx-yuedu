@@ -5,10 +5,7 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <html>
 <!doctype html>
-<%--<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->--%>
-<%--<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->--%>
-<%--<!--[if IE 8]>    <html class="lt-ie9" lang="en-US"> <![endif]-->--%>
-<%--<!--[if gt IE 8]><!--> <html lang="en-US"> <!--<![endif]-->--%>
+
 <head>
     <!-- META TAGS -->
     <meta charset="UTF-8" />
@@ -54,7 +51,7 @@
 
 <!-- Start of Header -->
 <%  String wenzi = request.getParameter("wenzi");
-    List<DBookType> types = (List<DBookType>)session.getAttribute("bookTypeList");
+    List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
     int totalPage = (int) session.getAttribute("totalPage");
     Integer pageNum = (Integer) session.getAttribute("pageNum");
     List<DLongComm> longCommList = (List<DLongComm>) session.getAttribute("longCommList");
@@ -69,7 +66,7 @@
             <a class="category-link">分类</a>
             <i class="icon-arrow"></i>
             <div class="drop_con">
-                <% for(DBookType ty:types){%>
+                <% for(ZBookType ty:types){%>
                 <a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
                 <%}%>
             </div>
@@ -151,12 +148,12 @@
                     <%
                         for (int k=1;k<=totalPage;k++){
                     %>
-                    <a href="/comment?pageNum=<%=k%>" class="btn <%if(k==pageNum){%>active<%}%>"><%=k%></a>
+                    <a href="/comment?pageNum=<%=k%>&book_id=<%=book_id%>" class="btn <%if(k==pageNum){%>active<%}%>"><%=k%></a>
                     <%
                         }
                     %>
-                    <a href="/comment?pageNum=<%=pageNum+1%>" class="btn">Next »</a>
-                    <a href="/comment?pageNum=<%=totalPage%>" class="btn">Last »</a>
+                    <a href="/comment?pageNum=<%=pageNum+1%>&book_id=<%=book_id%>" class="btn">Next »</a>
+                    <a href="/comment?pageNum=<%=totalPage%>&book_id=<%=book_id%>" class="btn">Last »</a>
                 </div>
 
             </div>
@@ -173,16 +170,6 @@
                     </div>
                 </section>
 
-                <%--<section class="widget">--%>
-                    <%--<h3 class="title">Recent Comments</h3>--%>
-                    <%--<ul id="recentcomments">--%>
-                        <%--<li class="recentcomments"><a href="#" rel="external nofollow" class="url">John Doe</a> on <a href="#">Integrating WordPress with Your Website</a></li>--%>
-                        <%--<li class="recentcomments">saqib sarwar on <a href="#">Integrating WordPress with Your Website</a></li>--%>
-                        <%--<li class="recentcomments"><a href="#" rel="external nofollow" class="url">John Doe</a> on <a href="#">Integrating WordPress with Your Website</a></li>--%>
-                        <%--<li class="recentcomments"><a href="#" rel="external nofollow" class="url">Mr WordPress</a> on <a href="#">Installing WordPress</a></li>--%>
-                    <%--</ul>--%>
-                <%--</section>--%>
-
             </aside>
             <!-- end of sidebar -->
         </div>
@@ -191,36 +178,58 @@
 <!-- End of Page Container -->
 
 <div class="contain">
-    <form class="contact" action="#" method="post" id="form">
+    <form class="contact" action="" method="post" id="form">
         <div class="row clearfix">
             <div class="lbl">
-                <label for="name">标题</label>
-                <input name="book_id" type="hidden" value="<%=book_id%>" >
-                <input type="hidden" name="author_id" value="<%=userId%>" >
+                <label for="book_title">标题</label>
+                <input id="comm_book_id" name="book_id" type="hidden" value="<%=book_id%>" >
+                <input id="comm_author_id" type="hidden" name="author_id" value="<%=userId%>" >
             </div>
             <div class="ctrl">
-                <input type="text" id="name" name="title" data-required="true" data-validation="text"
+                <input type="text" id="book_title" name="title" data-required="true" data-validation="text"
                        data-msg="Invalid Name" placeholder="请在此输入标题...">
             </div>
         </div>
         <div class="row clearfix">
             <div class="lbl">
-                <label for="message">
+                <label for="lc_article">
                     Message</label>
             </div>
             <div class="ctrl">
-                <textarea id="message" name="lc_article" rows="6" cols="10"></textarea>
+                <textarea id="lc_article" name="lc_article" rows="6" cols="10"></textarea>
             </div>
         </div>
-        <div class="row  clearfix">
+        <div class="row  clearfix" style="align-content: center">
             <div class="span10 offset2">
-                <input type="submit" name="submit" id="submit" class="submit" value="Send Message">
+                <input onclick="addLC()" type="submit" name="submit" id="submit" class="submit" value="点击发表评论">
             </div>
         </div>
     </form>
 
     <script>
-
+        function addLC() {
+            var book_id=document.getElementById("comm_book_id").value;
+            var author_id=document.getElementById("comm_author_id").value;
+            var title=document.getElementById("book_title").value;
+            var lc_article=document.getElementById("lc_article").value;
+            $.ajax({
+                url: '/addLongComm',
+                async:false,
+                type: 'post',
+                data:{"book_id":book_id,
+                    "author_id":author_id,
+                    "title":title,
+                    "lc_article":lc_article,
+                },
+                success:function () {
+                    alert("评论添加成功");
+                    window.location.reload();
+                },
+                error:function () {
+                    alert("系统出错");
+                },
+            });
+        }
     </script>
     <!--<div id="success">
         Your E-Mail has been sent successfully!</div>
