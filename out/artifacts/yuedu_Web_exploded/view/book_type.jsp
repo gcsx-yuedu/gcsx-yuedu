@@ -36,11 +36,12 @@
             <span class="neck-border"></span>
         </div>
         <%String wenzi = request.getParameter("wenzi");%>
-        <form action="/book_search" method="post" id="myForm">
-        <div class="search">
-            <input type="text" class="search-text" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>">
-            <button class="search-btn"><i class="icon-search"></i></button>
-        </div>
+        <form action="/book_search?user_id=<%=session.getAttribute("userId")%>" method="get" id="myForm">
+            <div class="search">
+                <input type="hidden" name="user_id" value="<%=session.getAttribute("userId")%>">
+                <input type="text" name="wenzi" class="search-text" placeholder="Seach here..." value="<%= wenzi==null?"":wenzi %>">
+                <button type="submit" class="search-btn"><i class="icon-search"></i></button>
+            </div>
         </form>
         <nav class="header-nav">
             <ul>
@@ -153,7 +154,13 @@
                     <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;作者：<%=book.getB_author()%></p>
                     <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;&nbsp;&nbsp;<%=book.getTypeList()%></p>
                     <button onclick="window.location.href='/book_infor?b_id=<%=book.getB_id()%>'"  class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                    <button onclick="window.location.href='/addToShelf'"  class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>
+                    <%
+                        System.out.println("次count 1或0："+book.getCounts()+",userId="+session.getAttribute("userId"));
+                        if (book.getCounts()==0||session.getAttribute("userId")==null){%>
+                    <button onclick="window.location.href='javascript:btnAddToShelf(\'<%=book.getB_id()%>\',<%=session.getAttribute("userId")%>)'"  class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>
+                    <%}else{%>
+                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">已在我的书架</button>
+                    <%}%>
                 </div>
             </div>
             <%}%>
@@ -228,4 +235,5 @@
 
 </body>
 <script src="${pageContext.request.contextPath}/static/js/book-js/bundle.js" async defer></script>
+<script src="${pageContext.request.contextPath}/static/js/book-js/Zbund.js" async defer></script>
 </html>

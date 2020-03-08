@@ -17,6 +17,7 @@ public class ZBookSearchController {
     @Autowired
     private ZBookService zBookService;
 
+    //未登录的查找页面
     @RequestMapping("/book_search")
     public String QueryBook(String wenzi, HttpServletRequest request){
         if(wenzi == null){wenzi="";}
@@ -42,7 +43,7 @@ public class ZBookSearchController {
         return "book_search";
     }
 
-
+    //已登录的查找页面
     @RequestMapping("/book_search2")
     public String QueryBook2(int userId,String wenzi, HttpServletRequest request){
         System.out.println("u_id="+userId);
@@ -105,7 +106,7 @@ public class ZBookSearchController {
 
     //点击类型跳转至该类型下书籍
     @RequestMapping("/showBookByType")
-    public String bookByType(int t_id,String t_type,HttpServletRequest request) {
+    public String bookByType(int userId,int t_id,String t_type,HttpServletRequest request) {
         System.out.println("con t_id=" + t_id);
         request.getSession().setAttribute("t_id", t_id);
         request.getSession().setAttribute("t_type", t_type);
@@ -120,6 +121,12 @@ public class ZBookSearchController {
             String res=new String((byte[])bo.getB_cover());
             bo.setB_cover(res);
             bo.setTypeList(bookType);
+            ZBookShelf shel = new ZBookShelf();
+            shel.setBook_id(bo.getB_id());
+            shel.setUser_id(userId);
+            int bookCount = zBookService.getCountOfShelfBook(shel);
+            bo.setCounts(bookCount);
+            request.getSession().setAttribute("shel",shel);
         }
         List<ZBookType> types = zBookService.selectAllType();
 //        System.out.println("bookid长度"+book_ids.size());
