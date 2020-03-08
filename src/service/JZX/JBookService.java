@@ -5,6 +5,7 @@ import dao.JZX.JBookDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import po.JZX.JBook;
+import po.JZX.JBookShelf;
 import po.JZX.JDianzan;
 import po.JZX.JShortComm;
 
@@ -39,5 +40,8 @@ public class JBookService {
         bookDao.deleteDianzan(dianzanren_id,shortcomm_id);
     }
 
+    public void addShoucang(JBookShelf bookShelf){bookDao.addShoucang(bookShelf);}
+    public Integer selectShoucang(Integer user_id,Integer book_id){return bookDao.selectShoucang(user_id,book_id);}
+    public void deleteShoucang(Integer user_id,Integer book_id){bookDao.deleteShoucang(user_id, book_id);}
 
 }
