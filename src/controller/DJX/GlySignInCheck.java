@@ -480,7 +480,6 @@ public class GlySignInCheck {
 //        System.out.println(request.getSession().getAttribute("book_id"));
 //        request.getSession().setAttribute("book_id",request.getSession().getAttribute("book_id"));
         String lc_time = getNowTime();
-        comm.setLc_click(0);
         comm.setLc_coment(0);
         comm.setLc_time(lc_time);
         System.out.println(">>>");
@@ -493,6 +492,7 @@ public class GlySignInCheck {
     /*跳转到article界面*/
     /*根据长评id获取长评的内容*/
     /*根据长评id获取回帖的list*/
+    /*根据长评id获取bookid*/
     @RequestMapping("/article")
     public String article(Integer lc_id,HttpServletRequest request) {
 //        lc_id=1;
@@ -502,8 +502,53 @@ public class GlySignInCheck {
         for (DHuitie huitie : huitieList) {
             huitie.setAuthor_name(service.getAuthorNameById(huitie.getHuitieren_id()));
         }
+        /*获取typeid*/
+        List<Integer> typeIdList = service.getTypeId(longComm.getBook_id());
+        List<DBookType> typeList = new ArrayList<>();
+        for (Integer integer : typeIdList) {
+            DBookType bookType = new DBookType();
+            bookType.setT_id(integer);
+            bookType.setT_type(service.getTypeByTypeId(integer));
+            typeList.add(bookType);
+        }
+//        System.out.println(typeIdList);
+//        System.out.println(typeList);
+        /*根据长评id获取发帖人id*/
+        /*根据发帖人id获取发过的前3篇长评*/
+        List<DLongComm> longCommList = service.getLongCommByUserId(longComm.getAuthor_id());
+        System.out.println(longCommList);
+        request.getSession().setAttribute("longCommList",longCommList);
+        request.getSession().setAttribute("typeList", typeList);
         request.getSession().setAttribute("longComm",longComm);
         request.getSession().setAttribute("huitieList",huitieList);
         return "article";
+    }
+
+
+    /*
+     * 添加回帖
+     * 获取Dhuitie对象
+     * 获取时间
+     * 存储
+     * 同时长评表的coment字段+1
+     * */
+    @ResponseBody
+    @RequestMapping("/addHuitie")
+    public String addHuitie(DHuitie huitie,int nowComment) {
+        String time = getNowTime();
+        huitie.setHuitie_time(time);
+        huitie.setLike_click(0);
+        service.addHuitie(huitie);
+        service.addLongCommComent(nowComment+1,huitie.getTiezi_id());
+        System.out.println(">>>");
+        System.out.println("回帖添加成功...");
+        return "OK";
+    }
+
+    /*查询是否被禁言*/
+    @ResponseBody
+    @RequestMapping("/userIsForbid")
+    public String userisForbid(Integer u_id) {
+        return String.valueOf(service.userIsForbid(u_id));
     }
 }

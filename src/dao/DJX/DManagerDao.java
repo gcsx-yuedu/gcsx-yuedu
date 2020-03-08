@@ -95,4 +95,12 @@ public interface DManagerDao {
 
 
     public Integer selectDianZanLongComm(@Param("dianzanren_id") Integer dianzanren_id, @Param("longcomm_id") Integer longcomm_id);
+
+    public List<DLongComm> getLongCommByUserId(Integer author_id);
+
+    public void addHuitie(DHuitie huitie);
+
+    public Integer userIsForbid(Integer u_id);
+
+    public void addLongCommComent(@Param("comment") Integer comment, @Param("lc_id") Integer lc_id);
 }

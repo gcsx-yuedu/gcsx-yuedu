@@ -8,7 +8,6 @@ public class DLongComm {
     private String lc_time;
     private String lc_article;
     private int lc_coment;
-    private int lc_click;
     private String author_name;
 
     public String getAuthor_name() {
@@ -75,13 +74,6 @@ public class DLongComm {
         this.lc_coment = lc_coment;
     }
 
-    public int getLc_click() {
-        return lc_click;
-    }
-
-    public void setLc_click(int lc_click) {
-        this.lc_click = lc_click;
-    }
 
     @Override
     public String toString() {
@@ -93,7 +85,6 @@ public class DLongComm {
                 ", lc_time='" + lc_time + '\'' +
                 ", lc_article='" + lc_article + '\'' +
                 ", lc_coment=" + lc_coment +
-                ", lc_click=" + lc_click +
                 '}';
     }
 }
