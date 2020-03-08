@@ -30,6 +30,10 @@
                 <result property="t_type" column="t_type"/>
             </collection>
         </resultMap> -->
+	<!--根据u_id和t_id删除书架书籍-->
+	<delete id="removeShelf" parameterType="po.BSJ.BBookShelf">
+		delete from bookshelf where book_id=#{book_id} and user_id=#{user_id}
+	</delete>
 	<!--根据用户id获取用户信息-->
 	<select id="queryUserById" parameterType="Integer" resultType="po.BSJ.BUser">
 		select * from userInfo where u_id=#{u_id}
@@ -97,5 +101,9 @@
 	<!--根据帖子id查回帖消息-->
 	<select id="getHuitieNews" parameterType="Integer" resultType="po.BSJ.BHuitie">
 		select * from huitie where tiezi_id=#{tiezi_id}
+	</select>
+	<!--根据user_id和guanzhu_userid获取行数-->
+	<select id="getLine" parameterType="po.BSJ.BGuanzhu" resultType="Integer">
+		select count(*) from guanzhu where user_id=#{user_id} and guanzhu_userid=#{guanzhu_userid}
 	</select>
 </mapper>

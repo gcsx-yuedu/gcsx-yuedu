@@ -4,6 +4,7 @@
 <%@ page import="po.JZX.JBook" %>
 <%@ page import="po.JZX.JBookList" %>
 <%@ page import="po.JZX.JShortComm" %>
+<%@ page import="po.ZYM.ZBookType" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
     <title>书籍信息</title>
@@ -43,6 +44,9 @@
 <%
     JBook book =(JBook) session.getAttribute("book");
     List<JShortComm> scList=(List<JShortComm>)session.getAttribute("ShortComm");
+    String wenzi = request.getParameter("wenzi");
+    List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
+
 %>
 
         <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -50,55 +54,59 @@
 
 
     <!-- header --><header class="header">
-        <div class="header-inner body-width">
-            <a href="#" class="logo"></a>
-            <div class="category">
-                <a class="category-link">分类</a>
-                <i class="icon-arrow"></i>
-                <div class="drop_con">
-                    <a>哈哈哈哈</a>
-                    <a>hhhhh</a>
-                </div>
-                <div class="category-result"></div>
-                <!-- 边框 -->
-                <span class="btn-border"></span>
-                <span class="result-border"></span>
-                <span class="neck-border"></span>
+    <div class="header-inner body-width">
+        <a href="#" class="logo"></a>
+        <div class="category">
+            <a class="category-link">分类</a>
+            <i class="icon-arrow"></i>
+            <div class="drop_con">
+                <% for(ZBookType ty:types){%>
+                <a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
+                <%}%>
             </div>
+            <div class="category-result"></div>
+            <!-- 边框 -->
+            <span class="btn-border"></span>
+            <span class="result-border"></span>
+            <span class="neck-border"></span>
+        </div>
+        <form action="/book_search" method="post" id="myForm">
             <div class="search">
-                <input type="text" class="search-text" placeholder="Seach here...">
+                <input type="text" class="search-text" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>">
                 <button class="search-btn"><i class="icon-search"></i></button>
             </div>
-            <nav class="header-nav">
-                <ul>
-                    <li>
-                        <span class="line"></span>
-                        <a href="#" class="dreamer">悦读</a>
-                        <i class="icon-text__pink icon-new">new</i>
-                    </li>
-                    <li>
-                        <span class="line"></span>
-                        <a href="#" class="icon-text__pink register">注册</a>
-                    </li>
-                    <li>
-                        <span class="line"></span>
-                        <a href="#">登录</a>
-                    </li>
-                    <li>
-                        <span class="line"></span>
-                        <i class="icon-app"></i>
-                        <a href="#" class="app">手机版</a>
-                        <i class="icon-arrow"></i>
-                        <div class="app-hover">
-                            <a href="#"></a>
-                            <p>扫一扫下载手机客户端</p>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <div class="header-shadow"></div>
-    </header>
+        </form>
+        <nav class="header-nav">
+            <ul>
+                <li>
+                    <span class="line"></span>
+                    <a href="#" class="dreamer">悦读</a>
+                    <i class="icon-text__pink icon-new">new</i>
+                </li>
+                <li>
+                    <span class="line"></span>
+                    <span>欢迎 </span>
+                    <a href="/user_info?u_id=<%=session.getAttribute("userId")%>" class="app" style="cursor:pointer"><%=session.getAttribute("userName")%></a>
+                </li>
+                <li>
+                    <span class="line"></span>
+                    <a href="/home_page" class="app" style="cursor:pointer">退出</a>
+                </li>
+                <li>
+                    <span class="line"></span>
+                    <i class="icon-app"></i>
+                    <a href="#" class="app">手机版</a>
+                    <i class="icon-arrow"></i>
+                    <div class="app-hover">
+                        <a href="#"></a>
+                        <p>扫一扫下载手机客户端</p>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="header-shadow"></div>
+</header>
     <!-- //header -->
 
 </div>
@@ -153,21 +161,21 @@
                 <div class="stats-img">
                     <span class="fa fa-book" aria-hidden="true"></span>
                 </div>
-                <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='982' data-delay='.5' data-increment="1">986</div>
+                <%--<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='982' data-delay='.5' data-increment="1">986</div>--%>
                 <p>收藏</p>
             </div>
             <div class="col-xs-3 stats-grid-w3-agile">
                 <div class="stats-img">
                     <span class="fa fa-leanpub" aria-hidden="true"></span>
                 </div>
-                <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='678' data-delay='.5' data-increment="1">678</div>
+                <%--<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='678' data-delay='.5' data-increment="1">678</div>--%>
                 <p>开始阅读</p>
             </div>
             <div class="col-xs-3 stats-grid-w3-agile ">
                 <div class="stats-img">
                     <span class="fa fa-commenting-o" aria-hidden="true"></span>
                 </div>
-                <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='768' data-delay='.5' data-increment="1">768</div>
+                <%--<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='768' data-delay='.5' data-increment="1">768</div>--%>
                 <a href="/comment?book_id=<%=book.getB_id()%>"><p>书评区</p></a>
             </div>
             <div class="clearfix"></div>
@@ -195,14 +203,15 @@
             </div>
         </div>
     </div>
-    <!-- //contact -->
 
+    <!-- //contact -->
     <div class="container">
         <h3 class="tittle-w3l">What Publications Say</h3>
         <div class="wthree_testimonial_grids">
             <div class="wthree_testimonial_grid_left">
                 <% int k=1;
                     for(JShortComm sc:scList){
+                        Integer click=sc.getClick();
                         if(k%2==1){
                 %>
                 <div class="w3ls_testimonial_grid_left_grid">
@@ -215,7 +224,7 @@
                             <p><%=sc.getFatie_content()%>.</p>
                             <div class="testimonials_time"><%=sc.getFatie_time()%></div>
                             <div class="testimonials_click" >
-                                <i class="fa fa-heart-o"></i>
+                                <i id="<%sc.getId();%>" class="fa <%if(click==0){%>fa-heart-o <%}else{%>fa-heart<%}%>"></i>
                             </div>
                         </div>
                     </div>
@@ -228,7 +237,7 @@
                             <p><%=sc.getFatie_content() %></p>
                             <div class="testimonials_time"><%=sc.getFatie_time()%></div>
                             <div class="testimonials_click" >
-                                <i class="fa fa-heart-o"></i>
+                                <i id="<%=sc.getId()%>" onclick="Click(click,<%=sc.getId()%>)" class="fa <%if(click==0){%>fa-heart-o <%}else{%>fa-heart<%}%>"></i>
                             </div>
                         </div>
                     </div>
@@ -277,7 +286,39 @@
   $('.testimonials_click').find('i').click(function(){$(this).toggleClass('fa-heart-o fa-heart')});
 });
 </script>
+<script>
+    function  Click(click,id) {
+        if(click==0){
+            $ajax({
+                url:'/Dianzan',
+                async: false,
+                type: 'post',
+                data:{"id":id,},
+                success:function () {
+                    alert:("点赞成功");
+                },error:function () {
+                    alert:("系统出错");
+                }
+            })
+        }
+        if(click==1){
+            $ajax({
+                url:'/Quxiao',
+                async: false,
+                type: 'post',
+                data:{"id":id,},
+                success:function () {
+                    alert:("取消点赞");
+                },error:function () {
+                    alert:("系统出错");
+                }
+            })
+        }
+    }
+</script>
 
+
+<!--添加评论-->
 <script>
     function addSC() {
         var shuji_id =document.getElementById("shuji_id").value;

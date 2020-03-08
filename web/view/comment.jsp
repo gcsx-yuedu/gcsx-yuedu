@@ -132,7 +132,7 @@
                                 for (DLongComm comm:longCommList){
                             %>
                             <li class="article-entry standard">
-                                <h4><a href="#"><%=comm.getTitle()%></a></h4>
+                                <h4><a href="/article?lc_id=<%=comm.getLc_id()%>"><%=comm.getTitle()%></a></h4>
                                 <span class="article-meta"><%=comm.getLc_time()%></span>
                                 <span class="like-count"><%=comm.getLc_click()%></span>
                             </li>

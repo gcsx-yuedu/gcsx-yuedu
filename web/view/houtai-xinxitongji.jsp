@@ -2,6 +2,7 @@
 <html lang="en">
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="po.DJX.DBookType" %>
+<%@ page import="po.DJX.DComm" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <head>
     <meta charset="utf-8">
@@ -52,6 +53,7 @@ response.sendRedirect("/Msignup");
     int manNum = (int) session.getAttribute("manNum");
     int womanNum = (int) session.getAttribute("womanNum");
     List<DBookType> bookTypeList = (List<DBookType>) session.getAttribute("typeList");
+    List<DComm> comms = (List<DComm>) session.getAttribute("comms");
 %>
 
 <!-- SCRIPTS -->
@@ -201,7 +203,7 @@ response.sendRedirect("/Msignup");
 
             <div class="row">
                 <!-- Area Chart -->
-                <div class="col-xl-6">
+                <div class="col-xl-5">
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -232,11 +234,11 @@ response.sendRedirect("/Msignup");
                         },
                     });
                 </script>
-                <div class="col-xl-6">
+                <div class="col-xl-7">
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">X月Y日-M月N日评论数量</h6>
+                            <h6 class="m-0 font-weight-bold text-primary"><%=comms.get(0).getDate()%> —— —— <%=comms.get(comms.size()-1).getDate()%>评论数量</h6>
 
                         </div>
                         <!-- Card Body -->
@@ -253,28 +255,32 @@ response.sendRedirect("/Msignup");
                     var canves1 = new Chart(ctx,{
                         type: 'line',
                         data:{
-                            labels: ["January", "February", "March", "April", "May", "June", "July"],
+                            labels: [<%
+                            for (DComm dComm:comms){
+                            %>
+                                '<%=dComm.getDate()%>',
+                            <%
+                            }
+                            %>
+                            ],
                             datasets: [
                                 {
-                                    label: "My First dataset",
+                                    label: "数量",
                                     fillColor: "rgba(220,220,220,0.2)",
                                     strokeColor: "rgba(220,220,220,1)",
                                     pointColor: "rgba(220,220,220,1)",
                                     pointStrokeColor: "#fff",
                                     pointHighlightFill: "#fff",
                                     pointHighlightStroke: "rgba(220,220,220,1)",
-                                    data: [65, 59, 80, 81, 56, 55, 40]
+                                    data: [<%
+                                    for (DComm dComm:comms){
+                                    %>
+                                        '<%=dComm.getCommNum()%>',
+                                    <%
+                                    }
+                                    %>
+                                    ],
                                 },
-                                {
-                                    label: "My Second dataset",
-                                    fillColor: "rgba(151,187,205,0.2)",
-                                    strokeColor: "rgba(151,187,205,1)",
-                                    pointColor: "rgba(151,187,205,1)",
-                                    pointStrokeColor: "#fff",
-                                    pointHighlightFill: "#fff",
-                                    pointHighlightStroke: "rgba(151,187,205,1)",
-                                    data: [28, 48, 40, 19, 86, 27, 90]
-                                }
                             ]
                         },
                     });
@@ -309,7 +315,7 @@ response.sendRedirect("/Msignup");
                             }
                             %>],
                         datasets:[{
-                            label: '类型',
+                            label: '数量',
                             data:[<%
                                 for (DBookType bookType:bookTypeList){
                                 %>

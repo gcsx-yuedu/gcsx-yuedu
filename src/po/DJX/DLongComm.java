@@ -9,6 +9,15 @@ public class DLongComm {
     private String lc_article;
     private int lc_coment;
     private int lc_click;
+    private String author_name;
+
+    public String getAuthor_name() {
+        return author_name;
+    }
+
+    public void setAuthor_name(String author_name) {
+        this.author_name = author_name;
+    }
 
     public int getLc_id() {
         return lc_id;

@@ -56,7 +56,7 @@
                 </li>
                 <li>
                     <span class="line"></span>
-                    <a href="/home_page" class="app" style="cursor:pointer">退出</a>
+                    <a href="/exit" class="app" style="cursor:pointer" style="cursor:pointer">退出</a>
                 </li>
                 <li>
                     <span class="line"></span>
@@ -88,7 +88,7 @@
             </li>
             <li class="ml-2 mb-4 flex">
                 <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/home-default.svg" alt="home-icon" class="w-4 h-4 mr-2">
-                <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger">返回首页</div>
+                <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger"><a href="/home_page">返回首页</a></div>
             </li>
             <li class="ml-2 mb-4">
                 <div class="flex" id="sidenav-categories-trigger">
@@ -149,7 +149,7 @@
                             <p class="text-l my-2 font-medium sm:font-normal">作者：<%=sc.getBookList().getB_author() %></p>
                             <p class="text-sm my-2 font-medium sm:font-normal">类型：<%=typeList%></p>
                             <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">移出书架</button>&nbsp;
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none"><a href="/remove?b_id=<%=sc.getBookList().getB_id()%>&&u_id=<%=session.getAttribute("userId")%>">移出书架</a></button>&nbsp;
                         </div>
                     </div>
                 </li>
