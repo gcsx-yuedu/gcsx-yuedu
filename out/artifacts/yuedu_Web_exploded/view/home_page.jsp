@@ -20,36 +20,29 @@
   <div class="category">
 	<a class="category-link">分类</a>
 	<i class="icon-arrow"></i>
-	<div class="drop_con">
-	<%for (ZBookType ty:types){%>
-		<a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
-	<%}%>
-    </div>
+      <div class="drop_con">
+          <%
+              for (ZBookType ty:types){
+                  if (session.getAttribute("userId")==null) {%>
+          <a href="/showBookByType0?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
+          <%}else{%>
+          <a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>&userId=<%=session.getAttribute("userId")%>"> <%=ty.getT_type()%></a>
+          <%}}%>
+      </div>
 	<div class="category-result"></div>
 	<!-- 边框 -->
 	<span class="btn-border"></span>
 	<span class="result-border"></span>
 	<span class="neck-border"></span>
   </div>
-	<%  System.out.println("userId来了");
-//		String userId = (String) session.getAttribute("userId");
-//		System.out.println("userId="+userId);
-		if (session.getAttribute("userId")==null){%>
 	<form action="/book_search" method="post" id="myForm">
 		<div class="search">
-		<input type="text" class="search-text" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>" />
-			<button class="search-btn"><i class="icon-search"></i></button>
-		</div>
-	</form>
-	<%}else{%>
-	<form action="/book_search2" method="post" id="myForm">
-		<div class="search">
 			<input type="hidden" name="userId" value="<%= session.getAttribute("userId")==null?"":session.getAttribute("userId") %>">
-			<input type="text" class="search-text" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>" />
+			<input type="text" name="wenzi" class="search-text" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>" />
 			<button class="search-btn"><i class="icon-search"></i></button>
 		</div>
 	</form>
-	<%}%>
+	<%--<%}%>--%>
 
 
   <nav class="header-nav">
@@ -170,57 +163,6 @@
   <div class="main-cont main-recommend">
 	<div class="main-cont__title">
 	  <h3>猜你喜欢</h3>
-	</div>
-	<ul class="main-cont__list clearfix">
-	  <li class="item">
-		<a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/main_img6.jpg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="title">书名   by 作者</a>
-		  <span>***人收藏</span>
-		  <a href="#" class="icon-text__pink purchase">去看看</a>
-		</div>
-	  </li>
-	  <li class="item">
-		<a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/main_img7.jpg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="title">书名   by 作者</a>
-		  <span>***人收藏</span>
-		  <a href="#" class="icon-text__pink purchase">去看看</a>
-		</div>
-	  </li>
-	  <li class="item">
-		<a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/main_img8.jpg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="title">书名   by 作者</a>
-		  <span>***人收藏</span>
-		  <a href="#" class="icon-text__pink purchase">去看看</a>
-		</div>
-	  </li>
-	  <li class="item">
-		<a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/main_img9.jpg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="title">书名   by 作者</a>
-		  <span>***人收藏</span>
-		  <a href="#" class="icon-text__pink purchase">去看看</a>
-		</div>
-	  </li>
-	  <li class="item">
-		<a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/main_img10.jpg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="title">书名   by 作者</a>
-		  <span>***人收藏</span>
-		  <a href="#" class="icon-text__pink purchase">去看看</a>
-		</div>
-	  </li>
-	</ul>
-  </div>
-  <div class="main-cont main-recommend">
-	<div class="main-cont__title">
-		<h3>单品推荐</h3>
-	  <p class="list">
-
-
-	  </p>
 	</div>
 	<ul class="main-cont__list clearfix">
 	  <li class="item">

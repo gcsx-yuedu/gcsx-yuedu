@@ -25,9 +25,13 @@
             <a class="category-link">分类</a>
             <i class="icon-arrow"></i>
             <div class="drop_con">
-                <%for (ZBookType ty:types){%>
-                <a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
-                <%}%>
+                <%
+                    for (ZBookType ty:types){
+                        if (session.getAttribute("userId")==null) {%>
+                <a href="/showBookByType0?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
+                <%}else{%>
+                <a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>&userId=<%=session.getAttribute("userId")%>"> <%=ty.getT_type()%></a>
+                <%}}%>
             </div>
             <div class="category-result"></div>
             <!-- 边框 -->
@@ -111,10 +115,15 @@
                 <ul class="text-grey lg:text-grey-dark list-reset leading-loose mt-2" id="sidenav-categories">
                     <%
                         for (ZBookType type:types){
-                    %>
+                            if (session.getAttribute("userId")==null) {%>
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">
-                        <a href="/showBookByType?t_id=<%=type.getT_id()%>&t_type=<%=type.getT_type()%>"> <%=type.getT_type()%></a>
+                        <a href="/showBookByType0?t_id=<%=type.getT_id()%>&t_type=<%=type.getT_type()%>"> <%=type.getT_type()%></a>
                     </li>
+                    <%}else{%>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">
+                        <a href="/showBookByType?t_id=<%=type.getT_id()%>&t_type=<%=type.getT_type()%>&userId=<%=session.getAttribute("userId")%>"> <%=type.getT_type()%></a>
+                    </li>
+                    <%}%>
                     <%}%>
                 </ul>
             </li>

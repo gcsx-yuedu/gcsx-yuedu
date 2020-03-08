@@ -34,9 +34,13 @@
             <a class="category-link">分类</a>
             <i class="icon-arrow"></i>
             <div class="drop_con">
-                <%for (ZBookType ty:types){%>
-                <a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
-                <%}%>
+                <%
+                    for (ZBookType ty:types){
+                        if (session.getAttribute("userId")==null) {%>
+                <a href="/showBookByType0?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
+                <%}else{%>
+                <a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>&userId=<%=session.getAttribute("userId")%>"> <%=ty.getT_type()%></a>
+                <%}}%>
             </div>
             <div class="category-result"></div>
             <!-- 边框 -->
@@ -45,11 +49,11 @@
             <span class="neck-border"></span>
         </div>
 
-        <form action="/book_search?user_id=<%=session.getAttribute("userId")%>" method="get" id="myForm">
+        <form action="/book_search" method="post" id="myForm">
             <div class="search">
-                <input type="hidden" name="user_id" value="<%=session.getAttribute("userId")%>">
-                <input type="text" name="wenzi" class="search-text" placeholder="Seach here..." value="<%= wenzi==null?"":wenzi %>">
-                <button type="submit" class="search-btn"><i class="icon-search"></i></button>
+                <input type="hidden" name="userId" value="<%= session.getAttribute("userId")==null?"":session.getAttribute("userId") %>">
+                <input type="text" name="wenzi" class="search-text" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>" />
+                <button class="search-btn"><i class="icon-search"></i></button>
             </div>
         </form>
 
@@ -109,7 +113,6 @@
                     <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/category-default.svg" alt="home-icon" class="w-4 h-4 mr-2">
                     <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium w-full relative">
                         分类
-
                     </div>
                 </div>
                 <ul class="text-grey lg:text-grey-dark list-reset leading-loose mt-2" id="sidenav-categories">
@@ -123,8 +126,9 @@
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">
                         <a href="/showBookByType?t_id=<%=type.getT_id()%>&t_type=<%=type.getT_type()%>&userId=<%=session.getAttribute("userId")%>"> <%=type.getT_type()%></a>
                     </li>
-                    <%}%>
-                    <%}%>
+                    <%}
+                        }%>
+
                 </ul>
             </li>
             <li class="ml-2 mb-4 flex">

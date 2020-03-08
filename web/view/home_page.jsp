@@ -20,11 +20,15 @@
   <div class="category">
 	<a class="category-link">分类</a>
 	<i class="icon-arrow"></i>
-	<div class="drop_con">
-	<%for (ZBookType ty:types){%>
-		<a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
-	<%}%>
-    </div>
+      <div class="drop_con">
+          <%
+              for (ZBookType ty:types){
+                  if (session.getAttribute("userId")==null) {%>
+          <a href="/showBookByType0?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
+          <%}else{%>
+          <a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>&userId=<%=session.getAttribute("userId")%>"> <%=ty.getT_type()%></a>
+          <%}}%>
+      </div>
 	<div class="category-result"></div>
 	<!-- 边框 -->
 	<span class="btn-border"></span>

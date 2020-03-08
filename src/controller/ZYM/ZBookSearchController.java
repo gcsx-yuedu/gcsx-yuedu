@@ -71,7 +71,7 @@ public class ZBookSearchController {
         System.out.println("添加完毕");
 //        request.getSession().setAttribute("u_id", u_id);
         request.getSession().setAttribute("b_id", b_id);
-        return "redirect:/book_search2?userId="+u_id;
+        return "redirect:/book_search?userId="+u_id;
     }
 
 //    //判断书架是否已存在该书
