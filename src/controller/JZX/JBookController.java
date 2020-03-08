@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import po.JZX.JBook;
-import po.JZX.JBookList;
-import po.JZX.JDianzan;
-import po.JZX.JShortComm;
+import po.JZX.*;
 import service.JZX.JBookService;
 
 import javax.servlet.http.HttpServletRequest;

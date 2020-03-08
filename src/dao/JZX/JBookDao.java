@@ -3,6 +3,7 @@ package dao.JZX;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import po.JZX.JBook;
+import po.JZX.JBookShelf;
 import po.JZX.JDianzan;
 import po.JZX.JShortComm;
 
@@ -26,6 +27,9 @@ public interface JBookDao {
     public Integer selectDianZanShortComm(@Param("dianzanren_id") Integer dianzanren_id, @Param("shortcomm_id") Integer shortcomm_id);
 
     public void addDianZan(JDianzan dianzan);
-
     public void deleteDianzan(@Param("dianzanren_id") Integer dianzanren_id, @Param("shortcomm_id") Integer shortcomm_id);
+
+    public void addShoucang(JBookShelf bookShelf);
+    public Integer selectShoucang(Integer user_id,Integer book_id);
+    public void deleteShoucang(Integer user_id,Integer book_id);
 }
