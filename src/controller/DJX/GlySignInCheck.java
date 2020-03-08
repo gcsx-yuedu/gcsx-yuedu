@@ -495,7 +495,7 @@ public class GlySignInCheck {
     /*根据长评id获取回帖的list*/
     @RequestMapping("/article")
     public String article(Integer lc_id,HttpServletRequest request) {
-        lc_id=1;
+//        lc_id=1;
         DLongComm longComm = service.getLongCommById(lc_id);
         List<DHuitie> huitieList = service.getHuitieById(lc_id);
         longComm.setAuthor_name(service.getAuthorNameById(longComm.getAuthor_id()));

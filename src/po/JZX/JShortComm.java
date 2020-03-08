@@ -8,12 +8,21 @@ public class JShortComm {
     private String fatie_time;
     private String fatie_content;
     private int click;
+    private int user_click;
+
+    public int getUser_click() {
+        return user_click;
+    }
+
+    public void setUser_click(int user_click) {
+        this.user_click = user_click;
+    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int sc_id) {
+    public void setId(int id) {
         this.id = id;
     }
 
