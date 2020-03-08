@@ -147,7 +147,7 @@
                             <a href="#" class="info-title"><%=bs.getConcernList().getU_name()%></a>
                             <p><i class="icon-star"></i><%=bs.getCountFans()%>人关注</p>
                         </div>
-                        <a href="/cancelguanzhu?guanzhu_userid=<%=bs.getConcernList().getU_id()%>" class="icon-text__pink register" style="width:80px">取消关注</a>
+                        <a href="/cancelguanzhu?guanzhu_userid=<%=bs.getConcernList().getU_id()%>&&u_id=<%=session.getAttribute("userId")%>" class="icon-text__pink register" style="width:80px">取消关注</a>
                     </li>
                 </ul>
             </div>
@@ -168,12 +168,8 @@
                             <a href="#" class="info-title"><%=ss.getFansList().getU_name()%></a>
                             <p><i class="icon-star"></i><%=ss.getCountFans()%>人关注</p>
                         </div>
-                        <%  BGuanzhu guanzhu = new BGuanzhu();
-                            guanzhu.setUser_id(Integer.parseInt(session.getAttribute("userId").toString()));
-                            guanzhu.setGuanzhu_userid(ss.getFansList().getU_id());
-                            BUserService service = new BUserService();
-                            int count = service.getLine(guanzhu);
-                            if(count==0){
+                        <%
+                            if(ss.getCount()==0){
                         %>
                         <a href="/guanzhu?u_id=<%=session.getAttribute("userId")%>&&user_id=<%=ss.getFansList().getU_id()%>" class="icon-text__pink register" style="width:80px">关注</a>
                         <%}else{%>
