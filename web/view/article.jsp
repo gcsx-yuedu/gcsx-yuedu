@@ -162,7 +162,7 @@
                     <%
                         for(DBookType s:typeList){
                     %>
-                    <li class="list-inline-item"><a href="/showBookByType?t_id=<%=s.getT_id()%>&t_type=<%=s.getT_type()%>" class="tag">#<%=s.getT_type()%></a></li>
+                    <li class="list-inline-item"><a href="/showBookByType?userId=<%=session.getAttribute("userId")%>&t_id=<%=s.getT_id()%>&t_type=<%=s.getT_type()%>" class="tag">#<%=s.getT_type()%></a></li>
                     <%
                         }
                     %>

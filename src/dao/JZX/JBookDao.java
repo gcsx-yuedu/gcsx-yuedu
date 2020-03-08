@@ -29,7 +29,11 @@ public interface JBookDao {
     public void addDianZan(JDianzan dianzan);
     public void deleteDianzan(@Param("dianzanren_id") Integer dianzanren_id, @Param("shortcomm_id") Integer shortcomm_id);
 
-    public void addShoucang(JBookShelf bookShelf);
-    public Integer selectShoucang(Integer user_id,Integer book_id);
-    public void deleteShoucang(Integer user_id,Integer book_id);
+    public void shouCang(@Param("user_id") Integer user_id, @Param("book_id") Integer book_id);
+
+    public void quXiaoShouCang(@Param("user_id") Integer user_id, @Param("book_id") Integer book_i);
+
+    public Integer JuserIsForbid(Integer u_id);
+
+    public Integer isBookInShelf(@Param("user_id") Integer user_id, @Param("book_id") Integer book_id);
 }

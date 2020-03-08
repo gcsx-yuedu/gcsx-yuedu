@@ -58,6 +58,7 @@
     int book_id = (int) session.getAttribute("book_id");
     int userId = (int) session.getAttribute("userId");
     String userName = (String) session.getAttribute("userName");
+    System.out.println("userId="+userId);
 %>
 <header class="header">
     <div class="header-inner body-width">
@@ -67,7 +68,7 @@
             <i class="icon-arrow"></i>
             <div class="drop_con">
                 <% for(ZBookType ty:types){%>
-                <a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
+                <a href="/showBookByType?userId=<%=userId%>&t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
                 <%}%>
             </div>
             <div class="category-result"></div>
@@ -134,7 +135,6 @@
                             <li class="article-entry standard">
                                 <h4><a href="/article?lc_id=<%=comm.getLc_id()%>"><%=comm.getTitle()%></a></h4>
                                 <span class="article-meta"><%=comm.getLc_time()%></span>
-                                <span class="like-count"><%=comm.getLc_click()%></span>
                             </li>
                             <%
                                 }

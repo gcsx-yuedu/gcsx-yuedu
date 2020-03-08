@@ -46,5 +46,6 @@
     <orderEntry type="library" exported="" name="jquery-2.2.4" level="application" />
     <orderEntry type="library" name="Chart" level="application" />
     <orderEntry type="library" name="jsp-api" level="project" />
+    <orderEntry type="library" name="jsp-api1" level="project" />
   </component>
 </module>

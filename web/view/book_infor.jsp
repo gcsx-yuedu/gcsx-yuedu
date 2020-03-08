@@ -46,6 +46,7 @@
     List<JShortComm> scList=(List<JShortComm>)session.getAttribute("ShortComm");
     String wenzi = request.getParameter("wenzi");
     List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
+    int isBookShelf = (int) session.getAttribute("isBookShelf");
 
 %>
 
@@ -162,7 +163,17 @@
                     <span class="fa fa-book" aria-hidden="true"></span>
                 </div>
                 <%--<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='982' data-delay='.5' data-increment="1">986</div>--%>
-                <p>收藏</p>
+                <p onclick="bookShelf()"><%
+                    if (isBookShelf==0){
+                %>
+                    收藏
+                    <%
+                    }else {
+                    %>
+                    取消收藏
+                    <%
+                        }
+                    %></p>
             </div>
             <div class="col-xs-3 stats-grid-w3-agile">
                 <div class="stats-img">
@@ -304,6 +315,44 @@
             })
         }
     }
+    function bookShelf() {
+        var bookshelf = <%=isBookShelf%>;
+        if (bookshelf==0){
+            $.ajax({
+                url: '/shouCang',
+                async:false,
+                type: 'post',
+                data: {"user_id":<%=session.getAttribute("userId")%>,
+                    "book_id":<%=book.getB_id()%>,
+                },
+                success:function () {
+                    alert("收藏成功");
+                    location.reload();
+                },
+                error: function () {
+                    alert("系统出错");
+
+                }
+            });
+        } else {
+            $.ajax({
+                url: '/quXiaoShouCang',
+                async:false,
+                type: 'post',
+                data: {"user_id":<%=session.getAttribute("userId")%>,
+                    "book_id":<%=book.getB_id()%>,
+                },
+                success:function () {
+                    alert("取消收藏成功");
+                    location.reload();
+                },
+                error: function () {
+                    alert("系统出错");
+
+                }
+            });
+        }
+    }
 </script>
 
 
@@ -312,20 +361,34 @@
     function addSC() {
         var shuji_id =document.getElementById("shuji_id").value;
         var fatiecontent = document.getElementById("content").value;
-        alert (shuji_id);
+        // alert (shuji_id);
         $.ajax({
-            url:'/addShortComm',   //requestMapping对应
-            async:false,
-            type:'post',
-            data:{"shuji_id":shuji_id,"fatie_content":fatiecontent},
-            success:function () {
-                alert('评论添加成功');
-                location.reload();
-            },
-            error:function () {
-                alert('添加失败');
+            url: '/JuserIsForbid',
+            async: false,
+            type: 'post',
+            data:{"u_id":<%=session.getAttribute("userId")%>},
+            success:function (s) {
+                if (s == 0) {
+                    $.ajax({
+                        url:'/addShortComm',   //requestMapping对应
+                        async:false,
+                        type:'post',
+                        data:{"shuji_id":shuji_id,"fatie_content":fatiecontent},
+                        success:function () {
+                            alert('评论添加成功');
+                            location.reload();
+                        },
+                        error:function () {
+                            alert('添加失败');
+                        }
+                    })
+                }else {
+                    alert("你已被禁言");
+                    document.getElementById("content").value = "";
+                }
             }
-        })
+        });
+
     }
 </script>
 

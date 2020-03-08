@@ -39,6 +39,10 @@ public class JBookController {
             int userClick = bookService.selectDianZanShortComm(userid, sc.getId());
             sc.setUser_click(userClick);
         }
+        /*判断是否收藏*/
+        int isBookShelf = bookService.isBookInShelf(userid, book.getB_id());
+        System.out.println(isBookShelf);
+        request.getSession().setAttribute("isBookShelf",isBookShelf);
         System.out.println(">>>");
 //        System.out.println(book.toString());
         System.out.println(">>>");
@@ -128,6 +132,30 @@ public class JBookController {
         System.out.println(">>>");
         System.out.println(id + "取消点赞");
         return "OK";
+    }
+
+
+    /*收藏*/
+    @ResponseBody
+    @RequestMapping("/shouCang")
+    public String shouCang(Integer user_id,Integer book_id) {
+        bookService.shouCang(user_id,book_id);
+        return "ok";
+    }
+
+    /*取消收藏*/
+    @ResponseBody
+    @RequestMapping("/quXiaoShouCang")
+    public String quXiaoShouCang(Integer user_id,Integer book_id) {
+        bookService.quXiaoShouCang(user_id,book_id);
+        return "ok";
+    }
+
+    /*查询是否被禁言*/
+    @ResponseBody
+    @RequestMapping("/JuserIsForbid")
+    public String JuserisForbid(Integer u_id) {
+        return String.valueOf(bookService.JuserIsForbid(u_id));
     }
 
 }
