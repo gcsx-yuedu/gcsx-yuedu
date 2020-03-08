@@ -203,57 +203,6 @@
 	  </li>
 	</ul>
   </div>
-  <div class="main-cont main-recommend">
-	<div class="main-cont__title">
-		<h3>单品推荐</h3>
-	  <p class="list">
-
-
-	  </p>
-	</div>
-	<ul class="main-cont__list clearfix">
-	  <li class="item">
-		<a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/main_img6.jpg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="title">书名   by 作者</a>
-		  <span>***人收藏</span>
-		  <a href="#" class="icon-text__pink purchase">去看看</a>
-		</div>
-	  </li>
-	  <li class="item">
-		<a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/main_img7.jpg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="title">书名   by 作者</a>
-		  <span>***人收藏</span>
-		  <a href="#" class="icon-text__pink purchase">去看看</a>
-		</div>
-	  </li>
-	  <li class="item">
-		<a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/main_img8.jpg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="title">书名   by 作者</a>
-		  <span>***人收藏</span>
-		  <a href="#" class="icon-text__pink purchase">去看看</a>
-		</div>
-	  </li>
-	  <li class="item">
-		<a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/main_img9.jpg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="title">书名   by 作者</a>
-		  <span>***人收藏</span>
-		  <a href="#" class="icon-text__pink purchase">去看看</a>
-		</div>
-	  </li>
-	  <li class="item">
-		<a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/main_img10.jpg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="title">书名   by 作者</a>
-		  <span>***人收藏</span>
-		  <a href="#" class="icon-text__pink purchase">去看看</a>
-		</div>
-	  </li>
-	</ul>
-  </div>
   <div class="main-cont main-user">
 	<div class="main-cont__title">
 	  <h3>达人推荐</h3>
