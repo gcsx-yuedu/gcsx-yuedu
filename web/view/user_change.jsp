@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user-css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user-css/index.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user-css/form.css">
+    <script>
+    </script>
 </head>
 <body class="bg-grey-lighter font-sans antialiased">
 <%  String wenzi = request.getParameter("wenzi");
@@ -99,7 +101,7 @@
                     </div>
                 </div>
                 <ul class="text-grey lg:text-grey-dark list-reset leading-loose mt-2" id="sidenav-categories">
-                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_change">修改信息</a></li>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_change?u_id=<%=session.getAttribute("userId")%>">修改信息</a></li>
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_news?u_id=<%=session.getAttribute("userId")%>">我的消息</a></li>
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_focus?u_id=<%=session.getAttribute("userId")%>">我的关注/粉丝</a></li>
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4"><a href="/user_comment?u_id=<%=session.getAttribute("userId")%>">我的评论/读后感</a></li>
@@ -134,7 +136,11 @@
         </div>
         <!-- Library -->
         <div class="hidden px-2 pt-2 md:px-0 flex-wrap order-2 pb-8 js-tab-pane active" id="section-library">
-            <form id="payment" action="/update">
+            <%
+                List<BUser> user = (List<BUser>)session.getAttribute("user");
+                for(BUser u : user){
+            %>
+            <form id="payment" name="myForm" action="/update" >
                 <fieldset>
                     <legend>用户详细资料</legend>
                     <ol>
@@ -142,6 +148,8 @@
                             <a href="#" class="pic" style=" background: url(${pageContext.request.contextPath}/static/image/user-image/user_img1.jpg) no-repeat; background-size: cover; "></a>
                             <a href="#" class="headImg"><img style="border-radius: 50%;overflow:hidden" src="${pageContext.request.contextPath}/static/image/user-image/head_img1.jpeg" alt="#"></a>
                         </li>
+                        <input type="hidden" name="name" value="<%=u.getU_name()%>"/>
+                        <input type="hidden" name="password" value="<%=u.getU_password()%>"/>
                         <input type="hidden" name="u_id" value="<%=session.getAttribute("userId")%>"/>
                         <li>
                             <label for="name">用户名：</label>
@@ -169,6 +177,7 @@
                     <button type="submit">确认并提交</button>
                 </fieldset>
             </form>
+            <%}%>
         </div>
     </div>
 
