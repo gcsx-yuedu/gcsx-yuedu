@@ -1,7 +1,9 @@
 package dao.JZX;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import po.JZX.JBook;
+import po.JZX.JDianzan;
 import po.JZX.JShortComm;
 
 
@@ -18,6 +20,12 @@ public interface JBookDao {
     public List<JShortComm> queryShortComm(Integer shuji_id);
     public String getNameByID(Integer u_id);
 
-    public void dianzan(Integer id);
-    public void quxiao(Integer id);
+    public void dianzan(@Param("totalClick") Integer totalClick,@Param("id") Integer id);
+    public void quxiao(@Param("totalClick") Integer totalClick,@Param("id") Integer id);
+
+    public Integer selectDianZanShortComm(@Param("dianzanren_id") Integer dianzanren_id, @Param("shortcomm_id") Integer shortcomm_id);
+
+    public void addDianZan(JDianzan dianzan);
+
+    public void deleteDianzan(@Param("dianzanren_id") Integer dianzanren_id, @Param("shortcomm_id") Integer shortcomm_id);
 }

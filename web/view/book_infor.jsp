@@ -211,7 +211,8 @@
             <div class="wthree_testimonial_grid_left">
                 <% int k=1;
                     for(JShortComm sc:scList){
-                        Integer click=sc.getClick();
+                        Integer click=sc.getUser_click();
+                        Integer totalClick = sc.getClick();
                         if(k%2==1){
                 %>
                 <div class="w3ls_testimonial_grid_left_grid">
@@ -224,7 +225,7 @@
                             <p><%=sc.getFatie_content()%>.</p>
                             <div class="testimonials_time"><%=sc.getFatie_time()%></div>
                             <div class="testimonials_click" >
-                                <i id="<%sc.getId();%>" class="fa <%if(click==0){%>fa-heart-o <%}else{%>fa-heart<%}%>"></i>
+                                <i id="<%sc.getId();%>" onclick="Click(<%=click%>,<%=sc.getId()%>,<%=totalClick%>)" class="fa <%if(click==0){%>fa-heart-o <%}else{%>fa-heart<%}%>"></i>
                             </div>
                         </div>
                     </div>
@@ -237,7 +238,7 @@
                             <p><%=sc.getFatie_content() %></p>
                             <div class="testimonials_time"><%=sc.getFatie_time()%></div>
                             <div class="testimonials_click" >
-                                <i id="<%=sc.getId()%>" onclick="Click(click,<%=sc.getId()%>)" class="fa <%if(click==0){%>fa-heart-o <%}else{%>fa-heart<%}%>"></i>
+                                <i id="<%=sc.getId()%>" onclick="Click(<%=click%>,<%=sc.getId()%>,<%=totalClick%>)" class="fa <%if(click==0){%>fa-heart-o <%}else{%>fa-heart<%}%>"></i>
                             </div>
                         </div>
                     </div>
@@ -251,66 +252,54 @@
                 <%}
                 k++;}
                         %>
-                <%--<div class="w3ls_testimonial_grid_left_grid">--%>
-                    <%--<div class="col-xs-4 agileinfo_testimonials_left">--%>
-                        <%--<img src="${pageContext.request.contextPath}/static/image/book_infor-image/t3.jpg" alt=" " class="img-people" />--%>
-                        <%--<h4>John Crisp</h4>--%>
-                    <%--</div>--%>
-                    <%--<div class="col-xs-8 agileinfo_testimonials_right">--%>
-                        <%--<div class="agileits_testimonials_right_grid">--%>
-                            <%--<p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim--%>
-                                <%--veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="clearfix"> </div>--%>
-                <%--</div>--%>
+
             </div>
         </div>
     </div>
 </div>
-<!-- //testimonials -->
-
-
-
-
-
-
 
 <!-- js -->
 <script src="${pageContext.request.contextPath}/static/js/book_infor-js/jquery-2.1.4.min.js"></script>
 <!-- //js -->
 
 <!--点赞-->
-<script type="text/jscript">
- $(document).ready(function(){
-  $('.testimonials_click').find('i').click(function(){$(this).toggleClass('fa-heart-o fa-heart')});
-});
-</script>
+<%--<script type="text/jscript">--%>
+ <%--$(document).ready(function(){--%>
+  <%--$('.testimonials_click').find('i').click(function(){$(this).toggleClass('fa-heart-o fa-heart')});--%>
+<%--});--%>
+<%--</script>--%>
 <script>
-    function  Click(click,id) {
+    function  Click(click,id,totalClick) {
+        // alert("点赞方法已被调用");
         if(click==0){
-            $ajax({
+            $.ajax({
                 url:'/Dianzan',
                 async: false,
                 type: 'post',
-                data:{"id":id,},
+                data:{"id":id,
+                    "totalClick":totalClick,
+                },
                 success:function () {
-                    alert:("点赞成功");
+                    alert("点赞成功");
+                    window.location.reload();
                 },error:function () {
-                    alert:("系统出错");
+                    alert("系统出错");
                 }
             })
         }
         if(click==1){
-            $ajax({
+            $.ajax({
                 url:'/Quxiao',
                 async: false,
                 type: 'post',
-                data:{"id":id,},
+                data:{"id":id,
+                    "totalClick":totalClick,
+                },
                 success:function () {
-                    alert:("取消点赞");
+                    alert("取消点赞");
+                    window.location.reload();
                 },error:function () {
-                    alert:("系统出错");
+                    alert("系统出错");
                 }
             })
         }

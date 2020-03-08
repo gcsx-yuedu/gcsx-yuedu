@@ -92,4 +92,7 @@ public interface DManagerDao {
     public List<DHuitie> getHuitieById(Integer tiezi_id);
 
     public String getAuthorNameById(Integer u_id);
+
+
+    public Integer selectDianZanLongComm(@Param("dianzanren_id") Integer dianzanren_id, @Param("longcomm_id") Integer longcomm_id);
 }
