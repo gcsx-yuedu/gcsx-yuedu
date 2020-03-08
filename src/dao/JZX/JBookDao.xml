@@ -22,10 +22,26 @@
         select u_name from userInfo where u_id = #{u_id}
     </select>
 
-    <select id="dianzan" parameterType="Integer">
-        update shortcomm set click=1 where id=#{id}
+    <select id="dianzan">
+        update shortcomm set click=#{totalClick} where id=#{id}
     </select>
     <select id="quxiao" parameterType="Integer">
-         update shortcomm set click=0 where id=#{id}
+         update shortcomm set click=#{totalClick} where id=#{id}
     </select>
+
+    <!--判断某个用户是否已经点赞短评-->
+    <select id="selectDianZanShortComm" resultType="Integer">
+        select count(*) from dianzan where dianzanren_id = #{dianzanren_id} and shortcomm_id = #{shortcomm_id}
+    </select>
+
+    <!--向点赞表添加数据-->
+    <insert id="addDianZan" parameterType="po.JZX.JDianzan">
+        insert into dianzan (dianzanren_id,shortcomm_id,longcomm_id) values (#{dianzanren_id},#{shortcomm_id},#{longcomm_id})
+    </insert>
+
+    <!--删除某一条记录-->
+    <delete id="deleteDianzan" >
+        delete from dianzan where dianzanren_id=#{dianzanren_id} and shortcomm_id=#{shortcomm_id}
+    </delete>
+
 </mapper>

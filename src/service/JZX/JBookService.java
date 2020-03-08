@@ -5,6 +5,7 @@ import dao.JZX.JBookDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import po.JZX.JBook;
+import po.JZX.JDianzan;
 import po.JZX.JShortComm;
 
 import java.util.List;
@@ -23,6 +24,20 @@ public class JBookService {
     public void addShortComm(JShortComm sc){bookDao.addShortComm(sc);}
     public List<JShortComm> queryShortComm(Integer shuji_id){return bookDao .queryShortComm(shuji_id);}
     public String getNameByID(Integer u_id){return bookDao.getNameByID(u_id);}
-    public void dianzan(Integer id){bookDao.dianzan(id);}
-    public void quxiao(Integer id){bookDao.quxiao(id);}
+    public void dianzan(Integer totalClick,Integer id){bookDao.dianzan(totalClick,id);}
+    public void quxiao(Integer totalClick,Integer id){bookDao.quxiao(totalClick,id);}
+
+    public Integer selectDianZanShortComm(Integer dianzanren_id, Integer shortcomm_id) {
+        return bookDao.selectDianZanShortComm(dianzanren_id, shortcomm_id);
+    }
+
+    public void addDianZan(JDianzan dianzan) {
+        bookDao.addDianZan(dianzan);
+    }
+
+    public void deleteDianzan(Integer dianzanren_id, Integer shortcomm_id) {
+        bookDao.deleteDianzan(dianzanren_id,shortcomm_id);
+    }
+
+
 }
