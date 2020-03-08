@@ -73,11 +73,15 @@ public class UserController {
     }
 
     @RequestMapping("/user_change")
-    public String Change(){
+    public String Change(int u_id,HttpServletRequest request){
+        List<BUser> user = service.queryUserById(u_id);
+        request.getSession().setAttribute("user",user);
         return "user_change";
     }
     @RequestMapping("/update")
     public String UpdateUser(HttpServletRequest request) {
+        String name=request.getParameter("name");
+        String password=request.getParameter("password");
         int u_id=Integer.parseInt(request.getParameter("u_id"));
         String u_name=request.getParameter("u_name");
         String u_password= request.getParameter("u_password");
@@ -90,7 +94,11 @@ public class UserController {
         user.setU_sex(u_sex);
         user.setU_address(u_address);
         service.updateUser(user);
-        return "sign-up-yh";
+        if(name.equals(u_name)&&password.equals(u_password)){
+            return "redirect:/user_change?u_id="+u_id;
+        }else{
+            return "sign-up-yh";
+        }
     }
 
     @RequestMapping("/user_focus")
