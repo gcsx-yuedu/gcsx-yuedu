@@ -23,8 +23,8 @@
     List<ZBook> books =(List<ZBook>)session.getAttribute("books");
     List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
 //    ZBookShelf shel = (ZBookShelf)session.getAttribute("shel");
-    Integer u_id = (Integer)session.getAttribute("userId");
-    System.out.println("u_id="+u_id);
+//    Integer u_id = (Integer)session.getAttribute("userId");
+//    System.out.println("u_id="+u_id);
 %>
 
 <header class="header">
@@ -45,8 +45,9 @@
             <span class="neck-border"></span>
         </div>
 
-        <form action="/book_search" method="post" id="myForm">
+        <form action="/book_search?user_id=<%=session.getAttribute("userId")%>" method="get" id="myForm">
             <div class="search">
+                <input type="hidden" name="user_id" value="<%=session.getAttribute("userId")%>">
                 <input type="text" name="wenzi" class="search-text" placeholder="Seach here..." value="<%= wenzi==null?"":wenzi %>">
                 <button type="submit" class="search-btn"><i class="icon-search"></i></button>
             </div>
@@ -60,6 +61,7 @@
                     <i class="icon-text__pink icon-new">new</i>
                 </li>
                 <%
+
                     String userName = (String)session.getAttribute("userName");
                     if (userName==null){
                 %>
@@ -167,15 +169,10 @@
                             <button onclick="window.location.href='/book_infor?b_id=<%=book.getB_id()%>'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
                             <%
                                 System.out.println("进入");
-                                ZBookShelf shelf = new ZBookShelf();
-                                shelf.setUser_id(u_id);
-                                shelf.setBook_id(book.getB_id());
-                                ZBookService service = new ZBookService();
-                                System.out.println("count="+service.getCountOfShelfBook(shelf));
-                                if (service.getCountOfShelfBook(shelf)==0){%>
-                            <button onclick="window.location.href='javascript:btnAddToShelf(\'<%=book.getB_id()%>\',1)'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button></a>
+                                if (book.getCounts()==0){%>
+                            <button onclick="window.location.href='javascript:btnAddToShelf(\'<%=book.getB_id()%>\',<%=session.getAttribute("userId")%>)'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button></a>
                             <%}else{%>
-                            <button onclick="window.location.href=''" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">已在我的书架</button></a>
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">已在我的书架</button></a>
                             <%}%>
                         </div>
                     </div>

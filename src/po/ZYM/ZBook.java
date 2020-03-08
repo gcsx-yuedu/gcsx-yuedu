@@ -10,7 +10,7 @@ public class ZBook {
     private String b_author;
     private  String b_content;
     private List<String> typeList;
-
+    private int counts;
     public int getB_id(){
         return b_id;
     }
@@ -18,7 +18,14 @@ public class ZBook {
         this.b_id=b_id;
     }
 
-//    public int getB_type() {
+    public int getCounts() {
+        return counts;
+    }
+
+    public void setCounts(int counts) {
+        this.counts = counts;
+    }
+    //    public int getB_type() {
 //        return b_type;
 //    }
 

@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Home</title>
-
+.
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/home-css/reset.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/home-css/index.css">
 </head>
@@ -31,13 +31,27 @@
 	<span class="result-border"></span>
 	<span class="neck-border"></span>
   </div>
-
+	<%  System.out.println("userId来了");
+//		String userId = (String) session.getAttribute("userId");
+//		System.out.println("userId="+userId);
+		if (session.getAttribute("userId")==null){%>
 	<form action="/book_search" method="post" id="myForm">
 		<div class="search">
-			<input type="text" class="search-text" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>">
+		<input type="text" class="search-text" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>" />
 			<button class="search-btn"><i class="icon-search"></i></button>
 		</div>
 	</form>
+	<%}else{%>
+	<form action="/book_search2" method="post" id="myForm">
+		<div class="search">
+			<input type="hidden" name="userId" value="<%= session.getAttribute("userId")==null?"":session.getAttribute("userId") %>">
+			<input type="text" class="search-text" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>" />
+			<button class="search-btn"><i class="icon-search"></i></button>
+		</div>
+	</form>
+	<%}%>
+
+
   <nav class="header-nav">
 	<ul>
 	  <li>
