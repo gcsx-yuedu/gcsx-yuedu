@@ -4,6 +4,7 @@ import java.util.List;
 public class BFansList {
     private BUser fansList;
     private int countFans;
+    private int count;
 
     public BUser getFansList() {
         return fansList;
@@ -19,5 +20,13 @@ public class BFansList {
 
     public void setCountFans(int countFans) {
         this.countFans = countFans;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

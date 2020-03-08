@@ -114,10 +114,15 @@ public class UserController {
         for(BGuanzhu fc : fList){
             List<BUser> fans_List = service.queryUserById(fc.getUser_id());
             int countFans = service.getCountFans(fc.getUser_id());
+            BGuanzhu guanzhu = new BGuanzhu();
+            guanzhu.setGuanzhu_userid(fc.getUser_id());
+            guanzhu.setUser_id(u_id);
+            int count = service.getLine(guanzhu);
             for(BUser fans : fans_List){
                 BFansList FansList = new BFansList();
                 FansList.setFansList(fans);
                 FansList.setCountFans(countFans);
+                FansList.setCount(count);
                 fansList.add(FansList);
             }
         }
@@ -127,9 +132,9 @@ public class UserController {
     }
 
     @RequestMapping("/cancelguanzhu")
-    public String Cancel(int guanzhu_userid){
+    public String Cancel(int guanzhu_userid,int u_id){
         service.cancelConcern(guanzhu_userid);
-        return "redirect:user_focus";
+        return "redirect:/user_focus?u_id="+u_id;
     }
 
     @RequestMapping("/guanzhu")
@@ -138,7 +143,7 @@ public class UserController {
         gz.setUser_id(u_id);
         gz.setGuanzhu_userid(user_id);
         service.guanzhu(gz);
-        return "redirect:user_focus";
+        return "redirect:/user_focus?u_id="+u_id;
     }
 
     @RequestMapping("user_comment")
