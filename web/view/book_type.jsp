@@ -36,11 +36,11 @@
             <span class="neck-border"></span>
         </div>
         <%String wenzi = request.getParameter("wenzi");%>
-        <form action="/book_search?user_id=<%=session.getAttribute("userId")%>" method="get" id="myForm">
+        <form action="/book_search" method="post" id="myForm">
             <div class="search">
-                <input type="hidden" name="user_id" value="<%=session.getAttribute("userId")%>">
-                <input type="text" name="wenzi" class="search-text" placeholder="Seach here..." value="<%= wenzi==null?"":wenzi %>">
-                <button type="submit" class="search-btn"><i class="icon-search"></i></button>
+                <input type="hidden" name="userId" value="<%= session.getAttribute("userId")==null?"":session.getAttribute("userId") %>">
+                <input type="text" name="wenzi" class="search-text" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>" />
+                <button class="search-btn"><i class="icon-search"></i></button>
             </div>
         </form>
         <nav class="header-nav">

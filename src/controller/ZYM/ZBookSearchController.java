@@ -17,35 +17,11 @@ public class ZBookSearchController {
     @Autowired
     private ZBookService zBookService;
 
-    //未登录的查找页面
     @RequestMapping("/book_search")
-    public String QueryBook(String wenzi, HttpServletRequest request){
-        if(wenzi == null){wenzi="";}
-        List<ZBook> books = zBookService.queryBook(wenzi);
-        List<ZBookType> types = zBookService.selectAllType();
-        for (ZBook book:books){
-            List<String> bookType = getBookType(book.getB_id());
-            String res=new String((byte[])book.getB_cover());
-            book.setB_cover(res);
-            book.setTypeList(bookType);
-            //查询书架相应书是否存在
-//            ZBookShelf shel = new ZBookShelf();
-//            shel.setBook_id(book.getB_id());
-//            shel.setUser_id(1);
-//            int bookCount = zBookService.getCountOfShelfBook(shel);
-//            book.setCounts(bookCount);
-//            request.getSession().setAttribute("shel",shel);
-        };
-        System.out.println("长度："+books.size());
-        request.getSession().setAttribute("count",books.size());
-        request.getSession().setAttribute("books",books);
-        request.getSession().setAttribute("types",types);
-        return "book_search";
-    }
-
-    //已登录的查找页面
-    @RequestMapping("/book_search2")
-    public String QueryBook2(int userId,String wenzi, HttpServletRequest request){
+    public String QueryBook2(HttpServletRequest request){
+        String userId = request.getParameter("userId");
+        System.out.println("userId="+userId);
+        String wenzi = request.getParameter("wenzi");
         System.out.println("u_id="+userId);
         if(wenzi == null){wenzi="";}
         List<ZBook> books = zBookService.queryBook(wenzi);
@@ -55,14 +31,16 @@ public class ZBookSearchController {
             String res=new String((byte[])book.getB_cover());
             book.setB_cover(res);
             book.setTypeList(bookType);
-            //查询书架相应书是否存在
-            ZBookShelf shel = new ZBookShelf();
-            shel.setBook_id(book.getB_id());
-            shel.setUser_id(userId);
-            int bookCount = zBookService.getCountOfShelfBook(shel);
-            book.setCounts(bookCount);
-            request.getSession().setAttribute("shel",shel);
-        };
+            if(userId!="") {
+                //查询书架相应书是否存在
+                ZBookShelf shel = new ZBookShelf();
+                shel.setBook_id(book.getB_id());
+                shel.setUser_id(Integer.parseInt(userId));
+                int bookCount = zBookService.getCountOfShelfBook(shel);
+                book.setCounts(bookCount);
+                request.getSession().setAttribute("shel", shel);
+            }
+        }
         System.out.println("长度："+books.size());
         request.getSession().setAttribute("count",books.size());
         request.getSession().setAttribute("books",books);
