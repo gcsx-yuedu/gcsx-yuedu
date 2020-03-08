@@ -115,10 +115,15 @@
                 <ul class="text-grey lg:text-grey-dark list-reset leading-loose mt-2" id="sidenav-categories">
                     <%
                         for (ZBookType type:types){
-                    %>
+                            if (session.getAttribute("userId")==null) {%>
+                    <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">
+                        <a href="/showBookByType0?t_id=<%=type.getT_id()%>&t_type=<%=type.getT_type()%>"> <%=type.getT_type()%></a>
+                    </li>
+                    <%}else{%>
                     <li class="hover:text-indigo-dark hover:cursor-pointer transition-normal ml-1 border-l border-grey-dark pl-4">
                         <a href="/showBookByType?t_id=<%=type.getT_id()%>&t_type=<%=type.getT_type()%>&userId=<%=session.getAttribute("userId")%>"> <%=type.getT_type()%></a>
                     </li>
+                    <%}%>
                     <%}%>
                 </ul>
             </li>
