@@ -43,5 +43,17 @@
     <delete id="deleteDianzan" >
         delete from dianzan where dianzanren_id=#{dianzanren_id} and shortcomm_id=#{shortcomm_id}
     </delete>
+    <!--收藏到书架-->
+    <insert id="addShoucang" parameterType="po.JZX.JBookShelf">
+        insert into bookshelf(user_id,book_id) values (#{user_id},#{book_id})
+    </insert>
+    <!--判断是否已收藏-->
+    <select id="selectShoucang" resultType="Integer">
+        select count(*) from bookshelf where user_id = #{user_id} and book_id = #{book_id}
+    </select>
+    <!--取消收藏-->
+    <delete id="deleteShuocang">
+        delete from bookshelf where user_id=#{user_id} and book_id=#{book_id}
+    </delete>
 
 </mapper>

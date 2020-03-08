@@ -2,6 +2,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="po.DJX.DLongComm" %>
 <%@ page import="po.DJX.DHuitie" %>
+<%@ page import="po.DJX.DBookType" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <html>
 <head>
@@ -46,6 +47,8 @@
 <%
     DLongComm longComm = (DLongComm) session.getAttribute("longComm");
     List<DHuitie> huitieList = (List<DHuitie>) session.getAttribute("huitieList");
+    List<DBookType> typeList = (List<DBookType>) session.getAttribute("typeList");
+    List<DLongComm> longCommList = (List<DLongComm>) session.getAttribute("longCommList");
 %>
 
 
@@ -58,16 +61,16 @@
                     <!--<div class="post-thumbnail"><img src="img/blog-post-3.jpeg" alt="..." class="img-fluid"></div>-->
                     <div class="post-details">
                         <div class="post-meta d-flex justify-content-between">
-                            <div class="category"><a href="#">>点击返回</a></div>
+                            <div class="category"><a href="">>点击返回</a></div>
                         </div>
                         <h1><%=longComm.getTitle()%><a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
                         <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
                             <div class="avatar"><img src="../static/image/article-image/avatar-1.jpg" alt="..." class="img-fluid"></div>
                             <div class="title"><span><%=longComm.getAuthor_name()%></span></div></a>
                             <div class="d-flex align-items-center flex-wrap">
-                                <div class="date"><i class="icon-clock"></i><%=longComm.getLc_time()%></div>
-                                <div class="views"><i class="icon-eye"></i><%=longComm.getLc_coment()%></div>
-                                <div class="comments meta-last"><i class="icon-comment"></i><%=longComm.getLc_click()%></div>
+                                <div class="date">发表时间：<%=longComm.getLc_time()%></div>
+                                <div class="views">评论数：<%=longComm.getLc_coment()%></div>
+
                             </div>
                         </div>
                         <div class="post-body">
@@ -79,7 +82,7 @@
                         <%--评论区--%>
                         <div class="post-comments">
                             <header>
-                                <h3 class="h6">评论区<span class="no-of-comments"><%=longComm.getLc_coment()%></span></h3>
+                                <h3 class="h6">评论区<span class="no-of-comments">(<%=longComm.getLc_coment()%>)</span></h3>
                             </header>
                             <%
                                 for (DHuitie huitie:huitieList){
@@ -101,21 +104,26 @@
 
 
                         </div>
+                        <%--回帖--%>
                         <div class="add-comment">
                             <header>
                                 <h3 class="h6">发表评论</h3>
                             </header>
-                            <form action="#" class="commenting-form">
+                            <div  class="commenting-form">
+                                <input type="hidden" id="tiezi_id" value="<%=longComm.getLc_id()%>" >
+                                <input type="hidden" id="huitieren_id" value="<%=session.getAttribute("userId")%>">
+                                <input type="hidden" id="duixiang_id" value="<%=longComm.getAuthor_id()%>">
+                                <input type="hidden" id="nowComment" value="<%=longComm.getLc_coment()%>">
                                 <div class="row">
-
                                     <div class="form-group col-md-12">
-                                        <textarea name="usercomment" id="usercomment" placeholder="输入你的评论" class="form-control"></textarea>
+                                        <textarea name="usercomment" id="huitie_content" placeholder="输入你的评论" class="form-control"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <button type="submit" class="btn btn-secondary">提交</button>
+                                        <input onclick="addHuitie()
+" type="submit" class="btn btn-block" value="点击发表">
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -125,52 +133,88 @@
 
             <div class="widget latest-posts">
                 <header>
-                    <h3 class="h6">Latest Posts</h3>
+                    <h3 class="h6">他的最近评论</h3>
                 </header>
-                <div class="blog-posts"><a href="#">
+                <div class="blog-posts"><a href="">
+                    <%
+                        for (DLongComm longComm1:longCommList){
+                    %>
                     <div class="item d-flex align-items-center">
                         <div class="image"><img src="../static/image/article-image/small-thumbnail-1.jpg" alt="..." class="img-fluid"></div>
-                        <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
+                        <div class="title"><a href="/article?lc_id=<%=longComm1.getLc_id()%>"><strong><%=longComm1.getTitle()%></strong></a>
                             <div class="d-flex align-items-center">
-                                <div class="views"><i class="icon-eye"></i> 500</div>
-                                <div class="comments"><i class="icon-comment"></i>12</div>
+                                <div class="views">评论数：<%=longComm1.getLc_coment()%></div>
                             </div>
                         </div>
                     </div></a><a href="#">
-                    <div class="item d-flex align-items-center">
-                        <div class="image"><img src="../static/image/article-image/small-thumbnail-2.jpg" alt="..." class="img-fluid"></div>
-                        <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
-                            <div class="d-flex align-items-center">
-                                <div class="views"><i class="icon-eye"></i> 500</div>
-                                <div class="comments"><i class="icon-comment"></i>12</div>
-                            </div>
-                        </div>
-                    </div></a><a href="#">
-                    <div class="item d-flex align-items-center">
-                        <div class="image"><img src="../static/image/article-image/small-thumbnail-3.jpg" alt="..." class="img-fluid"></div>
-                        <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
-                            <div class="d-flex align-items-center">
-                                <div class="views"><i class="icon-eye"></i> 500</div>
-                                <div class="comments"><i class="icon-comment"></i>12</div>
-                            </div>
-                        </div>
-                    </div></a></div>
+                    <%
+                        }
+                    %>
+
+                    </a></div>
             </div>
 
             <div class="widget tags">
                 <header>
-                    <h3 class="h6">Tags</h3>
+                    <h3 class="h6">标签</h3>
                 </header>
                 <ul class="list-inline">
-                    <li class="list-inline-item"><a href="#" class="tag">#Business</a></li>
-                    <li class="list-inline-item"><a href="#" class="tag">#Technology</a></li>
-                    <li class="list-inline-item"><a href="#" class="tag">#Fashion</a></li>
-                    <li class="list-inline-item"><a href="#" class="tag">#Sports</a></li>
-                    <li class="list-inline-item"><a href="#" class="tag">#Economy</a></li>
+                    <%
+                        for(DBookType s:typeList){
+                    %>
+                    <li class="list-inline-item"><a href="/showBookByType?t_id=<%=s.getT_id()%>&t_type=<%=s.getT_type()%>" class="tag">#<%=s.getT_type()%></a></li>
+                    <%
+                        }
+                    %>
                 </ul>
             </div>
         </aside>
     </div>
 </div>
+<script>
+    function addHuitie() {
+        var tiezi_id = document.getElementById("tiezi_id").value;
+        var huitieren_id = document.getElementById("huitieren_id").value;
+        var duixiang_id = document.getElementById("duixiang_id").value;
+        var huitie_content = document.getElementById("huitie_content").value;
+        var nowComment = document.getElementById("nowComment").value;
+        $.ajax({
+            url: '/userIsForbid',
+            type: 'post',
+            async: false,
+            data:{"u_id":huitieren_id},
+            success:function (forbid) {
+                if (forbid==0){
+                    $.ajax({
+                        url: '/addHuitie',
+                        async:false,
+                        type: 'post',
+                        data:{"tiezi_id":tiezi_id,
+                            "huitieren_id":huitieren_id,
+                            "duixiang_id":duixiang_id,
+                            "huitie_content":huitie_content,
+                            "nowComment":nowComment,
+                        },
+                        success:function () {
+                            alert("评论发表成功");
+                            document.getElementById("huitie_content").value = "";
+                            location.reload();
+                        },
+                        error:function () {
+                            alert("系统出错");
+                        }
+                    });
+                } else {
+                    alert("你已被禁言");
+                    document.getElementById("huitie_content").value = "";
+                }
+
+            },
+            error:function () {
+                alert("系统出错");
+            }
+        });
+    }
+</script>
 </body>
 </html>

@@ -207,4 +207,29 @@
     <select id="getAuthorNameById" parameterType="Integer" resultType="String">
         select u_name from userInfo where u_id=#{u_id}
     </select>
+
+    <!--判断某个用户是否已点赞长评-->
+    <select id="selectDianZanLongComm" resultType="Integer">
+        select count(*) from dianzan where dianzanren_id = #{dianzanren_id} and longcomm_id = #{longcomm_id}
+    </select>
+
+    <!--根据用户id获取前3条长评记录-->
+    <select id="getLongCommByUserId" parameterType="integer" resultType="po.DJX.DLongComm">
+        select * from longcomm where author_id=#{author_id} order by lc_id desc limit 0,3
+    </select>
+
+    <!--添加回帖-->
+    <insert id="addHuitie" parameterType="po.DJX.DHuitie">
+        insert into huitie (tiezi_id,huitieren_id,huitie_time,huitie_content,like_click,duixiang_id) values (#{tiezi_id},#{huitieren_id},#{huitie_time},#{huitie_content},#{like_click},#{duixiang_id})
+    </insert>
+
+    <!--查询是否被禁言-->
+    <select id="userIsForbid" parameterType="Integer" resultType="Integer">
+        select u_forbid from userInfo where u_id=#{u_id}
+    </select>
+
+    <!--长评表coment字段+1-->
+    <update id="addLongCommComent">
+        update longcomm set lc_coment=#{comment} where lc_id=#{lc_id}
+    </update>
 </mapper>

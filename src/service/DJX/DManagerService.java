@@ -1,6 +1,7 @@
 package service.DJX;
 
 import dao.DJX.DManagerDao;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -182,5 +183,21 @@ public class DManagerService {
 
     public String getAuthorNameById(Integer u_id) {
         return DManagerDao.getAuthorNameById(u_id);
+    }
+
+    public List<DLongComm> getLongCommByUserId(Integer author_id) {
+        return DManagerDao.getLongCommByUserId(author_id);
+    }
+
+    public void addHuitie(DHuitie huitie) {
+        DManagerDao.addHuitie(huitie);
+    }
+
+    public Integer userIsForbid(Integer u_id) {
+        return DManagerDao.userIsForbid(u_id);
+    }
+
+    public void addLongCommComent(Integer comment,Integer lc_id){
+        DManagerDao.addLongCommComent(comment, lc_id);
     }
 }
