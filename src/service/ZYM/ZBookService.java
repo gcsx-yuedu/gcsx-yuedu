@@ -4,10 +4,7 @@ import dao.ZYM.ZBookMapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import po.ZYM.ZBook;
-import po.ZYM.ZBookShelf;
-import po.ZYM.ZBookType;
-import po.ZYM.ZLongComm;
+import po.ZYM.*;
 
 import java.util.List;
 
@@ -29,4 +26,10 @@ public class ZBookService {
         System.out.println("查询成功");
         return bookDao.getCountOfShelfBook(shel);}
     public List<ZLongComm> selectLongcomm(){return bookDao.selectLongcomm();}
+    public List<ZUser> getUser(){ return bookDao.getUser();}
+    public Integer getCountFans(Integer guanzhu_userid) {
+        return bookDao.getCountFans(guanzhu_userid);
+    }
+    public Integer getLines(ZGuanzhu gz){return bookDao.getLines(gz);}
+    public void guanzhu(ZGuanzhu gz){ bookDao.guanzhu(gz); }
 }
