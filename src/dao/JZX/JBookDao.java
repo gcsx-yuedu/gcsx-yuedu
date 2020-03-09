@@ -2,6 +2,7 @@ package dao.JZX;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import po.DJX.DPingFen;
 import po.JZX.*;
 
 
@@ -41,4 +42,6 @@ public interface JBookDao {
     public void updateScore(@Param("score") Integer score,@Param("u_id") Integer u_id, @Param("book_id") Integer book_id);
 
     public void addScore(JPingFen pingFen);
+
+
 }

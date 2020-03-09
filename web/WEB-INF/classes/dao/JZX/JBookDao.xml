@@ -83,4 +83,6 @@
     <insert id="addScore" parameterType="po.JZX.JPingFen">
         insert into pingfen (u_id,book_id,score) values (#{u_id},#{book_id},#{score})
     </insert>
+
+
 </mapper>

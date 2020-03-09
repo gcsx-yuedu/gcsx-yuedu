@@ -1,5 +1,6 @@
 package service.DJX;
 
+import com.sun.org.apache.bcel.internal.generic.DMUL;
 import dao.DJX.DManagerDao;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -199,5 +200,37 @@ public class DManagerService {
 
     public void addLongCommComent(Integer comment,Integer lc_id){
         DManagerDao.addLongCommComent(comment, lc_id);
+    }
+
+    public List<DPingFen> getAllScoreByUserId(Integer u_id){
+        return DManagerDao.getAllScoreByUserId(u_id);
+    }
+
+    public Integer DisPingFen( Integer u_id, Integer book_id){
+        return DManagerDao.DisPingFen(u_id, book_id);
+    }
+
+    public Integer DgetScore( Integer u_id,  Integer book_id){
+        return DManagerDao.DgetScore(u_id, book_id);
+    }
+
+    public List<DBookType> getAllBookType() {
+        return DManagerDao.getAllBookType();
+    }
+
+    public List<Integer> getBookIdByTypeId(Integer type_id){
+        return DManagerDao.getBookIdByTypeId(type_id);
+    }
+
+    public List<DBook> DgetAllBook() {
+        return DManagerDao.DgetAllBook();
+    }
+
+    public Integer isBookScore( Integer u_id,  Integer book_id) {
+        return DManagerDao.isBookScore(u_id, book_id);
+    }
+
+    public Integer isBookType(Integer book_id, Integer type_id){
+        return DManagerDao.isBookType(book_id, type_id);
     }
 }

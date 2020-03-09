@@ -1,27 +1,16 @@
 package controller.DJX;
 
-import com.mysql.jdbc.Blob;
-import com.sun.scenario.effect.impl.sw.sse.SSERendererDelegate;
-import org.apache.commons.lang.StringUtils;
-import org.apache.tools.ant.taskdefs.condition.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import po.DJX.*;
 import service.DJX.DManagerService;
-import sun.misc.BASE64Encoder;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 @Controller
@@ -411,7 +400,7 @@ public class GlySignInCheck {
         System.out.println(userName);
         System.out.println(">>>");
         System.out.println("跳转到首页成功......");
-        return "home_page";
+        return "redirect:/home_page";
     }
 
 
@@ -551,4 +540,115 @@ public class GlySignInCheck {
     public String userisForbid(Integer u_id) {
         return String.valueOf(service.userIsForbid(u_id));
     }
+
+    /*计算CB*/
+    @ResponseBody
+    @RequestMapping("/CB")
+    public void CB(Integer u_id) {
+        u_id=1;
+        List<DPingFen> pingFenList = service.getAllScoreByUserId(u_id);
+        /*获取添加书籍的总数*/
+        int bookSum = service.getBookNum();
+        /*获取用户所有的评分*/
+        float scoreSum=0;
+        float sum=0;
+        for (DPingFen pingFen : pingFenList) {
+            sum++;
+            scoreSum += pingFen.getScore();
+        }
+        System.out.println("scoreSum="+scoreSum);
+        /*计算用户的平均评分*/
+        float avg = scoreSum / sum;
+        System.out.println("avg="+avg);
+
+        /*获取所有的type并赋初值*/
+        List<DBookType> bookTypes = service.getAllBookType();
+        /*typeId-typeScore*/
+        HashMap<Integer, Float> typeScore = new HashMap<>();
+        for (DBookType bookType : bookTypes) {
+            typeScore.put(bookType.getT_id(), (float) 0);
+        }
+        System.out.println("book_length="+bookSum);
+        System.out.println("bookType_length="+bookTypes.size());
+
+        /*为每一本书构建一个数组*/
+        /*数组大小book总数xbookType大小*/
+        int[][] bookProfiles = new int[bookSum][bookTypes.size()];
+        /*获取bookList*/
+        List<DBook> bookList = service.DgetAllBook();
+        int m=0,n=0;
+        for (m=0;m<bookSum;m++){
+            int book_id = bookList.get(m).getB_id();
+            for (n=0;n<bookTypes.size();n++){
+                bookProfiles[m][n] = service.isBookType(book_id, bookTypes.get(n).getT_id());
+//                System.out.println(bookProfiles[m][n]);
+            }
+        }
+        /*打印bookProfiles矩阵*/
+        for (m=0;m<bookSum;m++){
+            for (n=0;n<bookTypes.size();n++){
+                System.out.print(bookProfiles[m][n]);
+            }
+            System.out.println();
+        }
+
+        /*建立用户模型矩阵*/
+        /*矩阵模型大小为1xbookType的大小*/
+        float[] userProfiles = new float[bookTypes.size()];
+        /*根据type获取对应的book_id*/
+        /*根据bookid和userid获取该用户的所有的相关的打分记录*/
+        /*获取用户打过分的某个类型的book的总分*/
+
+        int k=0;
+        int type_pingfen_num=0;
+        for (k=0;k<bookTypes.size();k++){
+            float user_book_type_score=0;
+            int type_id = bookTypes.get(k).getT_id();
+            List<Integer> book_ids = service.getBookIdByTypeId(type_id);
+            for (Integer book_id : book_ids) {
+                if (service.isBookScore(u_id,book_id)!=0){
+//                    System.out.println(service.isBookScore(u_id,book_id));
+                    type_pingfen_num++;
+                    int score = service.DgetScore(u_id, book_id);
+                    user_book_type_score += score-avg;
+                }
+            }
+            userProfiles[k] = user_book_type_score/type_pingfen_num;
+        }
+        System.out.println("userProfiles="+Arrays.toString(userProfiles));
+
+        /*计算每本书的推荐相似度*/
+        /*建立相似度矩阵*/
+        /*矩阵大小为1xbookList的大小*/
+        HashMap<String, Float> similarBook = new HashMap<>();
+        float[] similar = new float[bookList.size()];
+        for (int k1 = 0; k1 < bookList.size(); k1++) {
+            float UxIsum =0;
+            for (int i=0;i<bookTypes.size();i++){
+                UxIsum = userProfiles[i]*bookProfiles[k1][i];
+            }
+//            System.out.println(bookList.toString());
+            similar[k1]=UxIsum;
+            similarBook.put(bookList.get(k1).getB_name(), UxIsum*10);
+        }
+        System.out.println("similar="+Arrays.toString(similar));
+        System.out.println("similarBook="+similarBook);
+        List<Map.Entry<String, Float>> list = new ArrayList<Map.Entry<String, Float>>(similarBook.entrySet());
+        list.sort(new Comparator<Map.Entry<String, Float>>() {
+            @Override
+            public int compare(Map.Entry<String, Float> o1, Map.Entry<String, Float> o2) {
+                System.out.println(o2.getValue() + "-" + o1.getValue());
+                return (int) (o2.getValue() - o1.getValue());
+            }
+        });
+        List<String> books = new ArrayList<>();
+        for (Map.Entry<String, Float> item : list) {
+            books.add(item.getKey());
+        }
+        System.out.println(list);
+        System.out.println("推荐书籍"+books);
+
+    }
+
+
 }

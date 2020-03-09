@@ -232,4 +232,44 @@
     <update id="addLongCommComent">
         update longcomm set lc_coment=#{comment} where lc_id=#{lc_id}
     </update>
+
+    <!--查询用户所有的评分-->
+    <select id="getAllScoreByUserId" parameterType="Integer" resultType="po.DJX.DPingFen">
+        select * from pingfen where u_id=#{u_id}
+    </select>
+
+
+    <!--查询是否评分-->
+    <select id="DisPingFen" resultType="Integer">
+        select count(*) from pingfen where u_id=#{u_id} and book_id=#{book_id}
+    </select>
+
+    <!--查询分数-->
+    <select id="DgetScore" resultType="Integer">
+        select score from pingfen where u_id=#{u_id} and book_id=#{book_id}
+    </select>
+    
+    <!--获取所有类型-->
+    <select id="getAllBookType" resultType="po.DJX.DBookType">
+        select * from typez
+    </select>
+
+    <!--根据typeid获取bookid-->
+    <select id="getBookIdByTypeId" parameterType="Integer" resultType="Integer">
+        select book_id from book_type where type_id=#{type_id}
+    </select>
+    
+    <!--查询所有书籍信息-->
+    <select id="DgetAllBook" resultType="po.DJX.DBook">
+        select * from book
+    </select>
+
+    <!--查询某书籍对应类型是否存在-->
+    <select id="isBookScore" resultType="Integer">
+        select count(*) from pingfen where u_id=#{u_id} and book_id=#{book_id}
+    </select>
+
+    <select id="isBookType" resultType="Integer">
+         select count(*) from book_type where book_id=#{book_id} and type_id=#{type_id}
+    </select>
 </mapper>
