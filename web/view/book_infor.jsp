@@ -22,8 +22,12 @@
         <%--}--%>
     <%--</script>--%>
     <!-- default-css-files -->
+    <!--  light box js -->
+    <script src="${pageContext.request.contextPath}/static/js/book_infor-js/lightbox-plus-jquery.min.js"></script>
     <link href="${pageContext.request.contextPath}/static/css/book_infor-css/bootstrap.css" rel='stylesheet' type='text/css' />
     <link href="${pageContext.request.contextPath}/static/css/book_infor-css/font-awesome.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/static/css/book_infor-css/star-rating.css" rel="stylesheet" media="all" type="text/css">
+    <script src="${pageContext.request.contextPath}/static/js/book_infor-js/star-rating.js" type="text/javascript"></script>
     <!-- default-css-files -->
     <!-- style-css-file -->
     <link href="${pageContext.request.contextPath}/static/css/book_infor-css/style.css" rel='stylesheet' type='text/css' />
@@ -31,6 +35,13 @@
     <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book_infor-css/lightbox.css">--%>
     <!-- For-Gallery-CSS -->
     <!-- web fonts -->
+    <!-- smooth scrolling -->
+    <script src="${pageContext.request.contextPath}/static/js/book_infor-js/SmoothScroll.min.js"></script>
+    <!-- //smooth scrolling -->
+
+    <!-- start-smoth-scrolling -->
+    <script src="${pageContext.request.contextPath}/static/js/book_infor-js/move-top.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/book_infor-js/easing.js"></script>
     <link href="http://fonts.googleapis.com/css?family=Alex+Brush&amp;subset=latin-ext" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i&amp;subset=cyrillic,latin-ext,vietnamese"
           rel="stylesheet">
@@ -180,7 +191,9 @@
                     <span class="fa fa-leanpub" aria-hidden="true"></span>
                 </div>
                 <%--<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='678' data-delay='.5' data-increment="1">678</div>--%>
-                <p>开始阅读</p>
+                <p>评分:
+                    <input id="score" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm">
+                    <input type="submit" value="评分" class="search_btn" name="submit" onclick="gradeScored()"> </p>
             </div>
             <div class="col-xs-3 stats-grid-w3-agile ">
                 <div class="stats-img">
@@ -355,6 +368,20 @@
     }
 </script>
 
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        $(".rating-kv").rating();
+    });
+    function gradeScored(){
+        var score = $("#score").val();
+        alert(score);
+        <%--$.post("${base}/test/gradeScore.jspx",{id:id,score:score},--%>
+        //     function(data){
+        //         alert("评分成功");
+        //     },
+        //     "html");
+    }
+</script>
 
 <!--添加评论-->
 <script>
@@ -400,8 +427,7 @@
 <script src="${pageContext.request.contextPath}/static/js/book_infor-js/numscroller-1.0.js"></script>
 <!-- //stats numscroller-js-file -->
 
-<!--  light box js -->
-<script src="${pageContext.request.contextPath}/static/js/book_infor-js/lightbox-plus-jquery.min.js"></script>
+
 <!-- //light box js-->
 
 <!-- flexisel (for special offers) -->
@@ -455,13 +481,7 @@
 </script>
 <!-- //pricing-tablel -->
 
-<!-- smooth scrolling -->
-<script src="${pageContext.request.contextPath}/static/js/book_infor-js/SmoothScroll.min.js"></script>
-<!-- //smooth scrolling -->
 
-<!-- start-smoth-scrolling -->
-<script src="${pageContext.request.contextPath}/static/js/book_infor-js/move-top.js"></script>
-<script src="${pageContext.request.contextPath}/static/js/book_infor-js/easing.js"></script>
 <script>
     jQuery(document).ready(function ($) {
         $(".scroll").click(function (event) {
@@ -490,9 +510,9 @@
         });
     });
 </script>
-<a href="#" id="toTop" style="display: block;">
-    <span id="toTopHover" style="opacity: 1;"> </span>
-</a>
+<%--<a href="#" id="toTop" style="display: block;">--%>
+    <%--<span id="toTopHover" style="opacity: 1;"> </span>--%>
+<%--</a>--%>
 <!-- //smooth scrolling-bottom-to-top -->
 
 </body>

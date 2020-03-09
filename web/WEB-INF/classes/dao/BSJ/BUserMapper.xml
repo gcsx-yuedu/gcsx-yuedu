@@ -80,7 +80,7 @@
 	</insert>
 	<!--根据用户id获得短评表中内容-->
 	<select id="getCommById" parameterType="Integer" resultType="po.BSJ.BShortComm">
-		select * from shortcomm where fatie_id=#{fatie_id}
+		select * from shortcomm where fatie_id=#{fatie_id} order by fatie_time desc
 	</select>
 	<!--根据书籍id获取书籍信息-->
 	<select id="getBookById" parameterType="Integer" resultType="po.BSJ.BBook">
@@ -88,7 +88,7 @@
 	</select>
 	<!--根据用户id获取文章内容-->
     <select id="getArticle" parameterType="Integer" resultType="po.BSJ.BArticle">
-		select * from longcomm where author_id=#{author_id}
+		select * from longcomm where author_id=#{author_id} order by lc_time desc
 	</select>
     <!--根据发帖时间删除-->
     <delete id="deleteShort" parameterType="String">
