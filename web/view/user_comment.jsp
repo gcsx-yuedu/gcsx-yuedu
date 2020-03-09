@@ -149,8 +149,8 @@
                             <p class="text-xl my-2 font-medium sm:font-normal"><%=com.getBook().getB_name()%></p>
                             <p class="text-l my-2 font-medium sm:font-normal">发布时间：<%=com.getCommList().getFatie_time()%></p>
                             <p class="text-l my-2 font-medium sm:font-normal">你的评论：<%=com.getCommList().getFatie_content()%></p>
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none"><a href="/deleteShort?<%=com.getCommList().getFatie_time()%>">删除评论</a></button>&nbsp;
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none"><a href="/book_infor?b_id=<%=com.getBook().getB_id()%>">去看看</a></button>&nbsp;
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none"><a href="/deleteShort?fatie_time=<%=com.getCommList().getFatie_time()%>">删除评论</a></button>&nbsp;
                         </div>
                     </div>
                 </li>
@@ -173,7 +173,7 @@
                             <p class="text-xl my-2 font-medium sm:font-normal"><%=ar.getBooks().getB_name()%></p>
                             <p class="text-l my-2 font-medium sm:font-normal">发布时间：<%=ar.getArticleList().getLc_time()%></p>
                             <p class="text-l my-2 font-medium sm:font-normal">文章标题：<%=ar.getArticleList().getTitle()%></p>
-                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
+                            <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none"><a href="/article?lc_id=<%=ar.getArticleList().getLc_id()%>">去看看</a></button>&nbsp;
                             <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none"><a href="/deleteArticle?lc_time=<%=ar.getArticleList().getLc_time()%>">删除文章</a></button>&nbsp;
                         </div>
                     </div>

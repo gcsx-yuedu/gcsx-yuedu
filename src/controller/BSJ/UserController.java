@@ -191,14 +191,14 @@ public class UserController {
     }
 
     @RequestMapping("/deleteShort")
-    public String deleteShort(String fatie_time){
+    public String deleteShort(String fatie_time,HttpServletRequest request){
         service.deleteShort(fatie_time);
-        return "redirect:user_comment";
+        return "redirect:/user_comment?u_id="+request.getSession().getAttribute("userId");
     }
     @RequestMapping("/deleteArticle")
-    public String deleteArticle(String lc_time){
+    public String deleteArticle(String lc_time,HttpServletRequest request){
         service.deleteArticle(lc_time);
-        return "redirect:user_comment";
+        return "redirect:/user_comment?u_id="+request.getSession().getAttribute("userId");
     }
 
     @RequestMapping("/user_news")
