@@ -64,4 +64,23 @@
         select u_forbid from userInfo where u_id=#{u_id}
     </select>
 
+    <!--查询是否评分-->
+    <select id="isPingFen" resultType="Integer">
+        select count(*) from pingfen where u_id=#{u_id} and book_id=#{book_id}
+    </select>
+
+    <!--查询分数-->
+    <select id="getScore" resultType="Integer">
+        select score from pingfen where u_id=#{u_id} and book_id=#{book_id}
+    </select>
+
+    <!--修改评分-->
+    <update id="updateScore">
+        update pingfen set score = #{score} where u_id=#{u_id} and book_id=#{book_id}
+    </update>
+
+    <!--添加评分-->
+    <insert id="addScore" parameterType="po.JZX.JPingFen">
+        insert into pingfen (u_id,book_id,score) values (#{u_id},#{book_id},#{score})
+    </insert>
 </mapper>

@@ -5,10 +5,7 @@ import dao.JZX.JBookDao;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import po.JZX.JBook;
-import po.JZX.JBookShelf;
-import po.JZX.JDianzan;
-import po.JZX.JShortComm;
+import po.JZX.*;
 
 import java.util.List;
 
@@ -55,5 +52,21 @@ public class JBookService {
 
     public Integer isBookInShelf( Integer user_id,  Integer book_id){
         return bookDao.isBookInShelf(user_id, book_id);
+    }
+
+    public Integer isPingFen( Integer u_id, Integer book_id){
+        return bookDao.isPingFen(u_id, book_id);
+    }
+
+    public Integer getScore(Integer u_id, Integer book_id){
+        return bookDao.getScore(u_id, book_id);
+    }
+
+    public void updateScore( Integer score,Integer u_id,  Integer book_id){
+        bookDao.updateScore(score, u_id, book_id);
+    }
+
+    public void addScore(JPingFen pingFen) {
+        bookDao.addScore(pingFen);
     }
 }

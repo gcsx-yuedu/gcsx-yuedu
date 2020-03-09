@@ -62,6 +62,7 @@
     String wenzi = request.getParameter("wenzi");
     List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
     int isBookShelf = (int) session.getAttribute("isBookShelf");
+    int score = (int) session.getAttribute("score");
 
 %>
 
@@ -195,13 +196,16 @@
                     <span class="fa fa-leanpub" aria-hidden="true"></span>
                 </div>
                 <%--<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='678' data-delay='.5' data-increment="1">678</div>--%>
-                    我的评分：<br>
+                <h5>我的评分：</h5>
+                <br>
                     <div class="btn-group">
-                <button class="btn btn-default active">1</button>
-                <button class="btn btn-default">2</button>
-                <button class="btn btn-default">3</button>
-                <button class="btn btn-default">4</button>
-                <button class="btn btn-default">5</button>
+                <%
+                    for (int m=1;m<=5;m++){
+                %>
+                        <button onclick="pingfen(<%=m%>)" class="btn btn-default <%if (m==score){%>active<%}%> "><%=m%></button>
+                        <%
+                            }
+                        %>
                 </div>
             </div>
 
@@ -375,6 +379,57 @@
                 }
             });
         }
+    }
+    function pingfen(score) {
+
+        $.ajax({
+            url: '/isPingFen',
+            async:false,
+            type:'post',
+            data:{"u_id":<%=session.getAttribute("userId")%>,
+                "book_id":<%=book.getB_id()%>,
+            },
+            success:function (flag) {
+                if (flag==0){
+                    $.ajax({
+                        url:'/addScore',
+                        async:false,
+                        type: 'post',
+                        data:{"u_id":<%=session.getAttribute("userId")%>,
+                            "book_id":<%=book.getB_id()%>,
+                            "score":score,
+                        },
+                        success:function () {
+                            alert("评分成功：\n"+"你的评分是"+score+"分");
+                            location.reload();
+                        },
+                        error:function () {
+                            alert("系统出错");
+                        },
+                    });
+                }else {
+                    $.ajax({
+                        url:'/updateScore',
+                        async:false,
+                        type: 'post',
+                        data:{"u_id":<%=session.getAttribute("userId")%>,
+                            "book_id":<%=book.getB_id()%>,
+                            "score":score,
+                        },
+                        success:function () {
+                            alert("评分成功：\n"+"你的评分是"+score+"分");
+                            location.reload();
+                        },
+                        error:function () {
+                            alert("系统出错");
+                        },
+                    });
+                }
+            },
+            error:function () {
+                alert("系统出错");
+            }
+        });
     }
 </script>
 

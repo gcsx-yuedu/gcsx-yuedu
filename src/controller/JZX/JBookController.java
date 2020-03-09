@@ -48,7 +48,15 @@ public class JBookController {
         request.getSession().setAttribute("isBookShelf",isBookShelf);
         System.out.println(">>>");
 //        System.out.println(book.toString());
+        /*判断是否评分*/
+        int score=0;
+        int isPingFen = bookService.isPingFen(userid,book.getB_id());
+        if (isPingFen!=0){
+            score = bookService.getScore(userid, book.getB_id());
+        }
         System.out.println(">>>");
+        System.out.println(score);
+        request.getSession().setAttribute("score", score);
         System.out.println(shortComm.toString());
         request.getSession().setAttribute("ShortComm",shortComm);
         request.getSession().setAttribute("book",book);
@@ -161,4 +169,26 @@ public class JBookController {
         return String.valueOf(bookService.JuserIsForbid(u_id));
     }
 
+    /*查询是否评分*/
+    @ResponseBody
+    @RequestMapping("/isPingFen")
+    public String isPingFen(Integer u_id,Integer book_id) {
+        return String.valueOf(bookService.isPingFen(u_id, book_id));
+    }
+
+    /*添加评分*/
+    @ResponseBody
+    @RequestMapping("/addScore")
+    public String addScore(JPingFen pingFen) {
+        bookService.addScore(pingFen);
+        return "OK";
+    }
+
+    /*更新评分*/
+    @ResponseBody
+    @RequestMapping("/updateScore")
+    public String updateScore(Integer score,Integer u_id,  Integer book_id){
+        bookService.updateScore(score, u_id, book_id);
+        return "OK";
+    }
 }
