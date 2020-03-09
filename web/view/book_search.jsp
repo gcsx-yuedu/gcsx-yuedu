@@ -175,7 +175,7 @@
                             <p class="text-l my-2 font-medium sm:font-normal">&nbsp;作者：<%=book.getB_author()%></p>
                             <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;类型：<%=typeList%>
                             </p>
-                            <button onclick="window.location.href='javascript:btnqukankan(\'<%=book.getB_id()%>\',<%=session.getAttribute("userId")%>)'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
+                            <button onclick="window.location.href='/book_infor?b_id=<%=book.getB_id()%>&userId=<%=session.getAttribute("userId")%>'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
                             <%
 //                                System.out.println("主count 1或0："+book.getCounts());
                                 if (book.getCounts()==0){%>
