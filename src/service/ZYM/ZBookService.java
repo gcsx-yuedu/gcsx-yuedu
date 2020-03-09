@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import po.ZYM.ZBook;
 import po.ZYM.ZBookShelf;
 import po.ZYM.ZBookType;
+import po.ZYM.ZLongComm;
 
 import java.util.List;
 
@@ -27,4 +28,5 @@ public class ZBookService {
     public Integer getCountOfShelfBook(ZBookShelf shel){
         System.out.println("查询成功");
         return bookDao.getCountOfShelfBook(shel);}
+    public List<ZLongComm> selectLongcomm(){return bookDao.selectLongcomm();}
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import po.ZYM.ZBook;
 import po.ZYM.ZBookShelf;
 import po.ZYM.ZBookType;
+import po.ZYM.ZLongComm;
 import service.ZYM.ZBookService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -146,7 +147,11 @@ public class ZBookSearchController {
     @RequestMapping("/home_page")
     public String shouye(HttpServletRequest request){
         List<ZBookType> types = zBookService.selectAllType();
+        List<ZLongComm> longComm=zBookService.selectLongcomm();
+        request.getSession().setAttribute("longComm",longComm);
         request.getSession().setAttribute("types",types);
+//        System.out.println(">>>");
+//        System.out.println(longComm.toString());
         return "home_page";
     }
 }
