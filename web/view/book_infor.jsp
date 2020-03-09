@@ -23,7 +23,9 @@
     <%--</script>--%>
     <!-- default-css-files -->
     <!--  light box js -->
+    <script src="${pageContext.request.contextPath}/static/js/book_infor-js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/book_infor-js/lightbox-plus-jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/book_infor-js/jquery-2.1.4.min.js"></script>
     <link href="${pageContext.request.contextPath}/static/css/book_infor-css/bootstrap.css" rel='stylesheet' type='text/css' />
     <link href="${pageContext.request.contextPath}/static/css/book_infor-css/font-awesome.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/static/css/book_infor-css/star-rating.css" rel="stylesheet" media="all" type="text/css">
@@ -31,6 +33,8 @@
     <!-- default-css-files -->
     <!-- style-css-file -->
     <link href="${pageContext.request.contextPath}/static/css/book_infor-css/style.css" rel='stylesheet' type='text/css' />
+    <!-- pricing-tablel -->
+    <script src="${pageContext.request.contextPath}/static/js/book_infor-js/jquery.magnific-popup.js"></script>
     <!-- //style-css-file -->
     <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book_infor-css/lightbox.css">--%>
     <!-- For-Gallery-CSS -->
@@ -191,10 +195,16 @@
                     <span class="fa fa-leanpub" aria-hidden="true"></span>
                 </div>
                 <%--<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='678' data-delay='.5' data-increment="1">678</div>--%>
-                <p>评分:
-                    <input id="score" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm">
-                    <input type="submit" value="评分" class="search_btn" name="submit" onclick="gradeScored()"> </p>
+                    我的评分：<br>
+                    <div class="btn-group">
+                <button class="btn btn-default active">1</button>
+                <button class="btn btn-default">2</button>
+                <button class="btn btn-default">3</button>
+                <button class="btn btn-default">4</button>
+                <button class="btn btn-default">5</button>
+                </div>
             </div>
+
             <div class="col-xs-3 stats-grid-w3-agile ">
                 <div class="stats-img">
                     <span class="fa fa-commenting-o" aria-hidden="true"></span>
@@ -368,20 +378,7 @@
     }
 </script>
 
-<script type="text/javascript">
-    jQuery(document).ready(function () {
-        $(".rating-kv").rating();
-    });
-    function gradeScored(){
-        var score = $("#score").val();
-        alert(score);
-        <%--$.post("${base}/test/gradeScore.jspx",{id:id,score:score},--%>
-        //     function(data){
-        //         alert("评分成功");
-        //     },
-        //     "html");
-    }
-</script>
+
 
 <!--添加评论-->
 <script>
@@ -461,8 +458,7 @@
 </script>
 <!-- //flexisel (for special offers) -->
 
-<!-- pricing-tablel -->
-<script src="${pageContext.request.contextPath}/static/js/book_infor-js/jquery.magnific-popup.js"></script>
+
 <script>
     $(document).ready(function () {
         $('.popup-with-zoom-anim').magnificPopup({
