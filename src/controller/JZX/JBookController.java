@@ -31,7 +31,7 @@ public class JBookController {
         book.setTypeList(bookType);
         Integer userid = (Integer) request.getSession().getAttribute("userId");
         if (userid == null) {
-            return "/USignUp";
+            return "sign-up-yh";
         }
 //        bookList.setBook(book);
         List<JShortComm> shortComm=bookService.queryShortComm(b_id);
