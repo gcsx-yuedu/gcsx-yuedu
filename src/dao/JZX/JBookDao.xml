@@ -63,5 +63,4 @@
     <select id="JuserIsForbid" parameterType="Integer" resultType="Integer">
         select u_forbid from userInfo where u_id=#{u_id}
     </select>
-
 </mapper>

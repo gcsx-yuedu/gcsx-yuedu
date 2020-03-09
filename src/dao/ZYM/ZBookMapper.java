@@ -3,6 +3,7 @@ package dao.ZYM;
 import po.ZYM.ZBook;
 import po.ZYM.ZBookShelf;
 import po.ZYM.ZBookType;
+import po.ZYM.ZLongComm;
 
 import java.util.List;
 
@@ -15,4 +16,5 @@ public interface ZBookMapper {
     public List<Integer> selectBookIdByTypeId(int t_id);
     public ZBook selectBookByBookId(int b_id);
     public Integer getCountOfShelfBook(ZBookShelf shel);
+    public List<ZLongComm> selectLongcomm();
 }
