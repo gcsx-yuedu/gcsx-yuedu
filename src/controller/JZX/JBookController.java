@@ -29,7 +29,10 @@ public class JBookController {
         String res=new String((byte[])book.getB_cover());
         book.setB_cover(res);
         book.setTypeList(bookType);
-        int userid = (int) request.getSession().getAttribute("userId");
+        Integer userid = (Integer) request.getSession().getAttribute("userId");
+        if (userid == null) {
+            return "/USignUp";
+        }
 //        bookList.setBook(book);
         List<JShortComm> shortComm=bookService.queryShortComm(b_id);
         for(JShortComm sc : shortComm){

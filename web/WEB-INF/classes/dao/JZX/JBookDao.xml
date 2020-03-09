@@ -44,4 +44,24 @@
         delete from dianzan where dianzanren_id=#{dianzanren_id} and shortcomm_id=#{shortcomm_id}
     </delete>
 
+    <!--判断某本书是否已被某用户收藏-->
+    <select id="isBookInShelf" resultType="Integer">
+        select count(*) from bookshelf where user_id=#{user_id} and book_id=#{book_id}
+    </select>
+
+    <!--收藏书籍-->
+    <insert id="shouCang">
+        insert into bookshelf (user_id,book_id) values (#{user_id},#{book_id})
+    </insert>
+
+    <!--取消收藏书籍-->
+    <delete id="quXiaoShouCang">
+        delete from bookshelf where user_id=#{user_id} and book_id=#{book_id}
+    </delete>
+
+    <!--查询是否被禁言-->
+    <select id="JuserIsForbid" parameterType="Integer" resultType="Integer">
+        select u_forbid from userInfo where u_id=#{u_id}
+    </select>
+
 </mapper>

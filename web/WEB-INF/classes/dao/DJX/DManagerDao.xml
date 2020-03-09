@@ -165,7 +165,7 @@
 
     <!--获取长评-->
     <select id="getAllLongComm"  resultType="po.DJX.DLongComm">
-        select  lc_id,title,book_id,author_id,lc_time,lc_article,lc_coment,lc_click from longcomm where book_id = #{book_id} limit #{pageNum},6
+        select  lc_id,title,book_id,author_id,lc_time,lc_article,lc_coment from longcomm where book_id = #{book_id} limit #{pageNum},6
     </select>
 
     <!--获取长评总数-->
@@ -175,7 +175,7 @@
 
     <!--添加长评-->
     <insert id="addLongComm" parameterType="po.DJX.DLongComm">
-        insert into longcomm (title,book_id,author_id,lc_time,lc_article,lc_coment,lc_click) values (#{title},#{book_id},#{author_id},#{lc_time},#{lc_article},#{lc_coment},#{lc_click});
+        insert into longcomm (title,book_id,author_id,lc_time,lc_article,lc_coment) values (#{title},#{book_id},#{author_id},#{lc_time},#{lc_article},#{lc_coment});
     </insert>
 
     <!--根据时间获取短评数-->
