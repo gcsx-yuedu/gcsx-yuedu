@@ -10,3 +10,22 @@ function nextPg() {
     var pageNum = document.getElementById("pageNum").value;
     window.location.href="/houtai-shujileixingguanli?pageNumber="+pageNum;
 }
+
+function btnshujia(u_id) {
+    if(u_id==null){
+        if (confirm("请先登录！")){
+            location.href = "view/sign-up-yh.jsp";}
+    }else if("确认查看？"){
+        location.href = "/user_info?u_id="+u_id;}
+}
+
+
+function btnqukankan(b_id,u_id) {
+    if (u_id == null) {
+        if (confirm("请先登录！")) {
+            location.href = "view/sign-up-yh.jsp";
+        }
+    } else if ("确认查看？") {
+        location.href = "/book_infor?b_id=" + b_id;
+    }
+}
