@@ -38,7 +38,10 @@
     <select id="getCountOfShelfBook" parameterType="po.ZYM.ZBookShelf" resultType="Integer">
         select count(*) from bookshelf where book_id=#{book_id} and user_id=#{user_id}
     </select>
-
+    <!--根据评论数获取所有长评-->
+    <select id="selectLongcomm" resultType="po.ZYM.ZLongComm">
+        select * from longcomm order by lc_coment desc;
+    </select>
 </mapper>
 
 

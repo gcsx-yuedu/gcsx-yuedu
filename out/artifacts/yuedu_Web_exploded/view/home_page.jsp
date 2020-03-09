@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page language="java" import="po.ZYM.ZBookType" pageEncoding="utf-8"%>
 <%@ page import="java.util.List" %>
+<%@ page import="po.ZYM.ZLongComm" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <html lang="en">
 <head>
@@ -13,6 +14,7 @@
 <body>
 <%  String wenzi = request.getParameter("wenzi");
 	List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
+	List<ZLongComm> longComm=(List<ZLongComm>)session.getAttribute("longComm");
 %>
 <header class="header">
 <div class="header-inner body-width">
@@ -127,34 +129,37 @@
 	  <div class="news body-border">
 		<ul>
 		  <li class="title">社区热点</li>
+			<%for(int i=0;i<4;i++){
+			%>
 		  <li class="link">
-			<a href="#">今天你健康打卡了吗</a>
+			<a href="#"><%=longComm.get(i).getTitle()%></a>
 			<span></span>
-			<a>作者</a>
+			<a><%=longComm.get(i).getLc_time()%></a>
 			<span></span>
-			<a>时间</a>
+			<a><%=longComm.get(i).getLc_coment()%></a>
 		  </li>
-		  <li class="link">
-			<a href="#">『人气连衣裙精选』 大合集</a>
-			<span></span>
-			<a>作者</a>
-			<span></span>
-			<a>时间</a>
-		  </li>
-		  <li class="link">
-			<a href="#">今天你健康打卡了吗</a>
-			<span></span>
-			<a>作者</a>
-			<span></span>
-			<a>时间</a>
-		  </li>
-		  <li class="link">
-			<a href="#">今天你健康打卡了吗</a>
-			<span></span>
-			<a>作者</a>
-			<span></span>
-			<a>时间</a>
-		  </li>
+			<%}%>
+		  <%--<li class="link">--%>
+			<%--<a href="#">『人气连衣裙精选』 大合集</a>--%>
+			<%--<span></span>--%>
+			<%--<a>作者</a>--%>
+			<%--<span></span>--%>
+			<%--<a>时间</a>--%>
+		  <%--</li>--%>
+		  <%--<li class="link">--%>
+			<%--<a href="#">今天你健康打卡了吗</a>--%>
+			<%--<span></span>--%>
+			<%--<a>作者</a>--%>
+			<%--<span></span>--%>
+			<%--<a>时间</a>--%>
+		  <%--</li>--%>
+		  <%--<li class="link">--%>
+			<%--<a href="#">今天你健康打卡了吗</a>--%>
+			<%--<span></span>--%>
+			<%--<a>作者</a>--%>
+			<%--<span></span>--%>
+			<%--<a>时间</a>--%>
+		  <%--</li>--%>
 		</ul>
 	  </div>
 	  <div class="app body-border"><a href="https://www.duitang.com/"></a></div>

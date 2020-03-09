@@ -2,10 +2,7 @@ package dao.JZX;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import po.JZX.JBook;
-import po.JZX.JBookShelf;
-import po.JZX.JDianzan;
-import po.JZX.JShortComm;
+import po.JZX.*;
 
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -36,4 +33,12 @@ public interface JBookDao {
     public Integer JuserIsForbid(Integer u_id);
 
     public Integer isBookInShelf(@Param("user_id") Integer user_id, @Param("book_id") Integer book_id);
+
+    public Integer isPingFen(@Param("u_id") Integer u_id, @Param("book_id") Integer book_id);
+
+    public Integer getScore(@Param("u_id") Integer u_id, @Param("book_id") Integer book_id);
+
+    public void updateScore(@Param("score") Integer score,@Param("u_id") Integer u_id, @Param("book_id") Integer book_id);
+
+    public void addScore(JPingFen pingFen);
 }

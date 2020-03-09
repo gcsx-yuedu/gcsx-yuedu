@@ -23,7 +23,9 @@
     <%--</script>--%>
     <!-- default-css-files -->
     <!--  light box js -->
+    <script src="${pageContext.request.contextPath}/static/js/book_infor-js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/book_infor-js/lightbox-plus-jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/book_infor-js/jquery-2.1.4.min.js"></script>
     <link href="${pageContext.request.contextPath}/static/css/book_infor-css/bootstrap.css" rel='stylesheet' type='text/css' />
     <link href="${pageContext.request.contextPath}/static/css/book_infor-css/font-awesome.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/static/css/book_infor-css/star-rating.css" rel="stylesheet" media="all" type="text/css">
@@ -31,6 +33,8 @@
     <!-- default-css-files -->
     <!-- style-css-file -->
     <link href="${pageContext.request.contextPath}/static/css/book_infor-css/style.css" rel='stylesheet' type='text/css' />
+    <!-- pricing-tablel -->
+    <script src="${pageContext.request.contextPath}/static/js/book_infor-js/jquery.magnific-popup.js"></script>
     <!-- //style-css-file -->
     <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/book_infor-css/lightbox.css">--%>
     <!-- For-Gallery-CSS -->
@@ -58,6 +62,7 @@
     String wenzi = request.getParameter("wenzi");
     List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
     int isBookShelf = (int) session.getAttribute("isBookShelf");
+    int score = (int) session.getAttribute("score");
 
 %>
 
@@ -191,10 +196,19 @@
                     <span class="fa fa-leanpub" aria-hidden="true"></span>
                 </div>
                 <%--<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='678' data-delay='.5' data-increment="1">678</div>--%>
-                <p>评分:
-                    <input id="score" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm">
-                    <input type="submit" value="评分" class="search_btn" name="submit" onclick="gradeScored()"> </p>
+                <h5>我的评分：</h5>
+                <br>
+                    <div class="btn-group">
+                <%
+                    for (int m=1;m<=5;m++){
+                %>
+                        <button onclick="pingfen(<%=m%>)" class="btn btn-default <%if (m==score){%>active<%}%> "><%=m%></button>
+                        <%
+                            }
+                        %>
+                </div>
             </div>
+
             <div class="col-xs-3 stats-grid-w3-agile ">
                 <div class="stats-img">
                     <span class="fa fa-commenting-o" aria-hidden="true"></span>
@@ -366,22 +380,60 @@
             });
         }
     }
-</script>
+    function pingfen(score) {
 
-<script type="text/javascript">
-    jQuery(document).ready(function () {
-        $(".rating-kv").rating();
-    });
-    function gradeScored(){
-        var score = $("#score").val();
-        alert(score);
-        <%--$.post("${base}/test/gradeScore.jspx",{id:id,score:score},--%>
-        //     function(data){
-        //         alert("评分成功");
-        //     },
-        //     "html");
+        $.ajax({
+            url: '/isPingFen',
+            async:false,
+            type:'post',
+            data:{"u_id":<%=session.getAttribute("userId")%>,
+                "book_id":<%=book.getB_id()%>,
+            },
+            success:function (flag) {
+                if (flag==0){
+                    $.ajax({
+                        url:'/addScore',
+                        async:false,
+                        type: 'post',
+                        data:{"u_id":<%=session.getAttribute("userId")%>,
+                            "book_id":<%=book.getB_id()%>,
+                            "score":score,
+                        },
+                        success:function () {
+                            alert("评分成功：\n"+"你的评分是"+score+"分");
+                            location.reload();
+                        },
+                        error:function () {
+                            alert("系统出错");
+                        },
+                    });
+                }else {
+                    $.ajax({
+                        url:'/updateScore',
+                        async:false,
+                        type: 'post',
+                        data:{"u_id":<%=session.getAttribute("userId")%>,
+                            "book_id":<%=book.getB_id()%>,
+                            "score":score,
+                        },
+                        success:function () {
+                            alert("评分成功：\n"+"你的评分是"+score+"分");
+                            location.reload();
+                        },
+                        error:function () {
+                            alert("系统出错");
+                        },
+                    });
+                }
+            },
+            error:function () {
+                alert("系统出错");
+            }
+        });
     }
 </script>
+
+
 
 <!--添加评论-->
 <script>
@@ -461,8 +513,7 @@
 </script>
 <!-- //flexisel (for special offers) -->
 
-<!-- pricing-tablel -->
-<script src="${pageContext.request.contextPath}/static/js/book_infor-js/jquery.magnific-popup.js"></script>
+
 <script>
     $(document).ready(function () {
         $('.popup-with-zoom-anim').magnificPopup({
