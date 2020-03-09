@@ -129,7 +129,7 @@
             </li>
             <li class="ml-2 mb-4 flex">
                 <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/wishlist-default.svg" alt="wishlist-icon" class="w-4 h-4 mr-2">
-                <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger">我的书架</div>
+                <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger">><a href="javascript:void(0);" onclick="btnshujia(<%=session.getAttribute("userId")%>)">我的书架</a></div>
             </li>
             <li class="ml-2 mb-4 flex lg:hidden">
                 <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/profile-default.svg" alt="profile-icon" class="w-4 h-4 mr-2">
@@ -162,9 +162,9 @@
                     <p class="text-l my-2 font-medium sm:font-normal">《<%=book.getB_name()%>》</p>
                     <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;作者：<%=book.getB_author()%></p>
                     <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;&nbsp;&nbsp;<%=book.getTypeList()%></p>
-                    <button onclick="window.location.href='/book_infor?b_id=<%=book.getB_id()%>'"  class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
+                    <button onclick="window.location.href='javascript:btnqukankan(\'<%=book.getB_id()%>\',<%=session.getAttribute("userId")%>)'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
                     <%
-                        System.out.println("次count 1或0："+book.getCounts()+",userId="+session.getAttribute("userId"));
+//                        System.out.println("次count 1或0："+book.getCounts()+",userId="+session.getAttribute("userId"));
                         if (book.getCounts()==0||session.getAttribute("userId")==null){%>
                     <button onclick="window.location.href='javascript:btnAddToShelf(\'<%=book.getB_id()%>\',<%=session.getAttribute("userId")%>)'"  class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-1 px-3 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button>
                     <%}else{%>
