@@ -3,12 +3,10 @@ package controller.ZYM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import po.ZYM.ZBook;
-import po.ZYM.ZBookShelf;
-import po.ZYM.ZBookType;
-import po.ZYM.ZLongComm;
+import po.ZYM.*;
 import service.ZYM.ZBookService;
-
+import java.util.Comparator;
+import java.util.Collections;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -146,12 +144,49 @@ public class ZBookSearchController {
     //首页
     @RequestMapping("/home_page")
     public String shouye(HttpServletRequest request){
+        Integer userId = (Integer)request.getSession().getAttribute("userId");
+        System.out.println("userId="+userId);
         List<ZBookType> types = zBookService.selectAllType();
         List<ZLongComm> longComm=zBookService.selectLongcomm();
+        List<ZUserList> userList = new ArrayList<>();
+        List<ZUser> users = zBookService.getUser();
+        for(ZUser user : users){
+            Integer countFans = zBookService.getCountFans(user.getu_id());
+            ZUserList fans = new ZUserList();
+            fans.setFansList(user);
+            fans.setCountFans(countFans);
+            if(userId!=null){
+                ZGuanzhu gz = new ZGuanzhu();
+                gz.setUser_id(userId);
+                gz.setGuanzhu_userid(user.getu_id());
+                int count = zBookService.getLines(gz);
+                if(userId==user.getu_id()){
+                    count=-1;
+                }
+                fans.setCount(count);
+            }
+            userList.add(fans);
+            Comparator comp = new ComparatorImpl();
+            Collections.sort(userList, comp);
+        }
+        request.getSession().setAttribute("userList",userList);
         request.getSession().setAttribute("longComm",longComm);
         request.getSession().setAttribute("types",types);
 //        System.out.println(">>>");
 //        System.out.println(longComm.toString());
         return "home_page";
+    }
+    @RequestMapping("/concern")
+    public String concern(int user_id,HttpServletRequest request){
+        Integer u_id = (Integer)request.getSession().getAttribute("userId");
+        if(u_id==null){
+            return "sign-up-yh";
+        }else{
+            ZGuanzhu gz = new ZGuanzhu();
+            gz.setUser_id(u_id);
+            gz.setGuanzhu_userid(user_id);
+            zBookService.guanzhu(gz);
+            return "redirect:/home_page";
+        }
     }
 }

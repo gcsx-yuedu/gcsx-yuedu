@@ -1,9 +1,6 @@
 package dao.ZYM;
 
-import po.ZYM.ZBook;
-import po.ZYM.ZBookShelf;
-import po.ZYM.ZBookType;
-import po.ZYM.ZLongComm;
+import po.ZYM.*;
 
 import java.util.List;
 
@@ -17,4 +14,8 @@ public interface ZBookMapper {
     public ZBook selectBookByBookId(int b_id);
     public Integer getCountOfShelfBook(ZBookShelf shel);
     public List<ZLongComm> selectLongcomm();
+    public List<ZUser> getUser();
+    public Integer getCountFans(Integer guanzhu_userid);
+    public Integer getLines(ZGuanzhu gz);
+    public void guanzhu(ZGuanzhu gz);
 }
