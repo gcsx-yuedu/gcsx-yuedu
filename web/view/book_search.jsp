@@ -136,7 +136,11 @@
             </li>
             <li class="ml-2 mb-4 flex">
                 <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/wishlist-default.svg" alt="wishlist-icon" class="w-4 h-4 mr-2">
-                <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger"><a href="javascript:void(0);" onclick="btnshujia(<%=session.getAttribute("userId")%>)">我的书架</a></div>
+                <% if (session.getAttribute("userId")==null){%>
+                <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger"><a href="view/sign-up-yh.jsp">我的书架</a></div>
+                <%}else{%>
+                <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger"><a href="/user_info?u_id=<%=session.getAttribute("userId")%>">我的书架</a></div>
+                <%}%>
             </li>
             <li class="ml-2 mb-4 flex lg:hidden">
                 <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/profile-default.svg" alt="profile-icon" class="w-4 h-4 mr-2">
