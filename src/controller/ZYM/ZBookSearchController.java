@@ -41,6 +41,16 @@ public class ZBookSearchController {
             }
         }
         System.out.println("长度："+books.size());
+        List<ZBook> bookList = zBookService.getBook();
+        for(ZBook boo : bookList){
+            List<String> bookType = getBookType(boo.getB_id());
+            String res=new String((byte[])boo.getB_cover());
+            int count = zBookService.getCount(boo.getB_id());
+            boo.setB_cover(res);
+            boo.setTypeList(bookType);
+            boo.setCounts(count);
+        }
+        request.getSession().setAttribute("bookList",bookList);
         request.getSession().setAttribute("count",books.size());
         request.getSession().setAttribute("books",books);
         request.getSession().setAttribute("types",types);

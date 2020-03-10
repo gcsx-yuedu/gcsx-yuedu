@@ -4,6 +4,7 @@
 <%@ page import="po.ZYM.ZBookType" %>
 <%@ page import="po.ZYM.ZBookShelf" %>
 <%@ page import="service.ZYM.ZBookService" %>
+<%@ page import="po.DJX.DBook" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <html class="no-js">
 <head>
@@ -22,6 +23,8 @@
     int count = (int)session.getAttribute("count");
     List<ZBook> books =(List<ZBook>)session.getAttribute("books");
     List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
+    List<ZBook> bookList = (List<ZBook>)session.getAttribute("bookList");
+    List<DBook> recommendBookList = (List<DBook>)session.getAttribute("recommendBookList");
 //    ZBookShelf shel = (ZBookShelf)session.getAttribute("shel");
 //    Integer u_id = (Integer)session.getAttribute("userId");
 //    System.out.println("u_id="+u_id);
@@ -226,27 +229,27 @@
         </div>
         <div class="mt-6">
             <p class="text-grey-dark mt-1 text-sm">猜你喜欢</p>
+            <% if(session.getAttribute("userId")==null){
+                for(ZBook z:bookList){
+            %>
             <div class="flex items-start mt-2">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block transition-normal hover:brighter">
+                <img src="<%=z.getB_cover()%>" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block transition-normal hover:brighter">
                 <div class="ml-3">
-                    <p class="mt-1 leading-normal text-sm">三国演义</p>
-                    <p class="mt-1 leading-normal text-xs">(罗贯中)</p>
+                    <p class="mt-1 leading-normal text-sm"><a href="/book_infor?b_id=<%=z.getB_id()%>"><%=z.getB_name()%></a></p>
+                    <p class="mt-1 leading-normal text-xs">(<%=z.getB_author()%>)</p>
                 </div>
             </div>
+            <%}}else{
+                for(DBook r:recommendBookList){
+            %>
             <div class="flex items-start mt-2">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block transition-normal hover:brighter">
+                <img src="<%=r.getB_cover()%>" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block transition-normal hover:brighter">
                 <div class="ml-3">
-                    <p class="mt-1 leading-normal text-sm">三国演义</p>
-                    <p class="mt-1 leading-normal text-xs">(罗贯中)</p>
+                    <p class="mt-1 leading-normal text-sm"><a href="/book_infor?b_id=<%=r.getB_id()%>"><%=r.getB_name()%></a></p>
+                    <p class="mt-1 leading-normal text-xs">(<%=r.getB_author()%>)</p>
                 </div>
             </div>
-            <div class="flex items-start mt-2">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block transition-normal hover:brighter">
-                <div class="ml-3">
-                    <p class="mt-1 leading-normal text-sm">三国演义</p>
-                    <p class="mt-1 leading-normal text-xs">(罗贯中)</p>
-                </div>
-            </div>
+            <%}}%>
         </div>
     </div>
 </div>
