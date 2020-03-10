@@ -193,7 +193,7 @@
             </div>
             <div class="col-xs-3 stats-grid-w3-agile">
                 <div class="stats-img">
-                    <span class="fa fa-leanpub" aria-hidden="true"></span>
+                    <span class="fa fa-pencil-square-o" aria-hidden="true"></span>
                 </div>
                 <%--<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='678' data-delay='.5' data-increment="1">678</div>--%>
                 <h5>我的评分：</h5>

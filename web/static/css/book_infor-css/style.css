@@ -577,7 +577,7 @@ ul.address li ul.agileits-address-text li a:hover {
 /*-- stats --*/
 
 .stats-w3layouts {
-    background:#D9EDF7;
+    /*background:#337AB7;*/
     background-size: cover;
     text-align: center;
     padding: 1.5em 0;
@@ -593,7 +593,7 @@ ul.address li ul.agileits-address-text li a:hover {
     color: #05c5fb;
 }
 
-.stats-w3layouts span.fa-leanpub {
+.stats-w3layouts span.fa-pencil-square-o {
     color: #1cf3c8;
 }
 
@@ -608,11 +608,11 @@ ul.address li ul.agileits-address-text li a:hover {
 }
 
 .stats-info p {
-    color: #E6E6E6;
+    color:#444444;
     letter-spacing: 3px;
     font-size: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.53);
-    background: #337AB7;
+    /*border: 1px solid rgba(255, 255, 255, 0.53);*/
+    /*background: #337AB7;*/
     padding: 5px;
     padding-top: 30px;
 }
