@@ -5,6 +5,7 @@
 <%@page import="po.BSJ.*"  %>
 <%@page import="po.ZYM.ZBookType"  %>
 <%@page import="po.DJX.DBook"  %>
+<%@page import="po.ZYM.ZBook" %>
 <!--<![endif]-->
 <head>
     <meta charset="utf-8">
@@ -205,16 +206,18 @@
             </svg>
             <div class="ml-3">
                 <p>欢迎回来</p>
-                <p class="text-grey-dark mt-1 text-sm">Joined since 2017</p>
+                <p class="text-grey-dark mt-1 text-sm">Joined since 2020</p>
             </div>
         </div>
         <div class="my-4 border-t pt-4">
-            <h3 class="text-indigo-dark font-normal">You have read <strong>4 of 30 books</strong></h3>
+            <h3 class="text-indigo-dark font-normal">3 books recommended <strong>at random</strong></h3>
             <div class="flex flex-wrap -ml-2 justify-start items-center">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/read-01.jpg" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block m-2 transition-normal hover:brighter">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block m-2 transition-normal hover:brighter">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/read-03.jpg" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block m-2 transition-normal hover:brighter">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/read-04.jpg" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block m-2 transition-normal hover:brighter">
+                <%
+                    List<ZBook> bookList = (List<ZBook>)session.getAttribute("bookList");
+                    for(int i=0;i<3;i++){
+                %>
+                <img src="<%=bookList.get(i).getB_cover()%>" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block m-2 transition-normal hover:brighter" onclick='window.open("/book_infor?b_id=<%=bookList.get(i).getB_id()%>")' >
+                <%}%>
             </div>
         </div>
         <div class="mt-6">
