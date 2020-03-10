@@ -77,7 +77,7 @@ public class GlySignInCheck {
         }
         /*获取前几天时间*/
         List<DComm> comm = new ArrayList<>();
-        for (int k=-6;k<=0;k++) {
+        for (int k=-13;k<=0;k++) {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(new Date());
             calendar.add(Calendar.DATE, k);

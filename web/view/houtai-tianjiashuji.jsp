@@ -130,7 +130,7 @@ response.sendRedirect("/Msignup");
             <a href="/houtai-xinxitongji" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-chart-pie mr-3"></i>信息统计
             </a>
-            <a href="/houtai-yonghuguanli" class="list-group-item waves-effect">
+            <a href="/houtai-yonghuguanli" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-user mr-3"></i>用户管理</a>
             <a href="/houtai-shujiguanli" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-table mr-3"></i>书籍管理</a>
@@ -159,7 +159,7 @@ response.sendRedirect("/Msignup");
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
-                            <form role="form" class="form-horizontal">
+                            <form autocomplete="off" role="form" class="form-horizontal">
                                 <div class="form-group">
                                     <label for="b_name" class="col-xl-2 col-form-label-lg">书名</label>
                                     <div class="col-xl-10">
@@ -176,15 +176,15 @@ response.sendRedirect("/Msignup");
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-xl-2 col-form-label-lg">书籍类型</label>
-                                    <div class="col-xl-10">
+                                    <label class="col-xl-12 col-form-label-lg">书籍类型</label>
+                                    <div class="col-xl-12">
                                         <%--循环遍历所有的书籍类型--%>
 
                                         <%
 //                                            System.out.println(bookTypeList.size());
-                                            for (int i=0;i<bookTypeList.size()-1;i++){
-                                        %>
-                                            <div style="width: 50%;float: left">
+                                            for (int i=0;i<bookTypeList.size();i++){
+                                        %><%-- style="width: 50%;float: left"--%>
+                                            <div style="width: 25%;float: left;">
                                                     <h6><input id="bookType" name="bookType" type="checkbox" class="custom-checkbox" value="<%=bookTypeList.get(i).getT_id()%>">
                                                     <%=bookTypeList.get(i).getT_type()%>
                                                     </h6>
@@ -192,17 +192,17 @@ response.sendRedirect("/Msignup");
 
                                         <%
                                             }
-                                        %>
-                                        <div style="width:25%;">
-                                            <input name="bookType" type="checkbox" class="custom-checkbox" value="<%=bookTypeList.get(bookTypeList.size()-1).getT_id()%>">
-                                            <%=bookTypeList.get(bookTypeList.size()-1).getT_type()%>
-                                        </div>
+                                        %><%--style="width:50%;"--%>
+                                        <%--<div class="col-xl-6" >--%>
+                                            <%--<input name="bookType" type="checkbox" class="custom-checkbox" value="<%=bookTypeList.get(bookTypeList.size()-1).getT_id()%>">--%>
+                                            <%--<%=bookTypeList.get(bookTypeList.size()-1).getT_type()%>--%>
+                                        <%--</div>--%>
                                     </div>
                                 </div>
 
 
                                 <div class="form-group">
-                                    <label for="b_content" class="col-xl-2 col-form-label-lg">书籍简介</label>
+                                    <label for="b_content" class="col-xl-12 col-form-label-lg">书籍简介</label>
                                     <div class="col-xl-10">
                                         <label for="b_content" class="col-xl-12">
                                             <textarea name="b_content" id="b_content" class="form-control" rows="3"></textarea>
@@ -273,7 +273,7 @@ response.sendRedirect("/Msignup");
                                             b_type.push(obj[k].value);
                                         }
                                     }
-                                    alert(b_type);
+                                    // alert(b_type);
 
 
 

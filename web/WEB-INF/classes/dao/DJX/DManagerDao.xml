@@ -272,4 +272,9 @@
     <select id="isBookType" resultType="Integer">
          select count(*) from book_type where book_id=#{book_id} and type_id=#{type_id}
     </select>
+
+    <!--根据bookName获取bookInfo-->
+    <select id="getBookInfoByBookName" parameterType="String" resultType="po.DJX.DBook">
+        select * from book where b_name = #{b_name}
+    </select>
 </mapper>
