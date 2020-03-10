@@ -42,6 +42,22 @@
     <select id="selectLongcomm" resultType="po.ZYM.ZLongComm">
         select * from longcomm order by lc_coment desc;
     </select>
+    <!--获取所有用户id-->
+    <select id="getUser" resultType="po.ZYM.ZUser">
+        select * from userInfo
+    </select>
+    <!--根据关注id获取粉丝数量-->
+    <select id="getCountFans" parameterType="Integer" resultType="Integer">
+		select count(*) from guanzhu where guanzhu_userid=#{guanzhu_userid}
+	</select>
+    <!--获取行数判断是否关注-->
+    <select id="getLines" parameterType="po.ZYM.ZGuanzhu" resultType="Integer">
+        select count(*) from guanzhu where user_id=#{user_id} and guanzhu_userid=#{guanzhu_userid}
+    </select>
+    <!--根据user_id和u_id插入-->
+    <insert id="guanzhu" parameterType="po.ZYM.ZGuanzhu">
+		insert into guanzhu(user_id,guanzhu_userid) values(#{user_id},#{guanzhu_userid})
+	</insert>
 </mapper>
 
 

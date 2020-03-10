@@ -233,4 +233,8 @@ public class DManagerService {
     public Integer isBookType(Integer book_id, Integer type_id){
         return DManagerDao.isBookType(book_id, type_id);
     }
+
+    public DBook getBookInfoByBookName(String b_name){
+        return DManagerDao.getBookInfoByBookName(b_name);
+    }
 }

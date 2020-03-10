@@ -397,7 +397,16 @@ public class GlySignInCheck {
         Integer u_id = service.getUidByUname(userName);
         request.getSession().setAttribute("userId",u_id);
         request.getSession().setAttribute("userName",userName);
-        List<String> recommendBookList = CB(u_id);
+        List<String> recommendBookNameList = CB(u_id);
+        List<DBook> recommendBookList = new ArrayList<>();
+        for (int i=0;i<5;i++) {
+            DBook rBook = service.getBookInfoByBookName(recommendBookNameList.get(i));
+            String res = new String((byte[]) rBook.getB_cover());
+//            System.out.println(res);
+            rBook.setB_cover(res);
+            recommendBookList.add(rBook);
+        }
+//        System.out.println(recommendBookList);
         request.getSession().setAttribute("recommendBookList",recommendBookList);
         System.out.println(userName);
         System.out.println(">>>");

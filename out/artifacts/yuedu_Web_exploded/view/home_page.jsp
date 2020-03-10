@@ -2,6 +2,7 @@
 <%@ page language="java" import="po.ZYM.ZBookType" pageEncoding="utf-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="po.ZYM.ZLongComm" %>
+<%@ page import="po.ZYM.ZUserList" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <html lang="en">
 <head>
@@ -15,6 +16,7 @@
 <%  String wenzi = request.getParameter("wenzi");
 	List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
 	List<ZLongComm> longComm=(List<ZLongComm>)session.getAttribute("longComm");
+	List<ZUserList> userList = (List<ZUserList>)session.getAttribute("userList");
 %>
 <header class="header">
 <div class="header-inner body-width">
@@ -139,27 +141,6 @@
 			<a><%=longComm.get(i).getLc_coment()%></a>
 		  </li>
 			<%}%>
-		  <%--<li class="link">--%>
-			<%--<a href="#">『人气连衣裙精选』 大合集</a>--%>
-			<%--<span></span>--%>
-			<%--<a>作者</a>--%>
-			<%--<span></span>--%>
-			<%--<a>时间</a>--%>
-		  <%--</li>--%>
-		  <%--<li class="link">--%>
-			<%--<a href="#">今天你健康打卡了吗</a>--%>
-			<%--<span></span>--%>
-			<%--<a>作者</a>--%>
-			<%--<span></span>--%>
-			<%--<a>时间</a>--%>
-		  <%--</li>--%>
-		  <%--<li class="link">--%>
-			<%--<a href="#">今天你健康打卡了吗</a>--%>
-			<%--<span></span>--%>
-			<%--<a>作者</a>--%>
-			<%--<span></span>--%>
-			<%--<a>时间</a>--%>
-		  <%--</li>--%>
 		</ul>
 	  </div>
 	  <div class="app body-border"><a href="https://www.duitang.com/"></a></div>
@@ -217,51 +198,25 @@
 	  <h3>达人推荐</h3>
 	</div>
 	<ul class="main-cont__list clearfix">
+		<%
+			for(int i=0;i<=4;i++){
+		%>
 	  <li class="item">
 		<a href="#" class="pic" style=" background: url(${pageContext.request.contextPath}/static/image/home-image/cont/user_img1.jpg) no-repeat; background-size: cover; "></a>
 		<a href="#" class="headImg"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/head_img1.jpeg" alt="#"></a>
 		<div class="info">
-		  <a href="#" class="info-title">作者</a>
-		  <p><i class="icon-star"></i>9645</p>
-		  <p><b>***</b>人关注</p>
+		  <a href="#" class="info-title"><%=userList.get(i).getFansList().getU_name()%></a>
+		  <p><i class="icon-star"></i><%=userList.get(i).getCountFans()%></p>
+			<% if(userList.get(i).getCount()==0){%>
+		    <p><a href="/concern?user_id=<%=userList.get(i).getFansList().getu_id()%>" class="icon-text__pink register" style="width:80px">关注</a></p>
+			<% }else if(userList.get(i).getCount()==-1){%>
+			<p><a class="icon-text__pink register" style="width:80px">我</a></p>
+			<%}else{%>
+			<p><a class="icon-text__pink register" style="width:80px">互相关注</a></p>
+			<%}%>
 		</div>
 	  </li>
-	  <li class="item">
-		<a href="#" class="pic" style=" background: url(${pageContext.request.contextPath}/static/image/home-image/cont/user_img2.jpg) no-repeat; background-size: cover; "></a>
-		<a href="#" class="headImg"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/head_img2.jpeg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="info-title">作者</a>
-		  <p><i class="icon-star"></i>9645</p>
-		  <p><b>***</b>人关注</p>
-		</div>
-	  </li>
-	  <li class="item">
-		<a href="#" class="pic" style=" background: url(${pageContext.request.contextPath}/static/image/home-image/cont/user_img3.jpg) no-repeat; background-size: cover; "></a>
-		<a href="#" class="headImg"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/head_img3.jpeg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="info-title">作者</a>
-		  <p><i class="icon-star"></i>9645</p>
-		  <p><b>***</b>人关注</p>
-		</div>
-	  </li>
-	  <li class="item">
-		<a href="#" class="pic" style=" background: url(${pageContext.request.contextPath}/static/image/home-image/cont/user_img4.jpg) no-repeat; background-size: cover; "></a>
-		<a href="#" class="headImg"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/head_img4.jpeg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="info-title">作者</a>
-		  <p><i class="icon-star"></i>9645</p>
-		  <p><b>***</b>人关注</p>
-		</div>
-	  </li>
-	  <li class="item">
-		<a href="#" class="pic" style=" background: url(${pageContext.request.contextPath}/static/image/home-image/cont/user_img5.jpg) no-repeat; background-size: cover; "></a>
-		<a href="#" class="headImg"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/head_img5.jpeg" alt="#"></a>
-		<div class="info">
-		  <<a href="#" class="info-title">作者</a>
-		  <p><i class="icon-star"></i>9645</p>
-		  <p><b>***</b>人关注</p>
-		</div>
-	  </li>
+		<%}%>
 	</ul>
   </div>
 </div>

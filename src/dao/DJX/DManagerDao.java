@@ -119,4 +119,6 @@ public interface DManagerDao {
     public Integer isBookScore(@Param("u_id") Integer u_id, @Param("book_id") Integer book_id);
 
     public Integer isBookType(@Param("book_id") Integer book_id, @Param("type_id") Integer type_id);
+
+    public DBook getBookInfoByBookName(String b_name);
 }
