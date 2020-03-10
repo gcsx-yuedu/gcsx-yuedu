@@ -18,4 +18,6 @@ public interface ZBookMapper {
     public Integer getCountFans(Integer guanzhu_userid);
     public Integer getLines(ZGuanzhu gz);
     public void guanzhu(ZGuanzhu gz);
+    public List<ZBook> getBook();
+    public Integer getCount(Integer book_id);
 }

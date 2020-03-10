@@ -32,4 +32,6 @@ public class ZBookService {
     }
     public Integer getLines(ZGuanzhu gz){return bookDao.getLines(gz);}
     public void guanzhu(ZGuanzhu gz){ bookDao.guanzhu(gz); }
+    public List<ZBook> getBook(){ return bookDao.getBook();}
+    public Integer getCount(Integer book_id){ return bookDao.getCount(book_id);}
 }
