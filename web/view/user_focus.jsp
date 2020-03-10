@@ -225,9 +225,9 @@
                 for(DBook r : recommendBookList){
             %>
             <div class="flex items-start mt-2">
-                <a href="/book_infor?b_id=<%=r.getB_id()%>"><img src="<%=r.getB_cover()%>" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block transition-normal hover:brighter"></a>
+                <img src="<%=r.getB_cover()%>" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block transition-normal hover:brighter"></a>
                 <div class="ml-3">
-                    <p class="mt-1 leading-normal text-sm"><%=r.getB_name()%></p>
+                    <p class="mt-1 leading-normal text-sm"><a href="/book_infor?b_id=<%=r.getB_id()%>"><%=r.getB_name()%></a></p>
                     <p class="mt-1 leading-normal text-xs">(<%=r.getB_author()%>)</p>
                 </div>
             </div>
