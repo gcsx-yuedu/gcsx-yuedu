@@ -209,7 +209,7 @@
             </div>
         </div>
         <div class="my-4 border-t pt-4">
-            <h3 class="text-indigo-dark font-normal">3 books recommended <strong>at random</strong></h3>
+            <h3 class="text-indigo-dark font-normal">Recommend 3 books <strong>at random</strong></h3>
             <div class="flex flex-wrap -ml-2 justify-start items-center">
                 <%
                     for(int i=0;i<3;i++){

@@ -23,6 +23,7 @@
 <body class="bg-grey-lighter font-sans antialiased">
 <%  String wenzi = request.getParameter("wenzi");
     List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
+    List<ZBook> bookList = (List<ZBook>)session.getAttribute("bookList");
 %>
 <header class="header">
     <div class="header-inner body-width">
@@ -209,10 +210,9 @@
             </div>
         </div>
         <div class="my-4 border-t pt-4">
-            <h3 class="text-indigo-dark font-normal">3 books recommended <strong>at random</strong></h3>
+            <h3 class="text-indigo-dark font-normal">Recommend 3 books <strong>at random</strong></h3>
             <div class="flex flex-wrap -ml-2 justify-start items-center">
                 <%
-                    List<ZBook> bookList = (List<ZBook>)session.getAttribute("bookList");
                     for(int i=0;i<3;i++){
                 %>
                 <img src="<%=bookList.get(i).getB_cover()%>" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block m-2 transition-normal hover:brighter" onclick='window.open("/book_infor?b_id=<%=bookList.get(i).getB_id()%>")' >
