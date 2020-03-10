@@ -129,7 +129,7 @@ response.sendRedirect("/Msignup");
             <a href="/houtai-xinxitongji" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-chart-pie mr-3"></i>信息统计
             </a>
-            <a href="/houtai-yonghuguanli" class="list-group-item waves-effect">
+            <a href="/houtai-yonghuguanli" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-user mr-3"></i>用户管理</a>
             <a href="/houtai-shujiguanli" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-table mr-3"></i>书籍管理</a>
@@ -164,7 +164,7 @@ response.sendRedirect("/Msignup");
                                         <h5>书籍类型</h5>
                                     </label>
                                     <div class="col-xl-10">
-                                        <input type="text" class="form-control" name="t_type" id="bookType" placeholder="请输入书籍类型">
+                                        <input autocomplete="off" type="text" class="form-control" name="t_type" id="bookType" placeholder="请输入书籍类型">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -186,7 +186,7 @@ response.sendRedirect("/Msignup");
                                                 console.log('f=1');
                                                 alert('该类型已存在，请重新输入！');
                                             } else {
-                                                alert('跳转添加页面');
+                                                // alert('跳转添加页面');
                                                 // window.location.href = '/addBookType?t_type='+t_type;
                                                 $.ajax({
                                                     url:'/addBookType',

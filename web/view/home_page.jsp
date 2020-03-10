@@ -101,21 +101,13 @@
   <div class="banner clearfix">
 	<div class="slider" id="slider">
 	  <ul class="slider-wrapper">
-		<li class="item" data-title="这位上神！速速到我的本子里来">
-		  <a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/slider_img1.jpg" alt="#"></a>
+		  <%
+			  for(int i=0;i<5;i++){
+		  %>
+		<li class="item" data-title="<%=bookList.get(i).getB_name()%>" data-author="by <%=bookList.get(i).getB_author()%>">
+		  <a href="/book_infor?b_id=<%=bookList.get(i).getB_id()%>" class="pic"><img src="<%=bookList.get(i).getB_cover()%>" alt="#" style="width:100%;height:100%;"></a>
 		</li>
-		<li class="item" data-title="想换上新衣去旅行！" data-author="by 占秋">
-		  <a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/slider_img2.jpg" alt="#"></a>
-		</li>
-		<li class="item" data-title="你的书写工具需要一个庇护所" data-author="by Moollly">
-		  <a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/slider_img3.jpg" alt="#"></a>
-		</li>
-		<li class="item" data-title="气温起伏，一件外套保护你" data-author="by 郑南音">
-		  <a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/slider_img4.jpg" alt="#"></a>
-		</li>
-		<li class="item" data-title="鲜为人知的泰国小众小城——董里">
-		  <a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/slider_img5.jpg" alt="#"></a>
-		</li>
+		  <%}%>
 	  </ul>
 	  <a href="javascript:;" class="slider-prev"></a>
 	  <a href="javascript:;" class="slider-next"></a>
