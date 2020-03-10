@@ -38,6 +38,7 @@
     <select id="getCountOfShelfBook" parameterType="po.ZYM.ZBookShelf" resultType="Integer">
         select count(*) from bookshelf where book_id=#{book_id} and user_id=#{user_id}
     </select>
+
     <!--根据评论数获取所有长评-->
     <select id="selectLongcomm" resultType="po.ZYM.ZLongComm">
         select * from longcomm order by lc_coment desc;
@@ -58,6 +59,14 @@
     <insert id="guanzhu" parameterType="po.ZYM.ZGuanzhu">
 		insert into guanzhu(user_id,guanzhu_userid) values(#{user_id},#{guanzhu_userid})
 	</insert>
+    <!--随机获取5本书-->
+    <select id="getBook" resultType="po.ZYM.ZBook">
+        SELECT * FROM book ORDER BY rand() LIMIT 5;
+    </select>
+    <!--根据b_id获取书架行数-->
+    <select id="getCount" resultType="Integer" parameterType="Integer">
+        select count(*) from bookshelf where book_id=#{book_id}
+    </select>
 </mapper>
 
 

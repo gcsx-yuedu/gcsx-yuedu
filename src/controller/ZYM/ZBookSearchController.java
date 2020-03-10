@@ -172,8 +172,16 @@ public class ZBookSearchController {
         request.getSession().setAttribute("userList",userList);
         request.getSession().setAttribute("longComm",longComm);
         request.getSession().setAttribute("types",types);
-//        System.out.println(">>>");
-//        System.out.println(longComm.toString());
+        List<ZBook> bookList = zBookService.getBook();
+        for(ZBook book : bookList){
+            List<String> bookType = getBookType(book.getB_id());
+            String res=new String((byte[])book.getB_cover());
+            int count = zBookService.getCount(book.getB_id());
+            book.setB_cover(res);
+            book.setTypeList(bookType);
+            book.setCounts(count);
+        }
+        request.getSession().setAttribute("bookList",bookList);
         return "home_page";
     }
     @RequestMapping("/concern")

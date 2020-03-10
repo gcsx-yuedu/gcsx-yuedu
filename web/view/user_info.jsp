@@ -4,6 +4,7 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@page import="po.BSJ.*"  %>
 <%@page import="po.ZYM.ZBookType"  %>
+<%@page import="po.DJX.DBook"  %>
 <!--<![endif]-->
 <head>
     <meta charset="utf-8">
@@ -194,27 +195,18 @@
         </div>
         <div class="mt-6">
             <p class="text-grey-dark mt-1 text-sm">猜你喜欢</p>
+            <%
+                List<DBook> recommendBookList = (List<DBook>)session.getAttribute("recommendBookList");
+                for(DBook r : recommendBookList){
+            %>
             <div class="flex items-start mt-2">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block transition-normal hover:brighter">
+                <a href="/book_infor?b_id=<%=r.getB_id()%>"><img src="<%=r.getB_cover()%>" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block transition-normal hover:brighter"></a>
                 <div class="ml-3">
-                    <p class="mt-1 leading-normal text-sm">三国演义</p>
-                    <p class="mt-1 leading-normal text-xs">(罗贯中)</p>
+                    <p class="mt-1 leading-normal text-sm"><%=r.getB_name()%></p>
+                    <p class="mt-1 leading-normal text-xs">(<%=r.getB_author()%>)</p>
                 </div>
             </div>
-            <div class="flex items-start mt-2">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block transition-normal hover:brighter">
-                <div class="ml-3">
-                    <p class="mt-1 leading-normal text-sm">三国演义</p>
-                    <p class="mt-1 leading-normal text-xs">(罗贯中)</p>
-                </div>
-            </div>
-            <div class="flex items-start mt-2">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block transition-normal hover:brighter">
-                <div class="ml-3">
-                    <p class="mt-1 leading-normal text-sm">三国演义</p>
-                    <p class="mt-1 leading-normal text-xs">(罗贯中)</p>
-                </div>
-            </div>
+            <%}%>
         </div>
     </div>
 </div>

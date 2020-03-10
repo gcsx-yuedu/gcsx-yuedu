@@ -3,6 +3,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="po.ZYM.ZLongComm" %>
 <%@ page import="po.ZYM.ZUserList" %>
+<%@ page import="po.ZYM.ZBook" %>
+<%@ page import="po.DJX.DBook" %>
 <%@ page contentType="text/html;charset=utf-8"%>
 <html lang="en">
 <head>
@@ -17,6 +19,8 @@
 	List<ZBookType> types = (List<ZBookType>)session.getAttribute("types");
 	List<ZLongComm> longComm=(List<ZLongComm>)session.getAttribute("longComm");
 	List<ZUserList> userList = (List<ZUserList>)session.getAttribute("userList");
+	List<ZBook> bookList = (List<ZBook>)session.getAttribute("bookList");
+	List<DBook> recommendBookList = (List<DBook>)session.getAttribute("recommendBookList");
 %>
 <header class="header">
 <div class="header-inner body-width">
@@ -97,21 +101,13 @@
   <div class="banner clearfix">
 	<div class="slider" id="slider">
 	  <ul class="slider-wrapper">
-		<li class="item" data-title="这位上神！速速到我的本子里来">
-		  <a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/slider_img1.jpg" alt="#"></a>
+		  <%
+			  for(int i=0;i<5;i++){
+		  %>
+		<li class="item" data-title="<%=bookList.get(i).getB_name()%>" data-author="by <%=bookList.get(i).getB_author()%>">
+		  <a href="/book_infor?b_id=<%=bookList.get(i).getB_id()%>" class="pic"><img src="<%=bookList.get(i).getB_cover()%>" alt="#" style="width:100%;height:100%;"></a>
 		</li>
-		<li class="item" data-title="想换上新衣去旅行！" data-author="by 占秋">
-		  <a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/slider_img2.jpg" alt="#"></a>
-		</li>
-		<li class="item" data-title="你的书写工具需要一个庇护所" data-author="by Moollly">
-		  <a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/slider_img3.jpg" alt="#"></a>
-		</li>
-		<li class="item" data-title="气温起伏，一件外套保护你" data-author="by 郑南音">
-		  <a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/slider_img4.jpg" alt="#"></a>
-		</li>
-		<li class="item" data-title="鲜为人知的泰国小众小城——董里">
-		  <a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/slider_img5.jpg" alt="#"></a>
-		</li>
+		  <%}%>
 	  </ul>
 	  <a href="javascript:;" class="slider-prev"></a>
 	  <a href="javascript:;" class="slider-next"></a>
@@ -151,46 +147,30 @@
 	  <h3>猜你喜欢</h3>
 	</div>
 	<ul class="main-cont__list clearfix">
+		<%
+			if(session.getAttribute("userId")==null){
+				for(ZBook z:bookList){
+		%>
 	  <li class="item">
-		<a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/main_img6.jpg" alt="#"></a>
+		<a href="#" class="pic"><img src="<%=z.getB_cover()%>" style="width:100%;height:75%;" alt="#"></a>
 		<div class="info">
-		  <a href="#" class="title">书名   by 作者</a>
-		  <span>***人收藏</span>
-		  <a href="#" class="icon-text__pink purchase">去看看</a>
+		  <%--<a href="#" class="title"><%=z.getB_name()%>   by <%=z.getB_author()%></a>--%>
+		  <%--<span><%=z.getCounts()%>人收藏</span>--%>
+		  <a href="/book_infor?b_id=<%=z.getB_id()%>" class="icon-text__pink purchase">去看看</a>
 		</div>
 	  </li>
-	  <li class="item">
-		<a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/main_img7.jpg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="title">书名   by 作者</a>
-		  <span>***人收藏</span>
-		  <a href="#" class="icon-text__pink purchase">去看看</a>
-		</div>
-	  </li>
-	  <li class="item">
-		<a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/main_img8.jpg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="title">书名   by 作者</a>
-		  <span>***人收藏</span>
-		  <a href="#" class="icon-text__pink purchase">去看看</a>
-		</div>
-	  </li>
-	  <li class="item">
-		<a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/main_img9.jpg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="title">书名   by 作者</a>
-		  <span>***人收藏</span>
-		  <a href="#" class="icon-text__pink purchase">去看看</a>
-		</div>
-	  </li>
-	  <li class="item">
-		<a href="#" class="pic"><img src="${pageContext.request.contextPath}/static/image/home-image/cont/main_img10.jpg" alt="#"></a>
-		<div class="info">
-		  <a href="#" class="title">书名   by 作者</a>
-		  <span>***人收藏</span>
-		  <a href="#" class="icon-text__pink purchase">去看看</a>
-		</div>
-	  </li>
+		<%}}else{
+				for(DBook r:recommendBookList){
+		%>
+		<li class="item">
+			<a href="#" class="pic"><img src="<%=r.getB_cover()%>" style="width:100%;height:75%;" alt="#"></a>
+			<div class="info">
+				<%--<a href="#" class="title"><%=z.getB_name()%>   by <%=z.getB_author()%></a>--%>
+				<%--<span><%=z.getCounts()%>人收藏</span>--%>
+				<a href="/book_infor?b_id=<%=r.getB_id()%>" class="icon-text__pink purchase">去看看</a>
+			</div>
+		</li>
+		<%}}%>
 	</ul>
   </div>
   <div class="main-cont main-user">
