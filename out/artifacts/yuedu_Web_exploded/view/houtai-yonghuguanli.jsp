@@ -115,7 +115,7 @@ response.sendRedirect("/Msignup");
             <a href="/houtai-xinxitongji" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-chart-pie mr-3"></i>信息统计
             </a>
-            <a href="/houtai-yonghuguanli" class="list-group-item active waves-effect">
+            <a href="/houtai-yonghuguanli" class="list-group-item list-group-item-action active waves-effect">
                 <i class="fas fa-user mr-3"></i>用户管理</a>
             <a href="/houtai-shujiguanli" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-table mr-3"></i>书籍管理</a>
