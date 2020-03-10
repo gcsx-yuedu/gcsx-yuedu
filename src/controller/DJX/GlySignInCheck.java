@@ -397,6 +397,8 @@ public class GlySignInCheck {
         Integer u_id = service.getUidByUname(userName);
         request.getSession().setAttribute("userId",u_id);
         request.getSession().setAttribute("userName",userName);
+        List<String> recommendBookList = CB(u_id);
+        request.getSession().setAttribute("recommendBookList",recommendBookList);
         System.out.println(userName);
         System.out.println(">>>");
         System.out.println("跳转到首页成功......");
@@ -542,31 +544,31 @@ public class GlySignInCheck {
     }
 
     /*计算CB*/
-    @ResponseBody
-    @RequestMapping("/CB")
-    public void CB(Integer u_id) {
-        u_id=1;
+//    @ResponseBody
+//    @RequestMapping("/CB")
+    public List<String> CB(Integer u_id) {
+//        u_id=1;
         List<DPingFen> pingFenList = service.getAllScoreByUserId(u_id);
         /*获取添加书籍的总数*/
         int bookSum = service.getBookNum();
         /*获取用户所有的评分*/
-        float scoreSum=0;
-        float sum=0;
+        double scoreSum=0;
+        double sum=0;
         for (DPingFen pingFen : pingFenList) {
             sum++;
             scoreSum += pingFen.getScore();
         }
         System.out.println("scoreSum="+scoreSum);
         /*计算用户的平均评分*/
-        float avg = scoreSum / sum;
+        double avg = scoreSum / bookSum;
         System.out.println("avg="+avg);
 
         /*获取所有的type并赋初值*/
         List<DBookType> bookTypes = service.getAllBookType();
         /*typeId-typeScore*/
-        HashMap<Integer, Float> typeScore = new HashMap<>();
+        HashMap<Integer, Double> typeScore = new HashMap<>();
         for (DBookType bookType : bookTypes) {
-            typeScore.put(bookType.getT_id(), (float) 0);
+            typeScore.put(bookType.getT_id(), (double) 0);
         }
         System.out.println("book_length="+bookSum);
         System.out.println("bookType_length="+bookTypes.size());
@@ -594,7 +596,7 @@ public class GlySignInCheck {
 
         /*建立用户模型矩阵*/
         /*矩阵模型大小为1xbookType的大小*/
-        float[] userProfiles = new float[bookTypes.size()];
+        double[] userProfiles = new double[bookTypes.size()];
         /*根据type获取对应的book_id*/
         /*根据bookid和userid获取该用户的所有的相关的打分记录*/
         /*获取用户打过分的某个类型的book的总分*/
@@ -602,7 +604,7 @@ public class GlySignInCheck {
         int k=0;
         int type_pingfen_num=0;
         for (k=0;k<bookTypes.size();k++){
-            float user_book_type_score=0;
+            double user_book_type_score=0;
             int type_id = bookTypes.get(k).getT_id();
             List<Integer> book_ids = service.getBookIdByTypeId(type_id);
             for (Integer book_id : book_ids) {
@@ -620,34 +622,40 @@ public class GlySignInCheck {
         /*计算每本书的推荐相似度*/
         /*建立相似度矩阵*/
         /*矩阵大小为1xbookList的大小*/
-        HashMap<String, Float> similarBook = new HashMap<>();
-        float[] similar = new float[bookList.size()];
+        HashMap<String, Double> similarBook = new HashMap<>();
+        double[] similar = new double[bookList.size()];
         for (int k1 = 0; k1 < bookList.size(); k1++) {
-            float UxIsum =0;
+            double UxIsum =0;
+            double U2sum = 0;
+            double I2sum = 0;
             for (int i=0;i<bookTypes.size();i++){
-                UxIsum = userProfiles[i]*bookProfiles[k1][i];
+                UxIsum = UxIsum + userProfiles[i] * bookProfiles[k1][i];
+                U2sum = U2sum + userProfiles[i] * userProfiles[i];
+                I2sum = I2sum + bookProfiles[k1][i] * bookProfiles[k1][i];
             }
 //            System.out.println(bookList.toString());
-            similar[k1]=UxIsum;
+            similar[k1]=UxIsum/(Math.sqrt(U2sum)*Math.sqrt(I2sum));
+            /*乘以10扩大相似度差距*/
             similarBook.put(bookList.get(k1).getB_name(), UxIsum*10);
         }
         System.out.println("similar="+Arrays.toString(similar));
         System.out.println("similarBook="+similarBook);
-        List<Map.Entry<String, Float>> list = new ArrayList<Map.Entry<String, Float>>(similarBook.entrySet());
-        list.sort(new Comparator<Map.Entry<String, Float>>() {
+        List<Map.Entry<String, Double>> list = new ArrayList<Map.Entry<String, Double>>(similarBook.entrySet());
+        list.sort(new Comparator<Map.Entry<String, Double>>() {
             @Override
-            public int compare(Map.Entry<String, Float> o1, Map.Entry<String, Float> o2) {
+            public int compare(Map.Entry<String, Double> o1, Map.Entry<String, Double> o2) {
                 System.out.println(o2.getValue() + "-" + o1.getValue());
                 return (int) (o2.getValue() - o1.getValue());
             }
         });
         List<String> books = new ArrayList<>();
-        for (Map.Entry<String, Float> item : list) {
+        for (Map.Entry<String, Double> item : list) {
             books.add(item.getKey());
         }
         System.out.println(list);
         System.out.println("推荐书籍"+books);
 
+        return books;
     }
 
 
