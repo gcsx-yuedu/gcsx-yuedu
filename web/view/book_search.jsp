@@ -182,7 +182,7 @@
                             <p class="text-l my-2 font-medium sm:font-normal">&nbsp;作者：<%=book.getB_author()%></p>
                             <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;类型：<%=typeList%>
                             </p>
-                            <button onclick="window.location.href='/book_infor?b_id=<%=book.getB_id()%>&userId=<%=session.getAttribute("userId")%>'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
+                            <button onclick="window.location.href='javascript:btnqukankan(\'<%=book.getB_id()%>\',<%=session.getAttribute("userId")%>)'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
                             <%
 //                                System.out.println("主count 1或0："+book.getCounts());
                                 if (book.getCounts()==0){%>
@@ -228,7 +228,7 @@
                 <%
                     for(int i=0;i<3;i++){
                 %>
-                <img src="<%=bookList.get(i).getB_cover()%>" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block m-2 transition-normal hover:brighter" onclick='window.open("/book_infor?b_id=<%=bookList.get(i).getB_id()%>")' >
+                <img src="<%=bookList.get(i).getB_cover()%>" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block m-2 transition-normal hover:brighter" onclick="window.location.href='javascript:btnqukankan(\'<%=bookList.get(i).getB_id()%>\',<%=session.getAttribute("userId")%>)'" >
                 <%}%>
             </div>
         </div>
@@ -240,7 +240,7 @@
             <div class="flex items-start mt-2">
                 <img src="<%=z.getB_cover()%>" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block transition-normal hover:brighter">
                 <div class="ml-3">
-                    <p class="mt-1 leading-normal text-sm"><a href="/book_infor?b_id=<%=z.getB_id()%>"><%=z.getB_name()%></a></p>
+                    <p class="mt-1 leading-normal text-sm"><a onclick="window.location.href='javascript:btnqukankan(\'<%=z.getB_id()%>\',<%=session.getAttribute("userId")%>)'"><%=z.getB_name()%></a></p>
                     <p class="mt-1 leading-normal text-xs">(<%=z.getB_author()%>)</p>
                 </div>
             </div>

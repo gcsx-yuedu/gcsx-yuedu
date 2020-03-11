@@ -238,5 +238,5 @@
 </div>
 工程实训第四组--"悦读"网
 </body>
-<script src="bundle.js" async defer></script>
+<script src="${pageContext.request.contextPath}/static/js/user-js/bundle.js" async defer></script>
 </html>

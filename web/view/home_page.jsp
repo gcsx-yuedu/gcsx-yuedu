@@ -105,7 +105,7 @@
 			  for(int i=0;i<5;i++){
 		  %>
 		<li class="item" data-title="<%=bookList.get(i).getB_name()%>" data-author="by <%=bookList.get(i).getB_author()%>">
-		  <a href="/book_infor?b_id=<%=bookList.get(i).getB_id()%>" class="pic"><img src="<%=bookList.get(i).getB_cover()%>" alt="#" style="width:100%;height:100%;"></a>
+		  <a onclick="window.location.href='javascript:btnqukankan(\'<%=bookList.get(i).getB_id()%> \',<%=session.getAttribute("userId")%>)'" class="pic"><img src="<%=bookList.get(i).getB_cover()%>" alt="#" style="width:100%;height:100%;"></a>
 		</li>
 		  <%}%>
 	  </ul>
@@ -152,23 +152,19 @@
 				for(ZBook z:bookList){
 		%>
 	  <li class="item">
-		<a href="#" class="pic"><img src="<%=z.getB_cover()%>" style="width:100%;height:75%;" alt="#"></a>
-		<div class="info">
-		  <%--<a href="#" class="title"><%=z.getB_name()%>   by <%=z.getB_author()%></a>--%>
-		  <%--<span><%=z.getCounts()%>人收藏</span>--%>
-		  <a href="/book_infor?b_id=<%=z.getB_id()%>" class="icon-text__pink purchase">去看看</a>
-		</div>
+		<%--<a href="#" class="pic"><img src="<%=z.getB_cover()%>" style="width:100%;height:75%;" alt="#"></a>--%>
+			<img src="<%=z.getB_cover()%>" style="width:100%;height:100%;" alt="#" onclick="window.location.href='javascript:btnqukankan(\'<%=z.getB_id()%>\',<%=session.getAttribute("userId")%>)'">
+		<%--<div class="info">--%>
+		  <%--&lt;%&ndash;<a href="#" class="title"><%=z.getB_name()%>   by <%=z.getB_author()%></a>&ndash;%&gt;--%>
+		  <%--&lt;%&ndash;<span><%=z.getCounts()%>人收藏</span>&ndash;%&gt;--%>
+		  <%--<a href="/book_infor?b_id=<%=z.getB_id()%>" class="icon-text__pink purchase">去看看</a>--%>
+		<%--</div>--%>
 	  </li>
 		<%}}else{
 				for(DBook r:recommendBookList){
 		%>
 		<li class="item">
-			<a href="#" class="pic"><img src="<%=r.getB_cover()%>" style="width:100%;height:75%;" alt="#"></a>
-			<div class="info">
-				<%--<a href="#" class="title"><%=z.getB_name()%>   by <%=z.getB_author()%></a>--%>
-				<%--<span><%=z.getCounts()%>人收藏</span>--%>
-				<a href="/book_infor?b_id=<%=r.getB_id()%>" class="icon-text__pink purchase">去看看</a>
-			</div>
+			<img src="<%=r.getB_cover()%>" style="width:100%;height:100%;" alt="#" onclick="window.location.href='javascript:btnqukankan(\'<%=r.getB_id()%>\',<%=session.getAttribute("userId")%>)'">
 		</li>
 		<%}}%>
 	</ul>
@@ -204,6 +200,7 @@
 
 <script src="${pageContext.request.contextPath}/static/js/home-js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/home-js/script.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/book-js/Zbund.js" async defer></script>
 
 </body>
 </html>
