@@ -8,6 +8,7 @@ import po.BSJ.*;
 import service.BSJ.BUserService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,7 +80,7 @@ public class UserController {
         return "user_change";
     }
     @RequestMapping("/update")
-    public String UpdateUser(HttpServletRequest request) {
+    public String UpdateUser(HttpServletRequest request, HttpServletResponse response)throws Exception {
         String name=request.getParameter("name");
         String password=request.getParameter("password");
         int u_id=Integer.parseInt(request.getParameter("u_id"));
@@ -94,9 +95,12 @@ public class UserController {
         user.setU_sex(u_sex);
         user.setU_address(u_address);
         service.updateUser(user);
+        response.setContentType("text/html;charset=utf-8");
         if(name.equals(u_name)&&password.equals(u_password)){
             return "redirect:/user_change?u_id="+u_id;
         }else{
+            response.getWriter().write("<script>confirm('用户名或密码已更改！请重新登录'); window.location='view/sign-up-yh.jsp';</script>");
+            response.getWriter().flush();
             return "sign-up-yh";
         }
     }
