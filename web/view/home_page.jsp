@@ -184,7 +184,7 @@
 		  <a href="#" class="info-title"><%=userList.get(i).getFansList().getU_name()%></a>
 		  <p><i class="icon-star"></i><%=userList.get(i).getCountFans()%></p>
 			<% if(userList.get(i).getCount()==0){%>
-		    <p><a href="/concern?user_id=<%=userList.get(i).getFansList().getu_id()%>" class="icon-text__pink register" style="width:80px">关注</a></p>
+		    <p><a onclick="window.location.href='javascript:btnconcern(\'<%=userList.get(i).getFansList().getu_id()%>\',<%=session.getAttribute("userId")%>)'" class="icon-text__pink register" style="width:80px;cursor:pointer;">关注</a></p>
 			<% }else if(userList.get(i).getCount()==-1){%>
 			<p><a class="icon-text__pink register" style="width:80px">我</a></p>
 			<%}else{%>
