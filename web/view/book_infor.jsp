@@ -107,7 +107,7 @@
                 </li>
                 <li>
                     <span class="line"></span>
-                    <a href="/home_page" class="app" style="cursor:pointer">退出</a>
+                    <a href="/exit" class="app" style="cursor:pointer" style="cursor:pointer">退出</a>
                 </li>
                 <li>
                     <span class="line"></span>

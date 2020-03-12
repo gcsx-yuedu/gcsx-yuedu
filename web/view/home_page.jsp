@@ -130,7 +130,7 @@
 			<%for(int i=0;i<4;i++){
 			%>
 		  <li class="link">
-			<a href="#"><%=longComm.get(i).getTitle()%></a>
+			<a onclick="window.location.href='javascript:btnArticle(\'<%=longComm.get(i).getLc_id()%> \',<%=session.getAttribute("userId")%>)'" style="cursor:pointer"><%=longComm.get(i).getTitle()%></a>
 			<span></span>
 			<a><%=longComm.get(i).getLc_time()%></a>
 			<span></span>
@@ -188,7 +188,7 @@
 			<% }else if(userList.get(i).getCount()==-1){%>
 			<p><a class="icon-text__pink register" style="width:80px">我</a></p>
 			<%}else{%>
-			<p><a class="icon-text__pink register" style="width:80px">互相关注</a></p>
+			<p><a class="icon-text__pink register" style="width:80px">已关注</a></p>
 			<%}%>
 		</div>
 	  </li>

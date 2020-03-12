@@ -39,3 +39,13 @@ function btnconcern(user_id,u_id) {
         location.href = "/concern?user_id=" + user_id;
     }
 }
+
+function btnArticle(lc_id,u_id){
+    if (u_id == null) {
+        if (confirm("请先登录！")) {
+            location.href = "view/sign-up-yh.jsp";
+        }
+    } else {
+        location.href = "/article?lc_id=" + lc_id;
+    }
+}
