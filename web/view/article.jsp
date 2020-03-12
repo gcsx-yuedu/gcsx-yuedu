@@ -61,7 +61,7 @@
                     <!--<div class="post-thumbnail"><img src="img/blog-post-3.jpeg" alt="..." class="img-fluid"></div>-->
                     <div class="post-details">
                         <div class="post-meta d-flex justify-content-between">
-                            <div class="category"><a href="">>点击返回</a></div>
+                            <div class="category"><a href="/comment?book_id=<%=longComm.getBook_id()%>">>点击返回</a></div>
                         </div>
                         <h1><%=longComm.getTitle()%><a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
                         <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
