@@ -116,7 +116,7 @@
                                 <input type="hidden" id="nowComment" value="<%=longComm.getLc_coment()%>">
                                 <div class="row">
                                     <div class="form-group col-md-12">
-                                        <textarea name="usercomment" id="huitie_content" placeholder="输入你的评论" class="form-control"></textarea>
+                                        <textarea onblur="isNull('huitie_content')" name="usercomment" id="huitie_content" placeholder="输入你的评论" class="form-control"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <input onclick="addHuitie()
@@ -172,6 +172,16 @@
     </div>
 </div>
 <script>
+
+    /*验证是否有信息输入*/
+    function isNull(id) {
+        var value = document.getElementById(id).value;
+        if (value == "" || value == null) {
+            alert("输入信息不能为空!");
+        }
+    }
+
+
     function addHuitie() {
         var tiezi_id = document.getElementById("tiezi_id").value;
         var huitieren_id = document.getElementById("huitieren_id").value;
