@@ -30,7 +30,7 @@
             <i class="icon-arrow"></i>
             <div class="drop_con">
                 <% for(ZBookType ty:types){%>
-                <a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
+                <a href="/showBookByType?userId=<%=session.getAttribute("userId") %>&t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
                 <%}%>
             </div>
             <div class="category-result"></div>
@@ -155,8 +155,7 @@
                                     <p class="text-lg my-2 font-medium sm:font-normal">用户<%=hh.getUser().getU_name()%>评论了你的读后感（***<%=hh.getArticle().getTitle()%>***）</p>
                                     <p class="text-sm my-2 font-medium sm:font-normal"><%=hh.getHuitieList().getHuitie_content()%></p>
                                     <p class="text-sm my-2 font-medium sm:font-normal">评论时间：<%=hh.getHuitieList().getHuitie_time()%></p>
-                                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white  text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">查看</button>&nbsp;
-                                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white  text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">删除</button>
+                                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white  text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none"><a href="/article?lc_id=<%=hh.getArticle().getLc_id()%>">查看</a></button>&nbsp;
                                 </div>
                             </div>
                         </div>
@@ -182,7 +181,7 @@
                                     <p class="text-lg my-2 font-medium sm:font-normal">你的粉丝</p>
                                     <p class="text-sm my-2 font-medium sm:font-normal"><%=f.getFansList().getU_name()%>关注了你，快去看看吧</p>
 
-                                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white  text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none" style="float: right;">删除</button>
+                                    <button class="shadow-md mt-3 bg-grey-lightest hover:bg-white  text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none" style="float: right;"><a href="/user_focus?u_id=<%=session.getAttribute("userId")%>">去看看</a></button>
                                 </div>
                             </div>
                         </div>
