@@ -78,7 +78,7 @@
             <i class="icon-arrow"></i>
             <div class="drop_con">
                 <% for(ZBookType ty:types){%>
-                <a href="/showBookByType?t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
+                <a href="/showBookByType?userId=<%=session.getAttribute("userId") %>&t_id=<%=ty.getT_id()%>&t_type=<%=ty.getT_type()%>"><%=ty.getT_type()%></a>
                 <%}%>
             </div>
             <div class="category-result"></div>
