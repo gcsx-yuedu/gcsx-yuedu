@@ -234,7 +234,7 @@
                 <div class="w3l_contact_grids">
                     <form action="#" method="post">
                         <div class="clearfix"> </div>
-                        <textarea name="Message" placeholder="Type Message Here...." required id="content"></textarea>
+                        <textarea onblur="isNull('content')" name="Message" placeholder="Type Message Here...." required id="content"></textarea>
                         <input type="submit" value="Submit Now" onclick="addSC()" />
                     </form>
                 </div>
@@ -307,6 +307,16 @@
 <%--});--%>
 <%--</script>--%>
 <script>
+
+    /*验证是否有信息输入*/
+    function isNull(id) {
+        var value = document.getElementById(id).value;
+        if (value == "" || value == null) {
+            alert("输入信息不能为空!");
+        }
+    }
+
+
     function  Click(click,id,totalClick) {
         // alert("点赞方法已被调用");
         if(click==0){

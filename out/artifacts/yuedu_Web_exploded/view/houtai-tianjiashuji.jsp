@@ -163,7 +163,7 @@ response.sendRedirect("/Msignup");
                                 <div class="form-group">
                                     <label for="b_name" class="col-xl-2 col-form-label-lg">书名</label>
                                     <div class="col-xl-10">
-                                        <input type="text" name="b_name" id="b_name" onchange="checkBookName()" class="form-control" placeholder="请输入书名">
+                                        <input onblur="isNull('b_name')" type="text" name="b_name" id="b_name" onchange="checkBookName()" class="form-control" placeholder="请输入书名">
                                     </div>
                                 </div>
 
@@ -171,7 +171,7 @@ response.sendRedirect("/Msignup");
                                 <div class="form-group">
                                     <label for="b_author" class="col-xl-2 col-form-label-lg">作者</label>
                                     <div class="col-xl-10">
-                                        <input type="text" name="b_author" id="b_author" class="form-control" placeholder="请输入作者">
+                                        <input onblur="isNull('b_author')" type="text" name="b_author" id="b_author" class="form-control" placeholder="请输入作者">
                                     </div>
                                 </div>
 
@@ -205,7 +205,7 @@ response.sendRedirect("/Msignup");
                                     <label for="b_content" class="col-xl-12 col-form-label-lg">书籍简介</label>
                                     <div class="col-xl-10">
                                         <label for="b_content" class="col-xl-12">
-                                            <textarea name="b_content" id="b_content" class="form-control" rows="3"></textarea>
+                                            <textarea onblur="isNull('b_content')" name="b_content" id="b_content" class="form-control" rows="3"></textarea>
                                         </label>
                                     </div>
                                 </div>
@@ -259,11 +259,22 @@ response.sendRedirect("/Msignup");
                                     });
                                 }
 
+                                /*验证是否有信息输入*/
+                                function isNull(id) {
+                                    var value = document.getElementById(id).value;
+                                    if (value == "" || value == null) {
+                                        alert("输入信息不能为空!");
+                                    }
+                                }
+
 
                                 function add() {
                                     var b_name = document.getElementById("b_name").value;
                                     var b_author = document.getElementById("b_author").value;
                                     var b_cover = reader.result.toString();
+                                    if (b_cover == null || b_cover == "") {
+                                        alert("请上传图片封面！");
+                                    }
                                     // alert(b_cover);
                                     var b_content = document.getElementById("b_content").value;
                                     var obj = document.getElementsByName("bookType");
@@ -272,6 +283,9 @@ response.sendRedirect("/Msignup");
                                         if (obj[k].checked){
                                             b_type.push(obj[k].value);
                                         }
+                                    }
+                                    if (b_type == null||b_type=="") {
+                                        alert("请选择书籍类型！");
                                     }
                                     // alert(b_type);
 

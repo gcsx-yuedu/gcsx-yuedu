@@ -164,7 +164,7 @@ response.sendRedirect("/Msignup");
                                         <h5>书籍类型</h5>
                                     </label>
                                     <div class="col-xl-10">
-                                        <input autocomplete="off" type="text" class="form-control" name="t_type" id="bookType" placeholder="请输入书籍类型">
+                                        <input onblur="isNull('bookType')" autocomplete="off" type="text" class="form-control" name="t_type" id="bookType" placeholder="请输入书籍类型">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -172,6 +172,16 @@ response.sendRedirect("/Msignup");
                                 </div>
                             </form>
                             <script>
+
+                                /*验证是否有信息输入*/
+                                function isNull(id) {
+                                    var value = document.getElementById(id).value;
+                                    if (value == "" || value == null) {
+                                        alert("输入信息不能为空!");
+                                    }
+                                }
+
+
                                 function addBookType() {
                                     var t_type = document.getElementById("bookType").value;
                                     $.ajax({

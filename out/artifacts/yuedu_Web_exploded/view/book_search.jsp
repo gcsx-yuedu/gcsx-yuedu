@@ -182,7 +182,7 @@
                             <p class="text-l my-2 font-medium sm:font-normal">&nbsp;作者：<%=book.getB_author()%></p>
                             <p class="text-sm my-2 font-medium sm:font-normal">&nbsp;类型：<%=typeList%>
                             </p>
-                            <button onclick="window.location.href='/book_infor?b_id=<%=book.getB_id()%>&userId=<%=session.getAttribute("userId")%>'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
+                            <button onclick="window.location.href='javascript:btnqukankan(\'<%=book.getB_id()%>\',<%=session.getAttribute("userId")%>)'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
                             <%
 //                                System.out.println("主count 1或0："+book.getCounts());
                                 if (book.getCounts()==0){%>
@@ -219,16 +219,17 @@
             </svg>
             <div class="ml-3">
                 <p>欢迎回来</p>
-                <p class="text-grey-dark mt-1 text-sm">Joined since 2017</p>
+                <p class="text-grey-dark mt-1 text-sm">Joined since 2020</p>
             </div>
         </div>
         <div class="my-4 border-t pt-4">
-            <h3 class="text-indigo-dark font-normal">You have read <strong>4 of 30 books</strong></h3>
+            <h3 class="text-indigo-dark font-normal">Recommend 3 books <strong>at random</strong></h3>
             <div class="flex flex-wrap -ml-2 justify-start items-center">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/read-01.jpg" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block m-2 transition-normal hover:brighter">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/book-01.jpg" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block m-2 transition-normal hover:brighter">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/read-03.jpg" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block m-2 transition-normal hover:brighter">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/read-04.jpg" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block m-2 transition-normal hover:brighter">
+                <%
+                    for(int i=0;i<3;i++){
+                %>
+                <img src="<%=bookList.get(i).getB_cover()%>" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block m-2 transition-normal hover:brighter" onclick="window.location.href='javascript:btnqukankan(\'<%=bookList.get(i).getB_id()%>\',<%=session.getAttribute("userId")%>)'" >
+                <%}%>
             </div>
         </div>
         <div class="mt-6">
@@ -239,7 +240,7 @@
             <div class="flex items-start mt-2">
                 <img src="<%=z.getB_cover()%>" alt="read" class="w-1/6 lg:w-1/5 max-w-tiny shadow-md block transition-normal hover:brighter">
                 <div class="ml-3">
-                    <p class="mt-1 leading-normal text-sm"><a href="/book_infor?b_id=<%=z.getB_id()%>"><%=z.getB_name()%></a></p>
+                    <p class="mt-1 leading-normal text-sm"><a onclick="window.location.href='javascript:btnqukankan(\'<%=z.getB_id()%>\',<%=session.getAttribute("userId")%>)'"><%=z.getB_name()%></a></p>
                     <p class="mt-1 leading-normal text-xs">(<%=z.getB_author()%>)</p>
                 </div>
             </div>
