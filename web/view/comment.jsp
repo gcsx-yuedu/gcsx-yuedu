@@ -79,7 +79,8 @@
         </div>
         <form action="/book_search" method="post" id="myForm">
             <div class="search">
-                <input type="text" class="search-text" style="border: none;outline: none" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>">
+                <input type="hidden" name="userId" value="<%=session.getAttribute("userId")==null?"":session.getAttribute("userId") %>">
+                <input type="text" name="wenzi" class="search-text" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>" />
                 <button class="search-btn"><i class="icon-search"></i></button>
             </div>
         </form>

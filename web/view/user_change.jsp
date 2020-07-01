@@ -94,12 +94,12 @@
                 </div>
             </li>
             <li class="ml-2 mb-4 flex">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/home-default.svg" alt="home-icon" class="w-4 h-4 mr-2">
+                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593539898525&di=d71d76abaecc84d8aa6563f35f0ce0e1&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Ffe2a5be541f3c011972f74d3b50b96578116a92c2f63-tK5HwY_fw658" alt="home-icon" class="w-4 h-4 mr-2">
                 <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger"><a href="/home_page">返回首页</a></div>
             </li>
             <li class="ml-2 mb-4">
                 <div class="flex" id="sidenav-categories-trigger">
-                    <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/category-default.svg" alt="home-icon" class="w-4 h-4 mr-2">
+                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593575745084&di=9c3b5a0b589e14e21182c976229e41b7&imgtype=0&src=http%3A%2F%2Fpic.51yuansu.com%2Fpic2%2Fcover%2F00%2F45%2F65%2F5814f401ea5a9_610.jpg" alt="home-icon" class="w-4 h-4 mr-2">
                     <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium w-full relative">
                         我的账户
                     </div>
@@ -112,13 +112,10 @@
                 </ul>
             </li>
             <li class="ml-2 mb-4 flex">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/wishlist-default.svg" alt="wishlist-icon" class="w-4 h-4 mr-2">
+                <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1601250509,1472022610&fm=26&gp=0.jpg" alt="wishlist-icon" class="w-4 h-4 mr-2">
                 <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger"><a href="/user_info?u_id=<%=session.getAttribute("userId")%>">我的书架</a></div>
             </li>
-            <li class="ml-2 mb-4 flex lg:hidden">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/profile-default.svg" alt="profile-icon" class="w-4 h-4 mr-2">
-                <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium" id="mobile-profile-trigger">Profile</div>
-            </li>
+
         </ul>
     </nav>
     <!-- Content -->
