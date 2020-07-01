@@ -108,12 +108,12 @@
     <nav class="absolute lg:relative lg:flex lg:text-sm bg-indigo-darker lg:bg-transparent pin-l pin-r py-4 px-6 lg:pt-10 lg:pl-12 lg:pr-6 -mt-1 lg:mt-0 overflow-y-auto lg:w-1/5 lg:border-r z-40 hidden">
         <ul class="list-reset mb-8 w-full">
             <li class="ml-2 mb-4 flex">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/home-default.svg" alt="home-icon" class="w-4 h-4 mr-2">
+                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593539898525&di=d71d76abaecc84d8aa6563f35f0ce0e1&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Ffe2a5be541f3c011972f74d3b50b96578116a92c2f63-tK5HwY_fw658" alt="home-icon" class="w-4 h-4 mr-2">
                 <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger"><a href="/home_page">返回首页</a></div>
             </li>
             <li class="ml-2 mb-4">
                 <div class="flex" id="sidenav-categories-trigger">
-                    <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/category-default.svg" alt="home-icon" class="w-4 h-4 mr-2">
+                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593540134344&di=5a211e67f3849a7be2ec255cca0d923f&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F00%2F93%2F50%2F6056f2a1168677a.jpg" alt="home-icon" class="w-4 h-4 mr-2">
                     <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium w-full relative">
                         分类
                     </div>
@@ -130,22 +130,19 @@
                         <a href="/showBookByType?t_id=<%=type.getT_id()%>&t_type=<%=type.getT_type()%>&userId=<%=session.getAttribute("userId")%>"> <%=type.getT_type()%></a>
                     </li>
                     <%}
-                        }%>
+                    }%>
 
                 </ul>
             </li>
             <li class="ml-2 mb-4 flex">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/wishlist-default.svg" alt="wishlist-icon" class="w-4 h-4 mr-2">
+                <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1601250509,1472022610&fm=26&gp=0.jpg" alt="wishlist-icon" class="w-4 h-4 mr-2">
                 <% if (session.getAttribute("userId")==null){%>
                 <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger"><a href="view/sign-up-yh.jsp">我的书架</a></div>
                 <%}else{%>
                 <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium mobile-home-trigger"><a href="/user_info?u_id=<%=session.getAttribute("userId")%>">我的书架</a></div>
                 <%}%>
             </li>
-            <li class="ml-2 mb-4 flex lg:hidden">
-                <img src="http://demo.cssmoban.com/cssthemes6/tymp_11_libre/images/profile-default.svg" alt="profile-icon" class="w-4 h-4 mr-2">
-                <div class="hover:cursor-pointer text-white lg:text-indigo-darkest no-underline font-medium" id="mobile-profile-trigger">Profile</div>
-            </li>
+
         </ul>
     </nav>
     <!-- Content -->
@@ -184,7 +181,7 @@
                             </p>
                             <button onclick="window.location.href='javascript:btnqukankan(\'<%=book.getB_id()%>\',<%=session.getAttribute("userId")%>)'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">去看看</button>&nbsp;
                             <%
-//                                System.out.println("主count 1或0："+book.getCounts());
+                                //                                System.out.println("主count 1或0："+book.getCounts());
                                 if (book.getCounts()==0){%>
                             <button onclick="window.location.href='javascript:btnAddToShelf(\'<%=book.getB_id()%>\',<%=session.getAttribute("userId")%>)'" class="shadow-md mt-3 bg-grey-lightest hover:bg-white text-indigo-darker text-xs py-2 px-4 rounded-full transition-normal hover:shadow hover:translate-y-1 active:translate-y-1 focus:outline-none">添加到书架</button></a>
                             <%}else{%>

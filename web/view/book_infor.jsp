@@ -89,7 +89,8 @@
         </div>
         <form action="/book_search" method="post" id="myForm">
             <div class="search">
-                <input type="text" class="search-text" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>">
+                <input type="hidden" name="userId" value="<%=session.getAttribute("userId")==null?"":session.getAttribute("userId") %>">
+                <input type="text" name="wenzi" class="search-text" placeholder="Seach here..."value="<%= wenzi==null?"":wenzi %>" />
                 <button class="search-btn"><i class="icon-search"></i></button>
             </div>
         </form>
@@ -452,7 +453,7 @@
                         url:'/addShortComm',   //requestMapping对应
                         async:false,
                         type:'post',
-                        data:{"shuji_id":shuji_id,"fatie_content":fatiecontent},
+                        data:{"shuji_id":shuji_id,"fatie_id":<%=session.getAttribute("userId")%>,"fatie_content":fatiecontent},
                         success:function () {
                             alert('评论添加成功');
                             location.reload();
